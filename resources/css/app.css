@@ -1,10 +1,11 @@
 @import 'tailwindcss';
-@import '@fontsource/bricolage-grotesque/700.css';
-@import '@fontsource/bricolage-grotesque/800.css';
-@import '@fontsource/plus-jakarta-sans/400.css';
-@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
 @import '@fontsource/plus-jakarta-sans/600.css';
 @import '@fontsource/plus-jakarta-sans/700.css';
+@import '@fontsource/plus-jakarta-sans/800.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -12,13 +13,13 @@
 @source '../js/**/*.js';
 
 @theme {
-    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
     --color-paper: #F7F6F2;
     --color-paper-2: #EEECE6;
     --color-ink: #14161A;
-    --color-ink-muted: #5B5F68;
+    --color-ink-muted: #52565E;
     --color-navy: #0B2A5B;
     --color-navy-700: #123A78;
     --color-yellow-skensa: #F5B700;
@@ -47,11 +48,19 @@ body {
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
 h1, h2, h3, h4, .font-display {
     font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+}
+
+.tabular-nums {
+    font-variant-numeric: tabular-nums;
 }
 
 /* Marker Highlight Sweep */
@@ -95,3 +104,25 @@ h1, h2, h3, h4, .font-display {
     background-size: 200% 100%;
     animation: skensa-shimmer 1.6s infinite linear;
 }
+
+/* Infinite Marquee for Industry Partners */
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 28s linear infinite;
+    will-change: transform;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+

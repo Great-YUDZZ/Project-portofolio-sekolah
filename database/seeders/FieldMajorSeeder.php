@@ -20,23 +20,22 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Teknik Konstruksi dan Perumahan',
                         'code' => 'TKP',
-                        'tagline' => 'Membangun hunian berkelanjutan dan infrastruktur masa depan',
-                        'description' => 'Konsentrasi keahlian yang membekali peserta didik dengan keterampilan perencanaan, pelaksanaan konstruksi bangunan gedung dan perumahan, estimasi biaya, serta pengawasan mutu konstruksi.',
+                        'tagline' => 'Perencanaan, pelaksanaan, dan pengawasan konstruksi bangunan gedung dan perumahan',
+                        'description' => 'Konsentrasi keahlian di bawah Program Teknik Konstruksi SMK Negeri 1 Denpasar yang berfokus pada pelaksanaan konstruksi bangunan, perhitungan anggaran biaya, dan pemetaan lahan.',
                         'competencies' => [
                             'Gambar Teknik dan Konstruksi Bangunan',
                             'Pengukuran dan Pemetaan Tanah',
                             'Konstruksi Beton Bertulang dan Baja',
                             'Rencana Anggaran Biaya (RAB)',
-                            'Keselamatan dan Kesehatan Kerja Lingkungan Hidup (K3LH)'
                         ],
                         'career_prospects' => [
                             'Pelaksana Konstruksi Bangunan',
                             'Drafter Struktur Bangunan',
                             'Estimator Biaya Proyek (Quantity Surveyor)',
                             'Surveyor Pemetaan Tanah',
-                            'Wirausaha Jasa Konstruksi dan Renovasi'
                         ],
-                        'head_of_major' => 'Ir. I Nyoman Sumantra, S.T.',
+                        'head_of_major' => null,
+                        'image' => '/images/gedung_skensa.jpg',
                     ]
                 ]
             ],
@@ -47,21 +46,22 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Desain Pemodelan dan Informasi Bangunan',
                         'code' => 'DPIB',
-                        'tagline' => 'Transformasi arsitektur digital melalui Building Information Modeling (BIM)',
-                        'description' => 'Fokus pada pemodelan digital 2D dan 3D struktur bangunan menggunakan perangkat lunak industri seperti AutoCAD, Revit, dan SketchUp, serta integrasi data BIM.',
+                        'tagline' => 'Pemodelan arsitektur digital 2D/3D dan Building Information Modeling (BIM)',
+                        'description' => 'Konsentrasi keahlian di bawah Program Desain Bangunan SMK Negeri 1 Denpasar yang mempelajari pemodelan digital arsitektur, gambar kerja konstruksi, serta visualisasi bangunan.',
                         'competencies' => [
                             'Aplikasi Perangkat Lunak Desain 2D & 3D (CAD/BIM)',
                             'Desain Arsitektur dan Interior',
-                            'Visualisasi dan Rendering Realistis',
-                            'Penyusunan Gambar Kerja Arsitektur'
+                            'Visualisasi dan Rendering Bangunan',
+                            'Penyusunan Gambar Kerja Arsitektur',
                         ],
                         'career_prospects' => [
                             'BIM Modeler / Drafter Arsitektur',
                             '3D Visualizer Arsitektur',
                             'Asisten Arsitek',
-                            'Konsultan Desain Interior'
+                            'Konsultan Desain Interior',
                         ],
-                        'head_of_major' => 'Ni Wayan Eka Putri, S.Pd., M.T.',
+                        'head_of_major' => null,
+                        'image' => '/images/gedung_skensa.jpg',
                     ]
                 ]
             ],
@@ -72,36 +72,38 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Teknik Audio Video',
                         'code' => 'TAV',
-                        'tagline' => 'Ahli rekayasa sistem akustik dan multimedia modern',
-                        'description' => 'Mempelajari instalasi dan perawatan sistem audio profesional, sistem siaran televisi/radio, serta teknologi akustik ruangan dan digital audio processor.',
+                        'tagline' => 'Rekayasa sistem audio profesional, akustik ruang, dan perangkat multimedia',
+                        'description' => 'Konsentrasi keahlian di bawah Program Elektronika SMK Negeri 1 Denpasar yang mempelajari instalasi, pemeliharaan, serta rekayasa sistem audio video dan penyiaran.',
                         'competencies' => [
                             'Penerapan Rangkaian Elektronika Audio Video',
                             'Sistem Akustik Ruang dan Sound Engineering',
-                            'Perawatan dan Perbaikan Perangkat Audio Video Digital'
+                            'Perawatan dan Perbaikan Perangkat Audio Video Digital',
                         ],
                         'career_prospects' => [
                             'Sound Engineer / Audio Technician',
-                            'Teknisi Studio Broadcasting',
-                            'Teknisi Perbaikan Elektronika Konsumen'
+                            'Teknisi Studio Penyiaran',
+                            'Teknisi Elektronika Audio Video',
                         ],
-                        'head_of_major' => 'Drs. I Ketut Darmawan',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ],
                     [
                         'name' => 'Teknik Elektronika Industri',
                         'code' => 'ELIN',
-                        'tagline' => 'Otomasi industri pintar dan sistem kendali mikroprosesor',
-                        'description' => 'Mempelajari sistem otomasi industri, PLC (Programmable Logic Controller), pneumatik, mikrokontroler IoT, dan robotika industri.',
+                        'tagline' => 'Sistem otomasi industri, kendali PLC, mikrokontroler, dan instrumentasi',
+                        'description' => 'Konsentrasi keahlian di bawah Program Elektronika SMK Negeri 1 Denpasar yang berfokus pada sistem kendali elektronik industri, Programmable Logic Controller (PLC), dan sensor.',
                         'competencies' => [
-                            'Pemrograman PLC dan Sistem Otomasi',
-                            'Sistem Sensor dan Aktuator Industri',
-                            'Robotika dan Internet of Things (IoT)'
+                            'Pemrograman PLC dan Sistem Otomasi Industri',
+                            'Sistem Sensor, Aktuator, dan Pneumatik',
+                            'Mikrokontroler dan Internet of Things (IoT)',
                         ],
                         'career_prospects' => [
                             'Teknisi Otomasi dan Kontrol PLC',
-                            'Maintenance Engineer Pabrik Industri',
-                            'Teknisi Instrumentasi dan IoT'
+                            'Maintenance Engineer Industri',
+                            'Teknisi Instrumentasi dan Kendali',
                         ],
-                        'head_of_major' => 'I Gede Agus Sudiarta, S.T.',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ]
                 ]
             ],
@@ -110,38 +112,40 @@ class FieldMajorSeeder extends Seeder
                 'code' => 'KL',
                 'majors' => [
                     [
-                        'name' => 'Teknik Instalasi Tenaga Listrik',
+                        'name' => 'Teknik Instalasi dan Tenaga Listrik',
                         'code' => 'TITL',
-                        'tagline' => 'Energi andal untuk industri dan gedung modern',
-                        'description' => 'Membekali kompetensi instalasi penerangan gedung, instalasi tenaga industri, panel kontrol motor listrik 3 fasa, dan energi baru terbarukan.',
+                        'tagline' => 'Instalasi penerangan gedung, distribusi tenaga listrik, dan panel kontrol industri',
+                        'description' => 'Konsentrasi keahlian di bawah Program Ketenagalistrikan SMK Negeri 1 Denpasar yang membekali keterampilan instalasi listrik domestik, komersial, serta sistem kendali motor listrik.',
                         'competencies' => [
-                            'Instalasi Penerangan dan Tenaga Listrik',
-                            'Perakitan Panel Distribusi & Kontrol Motor',
-                            'Instalasi Pembangkit Listrik Tenaga Surya (PLTS)'
+                            'Instalasi Penerangan dan Tenaga Listrik 1 & 3 Fasa',
+                            'Perakitan Panel Distribusi dan Kendali Motor Listrik',
+                            'Pemeliharaan Jaringan dan Peralatan Listrik',
                         ],
                         'career_prospects' => [
-                            'Instalatir Listrik Gedung dan Pabrik',
-                            'Teknisi Panel Kontrol Listrik Industri',
-                            'Petugas Pemeliharaan Gardu dan Jaringan PLN'
+                            'Instalatir Listrik Gedung dan Industri',
+                            'Teknisi Panel Kontrol Listrik',
+                            'Teknisi Pemeliharaan Kelistrikan',
                         ],
-                        'head_of_major' => 'I Made Wijaya, S.Pd.',
+                        'head_of_major' => null,
+                        'image' => '/images/gedung_skensa.jpg',
                     ],
                     [
                         'name' => 'Teknik Pendingin, Tata Udara, dan Pemanasan',
                         'code' => 'TPTUP',
-                        'tagline' => 'Spesialis sistem pendingin komersial dan HVAC gedung bertingkat',
-                        'description' => 'Fokus pada instalasi, perbaikan, dan perawatan sistem AC split, chiller central gedung komersial, cold storage, dan sistem ventilasi.',
+                        'tagline' => 'Sistem refrigerasi komersial, tata udara gedung bertingkat (HVAC), dan pemanasan',
+                        'description' => 'Konsentrasi keahlian di bawah Program Ketenagalistrikan SMK Negeri 1 Denpasar yang berfokus pada instalasi dan perawatan sistem pendingin ruangan, chiller, dan tata udara komersial.',
                         'competencies' => [
-                            'Sistem Refrigerasi Komersial dan Industri',
-                            'Perawatan Sistem Chiller dan HVAC',
-                            'Retrofit Refrigeran Ramah Lingkungan'
+                            'Sistem Refrigerasi Domestik dan Komersial',
+                            'Instalasi dan Perawatan Sistem Tata Udara (HVAC)',
+                            'Sistem Kontrol Kelistrikan Pendingin dan Pemanas',
                         ],
                         'career_prospects' => [
                             'HVAC Technician Hotel dan Gedung Komersial',
-                            'Teknisi Cold Storage Industri Perikanan/Pangan',
-                            'Wirausaha Jasa Solusi Tata Udara'
+                            'Teknisi Refrigerasi dan Cold Storage',
+                            'Wirausaha Layanan Tata Udara',
                         ],
-                        'head_of_major' => 'I Wayan Suparta, S.T.',
+                        'head_of_major' => null,
+                        'image' => '/images/gedung_skensa.jpg',
                     ]
                 ]
             ],
@@ -152,19 +156,20 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Teknik Pemesinan',
                         'code' => 'TPM',
-                        'tagline' => 'Presisi tinggi dalam fabrikasi mekanik dan manufaktur CNC',
-                        'description' => 'Mempelajari pengoperasian mesin bubut, frais konvensional, mesin CNC tingkat lanjut (milling dan turning), perancangan CAD/CAM mekanikal presisi.',
+                        'tagline' => 'Fabrikasi komponen mekanik presisi dan pengoperasian mesin CNC',
+                        'description' => 'Konsentrasi keahlian di bawah Program Pemesinan SMK Negeri 1 Denpasar yang mempelajari pemesinan bubut, frais, gerinda, pemrograman CNC, dan desain manufaktur CAD/CAM.',
                         'competencies' => [
-                            'Pemrograman dan Pengoperasian Mesin CNC',
-                            'Pemesinan Bubut dan Frais Presisi',
-                            'Desain CAD/CAM Mekanikal'
+                            'Pemrograman dan Pengoperasian Mesin CNC (Milling & Turning)',
+                            'Pemesinan Bubut, Frais, dan Gerinda Presisi',
+                            'Gambar Teknik Manufaktur CAD/CAM',
                         ],
                         'career_prospects' => [
                             'Operator dan Programmer Mesin CNC',
-                            'Tool Maker dan Mold Maker',
-                            'Quality Control Industri Manufaktur'
+                            'Teknisi Manufaktur dan Fabrikasi Mekanik',
+                            'Quality Control Industri Manufaktur',
                         ],
-                        'head_of_major' => 'I Ketut Suartana, S.T.',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ]
                 ]
             ],
@@ -175,36 +180,38 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Teknik Sepeda Motor',
                         'code' => 'TSM',
-                        'tagline' => 'Teknologi injeksi pintar dan konversi motor listrik',
-                        'description' => 'Mempelajari servis sistem injeksi PGM-FI, kelistrikan bodi sepeda motor modern, engine overhauling, hingga teknologi sepeda motor listrik.',
+                        'tagline' => 'Perawatan mesin sepeda motor injeksi elektronik dan kelistrikan otomotif roda dua',
+                        'description' => 'Konsentrasi keahlian di bawah Program Otomotif SMK Negeri 1 Denpasar yang mempelajari perawatan mesin, sasis, kelistrikan, serta diagnosis sistem injeksi sepeda motor.',
                         'competencies' => [
-                            'Diagnosis Kerusakan Sistem Injeksi Elektronik',
-                            'Perawatan Mesin dan Transmisi Otomatis (CVT)',
-                            'Teknologi Kendaraan Listrik Roda Dua'
+                            'Diagnosis dan Perawatan Sistem Injeksi Elektronik',
+                            'Perawatan Mesin, Sasis, dan Transmisi Sepeda Motor',
+                            'Sistem Kelistrikan dan Pengelolaan Bengkel Roda Dua',
                         ],
                         'career_prospects' => [
-                            'Mekanik Service Advisor Bengkel Resmi',
-                            'Teknisi Konversi Motor Listrik',
-                            'Wirausaha Bengkel Mandiri'
+                            'Mekanik dan Teknisi Bengkel Resmi Sepeda Motor',
+                            'Service Advisor Otomotif Roda Dua',
+                            'Wirausaha Bengkel Sepeda Motor',
                         ],
-                        'head_of_major' => 'I Made Sujana, S.Pd.',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ],
                     [
                         'name' => 'Teknik Kendaraan Ringan',
                         'code' => 'TKR',
-                        'tagline' => 'Diagnostik canggih kendaraan roda empat dan sistem hybrid',
-                        'description' => 'Membekali keahlian sistem Electronic Fuel Injection (EFI), ABS, transmisi otomatis, AC mobil, diagnostik engine scanner, dan teknologi mobil listrik.',
+                        'tagline' => 'Diagnostik kendaraan roda empat, sistem EFI, sasis, dan kelistrikan mobil',
+                        'description' => 'Konsentrasi keahlian di bawah Program Otomotif SMK Negeri 1 Denpasar yang mempelajari pemeliharaan mesin kendaraan ringan, sistem pemindah tenaga, sasis, dan kelistrikan otomotif.',
                         'competencies' => [
-                            'Tune Up dan Overhaul Mesin Bensin & Diesel',
-                            'Diagnostik ECU Menggunakan Engine Scanner',
-                            'Sistem Chasis, Transmisi Otomatis, dan Rem ABS'
+                            'Pemeliharaan Mesin Kendaraan Ringan dan Sistem EFI',
+                            'Pemeliharaan Sasis dan Pemindah Tenaga Kendaraan',
+                            'Pemeliharaan Kelistrikan dan AC Kendaraan Ringan',
                         ],
                         'career_prospects' => [
-                            'Mekanik dan Diagnostician Bengkel Resmi',
+                            'Teknisi dan Mekanik Kendaraan Ringan',
                             'Service Advisor Dealer Otomotif',
-                            'Teknisi Sistem Pendingin dan Kelistrikan Mobil'
+                            'Teknisi Diagnostik dan Kelistrikan Mobil',
                         ],
-                        'head_of_major' => 'I Nyoman Pande Ardana, S.T.',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ]
                 ]
             ],
@@ -215,40 +222,38 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Teknik Komputer dan Jaringan',
                         'code' => 'TKJ',
-                        'tagline' => 'Arsitektur jaringan enterprise, server administration, dan keamanan siber',
-                        'description' => 'Mempelajari perancangan topologi jaringan, konfigurasi router Mikrotik/Cisco, administrasi server Linux/Windows, cloud computing, fiber optic, dan cybersecurity fundamentals.',
+                        'tagline' => 'Infrastruktur jaringan komputer, administrasi sistem server, dan telekomunikasi',
+                        'description' => 'Konsentrasi keahlian di bawah Program Komputer dan Informatika SMK Negeri 1 Denpasar yang berfokus pada perancangan jaringan, konfigurasi router dan server, serta fiber optik.',
                         'competencies' => [
-                            'Routing Switching MikroTik & Cisco (MTCNA/CCNA)',
-                            'Administrasi Server Linux, Docker, dan Cloud',
-                            'Instalasi dan Splicing Jaringan Fiber Optic',
-                            'Keamanan Jaringan dan Firewall'
+                            'Perancangan dan Konfigurasi Jaringan (Routing & Switching)',
+                            'Administrasi Sistem Server dan Layanan Jaringan',
+                            'Instalasi Jaringan Fiber Optic dan Keamanan Jaringan',
                         ],
                         'career_prospects' => [
-                            'Network Engineer / Administrator',
-                            'System / Cloud Administrator',
-                            'Network Security Specialist',
-                            'Field Engineer ISP (Internet Service Provider)'
+                            'Network Engineer / Network Administrator',
+                            'System & Server Administrator',
+                            'Teknisi Jaringan Telekomunikasi dan ISP',
                         ],
-                        'head_of_major' => 'Ni Made Sukerti, S.Kom.',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ],
                     [
                         'name' => 'Rekayasa Perangkat Lunak',
                         'code' => 'RPL',
-                        'tagline' => 'Membangun aplikasi web, mobile, dan sistem cerdas berdampak tinggi',
-                        'description' => 'Fokus pada pengembangan aplikasi full-stack, rekayasa basis data relasional dan NoSQL, mobile app development (Flutter/React Native), RESTful API, dan metodologi agile software engineering.',
+                        'tagline' => 'Pengembangan aplikasi web, perangkat bergerak (mobile), dan rekayasa sistem basis data',
+                        'description' => 'Konsentrasi keahlian di bawah Program Komputer dan Informatika SMK Negeri 1 Denpasar yang mempelajari pemrograman perangkat lunak, basis data, pengembangan web, dan aplikasi mobile.',
                         'competencies' => [
-                            'Full-Stack Web Development (Laravel, React/Vue, Tailwind)',
-                            'Mobile Application Development',
-                            'Database Design dan API Architecture',
-                            'Version Control Git dan CI/CD Deployment'
+                            'Pemrograman Berorientasi Objek dan Pengembangan Web',
+                            'Pengembangan Aplikasi Perangkat Bergerak (Mobile)',
+                            'Perancangan Basis Data dan Integrasi API',
                         ],
                         'career_prospects' => [
-                            'Full-Stack Web Developer',
-                            'Frontend / Mobile App Developer',
-                            'Backend & API Engineer',
-                            'Software Quality Assurance (QA)'
+                            'Web & Mobile Application Developer',
+                            'Software Engineer / Programmer',
+                            'Database Administrator & QA Tester',
                         ],
-                        'head_of_major' => 'I Wayan Artha, S.Kom., M.Cs.',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ]
                 ]
             ],
@@ -259,21 +264,20 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Desain Komunikasi Visual',
                         'code' => 'DKV',
-                        'tagline' => 'Kreativitas visual, branding strategis, dan motion graphics',
-                        'description' => 'Mengasah daya cipta dalam tipografi, ilustrasi digital, UI/UX design, corporate branding, fotografi komersial, motion graphic, dan packaging design.',
+                        'tagline' => 'Komunikasi visual, identitas merek, fotografi komersial, dan media kreatif digital',
+                        'description' => 'Konsentrasi keahlian di bawah Program Desain Komunikasi Visual SMK Negeri 1 Denpasar yang mempelajari desain grafis, ilustrasi, tipografi, fotografi, dan videografi komersial.',
                         'competencies' => [
-                            'Graphic Design & Brand Identity (Illustrator, Photoshop)',
-                            'UI/UX Design dan Prototyping (Figma)',
-                            'Motion Graphic dan Animasi 2D',
-                            'Fotografi Komersial dan Digital Imaging'
+                            'Desain Grafis, Tipografi, dan Identitas Visual',
+                            'Ilustrasi Digital dan Desain Antarmuka (UI/UX)',
+                            'Fotografi Komersial dan Pengolahan Citra Digital',
                         ],
                         'career_prospects' => [
-                            'Graphic Designer / Brand Designer',
-                            'UI/UX Designer',
-                            'Motion Graphic Artist',
-                            'Digital Illustrator'
+                            'Graphic Designer & Brand Designer',
+                            'UI/UX Designer & Ilustrator Digital',
+                            'Fotografer dan Desainer Media Kreatif',
                         ],
-                        'head_of_major' => 'I Made Suardana, S.Sn.',
+                        'head_of_major' => null,
+                        'image' => '/images/gedung_skensa.jpg',
                     ]
                 ]
             ],
@@ -284,21 +288,20 @@ class FieldMajorSeeder extends Seeder
                     [
                         'name' => 'Produksi Film',
                         'code' => 'PRF',
-                        'tagline' => 'Bercerita lewat sinematografi berkelas dan produksi audiovisual',
-                        'description' => 'Mempelajari manajemen pra-produksi, penulisan naskah, sinematografi dan tata kamera, tata suara studio, penyuntingan video (editing), dan color grading sinematik.',
+                        'tagline' => 'Manajemen produksi film, sinematografi, tata cahaya, tata suara, dan penyuntingan gambar',
+                        'description' => 'Konsentrasi keahlian di bawah Program Broadcasting & Perfilman SMK Negeri 1 Denpasar yang mempelajari tahapan pra-produksi, produksi, hingga pasca-produksi karya sinema dan penyiaran.',
                         'competencies' => [
-                            'Sinematografi dan Tata Cahaya Film',
-                            'Video Editing & Color Grading (Premiere / DaVinci Resolve)',
-                            'Tata Suara Lapangan dan Post-Production Audio',
-                            'Manajemen Produksi Film Fiksi & Dokumenter'
+                            'Manajemen Produksi dan Penulisan Naskah Film',
+                            'Sinematografi, Tata Kamera, dan Tata Cahaya',
+                            'Penyuntingan Video (Editing), Grading, dan Tata Suara',
                         ],
                         'career_prospects' => [
-                            'Director of Photography (DoP) / Kameramen',
+                            'Kameramen / Director of Photography (DoP)',
                             'Video Editor & Colorist',
-                            'Produser Audiovisual / Konten Kreator',
-                            'Audio Engineer Pasca-Produksi'
+                            'Kru Produksi Film dan Penyiaran Televisi',
                         ],
-                        'head_of_major' => 'Ni Luh Putu Sintya, S.Sn.',
+                        'head_of_major' => null,
+                        'image' => '/images/hero_siswa.jpg',
                     ]
                 ]
             ]
@@ -311,7 +314,7 @@ class FieldMajorSeeder extends Seeder
                 [
                     'name' => $fData['name'],
                     'slug' => Str::slug($fData['name']),
-                    'description' => 'Bidang keahlian ' . $fData['name'] . ' SMK Negeri 1 Denpasar',
+                    'description' => 'Program Keahlian ' . $fData['name'] . ' SMK Negeri 1 Denpasar',
                 ]
             );
 
@@ -327,11 +330,11 @@ class FieldMajorSeeder extends Seeder
                         'competencies' => $mData['competencies'],
                         'career_prospects' => $mData['career_prospects'],
                         'head_of_major' => $mData['head_of_major'],
+                        'image' => $mData['image'],
                         'order_index' => $orderIndex++,
                     ]
                 );
 
-                // Buat 3 rombel default untuk tiap jurusan (X, XI, XII)
                 for ($grade = 10; $grade <= 12; $grade++) {
                     $gradeRoman = match($grade) { 10 => 'X', 11 => 'XI', 12 => 'XII' };
                     Classroom::updateOrCreate(
@@ -341,7 +344,7 @@ class FieldMajorSeeder extends Seeder
                         ],
                         [
                             'grade_level' => $grade,
-                            'academic_year' => '2025/2026',
+                            'academic_year' => '2024/2025',
                         ]
                     );
                 }

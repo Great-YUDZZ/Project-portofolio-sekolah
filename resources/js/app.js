@@ -1,6 +1,8 @@
+import gsap from 'gsap';
 import { initSmoothScroll } from './public/smooth-scroll';
 import { initIntro } from './public/intro';
 import { initHeroSection } from './public/sections/hero';
+import { initInteractivePhysics } from './public/sections/interactive-physics';
 import { initMajorsHorizontal } from './public/sections/majors-horizontal';
 import { initCounters } from './public/sections/counters';
 import { initReveal } from './public/sections/reveal';
@@ -10,41 +12,98 @@ import { initMarkers } from './public/sections/marker';
 function initNavbarAndDrawers() {
     const megaToggle = document.getElementById('mega-menu-toggle');
     const megaClose = document.getElementById('mega-menu-close');
-    const megaBackdrop = document.getElementById('mega-menu-backdrop');
     const megaDrawer = document.getElementById('mega-menu-drawer');
 
     const mobileToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu-panel');
 
-    const openMega = () => {
-        if (!megaDrawer) return;
-        megaDrawer.classList.remove('hidden');
-        requestAnimationFrame(() => {
-            megaDrawer.classList.remove('opacity-0', 'translate-y-2');
-            megaDrawer.classList.add('opacity-100', 'translate-y-0');
+    const searchTrigger = document.getElementById('search-modal-trigger');
+    const searchModal = document.getElementById('search-command-modal');
+    const searchClose = document.getElementById('search-modal-close');
+    const searchInput = document.getElementById('global-search-input');
+
+    // Two-Column Academic Mega-Menu Field Switcher
+    const megaFieldBtns = document.querySelectorAll('[data-mega-field-btn]');
+    const megaFieldPanels = document.querySelectorAll('[data-mega-field-panel]');
+
+    const activateMegaField = (fieldId) => {
+        megaFieldBtns.forEach((btn) => {
+            const isMatch = btn.getAttribute('data-mega-field-btn') === fieldId;
+            const badge = btn.querySelector('[data-mega-badge]');
+            if (isMatch) {
+                btn.classList.add('bg-navy', 'text-paper', 'font-bold');
+                btn.classList.remove('text-ink', 'hover:bg-paper-2', 'font-semibold');
+                if (badge) {
+                    badge.classList.add('bg-yellow-skensa', 'text-ink');
+                    badge.classList.remove('bg-paper-2', 'text-ink-muted');
+                }
+            } else {
+                btn.classList.remove('bg-navy', 'text-paper', 'font-bold');
+                btn.classList.add('text-ink', 'hover:bg-paper-2', 'font-semibold');
+                if (badge) {
+                    badge.classList.remove('bg-yellow-skensa', 'text-ink');
+                    badge.classList.add('bg-paper-2', 'text-ink-muted');
+                }
+            }
         });
-        megaToggle?.setAttribute('aria-expanded', 'true');
+
+        megaFieldPanels.forEach((panel) => {
+            const isMatch = panel.getAttribute('data-mega-field-panel') === fieldId;
+            if (isMatch) {
+                panel.classList.remove('hidden');
+                panel.classList.add('block');
+                gsap.fromTo(
+                    panel,
+                    { opacity: 0, y: 6 },
+                    { opacity: 1, y: 0, duration: 0.22, ease: 'power2.out', overwrite: true }
+                );
+            } else {
+                panel.classList.add('hidden');
+                panel.classList.remove('block');
+            }
+        });
     };
+
+    megaFieldBtns.forEach((btn) => {
+        const fieldId = btn.getAttribute('data-mega-field-btn');
+        btn.addEventListener('mouseenter', () => activateMegaField(fieldId));
+        btn.addEventListener('focus', () => activateMegaField(fieldId));
+        btn.addEventListener('click', () => activateMegaField(fieldId));
+    });
 
     const closeMega = () => {
         if (!megaDrawer) return;
-        megaDrawer.classList.remove('opacity-100', 'translate-y-0');
-        megaDrawer.classList.add('opacity-0', 'translate-y-2');
+        megaDrawer.classList.remove('opacity-100', 'translate-y-0', 'visible');
+        megaDrawer.classList.add('opacity-0', 'translate-y-2', 'invisible');
         megaToggle?.setAttribute('aria-expanded', 'false');
-        setTimeout(() => {
-            megaDrawer.classList.add('hidden');
-        }, 200);
     };
 
-    megaToggle?.addEventListener('click', (e) => {
+    const openSearchModal = () => {
+        if (!searchModal) return;
+        closeMega();
+        searchModal.classList.remove('hidden');
+        searchModal.classList.add('flex');
+        setTimeout(() => {
+            searchInput?.focus();
+        }, 50);
+    };
+
+    const closeSearchModal = () => {
+        if (!searchModal) return;
+        searchModal.classList.add('hidden');
+        searchModal.classList.remove('flex');
+    };
+
+    megaClose?.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isHidden = megaDrawer?.classList.contains('hidden');
-        if (isHidden) openMega();
-        else closeMega();
+        closeMega();
     });
 
-    megaClose?.addEventListener('click', closeMega);
-    megaBackdrop?.addEventListener('click', closeMega);
+    searchTrigger?.addEventListener('click', openSearchModal);
+    searchClose?.addEventListener('click', closeSearchModal);
+    searchModal?.addEventListener('click', (e) => {
+        if (e.target === searchModal) closeSearchModal();
+    });
 
     mobileToggle?.addEventListener('click', () => {
         if (!mobileMenu) return;
@@ -52,10 +111,17 @@ function initNavbarAndDrawers() {
     });
 
     document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            const isSearchOpen = searchModal && !searchModal.classList.contains('hidden');
+            if (isSearchOpen) closeSearchModal();
+            else openSearchModal();
+        }
+
         if (e.key === 'Escape') {
             closeMega();
+            closeSearchModal();
             mobileMenu?.classList.add('hidden');
-            closeLightbox();
         }
     });
 
@@ -67,7 +133,6 @@ function initNavbarAndDrawers() {
         });
     });
 
-    // Auto-dismiss toast after 5 seconds
     const activeToast = document.querySelector('[data-toast]');
     if (activeToast) {
         setTimeout(() => {
@@ -75,46 +140,89 @@ function initNavbarAndDrawers() {
             setTimeout(() => activeToast.remove(), 300);
         }, 5000);
     }
+}
 
-    // Lightbox for Gallery & Student Works
-    const lightbox = document.getElementById('skensa-lightbox');
-    const lightboxImg = document.getElementById('skensa-lightbox-img');
-    const lightboxTitle = document.getElementById('skensa-lightbox-title');
-    const lightboxDesc = document.getElementById('skensa-lightbox-desc');
-    const lightboxClose = document.getElementById('skensa-lightbox-close');
+function initFacultyExplorer() {
+    const filterBtns = document.querySelectorAll('[data-faculty-filter]');
+    const cards = document.querySelectorAll('[data-faculty-card]');
+    const activeCountEl = document.getElementById('faculty-active-count');
 
-    function closeLightbox() {
-        if (!lightbox) return;
-        lightbox.classList.add('hidden');
-        lightbox.classList.remove('flex');
-    }
+    if (!filterBtns.length || !cards.length) return;
 
-    document.querySelectorAll('[data-lightbox-src]').forEach((trigger) => {
-        trigger.addEventListener('click', () => {
-            if (!lightbox || !lightboxImg) return;
-            const src = trigger.getAttribute('data-lightbox-src') || '';
-            const title = trigger.getAttribute('data-lightbox-title') || '';
-            const desc = trigger.getAttribute('data-lightbox-desc') || '';
+    filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const targetField = btn.getAttribute('data-faculty-filter');
 
-            lightboxImg.src = src;
-            lightboxImg.alt = title;
-            if (lightboxTitle) lightboxTitle.textContent = title;
-            if (lightboxDesc) lightboxDesc.textContent = desc;
+            // Update button active styles
+            filterBtns.forEach((b) => {
+                const isSelected = b === btn;
+                const badge = b.querySelector('[data-filter-badge]');
+                const num = b.querySelector('[data-filter-num]');
+                if (isSelected) {
+                    b.classList.add('bg-navy', 'text-paper', 'font-bold');
+                    b.classList.remove('text-ink', 'hover:bg-paper-2', 'font-semibold');
+                    if (badge) {
+                        badge.classList.add('bg-yellow-skensa', 'text-ink', 'border-yellow-skensa');
+                        badge.classList.remove('bg-paper-2', 'text-ink-muted', 'border-line');
+                    }
+                    if (num) {
+                        num.classList.add('text-yellow-skensa');
+                        num.classList.remove('text-ink-muted');
+                    }
+                } else {
+                    b.classList.remove('bg-navy', 'text-paper', 'font-bold');
+                    b.classList.add('text-ink', 'hover:bg-paper-2', 'font-semibold');
+                    if (badge) {
+                        badge.classList.remove('bg-yellow-skensa', 'text-ink', 'border-yellow-skensa');
+                        badge.classList.add('bg-paper-2', 'text-ink-muted', 'border-line');
+                    }
+                    if (num) {
+                        num.classList.remove('text-yellow-skensa');
+                        num.classList.add('text-ink-muted');
+                    }
+                }
+            });
 
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
+            // Filter cards and animate visible ones with GSAP
+            const visibleCards = [];
+            cards.forEach((card) => {
+                const cardField = card.getAttribute('data-field-id');
+                const shouldShow = targetField === 'all' || cardField === targetField;
+                if (shouldShow) {
+                    card.classList.remove('hidden');
+                    visibleCards.push(card);
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if (activeCountEl) {
+                activeCountEl.textContent = String(visibleCards.length);
+            }
+
+            if (visibleCards.length) {
+                gsap.fromTo(
+                    visibleCards,
+                    { opacity: 0, y: 18, scale: 0.98 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.35,
+                        stagger: 0.05,
+                        ease: 'power2.out',
+                        overwrite: true,
+                    }
+                );
+            }
         });
-    });
-
-    lightboxClose?.addEventListener('click', closeLightbox);
-    lightbox?.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initNavbarAndDrawers();
+    initFacultyExplorer();
     initMarkers();
     initCounters();
     initReveal();
@@ -123,4 +231,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initIntro();
     initHeroSection();
+    initInteractivePhysics();
 });
