@@ -21,8 +21,8 @@
                 poster="/media/intro.jpg"
                 class="w-full h-full object-cover"
             >
-                <source src="/media/intro.webm" type="video/webm">
                 <source src="/media/intro.mp4" type="video/mp4">
+                <source src="/media/intro.webm" type="video/webm">
             </video>
 
             <div class="absolute bottom-7 inset-x-0 px-6 sm:px-12 flex items-center justify-between text-paper/85 text-xs font-bold uppercase tracking-widest">

@@ -154,13 +154,13 @@ export const SkensaIntro: React.FC = () => {
                 overflow: 'hidden',
             }}
         >
-            {/* Deep Radial Navy Spotlight */}
+            {/* Deep Multi-stop Smooth Radial Navy Spotlight (Anti-Banding) */}
             <div
                 style={{
                     position: 'absolute',
                     inset: 0,
                     background:
-                        'radial-gradient(circle at 50% 42%, rgba(22, 72, 148, 0.62) 0%, rgba(11, 42, 91, 0.88) 52%, rgba(6, 22, 51, 1) 100%)',
+                        'radial-gradient(circle at 50% 42%, #143d78 0%, #113364 25%, #0e2950 48%, #0a2040 70%, #071933 88%, #051329 100%)',
                 }}
             />
 

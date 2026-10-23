@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "render:webm": "remotion render src/index.ts SkensaIntro ../public/media/intro.webm --codec=vp8",
-    "render:mp4": "remotion render src/index.ts SkensaIntro ../public/media/intro.mp4 --codec=h264",
-    "render:poster": "remotion still src/index.ts SkensaIntro ../public/media/intro.jpg --frame=195 --image-format=jpeg",
-    "render:all": "npm run render:webm && npm run render:mp4 && npm run render:poster"
+    "render:webm": "remotion render src/index.ts SkensaIntro ../public/media/intro.webm --codec=vp9 --crf=16",
+    "render:mp4": "remotion render src/index.ts SkensaIntro ../public/media/intro.mp4 --codec=h264 --crf=14 --x264-preset=slow --pixel-format=yuv420p",
+    "render:poster": "remotion still src/index.ts SkensaIntro ../public/media/intro.jpg --frame=195 --image-format=jpeg --jpeg-quality=100",
+    "render:all": "npm run render:mp4 && npm run render:webm && npm run render:poster"
   },
   "dependencies": {
     "@remotion/cli": "4.0.270",
