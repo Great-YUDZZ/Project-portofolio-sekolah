@@ -10,4 +10,14 @@ class Facility extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slug', 'description', 'image'];
+
+    public function getPhotoAttribute(): ?string
+    {
+        return $this->image;
+    }
+
+    public function getCategoryAttribute(): string
+    {
+        return 'Sarana & Laboratorium SKENSA';
+    }
 }

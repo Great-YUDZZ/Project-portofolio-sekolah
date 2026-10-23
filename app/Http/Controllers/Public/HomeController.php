@@ -3,32 +3,61 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Achievement;
+use App\Models\EcosystemLink;
+use App\Models\Event;
+use App\Models\Facility;
 use App\Models\Field;
 use App\Models\Major;
+use App\Models\Post;
 use App\Models\SiteSetting;
-use App\Models\EcosystemLink;
+use App\Models\StaffMember;
+use App\Models\StudentWork;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $fields = Field::with('majors')->get();
+        $fields = Field::withCount('majors')->orderBy('id')->get();
         $majors = Major::with('field')->orderBy('order_index')->get();
-        $ecosystemLinks = EcosystemLink::orderBy('order_index')->get();
+        $settings = SiteSetting::pluck('value', 'key');
 
-        $schoolName = SiteSetting::get('school_name', 'SMK Negeri 1 Denpasar');
-        $slogan = SiteSetting::get('school_slogan', 'Abhyāsad Dhäryate Vidyä');
-        $sloganMeaning = SiteSetting::get('school_slogan_meaning', 'Peliharalah ilmu sampai menjadi tradisi');
-        $characterValues = SiteSetting::get('character_values', []);
+        $featuredWorks = StudentWork::with('major')
+            ->latest()
+            ->take(6)
+            ->get();
+
+        $achievements = Achievement::with('major')
+            ->orderByDesc('year')
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $posts = Post::where('is_published', true)
+            ->orderByDesc('published_at')
+            ->take(3)
+            ->get();
+
+        $events = Event::orderBy('start_time')
+            ->take(4)
+            ->get();
+
+        $facilities = Facility::orderBy('id')->take(4)->get();
+        $leaders = StaffMember::orderBy('order_index')->take(5)->get();
+        $ecosystemLinks = EcosystemLink::orderBy('order_index')->get();
 
         return view('public.home', compact(
             'fields',
             'majors',
-            'ecosystemLinks',
-            'schoolName',
-            'slogan',
-            'sloganMeaning',
-            'characterValues'
+            'settings',
+            'featuredWorks',
+            'achievements',
+            'posts',
+            'events',
+            'facilities',
+            'leaders',
+            'ecosystemLinks'
         ));
     }
 }

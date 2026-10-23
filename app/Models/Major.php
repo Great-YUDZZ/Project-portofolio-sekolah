@@ -33,6 +33,16 @@ class Major extends Model
         ];
     }
 
+    public function getSummaryAttribute(): string
+    {
+        return (string) ($this->tagline ?: $this->description);
+    }
+
+    public function getFacilitiesListAttribute(): array
+    {
+        return (array) ($this->competencies ?? []);
+    }
+
     public function field()
     {
         return $this->belongsTo(Field::class);

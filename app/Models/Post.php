@@ -29,6 +29,16 @@ class Post extends Model
         ];
     }
 
+    public function getBodyAttribute(): string
+    {
+        return (string) $this->content;
+    }
+
+    public function getThumbnailAttribute(): ?string
+    {
+        return $this->featured_image;
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');

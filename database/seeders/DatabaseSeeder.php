@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             SiteSettingSeeder::class,
             EcosystemLinkSeeder::class,
             DemoUserSeeder::class,
+            PortfolioContentSeeder::class,
         ]);
     }
 }

@@ -26,13 +26,72 @@
     --color-line: #DAD7CF;
 }
 
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
 body {
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, .font-display {
     font-family: var(--font-display);
+}
+
+/* Marker Highlight Sweep */
+.marker-highlight {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    padding: 0 0.25rem;
+}
+
+.marker-highlight::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0.08em;
+    width: 100%;
+    height: 0.36em;
+    background-color: var(--color-yellow-skensa);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marker-highlight.is-marked::after {
+    transform: scaleX(1);
+}
+
+/* Loading Skeleton Shimmer */
+@keyframes skensa-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton-shimmer {
+    background: linear-gradient(90deg, #EEECE6 25%, #E3E0D8 50%, #EEECE6 75%);
+    background-size: 200% 100%;
+    animation: skensa-shimmer 1.6s infinite linear;
 }

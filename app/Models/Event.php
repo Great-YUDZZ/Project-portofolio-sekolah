@@ -18,4 +18,14 @@ class Event extends Model
             'end_time' => 'datetime',
         ];
     }
+
+    public function getStartDateAttribute()
+    {
+        return $this->start_time;
+    }
+
+    public function getEndDateAttribute()
+    {
+        return $this->end_time;
+    }
 }

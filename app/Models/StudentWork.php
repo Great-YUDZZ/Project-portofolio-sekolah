@@ -28,6 +28,16 @@ class StudentWork extends Model
         ];
     }
 
+    public function getClassNameAttribute(): string
+    {
+        return 'TP ' . ($this->year ?: date('Y'));
+    }
+
+    public function getProjectUrlAttribute(): ?string
+    {
+        return $this->demo_url;
+    }
+
     public function major()
     {
         return $this->belongsTo(Major::class);

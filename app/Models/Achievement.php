@@ -20,6 +20,21 @@ class Achievement extends Model
         'image',
     ];
 
+    public function getMedalAttribute(): string
+    {
+        return (string) $this->rank;
+    }
+
+    public function getWinnerNameAttribute(): string
+    {
+        return (string) $this->student_or_team;
+    }
+
+    public function getCompetitionNameAttribute(): string
+    {
+        return (string) $this->description;
+    }
+
     public function major()
     {
         return $this->belongsTo(Major::class);
