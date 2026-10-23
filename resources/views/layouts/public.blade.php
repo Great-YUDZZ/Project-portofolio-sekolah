@@ -15,263 +15,230 @@
         Langsung ke Konten Utama
     </a>
 
-    {{-- Academic Mega-Menu Navbar (Stanford / MIT Style) --}}
-    <header id="site-navbar" class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-line transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
-            {{-- Brand Identity --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-3.5 group shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 rounded-xl pr-2">
-                <img
-                    src="/images/logo_emblem.png"
-                    alt="Logo SMK Negeri 1 Denpasar"
-                    width="44"
-                    height="44"
-                    fetchpriority="high"
-                    class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-105"
-                >
-                <div>
-                    <span class="block font-display font-extrabold text-base sm:text-lg leading-none tracking-tight text-navy">SMK&nbsp;NEGERI&nbsp;1&nbsp;DENPASAR</span>
-                    <span class="block text-[11px] font-semibold tracking-wider text-ink-muted mt-1">{{ $siteSettings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}</span>
-                </div>
-            </a>
-
-            {{-- Primary Desktop Navigation --}}
-            <nav class="hidden lg:flex items-center gap-1" aria-label="Navigasi Utama">
-                {{-- 1. Beranda --}}
-                <a
-                    href="{{ route('home') }}"
-                    class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy {{ request()->routeIs('home') ? 'bg-navy text-paper' : 'text-ink hover:bg-paper-2 hover:text-navy' }}"
-                >
-                    Beranda
+    {{-- Official SMKN 1 Denpasar Navbar (Exact Match with smkn1denpasar.sch.id) --}}
+    <header id="site-navbar" class="sticky top-0 z-40 bg-[#ECEDF2]/95 backdrop-blur-md border-b border-black/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-6">
+            {{-- Left: Logo + Divider + 9-Dot Kompetensi Dropdown --}}
+            <div class="flex items-center gap-6 shrink-0">
+                <a href="{{ route('home') }}" class="flex items-center focus-visible:outline-none">
+                    <img
+                        src="/images/logo_emblem.png"
+                        alt="Logo SMK Negeri 1 Denpasar"
+                        width="58"
+                        height="58"
+                        fetchpriority="high"
+                        class="w-14 h-14 object-contain"
+                    >
                 </a>
 
-                {{-- 2. Program Keahlian (Two-Column Interactive University Mega-Menu) --}}
-                <div class="static group" data-nav-dropdown>
+                {{-- Vertical Divider --}}
+                <div class="hidden sm:block h-8 w-px bg-slate-300"></div>
+
+                {{-- 9-Dot Kompetensi Dropdown --}}
+                <div class="relative group hidden sm:block">
                     <button
                         type="button"
-                        id="mega-menu-toggle"
-                        aria-expanded="false"
-                        aria-controls="mega-menu-drawer"
-                        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy {{ request()->routeIs('majors.*') ? 'bg-navy text-paper' : 'text-ink hover:bg-paper-2 hover:text-navy' }}"
+                        class="inline-flex items-center gap-2.5 py-2 text-[15px] font-medium text-[#0E1133] hover:text-[#2B4EFF] transition-colors cursor-pointer focus-visible:outline-none"
                     >
-                        <span>Program Keahlian</span>
-                        <span class="px-1.5 py-0.5 text-[10px] font-extrabold rounded bg-yellow-skensa text-ink tabular-nums">9</span>
-                        <svg class="w-3.5 h-3.5 opacity-70 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        <svg class="w-4 h-4 text-[#0E1133] group-hover:text-[#2B4EFF] transition-colors" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+                            <circle cx="2.5" cy="2.5" r="1.75"/><circle cx="9" cy="2.5" r="1.75"/><circle cx="15.5" cy="2.5" r="1.75"/>
+                            <circle cx="2.5" cy="9" r="1.75"/><circle cx="9" cy="9" r="1.75"/><circle cx="15.5" cy="9" r="1.75"/>
+                            <circle cx="2.5" cy="15.5" r="1.75"/><circle cx="9" cy="15.5" r="1.75"/><circle cx="15.5" cy="15.5" r="1.75"/>
                         </svg>
+                        <span>Kompetensi</span>
                     </button>
 
-                    {{-- Full-Width Two-Column Academic Mega-Menu Panel --}}
-                    <div
-                        id="mega-menu-drawer"
-                        class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-200 absolute left-0 right-0 top-full bg-paper border-b-2 border-navy shadow-2xl z-50"
-                    >
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7">
-                            <div class="flex items-center justify-between pb-4 mb-5 border-b border-line">
-                                <div class="flex items-center gap-3">
-                                    <span class="px-2.5 py-1 rounded-md bg-navy text-yellow-skensa text-[11px] font-extrabold uppercase tracking-widest">Katalog Akademik Resmi</span>
-                                    <span class="text-xs font-semibold text-ink-muted">9 Program Keahlian &bull; 12 Konsentrasi Keahlian SMK Negeri 1 Denpasar</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <a href="{{ route('majors.index') }}" class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline">
-                                        Indeks Seluruh Jurusan &rarr;
+                    {{-- Kompetensi Dropdown Menu --}}
+                    <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-3 w-60 z-50">
+                        <ul class="bg-white shadow-xl border border-slate-100 py-1">
+                            @foreach($navFields as $field)
+                                <li class="border-b border-slate-100 last:border-b-0">
+                                    <a
+                                        href="{{ route('majors.index', ['bidang' => $field->slug]) }}"
+                                        class="block px-5 py-3 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors"
+                                    >
+                                        {{ $field->name }}
                                     </a>
-                                    <button type="button" id="mega-menu-close" class="px-2.5 py-1 rounded-lg border border-line text-[11px] font-bold uppercase text-ink-muted hover:text-ink hover:bg-paper-2 cursor-pointer">
-                                        ESC
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-12 gap-6">
-                                {{-- Left Column: 9 Program Keahlian Selector --}}
-                                <div class="col-span-5 border-r border-line pr-5 space-y-1">
-                                    <span class="block text-[10px] font-extrabold uppercase tracking-widest text-ink-muted px-3 mb-2">
-                                        Pilih Program Keahlian (9 Bidang)
-                                    </span>
-                                    @foreach($navFields as $fIdx => $field)
-                                        <button
-                                            type="button"
-                                            data-mega-field-btn="{{ $field->id }}"
-                                            class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all cursor-pointer {{ $fIdx === 0 ? 'bg-navy text-paper font-bold' : 'text-ink hover:bg-paper-2 font-semibold' }}"
-                                        >
-                                            <div class="flex items-center gap-2.5 min-w-0">
-                                                <span class="text-[11px] font-extrabold tabular-nums opacity-75">{{ str_pad((string) ($fIdx + 1), 2, '0', STR_PAD_LEFT) }}</span>
-                                                <span class="text-sm truncate">{{ $field->name }}</span>
-                                            </div>
-                                            <span class="text-[11px] font-bold px-2 py-0.5 rounded-md {{ $fIdx === 0 ? 'bg-yellow-skensa text-ink' : 'bg-paper-2 text-ink-muted' }} tabular-nums shrink-0" data-mega-badge>
-                                                {{ $field->majors->count() }} Jurusan
-                                            </span>
-                                        </button>
-                                    @endforeach
-                                </div>
-
-                                {{-- Right Column: Active Program's Konsentrasi Keahlian Details --}}
-                                <div class="col-span-7 pl-1 flex flex-col justify-between">
-                                    @foreach($navFields as $fIdx => $field)
-                                        <div
-                                            data-mega-field-panel="{{ $field->id }}"
-                                            class="{{ $fIdx === 0 ? 'block' : 'hidden' }} space-y-4"
-                                        >
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <span class="text-[11px] font-extrabold uppercase tracking-widest text-navy">Program Keahlian {{ str_pad((string) ($fIdx + 1), 2, '0', STR_PAD_LEFT) }}</span>
-                                                    <h3 class="font-display font-extrabold text-xl text-ink">{{ $field->name }}</h3>
-                                                </div>
-                                                <a href="{{ route('majors.index', ['bidang' => $field->slug]) }}" class="text-xs font-bold text-navy hover:underline">
-                                                    Filter Bidang Ini &rarr;
-                                                </a>
-                                            </div>
-
-                                            <div class="grid grid-cols-1 {{ $field->majors->count() > 1 ? ' sm:grid-cols-2' : '' }} gap-4 pt-1">
-                                                @foreach($field->majors as $navMajor)
-                                                    <a
-                                                        href="{{ route('majors.show', $navMajor->slug) }}"
-                                                        class="group/card p-5 rounded-2xl bg-paper-2/80 border-2 border-line hover:border-navy hover:bg-paper transition-all flex flex-col justify-between"
-                                                    >
-                                                        <div>
-                                                            <div class="flex items-center justify-between gap-2 mb-3">
-                                                                <span class="px-2.5 py-1 rounded-lg bg-navy text-yellow-skensa font-display font-extrabold text-xs tracking-wider">
-                                                                    {{ $navMajor->code }}
-                                                                </span>
-                                                                <span class="text-[11px] font-bold text-navy group-hover/card:translate-x-0.5 transition-transform">
-                                                                    Detail Jurusan &rarr;
-                                                                </span>
-                                                            </div>
-                                                            <h4 class="font-display font-extrabold text-base text-ink group-hover/card:text-navy transition-colors leading-snug">
-                                                                {{ $navMajor->name }}
-                                                            </h4>
-                                                            <p class="text-xs text-ink-muted mt-2 leading-relaxed line-clamp-2">
-                                                                {{ $navMajor->summary }}
-                                                            </p>
-                                                        </div>
-
-                                                        @if(!empty($navMajor->competencies))
-                                                            <div class="mt-4 pt-3 border-t border-line/80 flex flex-wrap gap-1.5">
-                                                                @foreach(array_slice((array) $navMajor->competencies, 0, 2) as $comp)
-                                                                    <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-paper border border-line text-ink-muted truncate max-w-full">
-                                                                        {{ $comp }}
-                                                                    </span>
-                                                                @endforeach
-                                                            </div>
-                                                        @endif
-                                                    </a>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    @endforeach
-
-                                    {{-- Bottom Quick Bar inside Mega-Menu --}}
-                                    <div class="mt-6 pt-4 border-t border-line flex items-center justify-between text-xs text-ink-muted">
-                                        <span>Semboyan: <strong class="text-ink">{{ $siteSettings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}</strong> ({{ $siteSettings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.' }})</span>
-                                        <a href="https://lsp-smkn1denpasar.id" target="_blank" rel="noopener" class="font-bold text-navy hover:underline">
-                                            LSP SMKN 1 Denpasar &nearr;
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- 3. Pengumuman & Berita --}}
-                <div class="relative group" data-nav-dropdown>
-                    <a
-                        href="{{ route('publications.index') }}"
-                        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy {{ request()->routeIs('publications.*') ? 'bg-navy text-paper' : 'text-ink hover:bg-paper-2 hover:text-navy' }}"
-                    >
-                        <span>Pengumuman &amp; Berita</span>
-                        <svg class="w-3.5 h-3.5 opacity-70 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </a>
-                    <div class="invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-2 w-80 z-50">
-                        <div class="bg-paper rounded-2xl border-2 border-ink shadow-xl p-2 space-y-1">
-                            <a href="{{ route('publications.index', ['kategori' => 'pengumuman']) }}" class="block px-3.5 py-2.5 rounded-xl hover:bg-paper-2 transition-colors">
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-navy">Pengumuman Resmi</span>
-                                <span class="block font-display font-bold text-sm text-ink mt-0.5">Kelulusan Kelas XII TA 2024/2025</span>
-                                <span class="block text-xs text-ink-muted mt-0.5">Akses daring via lulus.smkn1denpasar.sch.id</span>
-                            </a>
-                            <a href="{{ route('publications.index', ['kategori' => 'berita']) }}" class="block px-3.5 py-2.5 rounded-xl hover:bg-paper-2 transition-colors border-t border-line">
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-navy">Sorotan Kegiatan</span>
-                                <span class="block font-display font-bold text-sm text-ink mt-0.5">“When I Grow Up” Spirit Day!</span>
-                                <span class="block text-xs text-ink-muted mt-0.5">Lihat seluruh publikasi resmi sekolah</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- 4. Portal Digital Resmi (4 Official Subdomains from smkn1denpasar.sch.id) --}}
-                <div class="relative group" data-nav-dropdown>
-                    <a
-                        href="{{ route('ecosystem.index') }}"
-                        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy {{ request()->routeIs('ecosystem.*') ? 'bg-navy text-paper' : 'text-ink hover:bg-paper-2 hover:text-navy' }}"
-                    >
-                        <span>Portal Digital</span>
-                        <svg class="w-3.5 h-3.5 opacity-70 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </a>
-                    <div class="invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-200 absolute right-0 top-full pt-2 w-80 z-50">
-                        <div class="bg-paper rounded-2xl border-2 border-ink shadow-xl p-2 space-y-1">
-                            @foreach($navEcosystemLinks as $ecoLink)
-                                <a href="{{ $ecoLink->url }}" target="_blank" rel="noopener" class="block px-3.5 py-2.5 rounded-xl hover:bg-paper-2 transition-colors">
-                                    <div class="flex items-center justify-between">
-                                        <span class="font-display font-bold text-sm text-navy">{{ $ecoLink->title }}</span>
-                                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-paper-2 border border-line text-ink-muted">{{ $ecoLink->badge }} &nearr;</span>
-                                    </div>
-                                    <span class="block text-xs text-ink-muted mt-0.5 line-clamp-1">{{ $ecoLink->subtitle }}</span>
-                                </a>
+                                </li>
                             @endforeach
-                        </div>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
-                {{-- 5. Kontak --}}
-                <a
-                    href="{{ route('contact.index') }}"
-                    class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy {{ request()->routeIs('contact.*') ? 'bg-navy text-paper' : 'text-ink hover:bg-paper-2 hover:text-navy' }}"
-                >
-                    Kontak
-                </a>
-            </nav>
+            {{-- Right: Primary Nav Links + Inline Search Box --}}
+            <div class="flex items-center gap-8">
+                <nav class="hidden lg:flex items-center gap-7 text-[15px] font-medium text-[#0E1133]" aria-label="Navigasi Utama">
+                    {{-- 1. Home --}}
+                    <a
+                        href="{{ route('home') }}"
+                        class="py-2 hover:text-[#2B4EFF] transition-colors {{ request()->routeIs('home') ? 'text-[#2B4EFF]' : 'text-[#0E1133]' }}"
+                    >
+                        Home
+                    </a>
 
-            {{-- Right Actions: Instant Search + Direct e-Learning CTA + Mobile Hamburger --}}
-            <div class="flex items-center gap-2.5">
-                {{-- Search Modal Trigger Button --}}
-                <button
-                    type="button"
-                    id="search-modal-trigger"
-                    aria-label="Buka Pencarian Cepat"
-                    class="inline-flex items-center gap-2.5 px-3 py-2 rounded-xl bg-paper-2 border border-line hover:border-navy text-ink-muted hover:text-ink transition-colors text-xs font-medium cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
-                >
-                    <svg class="w-4 h-4 text-navy shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                    <span class="hidden sm:inline pr-1">Cari Jurusan…</span>
-                    <kbd class="hidden xl:inline-block px-1.5 py-0.5 text-[10px] font-bold bg-paper border border-line rounded text-ink-muted">Ctrl&nbsp;K</kbd>
-                </button>
+                    {{-- 2. Program (Cascading Multi-Level Flyout Dropdown) --}}
+                    <div class="relative group">
+                        <a
+                            href="{{ route('majors.index') }}"
+                            class="inline-flex items-center gap-1 py-2 hover:text-[#2B4EFF] transition-colors group-hover:text-[#2B4EFF] {{ request()->routeIs('majors.*') ? 'text-[#2B4EFF]' : 'text-[#0E1133]' }}"
+                        >
+                            <span>Program</span>
+                            <svg class="w-3.5 h-3.5 mt-0.5 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
 
-                {{-- Direct Link to Official e-Learning (lms.skensa.id) --}}
-                <a
-                    href="https://lms.skensa.id"
-                    target="_blank"
-                    rel="noopener"
-                    class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-navy text-paper hover:bg-navy-700 transition-colors text-xs font-bold tracking-wider uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
-                >
-                    <span class="w-2 h-2 rounded-full bg-yellow-skensa"></span>
-                    <span>e-Learning</span>
-                </a>
+                        {{-- First Level Dropdown: 9 Program Keahlian --}}
+                        <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-56 z-50">
+                            <ul class="bg-white shadow-xl border border-slate-100">
+                                @foreach($navFields as $field)
+                                    <li class="relative group/sub border-b border-slate-100 last:border-b-0">
+                                        <a
+                                            href="{{ route('majors.index', ['bidang' => $field->slug]) }}"
+                                            class="flex items-center justify-between gap-2 px-5 py-3.5 text-[13px] font-medium text-[#0E1133] group-hover/sub:bg-[#2B4EFF] group-hover/sub:text-white transition-colors leading-snug"
+                                        >
+                                            <span>{{ $field->name }}</span>
+                                            <svg class="w-3.5 h-3.5 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                        </a>
 
-                {{-- Mobile Hamburger --}}
-                <button
-                    type="button"
-                    id="mobile-menu-toggle"
-                    class="lg:hidden p-2 rounded-xl border border-line bg-paper-2 text-ink hover:bg-line/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
-                    aria-label="Buka Menu Navigasi"
-                >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+                                        {{-- Second Level Flyout to the Right: Konsentrasi Keahlian --}}
+                                        @if($field->majors->isNotEmpty())
+                                            <div class="invisible opacity-0 translate-x-1 group-hover/sub:visible group-hover/sub:opacity-100 group-hover/sub:translate-x-0 transition-all duration-150 absolute left-full top-0 w-60 z-50">
+                                                <ul class="bg-white shadow-xl border border-slate-100">
+                                                    @foreach($field->majors as $navMajor)
+                                                        <li class="border-b border-slate-100 last:border-b-0">
+                                                            <a
+                                                                href="{{ route('majors.show', $navMajor->slug) }}"
+                                                                class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors leading-snug"
+                                                            >
+                                                                {{ $navMajor->name }} ({{ $navMajor->code }})
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                    {{-- 3. Blog --}}
+                    <div class="relative group">
+                        <a
+                            href="{{ route('publications.index') }}"
+                            class="inline-flex items-center gap-1 py-2 hover:text-[#2B4EFF] transition-colors group-hover:text-[#2B4EFF] {{ request()->routeIs('publications.*') && request('kategori') !== 'agenda' ? 'text-[#2B4EFF]' : 'text-[#0E1133]' }}"
+                        >
+                            <span>Blog</span>
+                            <svg class="w-3.5 h-3.5 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                        <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-48 z-50">
+                            <ul class="bg-white shadow-xl border border-slate-100">
+                                <li class="border-b border-slate-100">
+                                    <a href="{{ route('publications.index', ['kategori' => 'berita']) }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors">
+                                        Berita
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('publications.index', ['kategori' => 'pengumuman']) }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors">
+                                        Pengumuman
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {{-- 4. Agenda --}}
+                    <a
+                        href="{{ route('publications.index', ['kategori' => 'agenda']) }}"
+                        class="py-2 hover:text-[#2B4EFF] transition-colors {{ request('kategori') === 'agenda' ? 'text-[#2B4EFF]' : 'text-[#0E1133]' }}"
+                    >
+                        Agenda
+                    </a>
+
+                    {{-- 5. Tentang --}}
+                    <div class="relative group">
+                        <a
+                            href="{{ route('profile.index') }}"
+                            class="inline-flex items-center gap-1 py-2 hover:text-[#2B4EFF] transition-colors group-hover:text-[#2B4EFF] {{ request()->routeIs('profile.*') || request()->routeIs('staff.*') || request()->routeIs('gallery.*') ? 'text-[#2B4EFF]' : 'text-[#0E1133]' }}"
+                        >
+                            <span>Tentang</span>
+                            <svg class="w-3.5 h-3.5 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                        <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-48 z-50">
+                            <ul class="bg-white shadow-xl border border-slate-100">
+                                <li class="border-b border-slate-100">
+                                    <a href="{{ route('profile.index') }}#sejarah" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors">
+                                        Sejarah
+                                    </a>
+                                </li>
+                                <li class="border-b border-slate-100">
+                                    <a href="{{ route('profile.index') }}#visi-misi" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors">
+                                        Visi &amp; Misi
+                                    </a>
+                                </li>
+                                <li class="border-b border-slate-100">
+                                    <a href="{{ route('gallery.index') }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors">
+                                        Fasilitas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('staff.index') }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-[#2B4EFF] hover:text-white transition-colors">
+                                        Staff
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {{-- 6. Kontak --}}
+                    <a
+                        href="{{ route('contact.index') }}"
+                        class="py-2 hover:text-[#2B4EFF] transition-colors {{ request()->routeIs('contact.*') ? 'text-[#2B4EFF]' : 'text-[#0E1133]' }}"
+                    >
+                        Kontak
+                    </a>
+                </nav>
+
+                {{-- Far Right: White Search Input Box + Mobile Hamburger --}}
+                <div class="flex items-center gap-3">
+                    <form action="{{ route('search.index') }}" method="GET" class="hidden sm:flex items-center bg-white rounded-md px-4 py-2.5 w-52 lg:w-60 shadow-2xs border border-transparent focus-within:border-[#2B4EFF] transition-colors">
+                        <button type="submit" aria-label="Cari" class="text-[#0E1133] hover:text-[#2B4EFF] mr-2.5 shrink-0 cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+                        <input
+                            type="search"
+                            name="q"
+                            value="{{ request('q') }}"
+                            autocomplete="off"
+                            placeholder=""
+                            aria-label="Cari"
+                            class="w-full bg-transparent text-sm text-[#0E1133] focus:outline-none"
+                        >
+                    </form>
+
+                    {{-- Mobile Hamburger --}}
+                    <button
+                        type="button"
+                        id="mobile-menu-toggle"
+                        class="lg:hidden p-2.5 rounded-lg bg-white text-[#0E1133] border border-slate-200 focus-visible:outline-none"
+                        aria-label="Buka Menu Navigasi"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
 
