@@ -4,35 +4,33 @@
 
 @section('content')
 
-    {{-- Remotion Cinematic Intro Overlay (GSAP Split Curtain) --}}
+    {{-- Remotion Cinematic Intro Overlay (Full-Screen GSAP Split Curtain) --}}
     <div
         id="skensa-intro-overlay"
         aria-hidden="false"
         class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none"
     >
-        <div data-intro-top class="absolute inset-x-0 top-0 h-1/2 bg-navy border-b border-yellow-skensa/40"></div>
-        <div data-intro-bottom class="absolute inset-x-0 bottom-0 h-1/2 bg-navy border-t border-yellow-skensa/40"></div>
+        <div data-intro-top class="absolute inset-x-0 top-0 h-1/2 bg-[#071C3F] border-b border-yellow-skensa/40"></div>
+        <div data-intro-bottom class="absolute inset-x-0 bottom-0 h-1/2 bg-[#071C3F] border-t border-yellow-skensa/40"></div>
 
-        <div data-intro-stage class="relative z-10 w-full max-w-4xl px-6 flex flex-col items-center">
-            <div class="w-full aspect-video rounded-2xl overflow-hidden border-2 border-yellow-skensa/60 bg-navy shadow-2xl">
-                <video
-                    autoplay
-                    muted
-                    playsinline
-                    poster="/media/intro.jpg"
-                    class="w-full h-full object-cover"
-                >
-                    <source src="/media/intro.webm" type="video/webm">
-                    <source src="/media/intro.mp4" type="video/mp4">
-                </video>
-            </div>
+        <div data-intro-stage class="relative z-10 w-screen h-screen flex items-center justify-center">
+            <video
+                autoplay
+                muted
+                playsinline
+                poster="/media/intro.jpg"
+                class="w-full h-full object-cover"
+            >
+                <source src="/media/intro.webm" type="video/webm">
+                <source src="/media/intro.mp4" type="video/mp4">
+            </video>
 
-            <div class="mt-5 flex items-center justify-between w-full text-paper/80 text-xs font-bold uppercase tracking-widest">
-                <span>SMK NEGERI 1 DENPASAR • BALI</span>
+            <div class="absolute bottom-7 inset-x-0 px-6 sm:px-12 flex items-center justify-between text-paper/85 text-xs font-bold uppercase tracking-widest">
+                <span class="hidden sm:inline">SMK NEGERI 1 DENPASAR • SKENSA BALI</span>
                 <button
                     type="button"
                     data-intro-skip
-                    class="px-4 py-2 rounded-lg bg-yellow-skensa text-ink font-extrabold hover:bg-paper transition-colors cursor-pointer"
+                    class="ml-auto px-5 py-2.5 rounded-xl bg-yellow-skensa text-ink font-extrabold hover:bg-paper transition-colors shadow-lg cursor-pointer"
                 >
                     Lewati Intro [Skip]
                 </button>

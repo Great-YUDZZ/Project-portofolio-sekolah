@@ -89,7 +89,7 @@ export function initIntro() {
         }
 
         // Fallback otomatis jika video gagal memicu ended
-        gsap.delayedCall(3.6, () => {
+        gsap.delayedCall(4.5, () => {
             if (overlay.dataset.closing !== '1') {
                 runSplitReveal();
             }
