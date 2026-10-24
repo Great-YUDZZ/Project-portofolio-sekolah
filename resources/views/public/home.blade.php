@@ -49,8 +49,11 @@
     {{-- ===================================================================== --}}
     {{-- KATEGORI 1: BERANDA & IDENTITAS UTAMA (HERO SECTION)                  --}}
     {{-- ===================================================================== --}}
-    <section class="relative min-h-[86vh] flex items-center bg-navy text-paper border-b-2 border-ink overflow-hidden">
-        {{-- Background Video / Showcase --}}
+    {{-- ===================================================================== --}}
+    {{-- SECTION 1: HERO MAJESTIC FULL-WIDTH BANNER & QUICK STATS (ALA SMANSA)  --}}
+    {{-- ===================================================================== --}}
+    <section class="relative min-h-[580px] lg:min-h-[640px] flex items-center bg-navy text-paper border-b-2 border-ink overflow-hidden">
+        {{-- Background Media / Backdrop --}}
         <div class="absolute inset-0 z-0">
             <video
                 autoplay
@@ -58,105 +61,98 @@
                 loop
                 playsinline
                 preload="auto"
-                poster="/media/intro.jpg"
-                class="w-full h-full object-cover opacity-45 scale-105"
+                poster="/images/showcase/drone_kampus.jpg"
+                class="w-full h-full object-cover opacity-40 scale-105"
             >
                 <source src="/media/intro.webm" type="video/webm">
                 <source src="/media/intro.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/55"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/35"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/40"></div>
         </div>
 
         {{-- Main Hero Container --}}
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-                {{-- Left Column: Motto, Spirit Day Badge Below Motto & CTA (PPDB + Jurusan + Intro) --}}
-                <div class="lg:col-span-7 space-y-6">
-                    <h1 data-hero-title class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-paper leading-[1.06] tracking-tight">
-                        {{ $settings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}
-                        <span class="block text-yellow-skensa mt-3 text-2xl sm:text-4xl lg:text-5xl">
-                            "{{ $settings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.' }}"
-                        </span>
-                    </h1>
-
-                    <div data-hero-badge class="inline-flex flex-wrap items-center gap-2.5 px-4 py-2 rounded-full bg-paper/10 backdrop-blur-md border border-yellow-skensa/40 text-yellow-skensa text-xs sm:text-sm font-bold uppercase tracking-widest">
-                        <span class="w-2 h-2 rounded-full bg-yellow-skensa"></span>
-                        <span>SMK Negeri 1 Denpasar &bull; {{ $settings['hero_highlight'] ?? '“When I Grow Up” Spirit Day!' }}</span>
-                    </div>
-
-                    <div data-hero-cta class="flex flex-wrap items-center gap-3.5 pt-2">
-                        <a
-                            href="#informasi-ppdb"
-                            data-magnetic
-                            class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider border-2 border-yellow-skensa hover:bg-paper transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-skensa"
-                        >
-                            <span>Pendaftaran / PPDB</span>
-                            <span aria-hidden="true">&rarr;</span>
-                        </a>
-                        <a
-                            href="#fakultas-keahlian"
-                            data-magnetic
-                            class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/30 hover:bg-paper/20 hover:text-yellow-skensa transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-                        >
-                            <span>Jelajahi 12 Jurusan</span>
-                            <span aria-hidden="true">&darr;</span>
-                        </a>
-                        <button
-                            type="button"
-                            data-intro-replay
-                            data-magnetic
-                            class="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/25 hover:bg-paper/20 hover:text-yellow-skensa transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-                            title="Putar Ulang Animasi Logo Intro"
-                        >
-                            <svg class="w-4 h-4 text-yellow-skensa shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Putar Intro</span>
-                        </button>
-                    </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 w-full">
+            <div class="max-w-3xl space-y-6">
+                <div data-hero-badge class="inline-flex flex-wrap items-center gap-2.5 px-4 py-2 rounded-full bg-paper/10 backdrop-blur-md border border-yellow-skensa/50 text-yellow-skensa text-xs sm:text-sm font-bold uppercase tracking-widest shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-yellow-skensa"></span>
+                    <span>SMK Negeri 1 Denpasar &bull; {{ $settings['hero_highlight'] ?? '“When I Grow Up” Spirit Day!' }}</span>
                 </div>
 
-                {{-- Right Column: Komposisi Pimpinan SKENSA (Foto Kepsek + Kartu 4 Wakasek seperti smkn1denpasar.sch.id) --}}
-                <div data-hero-media class="lg:col-span-5 flex justify-center lg:justify-end">
-                    <div class="relative flex items-start gap-4 sm:gap-5 max-w-[500px] w-full justify-center lg:justify-end">
-                        {{-- Main Portrait: Kepala Sekolah I Wayan Mustika --}}
-                        <div data-tilt class="relative w-[265px] sm:w-[300px] rounded-2xl overflow-hidden border-2 border-yellow-skensa/60 bg-navy-700 shadow-2xl shrink-0 group">
-                            <img
-                                src="/images/kepala-sekolah-i-wayan-mustika.jpg"
-                                alt="I Wayan Mustika, S.Pd., M.Pd. - Kepala SMK Negeri 1 Denpasar"
-                                width="400"
-                                height="460"
-                                class="w-full h-[340px] sm:h-[380px] object-cover object-top group-hover:scale-103 transition-transform duration-500"
-                            >
-                            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#051329] via-[#071C3F]/85 to-transparent"></div>
-                            <div class="absolute inset-x-3 bottom-3 p-3.5 rounded-xl bg-[#071C3F]/95 backdrop-blur-md border border-yellow-skensa/45 shadow-lg">
-                                <span class="block text-[9px] font-bold uppercase tracking-[0.18em] text-yellow-skensa">
-                                    Kepala SMK Negeri 1 Denpasar
-                                </span>
-                                <h2 class="font-display font-extrabold text-sm sm:text-base text-paper mt-0.5 leading-snug">
-                                    I Wayan Mustika, S.Pd., M.Pd.
-                                </h2>
-                            </div>
-                        </div>
+                <h1 data-hero-title class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-paper leading-[1.08] tracking-tight">
+                    {{ $settings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}
+                    <span class="block text-yellow-skensa mt-3 text-2xl sm:text-4xl lg:text-5xl font-bold">
+                        "{{ $settings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.' }}"
+                    </span>
+                </h1>
 
-                        {{-- Secondary Card: 4 Wakil Kepala Sekolah (Waka SKENSA) --}}
-                        <div data-tilt class="hidden sm:flex flex-col w-[170px] mt-10 rounded-2xl overflow-hidden border-2 border-paper/30 bg-paper shadow-2xl shrink-0">
-                            <img
-                                src="/images/hero_waka.jpg"
-                                alt="Wakil Kepala SMK Negeri 1 Denpasar"
-                                width="200"
-                                height="240"
-                                class="w-full h-[200px] object-cover"
-                            >
-                            <div class="p-3 bg-[#071C3F] text-paper border-t border-yellow-skensa/40">
-                                <span class="block text-[9px] font-extrabold uppercase tracking-widest text-yellow-skensa">
-                                    Jajaran Wakasek
-                                </span>
-                                <span class="block text-[11px] font-bold text-paper/90 mt-0.5 leading-tight">
-                                    4 Wakil Kepala Sekolah SKENSA
-                                </span>
-                            </div>
+                <p class="text-paper/85 text-base sm:text-lg leading-relaxed max-w-2xl">
+                    Sekolah Menengah Kejuruan Pusat Keunggulan (SMK PK) berbasis <em>Teaching Factory</em> dan sertifikasi profesi berlisensi <strong>LSP-P1 BNSP</strong> di Provinsi Bali.
+                </p>
+
+                <div data-hero-cta class="flex flex-wrap items-center gap-3.5 pt-2">
+                    <a
+                        href="#informasi-ppdb"
+                        data-magnetic
+                        class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider border-2 border-yellow-skensa hover:bg-paper transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-skensa shadow-md"
+                    >
+                        <span>Pendaftaran PPDB / SPMB</span>
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                    <a
+                        href="#fakultas-keahlian"
+                        data-magnetic
+                        class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/30 hover:bg-paper/20 hover:text-yellow-skensa transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+                    >
+                        <span>Jelajahi 12 Jurusan</span>
+                        <span aria-hidden="true">&darr;</span>
+                    </a>
+                    <button
+                        type="button"
+                        data-intro-replay
+                        data-magnetic
+                        class="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/25 hover:bg-paper/20 hover:text-yellow-skensa transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+                        title="Putar Ulang Animasi Logo Intro"
+                    >
+                        <svg class="w-4 h-4 text-yellow-skensa shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Putar Intro</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        {{-- Floating Quick Stats Bar (Mengambang di Kaki Banner Hero) --}}
+        <div class="absolute bottom-0 inset-x-0 z-20 bg-navy-950/80 backdrop-blur-md border-t border-paper/15 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm font-semibold text-paper/90 divide-y sm:divide-y-0 sm:divide-x divide-paper/10">
+                    <div class="flex items-center gap-3 py-1 sm:px-3">
+                        <span class="w-8 h-8 rounded-lg bg-yellow-skensa text-ink font-extrabold flex items-center justify-center shrink-0">A</span>
+                        <div>
+                            <span class="block font-bold text-paper">Akreditasi A (Unggul)</span>
+                            <span class="text-[11px] text-paper/60">BAN-S/M &bull; SMK PK</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 py-1 sm:px-3">
+                        <span class="w-8 h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0">2.6k</span>
+                        <div>
+                            <span class="block font-bold text-paper">2.680+ Siswa Aktif</span>
+                            <span class="text-[11px] text-paper/60">4.205 Pengguna LMS</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 py-1 sm:px-3">
+                        <span class="w-8 h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0">12</span>
+                        <div>
+                            <span class="block font-bold text-paper">9 Program / 12 Jurusan</span>
+                            <span class="text-[11px] text-paper/60">LSP-P1 BNSP Terlisensi</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 py-1 sm:px-3">
+                        <span class="w-8 h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0">185</span>
+                        <div>
+                            <span class="block font-bold text-paper">185+ Guru &amp; Tendik</span>
+                            <span class="text-[11px] text-paper/60">Sertifikasi Pendidik Vokasi</span>
                         </div>
                     </div>
                 </div>
@@ -165,533 +161,513 @@
     </section>
 
     {{-- ===================================================================== --}}
-    {{-- KATEGORI 1B: INDIKATOR KUNCI (QUICK STATS / COUNTERS BAR)             --}}
+    {{-- SECTION 2: SAMBUTAN KEPALA SEKOLAH (2 KOLOM LAPANG ALA SMANSA)        --}}
     {{-- ===================================================================== --}}
-    <section class="bg-paper-2 border-b-2 border-ink py-8">
+    <section id="sambutan-kepala-sekolah" class="py-20 bg-paper-2 border-b-2 border-ink">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <div class="p-5 rounded-2xl bg-paper border-2 border-ink flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-navy text-yellow-skensa flex items-center justify-center font-display font-extrabold text-xl shrink-0">
-                        A
-                    </div>
-                    <div>
-                        <span class="block font-display font-extrabold text-xl sm:text-2xl text-ink">Akreditasi A</span>
-                        <span class="block text-xs font-semibold text-ink-muted">Unggul (BAN-S/M &bull; SMK PK)</span>
-                    </div>
-                </div>
-
-                <div class="p-5 rounded-2xl bg-paper border-2 border-ink flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-navy text-yellow-skensa flex items-center justify-center font-display font-extrabold text-sm shrink-0 tabular-nums">
-                        SISWA
-                    </div>
-                    <div>
-                        <span class="block font-display font-extrabold text-xl sm:text-2xl text-ink tabular-nums">2.680+</span>
-                        <span class="block text-xs font-semibold text-ink-muted">Siswa Aktif (4.205 User LMS)</span>
-                    </div>
-                </div>
-
-                <div class="p-5 rounded-2xl bg-paper border-2 border-ink flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-navy text-yellow-skensa flex items-center justify-center font-display font-extrabold text-sm shrink-0">
-                        SDM
-                    </div>
-                    <div>
-                        <span class="block font-display font-extrabold text-xl sm:text-2xl text-ink tabular-nums">185+</span>
-                        <span class="block text-xs font-semibold text-ink-muted">Guru &amp; Tenaga Kependidikan</span>
-                    </div>
-                </div>
-
-                <div class="p-5 rounded-2xl bg-paper border-2 border-ink flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-yellow-skensa text-ink flex items-center justify-center font-display font-extrabold text-lg shrink-0 tabular-nums">
-                        9/12
-                    </div>
-                    <div>
-                        <span class="block font-display font-extrabold text-xl sm:text-2xl text-ink tabular-nums">9 Program</span>
-                        <span class="block text-xs font-semibold text-ink-muted">12 Konsentrasi Keahlian</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- ===================================================================== --}}
-    {{-- KATEGORI 2: PROFIL LEMBAGA (SAMBUTAN KEPSEK, VISI MISI, SEJARAH, SDM) --}}
-    {{-- ===================================================================== --}}
-    <section id="sambutan-kepala-sekolah" class="py-20 bg-paper border-b-2 border-ink">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-            {{-- Baris 1: Sebelah Kiri Foto Kepala Sekolah + Gedung, Sebelah Kanan Sambutan & Ringkasan Pengenalan --}}
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-                {{-- Kolom Kiri (lg:col-span-5): Foto Kepala Sekolah & Foto Udara Gedung SKENSA --}}
-                <div class="lg:col-span-5 space-y-5">
-                    <div class="relative rounded-2xl overflow-hidden border-2 border-ink bg-navy shadow-lg group">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                {{-- Kolom Kiri: Potret Kepala Sekolah dengan Floating Nameplate Badge ala SMANSA --}}
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="relative w-full max-w-[360px] rounded-3xl overflow-hidden border-2 border-ink bg-navy shadow-xl group">
                         <img
-                            src="/images/showcase/kepsek_sambutan.jpg"
-                            alt="Sambutan Kepala SMK Negeri 1 Denpasar - I Wayan Mustika, S.Pd., M.Pd."
-                            width="640"
-                            height="360"
+                            src="/images/kepala-sekolah-i-wayan-mustika.jpg"
+                            alt="I Wayan Mustika, S.Pd., M.Pd. - Kepala SMK Negeri 1 Denpasar"
+                            width="400"
+                            height="480"
                             loading="lazy"
-                            class="w-full h-[320px] sm:h-[360px] object-cover object-center group-hover:scale-103 transition-transform duration-500"
+                            class="w-full h-[400px] object-cover object-top group-hover:scale-103 transition-transform duration-500"
                         >
-                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/85 to-transparent p-5">
-                            <span class="px-2.5 py-1 rounded bg-yellow-skensa text-ink text-[10px] font-extrabold uppercase tracking-widest">
-                                Sambutan Kepala Sekolah
-                            </span>
-                            <h3 class="font-display font-extrabold text-lg text-paper mt-2">
-                                I Wayan Mustika, S.Pd., M.Pd.
-                            </h3>
-                            <p class="text-xs text-paper/80">
-                                Kepala SMK Negeri 1 Denpasar (SKENSA)
-                            </p>
-                        </div>
+                        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy via-navy/80 to-transparent"></div>
                     </div>
 
-                    {{-- Foto Gedung Kampus & Legalitas Singkat --}}
-                    <div class="p-4 rounded-2xl bg-paper-2 border-2 border-ink flex items-center gap-4">
-                        <img
-                            src="/images/showcase/drone_kampus.jpg"
-                            alt="Gedung Kampus SMK Negeri 1 Denpasar Jl. HOS Cokroaminoto No. 84"
-                            width="120"
-                            height="80"
-                            loading="lazy"
-                            class="w-28 h-20 rounded-xl object-cover border border-line shrink-0"
-                        >
-                        <div class="text-xs space-y-1">
-                            <span class="font-extrabold uppercase tracking-wider text-navy block">Sejarah &amp; Legalitas Institusi</span>
-                            <p class="text-ink font-semibold">Berdiri: 24 September 1962 (STM Negeri Denpasar)</p>
-                            <p class="text-ink-muted">NPSN: <strong class="text-ink">50103118</strong> &bull; SK: <strong class="text-ink">No. 17/D.J.P.T/B1/1962</strong></p>
-                        </div>
+                    {{-- Floating Nameplate Card (Seperti Gaya SMANSA) --}}
+                    <div class="relative -mt-8 z-10 w-[90%] max-w-[330px] p-4 rounded-2xl bg-paper border-2 border-ink shadow-lg text-center">
+                        <h3 class="font-display font-extrabold text-lg text-ink">
+                            I Wayan Mustika, S.Pd., M.Pd.
+                        </h3>
+                        <p class="text-xs font-bold uppercase tracking-wider text-navy mt-0.5">
+                            Kepala SMK Negeri 1 Denpasar
+                        </p>
+                        <span class="inline-block mt-2 px-2.5 py-0.5 rounded-md bg-yellow-skensa/20 border border-yellow-skensa/50 text-ink text-[10px] font-extrabold uppercase">
+                            SMK Pusat Keunggulan &bull; LSP-P1 BNSP
+                        </span>
+                    </div>
+
+                    {{-- Legalitas & Sejarah Singkat --}}
+                    <div class="mt-4 text-center text-xs text-ink-muted">
+                        <p>NPSN: <strong>50103118</strong> &bull; Berdiri: <strong>24 September 1962</strong></p>
+                        <p>SK Pendirian: No. 17/D.J.P.T/B1/1962</p>
                     </div>
                 </div>
 
-                {{-- Kolom Kanan (lg:col-span-7): Teks Pengantar & Sambutan Pembuka Kepala Sekolah --}}
+                {{-- Kolom Kanan: Sambutan Resmi & Visi Misi --}}
                 <div class="lg:col-span-7 space-y-6">
                     <div>
                         <span class="inline-block px-3 py-1 rounded-md bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
-                            Pengantar &amp; Sambutan Resmi
+                            Sambutan Kepala Sekolah
                         </span>
                         <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-                            Membangun Tradisi Keunggulan Vokasi Teknologi &amp; Industri Kreatif di Bali
+                            Mewujudkan Insan Vokasi yang Unggul, Berkarakter, dan Siap Kerja Global
                         </h2>
                     </div>
 
-                    <blockquote class="p-6 rounded-2xl bg-paper-2 border-l-4 border-navy text-ink text-sm sm:text-base leading-relaxed space-y-3">
-                        <p class="font-semibold text-navy">
-                            "Om Swastyastu, Assalamu’alaikum Warahmatullahi Wabarakatuh, Salam Sejahtera bagi kita semua, Shalom, Namo Buddhaya, Salam Kebajikan."
+                    <div class="prose max-w-none text-ink text-sm sm:text-base leading-relaxed space-y-3">
+                        <p class="font-semibold text-navy italic">
+                            "Om Swastyastu, Assalamu’alaikum Warahmatullahi Wabarakatuh, Salam Sejahtera, Rahayu."
                         </p>
                         <p>
-                            Selamat datang di portal resmi <strong>SMK Negeri 1 Denpasar (SKENSA)</strong>. Sejak didirikan pada tanggal 24 September 1962 sebagai STM Negeri Denpasar, institusi ini terus bertransformasi menjadi SMK Pusat Keunggulan yang memadukan penguasaan rekayasa teknologi, teknologi informasi, dan industri kreatif dengan nilai luhur <em>Abhyāsad Dhäryate Vidyä</em> (Peliharalah ilmu sampai menjadi tradisi).
+                            Selamat datang di situs resmi <strong>SMK Negeri 1 Denpasar (SKENSA)</strong>. Sejak berdiri pada tahun 1962 sebagai STM Negeri Denpasar, kami konsisten mengemban amanah melahirkan generasi teknisi dan insan kreatif yang tidak hanya menguasai keahlian industri terkini, namun juga berakar kuat pada nilai luhur semboyan <em>Abhyāsad Dhäryate Vidyä</em> (Peliharalah ilmu sampai menjadi tradisi).
                         </p>
                         <p>
-                            Melalui sinergi kurikulum bersama mitra Dunia Usaha dan Dunia Industri (DUDIKA), pembelajaran berbasis <em>Teaching Factory</em>, serta sertifikasi profesi berlisensi BNSP melalui LSP-P1 SMK Negeri 1 Denpasar, kami berkomitmen menyiapkan lulusan yang <strong>Siap, Kompeten, Disiplin, dan Beretika</strong> untuk bekerja, melanjutkan pendidikan tinggi, maupun berwirausaha mandiri.
+                            Melalui kurikulum berbasis <em>Teaching Factory</em>, kemitraan strategis dengan puluhan industri nasional dan multinasional, serta sertifikasi keahlian berstandar nasional (LSP-P1 BNSP), kami memastikan setiap peserta didik siap melangkah ke dunia kerja, melanjutkan ke perguruan tinggi, maupun membangun wirausaha mandiri.
                         </p>
-                    </blockquote>
+                    </div>
 
-                    {{-- Visi, Misi & Tujuan Institusi Ringkas --}}
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="p-5 rounded-2xl bg-navy text-paper border-2 border-ink">
-                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-yellow-skensa">Visi Institusi</span>
-                            <h3 class="font-display font-bold text-base text-paper mt-1.5 leading-snug">
-                                Terwujudnya Lulusan yang Unggul dalam IPTEK, Berkarakter Pancasila, Berbudaya Lingkungan, dan Berdaya Saing Global.
-                            </h3>
-                        </div>
-
-                        <div class="p-5 rounded-2xl bg-paper-2 border-2 border-ink">
-                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-navy">Misi &amp; Tujuan Utama</span>
-                            <ul class="mt-2 space-y-1.5 text-xs text-ink-muted font-medium">
-                                <li>&bull; Menyelenggarakan pendidikan vokasi berbasis <em>Link and Match</em> industri.</li>
-                                <li>&bull; Mengembangkan sertifikasi kompetensi berstandar nasional (BNSP) &amp; internasional.</li>
-                                <li>&bull; Menanamkan budaya kerja industri dan kearifan lokal Bali.</li>
-                            </ul>
+                    {{-- 4 Pilar Karakter SKENSA (SISIKOBER) --}}
+                    <div class="pt-2">
+                        <span class="block text-xs font-extrabold uppercase tracking-wider text-navy mb-3">
+                            4 Pilar Budaya Kerja &amp; Karakter Siswa:
+                        </span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
+                                <span class="block font-display font-extrabold text-navy text-base">Siap</span>
+                                <span class="text-[11px] text-ink-muted">Tangguh &amp; Siaga</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
+                                <span class="block font-display font-extrabold text-navy text-base">Kompeten</span>
+                                <span class="text-[11px] text-ink-muted">Sertifikasi Profesi</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
+                                <span class="block font-display font-extrabold text-navy text-base">Disiplin</span>
+                                <span class="text-[11px] text-ink-muted">Budaya Industri</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
+                                <span class="block font-display font-extrabold text-navy text-base">Beretika</span>
+                                <span class="text-[11px] text-ink-muted">Kearifan Lokal</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
                         <a href="{{ route('profile.index') }}" class="px-5 py-2.5 rounded-xl bg-navy text-paper text-xs font-extrabold uppercase tracking-wider hover:bg-navy-700 transition-colors">
-                            Profil, Sejarah &amp; Struktur Organisasi &rarr;
+                            Profil &amp; Sejarah Sekolah &rarr;
                         </a>
-                        <a href="{{ route('staff.index') }}" class="px-5 py-2.5 rounded-xl bg-paper-2 border-2 border-ink text-ink text-xs font-extrabold uppercase tracking-wider hover:border-navy transition-colors">
-                            Direktori Guru &amp; Staf Pengajar &rarr;
+                        <a href="{{ route('staff.index') }}" class="px-5 py-2.5 rounded-xl bg-paper border-2 border-ink text-ink text-xs font-extrabold uppercase tracking-wider hover:border-navy transition-colors">
+                            Direktori Pimpinan &amp; Guru &rarr;
                         </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            {{-- Baris 2: Showcase Video Resmi YouTube @smkn1denpasar (Tepat di Bawah Sambutan Kepala Sekolah) --}}
-            <div class="pt-10 border-t-2 border-line">
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-                    <div>
-                        <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Kanal Resmi YouTube @smkn1denpasar</span>
-                        <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-ink mt-1">
-                            Video Profil Jurusan &amp; Aktivitas Kampus SKENSA
-                        </h3>
+    {{-- ===================================================================== --}}
+    {{-- SECTION 3: YOUTUBE CINEMA HUB (VIDEO BESAR + PLAYLIST KANAN)          --}}
+    {{-- ===================================================================== --}}
+    <section id="skensa-cinema-hub" class="py-20 bg-paper border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <span class="inline-block px-3 py-1 rounded-md bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
+                        Galeri Multimedia &amp; Video Resmi
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-3">
+                        Eksplorasi Profil &amp; <span class="marker-highlight">Aktivitas Kampus</span>
+                    </h2>
+                </div>
+                <a
+                    href="https://www.youtube.com/@smkn1denpasar/videos"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline"
+                >
+                    Kanal Resmi YouTube @smkn1denpasar &nearr;
+                </a>
+            </div>
+
+            @php
+                $cinemaVideos = [
+                    [
+                        'id' => 'uTDYUJLP3xY',
+                        'title' => 'Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar',
+                        'category' => 'Profil Keahlian',
+                        'desc' => 'Eksplorasi 9 program keahlian dan 12 konsentrasi keahlian di SMK Negeri 1 Denpasar berbasis industri dan sertifikasi LSP-P1 BNSP.',
+                    ],
+                    [
+                        'id' => 'PGel3Be5L_E',
+                        'title' => 'Pengalaman Belajar & Praktik Kejuruan di SMKN 1 Denpasar',
+                        'category' => 'Kehidupan Kampus',
+                        'desc' => 'Melihat langsung suasana belajar teori, praktik bengkel standar industri, kedisiplinan budaya kerja, dan atmosfer belajar di SKENSA.',
+                    ],
+                    [
+                        'id' => 'Fsez1chT7Jw',
+                        'title' => 'Rangkaian Lomba SUBAKTI (Skensa Unjuk Bakat dan Aksi) 2026',
+                        'category' => 'Kesiswaan & Bakat',
+                        'desc' => 'Ajang unjuk kreativitas, seni, bakat, kepemimpinan, dan sportivitas peserta didik antarkelas dan jenjang di SMK Negeri 1 Denpasar.',
+                    ],
+                    [
+                        'id' => 'rJlYfmmF4ns',
+                        'title' => 'GELORA SKENSA 2026 (Pentas Seni, Budaya & Dies Natalis)',
+                        'category' => 'Seni & Budaya Bali',
+                        'desc' => 'Perayaan puncak kreativitas siswa, pentas tari tradisi Bali, musik modern, serta perayaan kebersamaan keluarga besar civitas akademika.',
+                    ],
+                    [
+                        'id' => '-_COP-1rjm8',
+                        'title' => 'Lomba Kompetensi Siswa (LKS) Bidang Teknologi Provinsi Bali 2026',
+                        'category' => 'Prestasi & Kejuaraan',
+                        'desc' => 'Perjuangan dan prestasi kontingen siswa SKENSA dalam ajang kejuaraan keterampilan vokasi paling bergengsi tingkat provinsi dan nasional.',
+                    ],
+                    [
+                        'id' => 'dhtzwyXzde4',
+                        'title' => 'Uji Kompetensi Keahlian (UKK) SMK Negeri 1 Denpasar Tahun 2026',
+                        'category' => 'Sertifikasi Profesi',
+                        'desc' => 'Pengujian kompetensi keahlian siswa kelas XII yang dinilai langsung oleh asesor industri rekanan DUDIKA dan sertifikasi BNSP.',
+                    ],
+                    [
+                        'id' => 'xddd6luVGYE',
+                        'title' => 'Job Fair & Rekrutmen Bursa Kerja Khusus (BKK) SKENSA 2026',
+                        'category' => 'Penyaluran Kerja',
+                        'desc' => 'Penyaluran lulusan langsung ke dunia industri melalui bursa kerja khusus dan walk-in interview oleh puluhan perusahaan mitra.',
+                    ],
+                    [
+                        'id' => 'V-t1AKQo0Uo',
+                        'title' => 'Peresmian Daikin Center of Excellence di SMKN 1 Denpasar',
+                        'category' => 'Mitra Industri DUDI',
+                        'desc' => 'Kerja sama strategis peresmian laboratorium tata udara berstandar global PT Daikin Airconditioning Indonesia di SKENSA.',
+                    ],
+                ];
+            @endphp
+
+            {{-- Grid Video Cinema 12 Kolom (8 Kolom Player Kiri + 4 Kolom Playlist Kanan) --}}
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                {{-- Kolom Kiri: Player Utama Layar Besar (lg:col-span-8) --}}
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="relative aspect-video w-full rounded-2xl overflow-hidden border-2 border-ink bg-black shadow-2xl">
+                        <iframe
+                            id="cinema-main-iframe"
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/uTDYUJLP3xY?rel=0"
+                            title="Video Utama SKENSA"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                        ></iframe>
                     </div>
-                    <a
-                        href="https://www.youtube.com/@smkn1denpasar/videos"
-                        target="_blank"
-                        rel="noopener"
-                        class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline"
+
+                    {{-- Metadata Video Aktif --}}
+                    <div class="p-6 rounded-2xl bg-paper-2 border-2 border-ink flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="space-y-1">
+                            <span id="cinema-active-badge" class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                                Profil Keahlian
+                            </span>
+                            <h3 id="cinema-active-title" class="font-display font-extrabold text-xl text-ink leading-snug">
+                                Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar
+                            </h3>
+                            <p id="cinema-active-desc" class="text-xs text-ink-muted leading-relaxed max-w-2xl">
+                                Eksplorasi 9 program keahlian dan 12 konsentrasi keahlian di SMK Negeri 1 Denpasar berbasis industri dan sertifikasi LSP-P1 BNSP.
+                            </p>
+                        </div>
+                        <a
+                            id="cinema-active-link"
+                            href="https://www.youtube.com/watch?v=uTDYUJLP3xY"
+                            target="_blank"
+                            rel="noopener"
+                            class="px-4 py-2.5 rounded-xl bg-navy text-paper text-xs font-bold uppercase tracking-wider hover:bg-navy-700 transition-colors shrink-0 text-center"
+                        >
+                            Tonton di YouTube &nearr;
+                        </a>
+                    </div>
+                </div>
+
+                {{-- Kolom Kanan: Playlist Interaktif Pilihan (lg:col-span-4) --}}
+                <div class="lg:col-span-4 rounded-2xl border-2 border-ink bg-paper-2 overflow-hidden flex flex-col h-[520px] lg:h-[580px]">
+                    <div class="p-4 bg-navy text-paper border-b-2 border-ink flex items-center justify-between">
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-yellow-skensa">Playlist Video Resmi</span>
+                        <span class="text-[11px] font-bold text-paper/70">8 Video Pilihan</span>
+                    </div>
+
+                    <div class="flex-1 overflow-y-auto p-3 space-y-2.5 divide-y divide-line/60">
+                        @foreach($cinemaVideos as $cIdx => $cVideo)
+                            <button
+                                type="button"
+                                data-cinema-item
+                                data-video-id="{{ $cVideo['id'] }}"
+                                data-video-title="{{ $cVideo['title'] }}"
+                                data-video-category="{{ $cVideo['category'] }}"
+                                data-video-desc="{{ $cVideo['desc'] }}"
+                                class="w-full text-left p-2.5 rounded-xl transition-all cursor-pointer flex gap-3 items-center group {{ $cIdx === 0 ? 'bg-navy text-paper shadow-md' : 'hover:bg-paper text-ink' }}"
+                            >
+                                <div class="relative w-28 h-18 rounded-lg overflow-hidden shrink-0 border border-ink/40 bg-navy-800">
+                                    <img
+                                        src="https://img.youtube.com/vi/{{ $cVideo['id'] }}/mqdefault.jpg"
+                                        alt="{{ $cVideo['title'] }}"
+                                        loading="lazy"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                    >
+                                    <span class="absolute bottom-1 right-1 px-1.5 py-0.2 rounded bg-black/80 text-[9px] font-bold text-white">YT</span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <span class="block text-[10px] font-extrabold uppercase tracking-wider {{ $cIdx === 0 ? 'text-yellow-skensa' : 'text-navy' }}" data-item-cat>
+                                        {{ $cVideo['category'] }}
+                                    </span>
+                                    <h4 class="font-display font-bold text-xs line-clamp-2 leading-snug mt-0.5" data-item-title>
+                                        {{ $cVideo['title'] }}
+                                    </h4>
+                                </div>
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ===================================================================== --}}
+    {{-- SECTION 4: FASILITAS PENUNJANG PEMBELAJARAN (BENGKEL, LAB & SARANA)   --}}
+    {{-- ===================================================================== --}}
+    <section id="fasilitas-kampus" class="py-20 bg-paper-2 border-b-2 border-ink">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Infrastruktur Kampus 16.610 m&sup2;</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-1">
+                        Fasilitas Penunjang <span class="marker-highlight">Pembelajaran &amp; Praktik</span>
+                    </h2>
+                </div>
+                <a href="{{ route('gallery.index') }}" class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline">
+                    Lihat Galeri Fasilitas Lengkap &rarr;
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {{-- 1. Laboratorium Jaringan Komputer & Fiber Optik (TKJ) --}}
+                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
+                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                        <img src="/images/showcase/lab_fiber.jpg" alt="Praktik Splicing Fiber Optik Jurusan Teknik Komputer dan Jaringan (TKJ) SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                            Jurusan TKJ
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-extrabold text-lg text-ink">Laboratorium Jaringan &amp; Fiber Optik (TKJ)</h3>
+                            <p class="text-sm text-ink-muted mt-2 leading-relaxed">
+                                Fasilitas praktik siswa <strong>Teknik Komputer dan Jaringan (TKJ)</strong> yang dilengkapi alat <em>Fusion Splicer</em> serat optik FTTH, router/switch Cisco &amp; MikroTik, serta server administrasi jaringan.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                            TUK Tersertifikasi LSP-P1 BNSP &bull; Teknik Komputer &amp; Jaringan
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 2. Workshop Praktik Konstruksi Gedung (TKP & DPIB) --}}
+                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
+                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                        <img src="/images/showcase/ukk_2026.jpg" alt="Praktik Konstruksi dan Uji Kompetensi Keahlian TKP SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                            Jurusan TKP &amp; DPIB
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-extrabold text-lg text-ink">Workshop Konstruksi Gedung &amp; Studio BIM</h3>
+                            <p class="text-sm text-ink-muted mt-2 leading-relaxed">
+                                Area praktik lapangan <strong>Teknik Konstruksi dan Perumahan (TKP)</strong> serta studio gambar <strong>DPIB</strong> untuk pelaksanaan Uji Kompetensi Keahlian (UKK) Pelaksana Lapangan Pekerjaan Gedung.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                            Skema Sertifikasi BNSP Level 2 &bull; TKP &amp; DPIB
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 3. Daikin Center of Excellence & Bengkel Rekayasa --}}
+                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
+                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                        <img src="/images/showcase/daikin_coe.jpg" alt="Peresmian Daikin Center of Excellence SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                            Center of Excellence
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-extrabold text-lg text-ink">Daikin Center of Excellence &amp; Bengkel Rekayasa</h3>
+                            <p class="text-sm text-ink-muted mt-2 leading-relaxed">
+                                Pusat keunggulan tata udara (<strong>TPTUP</strong>) berstandar PT Daikin Airconditioning Indonesia, berdampingan dengan bengkel mesin CNC (<strong>TPM</strong>), kelistrikan (<strong>TITL</strong>), dan otomotif (<strong>TKR/TSM</strong>).
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                            Kelas Industri DUDIKA &bull; TPTUP, TITL, TPM, TKR, TSM
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 4. Perpustakaan Digital, Sarana Olahraga & Aula Utama --}}
+                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
+                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                        <img src="/images/showcase/lapangan_upacara.jpg" alt="Lapangan Olahraga, Perpustakaan, dan Aula SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                            Sarana Umum Kampus
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-extrabold text-lg text-ink">Perpustakaan Digital (e-Library), Lapangan &amp; Aula</h3>
+                            <p class="text-sm text-ink-muted mt-2 leading-relaxed">
+                                Terintegrasi dengan portal <em>lib.smkn1denpasar.sch.id</em>, lapangan olahraga utama untuk kegiatan apel &amp; ekstrakurikuler, aula serbaguna Gelora SKENSA, serta laboratorium RPL/DKV/PRF.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                            Mendukung Pembelajaran Holistik &amp; Kegiatan Kesiswaan
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ===================================================================== --}}
+    {{-- SECTION 5: 12 JURUSAN FULL-SCREEN HORIZONTAL SLIDER (DESKRIPSI KIRI)  --}}
+    {{-- ===================================================================== --}}
+    @php
+        $majorSlidePhotos = [
+            'TKJ'   => '/images/showcase/lab_fiber.jpg',
+            'TKP'   => '/images/showcase/ukk_2026.jpg',
+            'DPIB'  => '/images/showcase/ukk_2026.jpg',
+            'TPTUP' => '/images/showcase/daikin_coe.jpg',
+            'RPL'   => '/images/showcase/lks_2026.jpg',
+            'DKV'   => '/images/showcase/pengalaman_belajar.jpg',
+            'PRF'   => '/images/showcase/pengalaman_belajar.jpg',
+            'TITL'  => '/images/showcase/daikin_coe.jpg',
+            'TAV'   => '/images/showcase/lab_fiber.jpg',
+            'ELIN'  => '/images/showcase/lab_fiber.jpg',
+            'TPM'   => '/images/showcase/daikin_coe.jpg',
+            'TKR'   => '/images/showcase/daikin_coe.jpg',
+            'TSM'   => '/images/showcase/daikin_coe.jpg',
+        ];
+    @endphp
+    <section id="fakultas-keahlian" class="relative min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between bg-navy text-paper border-b-2 border-ink overflow-hidden py-10 lg:py-14 select-none">
+        {{-- Section Top Header Bar --}}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div>
+                <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+                    Direktori Akademik &amp; Konsentrasi Keahlian
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-paper mt-2">
+                    12 Konsentrasi Keahlian Unggulan SKENSA
+                </h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-paper/70">
+                    Geser Kiri/Kanan &bull; <strong id="major-slider-indicator" class="text-yellow-skensa font-mono font-extrabold">01 / {{ str_pad((string)$majors->count(), 2, '0', STR_PAD_LEFT) }}</strong>
+                </span>
+                <div class="flex items-center gap-2">
+                    <button
+                        type="button"
+                        id="major-slide-prev"
+                        aria-label="Jurusan Sebelumnya"
+                        class="w-10 h-10 rounded-xl bg-paper/10 border border-paper/30 hover:bg-yellow-skensa hover:text-ink text-paper flex items-center justify-center transition-colors cursor-pointer"
                     >
-                        Buka Kanal YouTube Resmi &nearr;
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {{-- Video 1: Profil Konsentrasi Keahlian SMKN 1 Denpasar --}}
-                    <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden shadow-lg">
-                        <div class="aspect-video w-full bg-ink">
-                            <iframe
-                                class="w-full h-full"
-                                src="https://www.youtube.com/embed/uTDYUJLP3xY?rel=0"
-                                title="Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                        <div class="p-5 flex items-center justify-between gap-4">
-                            <div>
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-skensa">Video Resmi SKENSA</span>
-                                <h4 class="font-display font-bold text-base sm:text-lg text-paper mt-0.5">
-                                    Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar
-                                </h4>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=uTDYUJLP3xY" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase shrink-0">
-                                YouTube &nearr;
-                            </a>
-                        </div>
-                    </div>
-
-                    {{-- Video 2: Pengalaman Belajar di SMKN 1 Denpasar --}}
-                    <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden shadow-lg">
-                        <div class="aspect-video w-full bg-ink">
-                            <iframe
-                                class="w-full h-full"
-                                src="https://www.youtube.com/embed/PGel3Be5L_E?rel=0"
-                                title="Pengalaman Belajar di SMKN 1 Denpasar"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                        <div class="p-5 flex items-center justify-between gap-4">
-                            <div>
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-skensa">Kehidupan Kampus</span>
-                                <h4 class="font-display font-bold text-base sm:text-lg text-paper mt-0.5">
-                                    Pengalaman Belajar &amp; Praktik Kejuruan di SMKN 1 Denpasar
-                                </h4>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=PGel3Be5L_E" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase shrink-0">
-                                YouTube &nearr;
-                            </a>
-                        </div>
-                    </div>
+                        &larr;
+                    </button>
+                    <button
+                        type="button"
+                        id="major-slide-next"
+                        aria-label="Jurusan Berikutnya"
+                        class="w-10 h-10 rounded-xl bg-paper/10 border border-paper/30 hover:bg-yellow-skensa hover:text-ink text-paper flex items-center justify-center transition-colors cursor-pointer"
+                    >
+                        &rarr;
+                    </button>
                 </div>
             </div>
+        </div>
 
-            {{-- Baris 3: 4 Karakter Budaya Sekolah + Preview Struktur Pimpinan --}}
-            <div class="pt-10 border-t-2 border-line">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-                    <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-navy">Nilai Budaya &amp; Karakter SKENSA (SISIKOBER)</span>
-                        <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-ink mt-1">
-                            4 Pilar Karakter Utama Peserta Didik
-                        </h3>
-                    </div>
-                    <a href="{{ route('staff.index') }}" class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline">
-                        Lihat Bagan Pimpinan &amp; Direktori Guru Lengkap &rarr;
-                    </a>
-                </div>
+        {{-- Full Screen Horizontal Carousel Viewport --}}
+        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex items-center z-10">
+            <div id="major-slider-viewport" class="relative w-full overflow-hidden rounded-3xl border-2 border-paper/20 shadow-2xl bg-black">
+                <div id="major-slider-track" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0%);">
+                    @foreach($majors as $mIdx => $mItem)
+                        @php
+                            $slideImg = $mItem->image ?: ($majorSlidePhotos[strtoupper($mItem->code)] ?? '/images/showcase/drone_kampus.jpg');
+                        @endphp
+                        <div class="w-full shrink-0 relative h-[520px] sm:h-[580px] lg:h-[620px] overflow-hidden" data-major-slide-index="{{ $mIdx }}">
+                            {{-- Background Image with Gradient Overlay --}}
+                            <img
+                                src="{{ $slideImg }}"
+                                alt="{{ $mItem->name }}"
+                                class="w-full h-full object-cover object-center"
+                                loading="lazy"
+                            >
+                            {{-- Heavy Gradient Overlay for Bottom-Left Text Clarity --}}
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/75 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/40 to-transparent"></div>
 
-                @php
-                    $characterValues = json_decode($settings['character_values'] ?? '[]', true) ?: [
-                        ['code' => '01', 'title' => 'Siap', 'desc' => 'Siaga menghadapi tantangan dunia kerja dan berkomitmen mencapai tujuan.'],
-                        ['code' => '02', 'title' => 'Kompeten', 'desc' => 'Keselarasan pengetahuan, keterampilan teknis, dan sertifikasi profesi.'],
-                        ['code' => '03', 'title' => 'Disiplin', 'desc' => 'Pembiasaan budaya kerja industri yang terstruktur dan bertanggung jawab.'],
-                        ['code' => '04', 'title' => 'Beretika', 'desc' => 'Menjunjung tinggi nilai etika, tata krama, dan norma dalam kehidupan sosial.'],
-                    ];
-                @endphp
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    @foreach($characterValues as $idx => $char)
-                        <div class="p-6 rounded-2xl bg-paper-2 border-2 border-ink flex flex-col justify-between hover:border-navy transition-all">
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="px-3 py-1 rounded-lg bg-navy text-yellow-skensa font-display font-extrabold text-xs tabular-nums">
-                                    PILAR {{ $char['code'] ?? str_pad((string) ($idx + 1), 2, '0', STR_PAD_LEFT) }}
+                            {{-- Badge Top Right --}}
+                            <div class="absolute top-6 right-6 flex items-center gap-2">
+                                <span class="px-3.5 py-1.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-sm uppercase tracking-wider shadow-lg">
+                                    {{ $mItem->code }}
                                 </span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-navy"></span>
+                                <span class="hidden sm:inline-block px-3 py-1.5 rounded-xl bg-navy/90 backdrop-blur-md border border-paper/20 text-paper text-xs font-bold uppercase tracking-wider">
+                                    {{ $mItem->field?->name }}
+                                </span>
                             </div>
-                            <div>
-                                <h4 class="font-display font-extrabold text-xl text-ink">{{ $char['title'] }}</h4>
-                                <p class="text-xs sm:text-sm text-ink-muted mt-1.5 leading-relaxed">{{ $char['desc'] }}</p>
+
+                            {{-- DESKRIPSI SINGKAT DI BAGIAN KIRI BAWAH --}}
+                            <div class="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 max-w-2xl space-y-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="px-3 py-1 rounded-md bg-paper/20 backdrop-blur-md border border-yellow-skensa/60 text-yellow-skensa font-mono font-extrabold text-xs uppercase tracking-widest">
+                                        {{ str_pad((string)($mIdx + 1), 2, '0', STR_PAD_LEFT) }} / {{ str_pad((string)$majors->count(), 2, '0', STR_PAD_LEFT) }} &bull; KONSENTRASI KEAHLIAN
+                                    </span>
+                                    <span class="text-xs font-bold text-paper/70 uppercase">
+                                        LSP-P1 BNSP
+                                    </span>
+                                </div>
+
+                                <h3 class="font-display font-extrabold text-2xl sm:text-4xl text-paper leading-tight tracking-tight">
+                                    {{ $mItem->name }}
+                                </h3>
+
+                                <p class="text-xs sm:text-sm text-paper/85 leading-relaxed line-clamp-3 max-w-xl">
+                                    {{ $mItem->description ?: $mItem->summary }}
+                                </p>
+
+                                @if(!empty($mItem->career_prospects))
+                                    <div class="flex flex-wrap gap-1.5 pt-1">
+                                        @foreach(array_slice((array) $mItem->career_prospects, 0, 3) as $prospect)
+                                            <span class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-paper/10 backdrop-blur-xs border border-paper/20 text-yellow-skensa">
+                                                {{ $prospect }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                                <div class="pt-2">
+                                    <a
+                                        href="{{ route('majors.show', $mItem->slug) }}"
+                                        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-yellow-skensa text-ink hover:bg-paper font-display font-extrabold text-xs uppercase tracking-wider transition-colors shadow-lg"
+                                    >
+                                        <span>Lihat Konsentrasi Keahlian Ini</span>
+                                        <span aria-hidden="true">&rarr;</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
-    </section>
 
-    {{-- ===================================================================== --}}
-    {{-- KATEGORI 3: PROGRAM AKADEMIK, SERTIFIKASI, FASILITAS & VIDEO YOUTUBE  --}}
-    {{-- ===================================================================== --}}
-    <section id="fakultas-keahlian" class="py-20 bg-paper-2 border-b-2 border-ink">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-            {{-- Bagian 3A: Daftar 9 Program & 12 Konsentrasi Keahlian + Sertifikasi & Prospek Karir --}}
-            <div>
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 pb-6 border-b-2 border-line">
-                    <div>
-                        <span class="inline-block px-3 py-1 rounded-md bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
-                            Program Akademik &amp; Kejuruan Resmi
-                        </span>
-                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-ink mt-3">
-                            9 Program &amp; 12 <span class="marker-highlight">Konsentrasi Keahlian</span>
-                        </h2>
-                        <p class="text-sm text-ink-muted mt-2 max-w-2xl">
-                            Setiap konsentrasi keahlian dilengkapi kurikulum berbasis industri, sertifikasi kompetensi berlisensi <strong>LSP-P1 BNSP</strong>, serta pemetaan karir lulusan.
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <span class="text-xs font-bold uppercase tracking-wider text-ink-muted tabular-nums">
-                            Menampilkan: <strong id="faculty-active-count" class="text-navy font-extrabold">{{ $majors->count() }}</strong> Jurusan
-                        </span>
-                        <a
-                            href="{{ route('majors.index') }}"
-                            class="px-4 py-2.5 rounded-xl bg-navy text-paper text-xs font-bold uppercase tracking-wider hover:bg-navy-700 transition-colors"
-                        >
-                            Katalog Penuh &rarr;
-                        </a>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    {{-- Left Column: Sticky 9 Program Keahlian Selector --}}
-                    <div class="lg:col-span-4 lg:sticky lg:top-28 bg-paper rounded-2xl border-2 border-ink p-4 space-y-1.5 shadow-sm">
-                        <div class="px-3 py-2 border-b border-line mb-2 flex items-center justify-between">
-                            <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Filter Program Keahlian</span>
-                            <span class="text-[11px] font-bold text-ink-muted tabular-nums">9 Bidang</span>
-                        </div>
-
-                        <button
-                            type="button"
-                            data-faculty-filter="all"
-                            class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-left font-display font-bold text-sm transition-all cursor-pointer bg-navy text-paper"
-                        >
-                            <div class="flex items-center gap-3">
-                                <span class="text-xs font-extrabold text-yellow-skensa tabular-nums">ALL</span>
-                                <span>Seluruh Program Keahlian</span>
-                            </div>
-                            <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-yellow-skensa text-ink tabular-nums">
-                                {{ $majors->count() }}
-                            </span>
-                        </button>
-
-                        @foreach($fields as $fIdx => $field)
-                            <button
-                                type="button"
-                                data-faculty-filter="{{ $field->id }}"
-                                class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-left font-display font-semibold text-sm transition-all cursor-pointer text-ink hover:bg-paper-2"
-                            >
-                                <div class="flex items-center gap-3 min-w-0">
-                                    <span class="text-xs font-extrabold text-ink-muted tabular-nums" data-filter-num>{{ str_pad((string) ($fIdx + 1), 2, '0', STR_PAD_LEFT) }}</span>
-                                    <span class="truncate">{{ $field->name }}</span>
-                                </div>
-                                <span class="text-xs font-bold px-2 py-0.5 rounded bg-paper-2 border border-line text-ink-muted tabular-nums shrink-0" data-filter-badge>
-                                    {{ $field->majors_count }}
-                                </span>
-                            </button>
-                        @endforeach
-                    </div>
-
-                    {{-- Right Column: 12 Konsentrasi Keahlian Cards --}}
-                    <div class="lg:col-span-8">
-                        <div id="faculty-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            @foreach($majors as $index => $major)
-                                <article
-                                    data-faculty-card
-                                    data-field-id="{{ $major->field_id }}"
-                                    class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between hover:border-navy transition-all group shadow-xs"
-                                >
-                                    <div>
-                                        <div class="relative h-44 bg-navy overflow-hidden border-b-2 border-ink">
-                                            <img
-                                                src="{{ $major->image ?: '/images/showcase/drone_kampus.jpg' }}"
-                                                alt="{{ $major->name }}"
-                                                loading="lazy"
-                                                class="w-full h-full object-cover opacity-65 group-hover:scale-105 transition-transform duration-500"
-                                            >
-                                            <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/45 to-transparent"></div>
-
-                                            <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
-                                                <span class="px-3 py-1 rounded-lg bg-yellow-skensa text-ink font-display font-extrabold text-xs uppercase tracking-wider shadow-xs">
-                                                    {{ $major->code }}
-                                                </span>
-                                                <span class="px-2.5 py-1 rounded-md bg-navy/90 backdrop-blur-xs border border-paper/20 text-paper text-[11px] font-bold uppercase tracking-wider truncate max-w-[200px]">
-                                                    {{ $major->field?->name }}
-                                                </span>
-                                            </div>
-
-                                            <div class="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between">
-                                                <span class="text-[11px] font-extrabold uppercase tracking-widest text-yellow-skensa">
-                                                    Sertifikasi LSP-P1 BNSP &bull; Level II KKNI
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="p-6">
-                                            <h3 class="font-display font-extrabold text-xl text-ink group-hover:text-navy transition-colors leading-snug">
-                                                <a href="{{ route('majors.show', $major->slug) }}" class="focus-visible:outline-none focus-visible:underline">
-                                                    {{ $major->name }}
-                                                </a>
-                                            </h3>
-
-                                            <p class="text-sm text-ink-muted mt-2.5 leading-relaxed">
-                                                {{ $major->description }}
-                                            </p>
-
-                                            @if(!empty($major->competencies))
-                                                <div class="mt-4 pt-4 border-t border-line">
-                                                    <span class="block text-[10px] font-extrabold uppercase tracking-widest text-navy mb-2">
-                                                        Fokus Materi &amp; Skema Uji Kompetensi:
-                                                    </span>
-                                                    <ul class="space-y-1 text-xs text-ink-muted">
-                                                        @foreach(array_slice((array) $major->competencies, 0, 3) as $comp)
-                                                            <li class="flex items-start gap-2">
-                                                                <span class="text-navy font-bold">&bull;</span>
-                                                                <span>{{ $comp }}</span>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="px-6 pb-6 pt-3 border-t border-line bg-paper-2/50">
-                                        @if(!empty($major->career_prospects))
-                                            <span class="block text-[10px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">Prospek Karir Lulusan:</span>
-                                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                                @foreach(array_slice((array) $major->career_prospects, 0, 3) as $prospect)
-                                                    <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-paper border border-line text-ink">
-                                                        {{ $prospect }}
-                                                    </span>
-                                                @endforeach
-                                            </div>
-                                        @endif
-
-                                        <a
-                                            href="{{ route('majors.show', $major->slug) }}"
-                                            class="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-navy text-paper group-hover:bg-yellow-skensa group-hover:text-ink font-display font-bold text-xs uppercase tracking-wider transition-colors"
-                                        >
-                                            <span>Detail Kurikulum &amp; Bengkel {{ $major->code }}</span>
-                                            <span aria-hidden="true">&rarr;</span>
-                                        </a>
-                                    </div>
-                                </article>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Bagian 3B: Fasilitas Penunjang Pembelajaran (Lab Komputer, Bengkel Praktik, Perpustakaan/Olahraga/Aula) --}}
-            <div class="pt-12 border-t-2 border-line">
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-                    <div>
-                        <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Infrastruktur Kampus 16.610 m&sup2;</span>
-                        <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-1">
-                            Fasilitas Penunjang <span class="marker-highlight">Pembelajaran</span>
-                        </h3>
-                    </div>
-                    <a href="{{ route('gallery.index') }}" class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline">
-                        Lihat Galeri Fasilitas Lengkap &rarr;
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {{-- 1. Laboratorium Jaringan Komputer & Fiber Optik (TKJ) --}}
-                    <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
-                        <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
-                            <img src="/images/showcase/lab_fiber.jpg" alt="Praktik Splicing Fiber Optik Jurusan Teknik Komputer dan Jaringan (TKJ) SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
-                                Jurusan TKJ
-                            </span>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h4 class="font-display font-extrabold text-lg text-ink">Laboratorium Jaringan &amp; Fiber Optik (TKJ)</h4>
-                                <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                                    Fasilitas praktik siswa <strong>Teknik Komputer dan Jaringan (TKJ)</strong> yang dilengkapi alat <em>Fusion Splicer</em> serat optik FTTH, router/switch Cisco &amp; MikroTik, serta server administrasi jaringan.
-                                </p>
-                            </div>
-                            <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
-                                TUK Tersertifikasi LSP-P1 BNSP &bull; Teknik Komputer &amp; Jaringan
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- 2. Workshop Praktik Konstruksi Gedung (TKP & DPIB) --}}
-                    <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
-                        <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
-                            <img src="/images/showcase/ukk_2026.jpg" alt="Praktik Konstruksi dan Uji Kompetensi Keahlian TKP SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
-                                Jurusan TKP &amp; DPIB
-                            </span>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h4 class="font-display font-extrabold text-lg text-ink">Workshop Konstruksi Gedung &amp; Studio BIM</h4>
-                                <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                                    Area praktik lapangan <strong>Teknik Konstruksi dan Perumahan (TKP)</strong> serta studio gambar <strong>DPIB</strong> untuk pelaksanaan Uji Kompetensi Keahlian (UKK) Pelaksana Lapangan Pekerjaan Gedung.
-                                </p>
-                            </div>
-                            <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
-                                Skema Sertifikasi BNSP Level 2 &bull; TKP &amp; DPIB
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- 3. Daikin Center of Excellence & Bengkel Rekayasa --}}
-                    <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
-                        <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
-                            <img src="/images/showcase/daikin_coe.jpg" alt="Peresmian Daikin Center of Excellence SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
-                                Center of Excellence
-                            </span>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h4 class="font-display font-extrabold text-lg text-ink">Daikin Center of Excellence &amp; Bengkel Rekayasa</h4>
-                                <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                                    Pusat keunggulan tata udara (<strong>TPTUP</strong>) berstandar PT Daikin Airconditioning Indonesia, berdampingan dengan bengkel mesin CNC (<strong>TPM</strong>), kelistrikan (<strong>TITL</strong>), dan otomotif (<strong>TKR/TSM</strong>).
-                                </p>
-                            </div>
-                            <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
-                                Kelas Industri DUDIKA &bull; TPTUP, TITL, TPM, TKR, TSM
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- 4. Perpustakaan Digital, Sarana Olahraga & Aula Utama --}}
-                    <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
-                        <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
-                            <img src="/images/showcase/lapangan_upacara.jpg" alt="Lapangan Olahraga, Perpustakaan, dan Aula SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
-                                Sarana Umum Kampus
-                            </span>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h4 class="font-display font-extrabold text-lg text-ink">Perpustakaan Digital (e-Library), Lapangan &amp; Aula</h4>
-                                <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                                    Terintegrasi dengan portal <em>lib.smkn1denpasar.sch.id</em>, lapangan olahraga utama untuk kegiatan apel &amp; ekstrakurikuler, aula serbaguna Gelora SKENSA, serta laboratorium RPL/DKV/PRF.
-                                </p>
-                            </div>
-                            <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
-                                Mendukung Pembelajaran Holistik &amp; Kegiatan Kesiswaan
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {{-- Dots Pagination di Bawah Slider --}}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 flex items-center justify-center gap-2 pt-6">
+            @foreach($majors as $dIdx => $dItem)
+                <button
+                    type="button"
+                    data-major-dot="{{ $dIdx }}"
+                    aria-label="Pilih Jurusan {{ $dItem->code }}"
+                    class="h-2 rounded-full transition-all cursor-pointer {{ $dIdx === 0 ? 'w-8 bg-yellow-skensa' : 'w-2 bg-paper/30 hover:bg-paper/60' }}"
+                ></button>
+            @endforeach
         </div>
     </section>
 
@@ -1366,5 +1342,127 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. YouTube Cinema Hub Switcher
+            const cinemaItems = document.querySelectorAll('[data-cinema-item]');
+            const mainIframe = document.getElementById('cinema-main-iframe');
+            const activeBadge = document.getElementById('cinema-active-badge');
+            const activeTitle = document.getElementById('cinema-active-title');
+            const activeDesc = document.getElementById('cinema-active-desc');
+            const activeLink = document.getElementById('cinema-active-link');
+
+            cinemaItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const videoId = item.getAttribute('data-video-id');
+                    const videoTitle = item.getAttribute('data-video-title');
+                    const videoCategory = item.getAttribute('data-video-category');
+                    const videoDesc = item.getAttribute('data-video-desc');
+
+                    if (mainIframe) {
+                        mainIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                    }
+                    if (activeBadge) activeBadge.textContent = videoCategory;
+                    if (activeTitle) activeTitle.textContent = videoTitle;
+                    if (activeDesc) activeDesc.textContent = videoDesc;
+                    if (activeLink) activeLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+
+                    cinemaItems.forEach(el => {
+                        const isCurrent = el === item;
+                        const catSpan = el.querySelector('[data-item-cat]');
+                        if (isCurrent) {
+                            el.classList.add('bg-navy', 'text-paper', 'shadow-md');
+                            el.classList.remove('hover:bg-paper', 'text-ink');
+                            if (catSpan) {
+                                catSpan.classList.add('text-yellow-skensa');
+                                catSpan.classList.remove('text-navy');
+                            }
+                        } else {
+                            el.classList.remove('bg-navy', 'text-paper', 'shadow-md');
+                            el.classList.add('hover:bg-paper', 'text-ink');
+                            if (catSpan) {
+                                catSpan.classList.remove('text-yellow-skensa');
+                                catSpan.classList.add('text-navy');
+                            }
+                        }
+                    });
+                });
+            });
+
+            // 2. 12 Jurusan Full-Screen Horizontal Slider
+            const sliderTrack = document.getElementById('major-slider-track');
+            const prevBtn = document.getElementById('major-slide-prev');
+            const nextBtn = document.getElementById('major-slide-next');
+            const indicator = document.getElementById('major-slider-indicator');
+            const dots = document.querySelectorAll('[data-major-dot]');
+            const totalSlides = dots.length;
+            let currentSlide = 0;
+
+            const updateSlider = (index) => {
+                currentSlide = (index + totalSlides) % totalSlides;
+                if (sliderTrack) {
+                    sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+                if (indicator) {
+                    const padCur = String(currentSlide + 1).padStart(2, '0');
+                    const padTot = String(totalSlides).padStart(2, '0');
+                    indicator.textContent = `${padCur} / ${padTot}`;
+                }
+                dots.forEach((dot, dIdx) => {
+                    if (dIdx === currentSlide) {
+                        dot.classList.add('w-8', 'bg-yellow-skensa');
+                        dot.classList.remove('w-2', 'bg-paper/30', 'hover:bg-paper/60');
+                    } else {
+                        dot.classList.remove('w-8', 'bg-yellow-skensa');
+                        dot.classList.add('w-2', 'bg-paper/30', 'hover:bg-paper/60');
+                    }
+                });
+            };
+
+            prevBtn?.addEventListener('click', () => updateSlider(currentSlide - 1));
+            nextBtn?.addEventListener('click', () => updateSlider(currentSlide + 1));
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const idx = parseInt(dot.getAttribute('data-major-dot'), 10);
+                    if (!isNaN(idx)) updateSlider(idx);
+                });
+            });
+
+            // Touch / Swipe support
+            const viewport = document.getElementById('major-slider-viewport');
+            let startX = 0;
+            let endX = 0;
+
+            viewport?.addEventListener('touchstart', (e) => {
+                startX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport?.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].screenX;
+                if (startX - endX > 45) {
+                    updateSlider(currentSlide + 1);
+                } else if (endX - startX > 45) {
+                    updateSlider(currentSlide - 1);
+                }
+            }, { passive: true });
+
+            // Keyboard Arrow navigation when in view
+            document.addEventListener('keydown', (e) => {
+                const section = document.getElementById('fakultas-keahlian');
+                if (!section) return;
+                const rect = section.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                if (!inView) return;
+
+                if (e.key === 'ArrowLeft') {
+                    updateSlider(currentSlide - 1);
+                } else if (e.key === 'ArrowRight') {
+                    updateSlider(currentSlide + 1);
+                }
+            });
+        });
+    </script>
 
 @endsection
