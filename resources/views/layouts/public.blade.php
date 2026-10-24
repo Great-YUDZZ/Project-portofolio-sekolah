@@ -432,13 +432,25 @@
             </div>
 
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-paper/65 gap-4">
-                <p>&copy; {{ date('Y') }} SMK Negeri 1 Denpasar (SKENSA). Jalan HOS. Cokroaminoto No. 84 Denpasar, Bali 80118.</p>
-                <div class="flex items-center gap-4">
-                    <a href="https://www.facebook.com/smknegeri1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">Facebook</a>
+                <p>&copy; {{ date('Y') }} SMK Negeri 1 Denpasar (SKENSA). Jalan HOS. Cokroaminoto No. 84 Denpasar, Bali 80118. Hak Cipta Dilindungi.</p>
+                <div class="flex flex-wrap items-center gap-4">
                     <a href="https://instagram.com/smkn1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">Instagram</a>
                     <a href="https://youtube.com/@smkn1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">YouTube</a>
+                    <a href="https://www.facebook.com/smknegeri1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">Facebook</a>
+                    <a href="https://www.tiktok.com/@smkn1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">TikTok</a>
                 </div>
             </div>
+
+            <details class="mt-4 pt-4 border-t border-navy-800 text-xs text-paper/65 group">
+                <summary class="cursor-pointer hover:text-yellow-skensa font-semibold inline-flex items-center gap-2">
+                    <span>Kebijakan Privasi &amp; Syarat Ketentuan Layanan Informasi Publik</span>
+                    <span class="text-[10px] group-open:rotate-180 transition-transform">&#9662;</span>
+                </summary>
+                <div class="mt-3 p-4 rounded-xl bg-navy-800/80 border border-navy-700 text-paper/80 leading-relaxed space-y-2">
+                    <p><strong>1. Perlindungan Data Pribadi (Kebijakan Privasi):</strong> Seluruh data identitas yang dikirimkan melalui formulir layanan informasi publik, portal kelulusan, maupun sistem e-Learning SMK Negeri 1 Denpasar hanya digunakan untuk keperluan administrasi akademik resmi dan tidak diperjualbelikan kepada pihak ketiga sesuai UU Perlindungan Data Pribadi.</p>
+                    <p><strong>2. Syarat &amp; Ketentuan Penggunaan:</strong> Seluruh informasi akademik, dokumen brosur PPDB/SPMB, dan publikasi di situs ini merupakan hak milik resmi SMK Negeri 1 Denpasar (NPSN 50103118). Penggunaan logo, atribut, atau dokumen resmi wajib mencantumkan sumber institusi.</p>
+                </div>
+            </details>
         </div>
     </footer>
 

@@ -24,20 +24,20 @@
                     <h2 class="font-display font-bold text-xl text-ink">Identitas & Koordinat Kampus</h2>
 
                     <div>
-                        <span class="block text-xs font-bold uppercase tracking-wider text-navy">Alamat Lengkap</span>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-navy">Alamat Lengkap & Kode Pos</span>
                         <p class="text-sm text-ink-muted mt-1 leading-relaxed">
-                            {{ $settings['school_address'] ?? 'Jalan HOS Cokroaminoto No. 84, Denpasar Utara, Kota Denpasar, Bali 80116' }}
+                            {{ $settings['school_address'] ?? 'Jalan HOS. Cokroaminoto No. 84, Ubung, Kec. Denpasar Utara, Kota Denpasar, Bali 80118' }}
                         </p>
                     </div>
 
                     <div>
                         <span class="block text-xs font-bold uppercase tracking-wider text-navy">Telepon / WhatsApp Humas</span>
-                        <p class="text-sm font-semibold text-ink mt-1">{{ $settings['school_phone'] ?? '081 339 276 998' }}</p>
+                        <p class="text-sm font-semibold text-ink mt-1 tabular-nums">{{ $settings['school_phone'] ?? '081236396662' }}</p>
                     </div>
 
                     <div>
                         <span class="block text-xs font-bold uppercase tracking-wider text-navy">Surel Resmi</span>
-                        <p class="text-sm font-semibold text-ink mt-1">{{ $settings['school_email'] ?? 'contact@smkn1denpasar.sch.id' }}</p>
+                        <p class="text-sm font-semibold text-ink mt-1">{{ $settings['school_email'] ?? 'fo@smkn1denpasar.sch.id' }}</p>
                     </div>
 
                     <div>
@@ -46,21 +46,29 @@
                     </div>
                 </div>
 
-                {{-- OpenStreetMap / Location Card --}}
-                <div class="p-6 rounded-2xl bg-navy text-paper border-2 border-ink">
-                    <span class="text-xs font-bold uppercase tracking-widest text-yellow-skensa">Titik Lokasi Denpasar Utara</span>
-                    <h3 class="font-display font-bold text-lg mt-1">Kampus Jalan HOS Cokroaminoto No. 84</h3>
-                    <p class="text-xs text-paper/80 mt-2 leading-relaxed">
-                        Terletak di jalur utama Denpasar Utara, mudah diakses melalui koridor Trans Metro Dewata (Halte SMKN 1 Denpasar).
-                    </p>
-                    <a
-                        href="https://maps.google.com/?q=SMK+Negeri+1+Denpasar"
-                        target="_blank"
-                        rel="noopener"
-                        class="inline-block mt-4 px-4 py-2 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-wider"
-                    >
-                        Buka di Google Maps &nearr;
-                    </a>
+                {{-- Interactive Google Maps Embed Card --}}
+                <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden">
+                    <div class="p-5 border-b border-navy-700 flex items-center justify-between gap-3">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-yellow-skensa">Peta Lokasi Interaktif</span>
+                            <h3 class="font-display font-bold text-base mt-0.5">Kampus Jalan HOS. Cokroaminoto No. 84</h3>
+                        </div>
+                        <a
+                            href="https://maps.google.com/?q=SMK+Negeri+1+Denpasar"
+                            target="_blank"
+                            rel="noopener"
+                            class="px-3 py-1.5 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-wider shrink-0"
+                        >
+                            Rute &nearr;
+                        </a>
+                    </div>
+                    <iframe
+                        title="Peta Lokasi SMK Negeri 1 Denpasar"
+                        src="https://www.google.com/maps?q=SMK+Negeri+1+Denpasar+Jl+HOS+Cokroaminoto+No+84+Denpasar&output=embed"
+                        class="w-full h-64 border-0"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
                 </div>
             </div>
 
