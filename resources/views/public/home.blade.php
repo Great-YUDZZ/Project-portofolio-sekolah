@@ -68,24 +68,20 @@
 
         {{-- Main Hero Container --}}
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
-                {{-- Left Column: Academic Manifesto & Motto --}}
-                <div class="lg:col-span-8 space-y-6">
-                    <div data-hero-badge class="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-paper/10 backdrop-blur-md border border-paper/20 text-yellow-skensa text-xs font-bold uppercase tracking-widest">
-                        <span class="w-2 h-2 rounded-full bg-yellow-skensa"></span>
-                        <span>SMK Negeri 1 Denpasar &bull; {{ $settings['hero_highlight'] ?? '“When I Grow Up” Spirit Day!' }}</span>
-                    </div>
-
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                {{-- Left Column: Motto, Spirit Day Badge Below Motto & Clean CTA --}}
+                <div class="lg:col-span-7 space-y-6">
                     <h1 data-hero-title class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-paper leading-[1.06] tracking-tight">
                         {{ $settings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}
-                        <span class="block text-yellow-skensa mt-2 text-2xl sm:text-4xl lg:text-5xl">
+                        <span class="block text-yellow-skensa mt-3 text-2xl sm:text-4xl lg:text-5xl">
                             "{{ $settings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.' }}"
                         </span>
                     </h1>
 
-                    <p data-hero-sub class="text-base sm:text-lg text-paper/85 leading-relaxed max-w-2xl">
-                        Institusi pendidikan kejuruan teknologi, rekayasa, teknologi informasi, dan industri kreatif di Jalan HOS. Cokroaminoto No. 84 Denpasar, Bali dengan <strong class="text-yellow-skensa">9 Program Keahlian</strong> dan <strong class="text-yellow-skensa">12 Konsentrasi Keahlian</strong>.
-                    </p>
+                    <div data-hero-badge class="inline-flex flex-wrap items-center gap-2.5 px-4 py-2 rounded-full bg-paper/10 backdrop-blur-md border border-yellow-skensa/40 text-yellow-skensa text-xs sm:text-sm font-bold uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-yellow-skensa"></span>
+                        <span>SMK Negeri 1 Denpasar &bull; {{ $settings['hero_highlight'] ?? '“When I Grow Up” Spirit Day!' }}</span>
+                    </div>
 
                     <div data-hero-cta class="flex flex-wrap items-center gap-4 pt-2">
                         <a
@@ -93,15 +89,8 @@
                             data-magnetic
                             class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-sm uppercase tracking-wider border-2 border-yellow-skensa hover:bg-paper transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-skensa"
                         >
-                            <span>Jelajahi 9 Program &amp; 12 Jurusan</span>
+                            <span>Jelajahi Program Keahlian</span>
                             <span aria-hidden="true">&darr;</span>
-                        </a>
-                        <a
-                            href="#pengumuman-resmi"
-                            data-magnetic
-                            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-sm uppercase tracking-wider border border-paper/25 hover:bg-paper/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-                        >
-                            <span>Pengumuman Kelulusan</span>
                         </a>
                         <button
                             type="button"
@@ -118,76 +107,27 @@
                     </div>
                 </div>
 
-                {{-- Right Column: Authentic Institutional Metrics Card --}}
-                <div data-hero-media class="lg:col-span-4">
-                    <div data-tilt class="rounded-2xl bg-navy-700/80 backdrop-blur-md border border-paper/20 p-6 space-y-5 shadow-2xl">
-                        <div class="flex items-center justify-between border-b border-paper/15 pb-3.5">
-                            <div>
-                                <span class="text-[11px] font-bold uppercase tracking-widest text-yellow-skensa">Identitas Resmi SKENSA</span>
-                                <h2 class="font-display font-bold text-base text-paper mt-0.5">Data Akademik &amp; Digital</h2>
-                            </div>
-                            <img src="/images/logo_emblem.png" alt="Lambang SMKN 1 Denpasar" width="36" height="36" class="w-9 h-9 object-contain">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3.5">
-                            <div class="p-3.5 rounded-xl bg-navy/70 border border-paper/10">
-                                <span class="font-display font-extrabold text-2xl text-yellow-skensa tabular-nums">{{ $fields->count() ?: 9 }}</span>
-                                <span class="block text-[11px] font-semibold uppercase tracking-wider text-paper/75 mt-1">Program Keahlian</span>
-                            </div>
-                            <div class="p-3.5 rounded-xl bg-navy/70 border border-paper/10">
-                                <span class="font-display font-extrabold text-2xl text-yellow-skensa tabular-nums">{{ $majors->count() ?: 12 }}</span>
-                                <span class="block text-[11px] font-semibold uppercase tracking-wider text-paper/75 mt-1">Konsentrasi Keahlian</span>
-                            </div>
-                            <div class="p-3.5 rounded-xl bg-navy/70 border border-paper/10">
-                                <span class="font-display font-extrabold text-2xl text-paper tabular-nums">{{ $settings['stats_active_lms_users'] ?? '4.205' }}</span>
-                                <span class="block text-[11px] font-semibold uppercase tracking-wider text-paper/75 mt-1">Pengguna Aktif LMS</span>
-                            </div>
-                            <div class="p-3.5 rounded-xl bg-navy/70 border border-paper/10">
-                                <span class="font-display font-extrabold text-2xl text-paper tabular-nums">{{ $settings['stats_courses_modules'] ?? '135' }}+</span>
-                                <span class="block text-[11px] font-semibold uppercase tracking-wider text-paper/75 mt-1">Kursus e-Learning</span>
-                            </div>
-                        </div>
-
-                        <div class="pt-1 flex items-center justify-between text-xs text-paper/80">
-                            <span>Telepon: <strong class="text-yellow-skensa tabular-nums">{{ $settings['contact_phone'] ?? '081236396662' }}</strong></span>
-                            <a href="mailto:{{ $settings['contact_email'] ?? 'fo@smkn1denpasar.sch.id' }}" class="underline hover:text-yellow-skensa">
-                                {{ $settings['contact_email'] ?? 'fo@smkn1denpasar.sch.id' }}
-                            </a>
+                {{-- Right Column: Official Principal Portrait Card (I Wayan Mustika, S.Pd., M.Pd.) --}}
+                <div data-hero-media class="lg:col-span-5 flex justify-center lg:justify-end">
+                    <div data-tilt class="relative w-full max-w-[360px] rounded-2xl overflow-hidden border-2 border-yellow-skensa/50 bg-navy-700 shadow-2xl group">
+                        <img
+                            src="/images/kepala-sekolah-i-wayan-mustika.jpg"
+                            alt="I Wayan Mustika, S.Pd., M.Pd. - Kepala SMK Negeri 1 Denpasar"
+                            width="400"
+                            height="460"
+                            class="w-full h-[410px] object-cover object-top group-hover:scale-103 transition-transform duration-500"
+                        >
+                        <div class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#051329] via-[#071C3F]/85 to-transparent"></div>
+                        <div class="absolute inset-x-3.5 bottom-3.5 p-4 rounded-xl bg-[#071C3F]/90 backdrop-blur-md border border-yellow-skensa/40 shadow-lg">
+                            <span class="block text-[10px] font-bold uppercase tracking-[0.2em] text-yellow-skensa">
+                                Kepala SMK Negeri 1 Denpasar
+                            </span>
+                            <h2 class="font-display font-extrabold text-base sm:text-lg text-paper mt-0.5 leading-snug">
+                                I Wayan Mustika, S.Pd., M.Pd.
+                            </h2>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            {{-- Bottom Quick Portal Bar (4 Official Ecosystem Links from smkn1denpasar.sch.id) --}}
-            <div class="mt-14 pt-6 border-t border-paper/15 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-                <a href="https://lib.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center gap-3 p-3 rounded-xl bg-paper/5 border border-paper/10 hover:bg-paper/15 transition-colors group">
-                    <span class="w-9 h-9 rounded-lg bg-yellow-skensa/20 text-yellow-skensa flex items-center justify-center font-display font-extrabold text-xs shrink-0">LIB</span>
-                    <div>
-                        <span class="block font-bold text-paper group-hover:text-yellow-skensa uppercase tracking-wider">e-Library</span>
-                        <span class="text-paper/65 text-[11px]">lib.smkn1denpasar.sch.id &nearr;</span>
-                    </div>
-                </a>
-                <a href="https://lms.skensa.id" target="_blank" rel="noopener" class="flex items-center gap-3 p-3 rounded-xl bg-paper/5 border border-paper/10 hover:bg-paper/15 transition-colors group">
-                    <span class="w-9 h-9 rounded-lg bg-yellow-skensa/20 text-yellow-skensa flex items-center justify-center font-display font-extrabold text-xs shrink-0">LMS</span>
-                    <div>
-                        <span class="block font-bold text-paper group-hover:text-yellow-skensa uppercase tracking-wider">e-Learning SKENSA</span>
-                        <span class="text-paper/65 text-[11px]">lms.skensa.id &nearr;</span>
-                    </div>
-                </a>
-                <a href="https://tracervokasi.kemendikdasmen.go.id" target="_blank" rel="noopener" class="flex items-center gap-3 p-3 rounded-xl bg-paper/5 border border-paper/10 hover:bg-paper/15 transition-colors group">
-                    <span class="w-9 h-9 rounded-lg bg-yellow-skensa/20 text-yellow-skensa flex items-center justify-center font-display font-extrabold text-xs shrink-0">TRV</span>
-                    <div>
-                        <span class="block font-bold text-paper group-hover:text-yellow-skensa uppercase tracking-wider">Tracer Vokasi</span>
-                        <span class="text-paper/65 text-[11px]">tracervokasi.kemendikdasmen.go.id &nearr;</span>
-                    </div>
-                </a>
-                <a href="https://lsp-smkn1denpasar.id" target="_blank" rel="noopener" class="flex items-center gap-3 p-3 rounded-xl bg-paper/5 border border-paper/10 hover:bg-paper/15 transition-colors group">
-                    <span class="w-9 h-9 rounded-lg bg-yellow-skensa/20 text-yellow-skensa flex items-center justify-center font-display font-extrabold text-xs shrink-0">LSP</span>
-                    <div>
-                        <span class="block font-bold text-paper group-hover:text-yellow-skensa uppercase tracking-wider">LSP SMKN 1 Denpasar</span>
-                        <span class="text-paper/65 text-[11px]">lsp-smkn1denpasar.id &nearr;</span>
-                    </div>
-                </a>
             </div>
         </div>
     </section>
