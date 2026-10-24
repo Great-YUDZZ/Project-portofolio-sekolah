@@ -38,11 +38,32 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
             {{-- Main Content --}}
             <div class="lg:col-span-8 space-y-10">
-                <div class="p-8 rounded-2xl bg-paper-2/70 border border-line">
-                    <h2 class="font-display font-extrabold text-2xl text-ink mb-4">Deskripsi & Kompetensi Inti</h2>
-                    <p class="text-ink-muted leading-relaxed">
-                        {{ $major->description ?: $major->summary }}
-                    </p>
+                @php
+                    $majorShowcasePhotos = [
+                        'TKJ'   => '/images/showcase/lab_fiber.jpg',
+                        'TKP'   => '/images/showcase/ukk_2026.jpg',
+                        'DPIB'  => '/images/showcase/ukk_2026.jpg',
+                        'TPTUP' => '/images/showcase/daikin_coe.jpg',
+                        'RPL'   => '/images/showcase/lks_2026.jpg',
+                        'DKV'   => '/images/showcase/pengalaman_belajar.jpg',
+                        'PRF'   => '/images/showcase/pengalaman_belajar.jpg',
+                    ];
+                    $majorPhoto = $major->hero_image ?: ($majorShowcasePhotos[strtoupper($major->code)] ?? '/images/showcase/drone_kampus.jpg');
+                @endphp
+
+                <div class="rounded-2xl bg-paper-2/70 border-2 border-ink overflow-hidden">
+                    <div class="relative aspect-video bg-navy border-b-2 border-ink overflow-hidden">
+                        <img src="{{ $majorPhoto }}" alt="Dokumentasi Praktik {{ $major->name }} ({{ $major->code }}) SMK Negeri 1 Denpasar" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-wider">
+                            Dokumentasi {{ $major->code }}
+                        </span>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="font-display font-extrabold text-2xl text-ink mb-4">Deskripsi &amp; Kompetensi Inti {{ $major->name }}</h2>
+                        <p class="text-ink-muted leading-relaxed">
+                            {{ $major->description ?: $major->summary }}
+                        </p>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

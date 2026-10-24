@@ -534,50 +534,71 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {{-- 1. Lab Komputer, Jaringan Fiber Optik & Studio Kreatif --}}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {{-- 1. Laboratorium Jaringan Komputer & Fiber Optik (TKJ) --}}
                     <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
                         <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
-                            <img src="/images/showcase/lab_fiber.jpg" alt="Laboratorium Komputer dan Jaringan Fiber Optik SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
+                            <img src="/images/showcase/lab_fiber.jpg" alt="Praktik Splicing Fiber Optik Jurusan Teknik Komputer dan Jaringan (TKJ) SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
-                                TI &amp; Multimedia
+                                Jurusan TKJ
                             </span>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="font-display font-extrabold text-xl text-ink">Laboratorium Komputer, Jaringan &amp; Studio DKV/PRF</h4>
+                                <h4 class="font-display font-extrabold text-lg text-ink">Laboratorium Jaringan &amp; Fiber Optik (TKJ)</h4>
                                 <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                                    Dilengkapi server rack Cisco/MikroTik, alat splicing fiber optik FTTH, workstation pengembangan perangkat lunak (RPL), serta studio fotografi dan produksi film standar broadcast.
+                                    Fasilitas praktik siswa <strong>Teknik Komputer dan Jaringan (TKJ)</strong> yang dilengkapi alat <em>Fusion Splicer</em> serat optik FTTH, router/switch Cisco &amp; MikroTik, serta server administrasi jaringan.
                                 </p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
-                                TUK Tersertifikasi LSP-P1 BNSP &bull; TKJ, RPL, DKV, PRF
+                                TUK Tersertifikasi LSP-P1 BNSP &bull; Teknik Komputer &amp; Jaringan
                             </div>
                         </div>
                     </div>
 
-                    {{-- 2. Bengkel Praktik Kejuruan & Daikin Center of Excellence --}}
+                    {{-- 2. Workshop Praktik Konstruksi Gedung (TKP & DPIB) --}}
                     <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
                         <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
-                            <img src="/images/showcase/ukk_2026.jpg" alt="Bengkel Praktik Kejuruan dan Uji Kompetensi SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
+                            <img src="/images/showcase/ukk_2026.jpg" alt="Praktik Konstruksi dan Uji Kompetensi Keahlian TKP SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
-                                Rekayasa &amp; Manufaktur
+                                Jurusan TKP &amp; DPIB
                             </span>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="font-display font-extrabold text-xl text-ink">Bengkel Kejuruan, CNC &amp; Daikin Center of Excellence</h4>
+                                <h4 class="font-display font-extrabold text-lg text-ink">Workshop Konstruksi Gedung &amp; Studio BIM</h4>
                                 <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                                    Mencakup bengkel otomotif standar Astra Honda &amp; Toyota, workshop mesin CNC &amp; las, laboratorium otomasi listrik PLC Schneider, bengkel konstruksi &amp; studio BIM DPIB, serta Daikin CoE.
+                                    Area praktik lapangan <strong>Teknik Konstruksi dan Perumahan (TKP)</strong> serta studio gambar <strong>DPIB</strong> untuk pelaksanaan Uji Kompetensi Keahlian (UKK) Pelaksana Lapangan Pekerjaan Gedung.
                                 </p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
-                                Standar Industri DUDIKA &bull; TKP, DPIB, TAV, TITL, TPTUP, TPM, TKR, TSM
+                                Skema Sertifikasi BNSP Level 2 &bull; TKP &amp; DPIB
                             </div>
                         </div>
                     </div>
 
-                    {{-- 3. Perpustakaan Digital, Sarana Olahraga & Aula Utama --}}
+                    {{-- 3. Daikin Center of Excellence & Bengkel Rekayasa --}}
+                    <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
+                        <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                            <img src="/images/showcase/daikin_coe.jpg" alt="Peresmian Daikin Center of Excellence SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                                Center of Excellence
+                            </span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-display font-extrabold text-lg text-ink">Daikin Center of Excellence &amp; Bengkel Rekayasa</h4>
+                                <p class="text-sm text-ink-muted mt-2 leading-relaxed">
+                                    Pusat keunggulan tata udara (<strong>TPTUP</strong>) berstandar PT Daikin Airconditioning Indonesia, berdampingan dengan bengkel mesin CNC (<strong>TPM</strong>), kelistrikan (<strong>TITL</strong>), dan otomotif (<strong>TKR/TSM</strong>).
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                                Kelas Industri DUDIKA &bull; TPTUP, TITL, TPM, TKR, TSM
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- 4. Perpustakaan Digital, Sarana Olahraga & Aula Utama --}}
                     <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between">
                         <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
                             <img src="/images/showcase/lapangan_upacara.jpg" alt="Lapangan Olahraga, Perpustakaan, dan Aula SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
@@ -587,9 +608,9 @@
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="font-display font-extrabold text-xl text-ink">Perpustakaan Digital (e-Library), Lapangan Olahraga &amp; Aula</h4>
+                                <h4 class="font-display font-extrabold text-lg text-ink">Perpustakaan Digital (e-Library), Lapangan &amp; Aula</h4>
                                 <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                                    Terintegrasi dengan portal <em>lib.smkn1denpasar.sch.id</em>, lapangan basket/voli/futsal utama untuk kegiatan olahraga &amp; apel raya, aula serbaguna Gelora SKENSA, serta pura kampus.
+                                    Terintegrasi dengan portal <em>lib.smkn1denpasar.sch.id</em>, lapangan olahraga utama untuk kegiatan apel &amp; ekstrakurikuler, aula serbaguna Gelora SKENSA, serta laboratorium RPL/DKV/PRF.
                                 </p>
                             </div>
                             <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
