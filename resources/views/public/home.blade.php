@@ -315,7 +315,79 @@
                 </div>
             </div>
 
-            {{-- Baris 2: 4 Karakter Budaya Sekolah + Preview Struktur Pimpinan --}}
+            {{-- Baris 2: Showcase Video Resmi YouTube @smkn1denpasar (Tepat di Bawah Sambutan Kepala Sekolah) --}}
+            <div class="pt-10 border-t-2 border-line">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Kanal Resmi YouTube @smkn1denpasar</span>
+                        <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-ink mt-1">
+                            Video Profil Jurusan &amp; Aktivitas Kampus SKENSA
+                        </h3>
+                    </div>
+                    <a
+                        href="https://www.youtube.com/@smkn1denpasar/videos"
+                        target="_blank"
+                        rel="noopener"
+                        class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline"
+                    >
+                        Buka Kanal YouTube Resmi &nearr;
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {{-- Video 1: Profil Konsentrasi Keahlian SMKN 1 Denpasar --}}
+                    <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden shadow-lg">
+                        <div class="aspect-video w-full bg-ink">
+                            <iframe
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/uTDYUJLP3xY?rel=0"
+                                title="Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        <div class="p-5 flex items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-skensa">Video Resmi SKENSA</span>
+                                <h4 class="font-display font-bold text-base sm:text-lg text-paper mt-0.5">
+                                    Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar
+                                </h4>
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=uTDYUJLP3xY" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase shrink-0">
+                                YouTube &nearr;
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- Video 2: Pengalaman Belajar di SMKN 1 Denpasar --}}
+                    <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden shadow-lg">
+                        <div class="aspect-video w-full bg-ink">
+                            <iframe
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/PGel3Be5L_E?rel=0"
+                                title="Pengalaman Belajar di SMKN 1 Denpasar"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        <div class="p-5 flex items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-skensa">Kehidupan Kampus</span>
+                                <h4 class="font-display font-bold text-base sm:text-lg text-paper mt-0.5">
+                                    Pengalaman Belajar &amp; Praktik Kejuruan di SMKN 1 Denpasar
+                                </h4>
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=PGel3Be5L_E" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase shrink-0">
+                                YouTube &nearr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Baris 3: 4 Karakter Budaya Sekolah + Preview Struktur Pimpinan --}}
             <div class="pt-10 border-t-2 border-line">
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
                     <div>
@@ -616,78 +688,6 @@
                             <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
                                 Mendukung Pembelajaran Holistik &amp; Kegiatan Kesiswaan
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Bagian 3C: Showcase Video Resmi YouTube @smkn1denpasar --}}
-            <div class="pt-12 border-t-2 border-line">
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-                    <div>
-                        <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Kanal Resmi YouTube @smkn1denpasar</span>
-                        <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-ink mt-1">
-                            Video Profil Jurusan &amp; Aktivitas Kampus SKENSA
-                        </h3>
-                    </div>
-                    <a
-                        href="https://www.youtube.com/@smkn1denpasar/videos"
-                        target="_blank"
-                        rel="noopener"
-                        class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline"
-                    >
-                        Buka Kanal YouTube Resmi &nearr;
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {{-- Video 1: Profil Konsentrasi Keahlian SMKN 1 Denpasar --}}
-                    <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden shadow-lg">
-                        <div class="aspect-video w-full bg-ink">
-                            <iframe
-                                class="w-full h-full"
-                                src="https://www.youtube.com/embed/uTDYUJLP3xY?rel=0"
-                                title="Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                        <div class="p-5 flex items-center justify-between gap-4">
-                            <div>
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-skensa">Video Resmi SKENSA</span>
-                                <h4 class="font-display font-bold text-base sm:text-lg text-paper mt-0.5">
-                                    Profil Konsentrasi Keahlian (Jurusan) SMKN 1 Denpasar
-                                </h4>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=uTDYUJLP3xY" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase shrink-0">
-                                YouTube &nearr;
-                            </a>
-                        </div>
-                    </div>
-
-                    {{-- Video 2: Pengalaman Belajar di SMKN 1 Denpasar --}}
-                    <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden shadow-lg">
-                        <div class="aspect-video w-full bg-ink">
-                            <iframe
-                                class="w-full h-full"
-                                src="https://www.youtube.com/embed/PGel3Be5L_E?rel=0"
-                                title="Pengalaman Belajar di SMKN 1 Denpasar"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                        <div class="p-5 flex items-center justify-between gap-4">
-                            <div>
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-skensa">Kehidupan Kampus</span>
-                                <h4 class="font-display font-bold text-base sm:text-lg text-paper mt-0.5">
-                                    Pengalaman Belajar &amp; Praktik Kejuruan di SMKN 1 Denpasar
-                                </h4>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=PGel3Be5L_E" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase shrink-0">
-                                YouTube &nearr;
-                            </a>
                         </div>
                     </div>
                 </div>
