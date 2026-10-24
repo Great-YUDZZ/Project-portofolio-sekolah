@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     AbsoluteFill,
+    Audio,
     Easing,
     Img,
     interpolate,
@@ -13,9 +14,20 @@ import {
 const SLOGAN = 'Abhyāsad Dhäryate Vidyä';
 const SUBTITLE = 'PELIHARALAH ILMU SAMPAI MENJADI TRADISI';
 
+const GOLDEN_DUST_PARTICLES = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    x: ((i * 37 + 13) % 92) + 4,
+    baseY: ((i * 53 + 29) % 94) + 3,
+    size: 2.5 + (i % 4) * 1.4,
+    speed: 14 + (i % 5) * 6,
+    phase: i * 0.75,
+    isCyan: i % 5 === 0,
+}));
+
 export const SkensaIntro: React.FC = () => {
     const frame = useCurrentFrame();
     const { fps } = useVideoConfig();
+    const timeSec = frame / fps;
 
     // =========================================================================
     // STAGE 1: Outer Technical Ring & Blueprint Tick Marks (0.0s - 1.2s)
@@ -48,7 +60,7 @@ export const SkensaIntro: React.FC = () => {
     });
 
     // =========================================================================
-    // STAGE 2: Inner Cyan Core Ring Expansion (0.55s - 1.5s)
+    // STAGE 2: Inner Cyan Core Ring Expansion (0.55s - 1.4s)
     // =========================================================================
     const cyanCoreSpring = spring({
         frame: frame - Math.round(0.55 * fps),
@@ -68,7 +80,7 @@ export const SkensaIntro: React.FC = () => {
     });
 
     // =========================================================================
-    // STAGE 3: Central Symbol (Book & Scholar Silhouette) Lock-In (0.95s - 1.85s)
+    // STAGE 3: Central Symbol (Book & Scholar Silhouette) Lock-In (0.95s - 1.5s)
     // =========================================================================
     const centerSymbolSpring = spring({
         frame: frame - Math.round(0.95 * fps),
@@ -81,65 +93,98 @@ export const SkensaIntro: React.FC = () => {
     });
 
     const centerSymbolScale = interpolate(centerSymbolSpring, [0, 1], [0.55, 1]);
-    const centerSymbolOpacity = interpolate(frame, [0.95 * fps, 1.35 * fps], [0, 1], {
+    const centerSymbolOpacity = interpolate(frame, [0.95 * fps, 1.32 * fps], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
 
     // =========================================================================
-    // STAGE 4: Lock-In Pulse Ring & Diagonal Light Glint (1.55s - 2.35s)
+    // STAGE 4: Lock-In Pulse Ring, Anamorphic Flare & Light Glint (1.42s - 2.35s)
     // =========================================================================
-    const lockFlashProgress = interpolate(frame, [1.5 * fps, 2.2 * fps], [0, 1], {
+    const lockFlashProgress = interpolate(frame, [1.45 * fps, 2.25 * fps], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.out(Easing.cubic),
     });
 
-    const lockPulseScale = interpolate(lockFlashProgress, [0, 1], [0.88, 1.34]);
-    const lockPulseOpacity = interpolate(lockFlashProgress, [0, 0.25, 1], [0, 0.8, 0]);
+    const lockPulseScale = interpolate(lockFlashProgress, [0, 1], [0.88, 1.38]);
+    const lockPulseOpacity = interpolate(lockFlashProgress, [0, 0.22, 1], [0, 0.88, 0]);
 
-    const glintX = interpolate(frame, [1.55 * fps, 2.25 * fps], [-190, 190], {
+    const anamorphicScaleX = interpolate(frame, [1.42 * fps, 1.65 * fps, 2.35 * fps], [0.1, 1.15, 0.4], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.cubic),
+    });
+    const anamorphicOpacity = interpolate(frame, [1.42 * fps, 1.56 * fps, 2.35 * fps], [0, 0.85, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
+
+    const glintX = interpolate(frame, [1.48 * fps, 2.25 * fps], [-190, 190], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.inOut(Easing.cubic),
     });
 
+    // Harmonic Voiceover Aura Envelope (1.35s -> 4.70s synchronized with ArdiNeural baritone)
+    const part1VoiceEnv = interpolate(
+        frame,
+        [1.35 * fps, 1.5 * fps, 2.55 * fps, 2.7 * fps],
+        [0, 1, 0.85, 0.15],
+        { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    );
+    const part2VoiceEnv = interpolate(
+        frame,
+        [2.75 * fps, 2.92 * fps, 4.45 * fps, 4.75 * fps],
+        [0, 1, 0.9, 0],
+        { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    );
+    const voiceEnergy = Math.max(part1VoiceEnv, part2VoiceEnv);
+    const voiceModulation =
+        0.55 +
+        0.28 * Math.sin(timeSec * 19.0) +
+        0.17 * Math.cos(timeSec * 31.0);
+    const auraScale1 = 1.0 + voiceEnergy * voiceModulation * 0.095;
+    const auraScale2 = 1.05 + voiceEnergy * (1.0 - 0.35 * Math.sin(timeSec * 14.0)) * 0.14;
+    const auraOpacity = voiceEnergy * (0.35 + 0.35 * voiceModulation);
+
     // =========================================================================
-    // STAGE 5: Cinematic Typography & Slogan Reveal (1.55s - 3.2s)
+    // STAGE 5: Cinematic Typography & Slogan Reveal (1.35s - 5.0s)
     // =========================================================================
-    const headerOpacity = interpolate(frame, [1.5 * fps, 1.95 * fps], [0, 1], {
+    const headerOpacity = interpolate(frame, [1.35 * fps, 1.8 * fps], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const headerY = interpolate(frame, [1.5 * fps, 1.95 * fps], [24, 0], {
+    const headerY = interpolate(frame, [1.35 * fps, 1.8 * fps], [24, 0], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.out(Easing.cubic),
     });
 
-    const yellowLineProgress = interpolate(frame, [2.1 * fps, 2.85 * fps], [0, 1], {
+    const yellowLineProgress = interpolate(frame, [2.05 * fps, 2.75 * fps], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.bezier(0.22, 1, 0.36, 1),
     });
 
-    const subtitleOpacity = interpolate(frame, [2.45 * fps, 3.0 * fps], [0, 1], {
+    const subtitleOpacity = interpolate(frame, [2.62 * fps, 3.12 * fps], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
-    const subtitleY = interpolate(frame, [2.45 * fps, 3.0 * fps], [16, 0], {
+    const subtitleY = interpolate(frame, [2.62 * fps, 3.12 * fps], [16, 0], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
         easing: Easing.out(Easing.cubic),
     });
 
-    // Subtle slow cinematic push-in across entire 3.5s
-    const masterCameraScale = interpolate(frame, [0, 3.5 * fps], [0.98, 1.03], {
+    // Subtle slow cinematic push-in across entire 5.0s
+    const masterCameraScale = interpolate(frame, [0, 5.0 * fps], [0.975, 1.035], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
     });
 
     const logoSrc = staticFile('logo_skensa.png');
+    const audioSrc = staticFile('intro_audio.mp3');
 
     return (
         <AbsoluteFill
@@ -154,6 +199,9 @@ export const SkensaIntro: React.FC = () => {
                 overflow: 'hidden',
             }}
         >
+            {/* Master Synthesized Audio + Authoritative Motto Voiceover */}
+            <Audio src={audioSrc} volume={1} />
+
             {/* Deep Multi-stop Smooth Radial Navy Spotlight (Anti-Banding) */}
             <div
                 style={{
@@ -174,6 +222,45 @@ export const SkensaIntro: React.FC = () => {
                     backgroundSize: '84px 84px',
                 }}
             />
+
+            {/* Floating Golden & Cyan Academic Embers / Dust Particles */}
+            <div
+                style={{
+                    position: 'absolute',
+                    inset: 0,
+                    pointerEvents: 'none',
+                }}
+            >
+                {GOLDEN_DUST_PARTICLES.map((p) => {
+                    const yOffset = (timeSec * p.speed) % 100;
+                    const yPos = (p.baseY - yOffset + 100) % 100;
+                    const xSway = Math.sin(timeSec * 1.6 + p.phase) * 1.2;
+                    const pOpacity =
+                        (0.2 + 0.35 * Math.sin(timeSec * 2.4 + p.phase)) *
+                        interpolate(frame, [0, 0.4 * fps], [0, 1], {
+                            extrapolateLeft: 'clamp',
+                            extrapolateRight: 'clamp',
+                        });
+                    const color = p.isCyan ? '#2CC5D8' : '#F5B700';
+
+                    return (
+                        <div
+                            key={p.id}
+                            style={{
+                                position: 'absolute',
+                                left: `${p.x + xSway}%`,
+                                top: `${yPos}%`,
+                                width: p.size,
+                                height: p.size,
+                                borderRadius: '50%',
+                                backgroundColor: color,
+                                opacity: pOpacity,
+                                boxShadow: `0 0 ${p.size * 3}px ${color}`,
+                            }}
+                        />
+                    );
+                })}
+            </div>
 
             {/* Main Full-Screen Cinematic Stage */}
             <div
@@ -200,6 +287,50 @@ export const SkensaIntro: React.FC = () => {
                         marginBottom: 42,
                     }}
                 >
+                    {/* Anamorphic Horizontal Optical Lens Flare on Impact (1.42s - 2.35s) */}
+                    <div
+                        style={{
+                            position: 'absolute',
+                            width: 1480,
+                            height: 10,
+                            borderRadius: 999,
+                            background:
+                                'linear-gradient(90deg, rgba(245,183,0,0) 0%, rgba(44,197,216,0.55) 25%, rgba(255,250,220,0.95) 50%, rgba(245,183,0,0.65) 75%, rgba(245,183,0,0) 100%)',
+                            opacity: anamorphicOpacity,
+                            transform: `scaleX(${anamorphicScaleX})`,
+                            boxShadow: '0 0 48px 8px rgba(245, 183, 0, 0.55)',
+                            pointerEvents: 'none',
+                        }}
+                    />
+
+                    {/* Harmonic Voiceover Aura Rings (Synchronized with Baritone Motto) */}
+                    <div
+                        style={{
+                            position: 'absolute',
+                            width: 468,
+                            height: 468,
+                            borderRadius: '50%',
+                            border: '2px solid rgba(245, 183, 0, 0.72)',
+                            opacity: auraOpacity,
+                            transform: `scale(${auraScale1})`,
+                            boxShadow:
+                                '0 0 42px rgba(245, 183, 0, 0.32), inset 0 0 28px rgba(44, 197, 216, 0.22)',
+                            pointerEvents: 'none',
+                        }}
+                    />
+                    <div
+                        style={{
+                            position: 'absolute',
+                            width: 496,
+                            height: 496,
+                            borderRadius: '50%',
+                            border: '1.5px solid rgba(44, 197, 216, 0.48)',
+                            opacity: auraOpacity * 0.72,
+                            transform: `scale(${auraScale2})`,
+                            pointerEvents: 'none',
+                        }}
+                    />
+
                     {/* Lock-In Expanding Golden Shockwave Ring */}
                     <div
                         style={{
@@ -458,7 +589,7 @@ export const SkensaIntro: React.FC = () => {
                         }}
                     >
                         {SLOGAN.split('').map((char, index) => {
-                            const startFrame = 1.6 * fps + index * 1.15;
+                            const startFrame = 1.38 * fps + index * 1.45;
                             const charOpacity = interpolate(
                                 frame,
                                 [startFrame, startFrame + 8],

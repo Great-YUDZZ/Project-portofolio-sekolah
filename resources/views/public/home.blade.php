@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {{-- Remotion Cinematic Intro Overlay (Full-Screen GSAP Split Curtain) --}}
+    {{-- Remotion Cinematic Intro Overlay (Full-Screen GSAP Split Curtain, Unskippable with Audio) --}}
     <div
         id="skensa-intro-overlay"
         aria-hidden="false"
@@ -16,8 +16,8 @@
         <div data-intro-stage class="relative z-10 w-screen h-screen flex items-center justify-center">
             <video
                 autoplay
-                muted
                 playsinline
+                preload="auto"
                 poster="/media/intro.jpg"
                 class="w-full h-full object-cover"
             >
@@ -25,15 +25,23 @@
                 <source src="/media/intro.webm" type="video/webm">
             </video>
 
-            <div class="absolute bottom-7 inset-x-0 px-6 sm:px-12 flex items-center justify-between text-paper/85 text-xs font-bold uppercase tracking-widest">
-                <span class="hidden sm:inline">SMK NEGERI 1 DENPASAR &bull; SKENSA BALI</span>
-                <button
-                    type="button"
-                    data-intro-skip
-                    class="ml-auto px-5 py-2.5 rounded-xl bg-yellow-skensa text-ink font-extrabold hover:bg-paper transition-colors shadow-lg cursor-pointer"
-                >
-                    Lewati Intro [Skip]
-                </button>
+            {{-- Browser Autoplay-with-Sound Gate Fallback (Shown only if browser blocks unmuted autoplay) --}}
+            <button
+                type="button"
+                data-intro-sound-gate
+                class="hidden absolute inset-0 z-20 flex flex-col items-center justify-end pb-16 bg-gradient-to-t from-[#051329]/90 via-[#071C3F]/25 to-transparent text-paper cursor-pointer focus:outline-none group"
+            >
+                <div class="inline-flex items-center gap-3.5 px-7 py-4 rounded-2xl bg-[#071C3F]/95 border-2 border-yellow-skensa text-yellow-skensa font-display font-extrabold text-xs sm:text-sm uppercase tracking-[0.2em] shadow-2xl group-hover:bg-yellow-skensa group-hover:text-ink transition-all duration-300">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-skensa opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-skensa group-hover:bg-ink"></span>
+                    </span>
+                    <span>Klik di Mana Saja untuk Memasuki SKENSA dengan Suara</span>
+                </div>
+            </button>
+
+            <div class="absolute bottom-7 inset-x-0 px-6 sm:px-12 flex items-center justify-center text-paper/75 text-[11px] font-bold uppercase tracking-[0.25em] pointer-events-none">
+                <span>SMK NEGERI 1 DENPASAR &bull; ABHYĀSAD DHÄRYATE VIDYÄ</span>
             </div>
         </div>
     </div>
