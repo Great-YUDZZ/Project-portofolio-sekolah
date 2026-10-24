@@ -4,6 +4,40 @@
 
 @section('content')
 
+    {{-- Remotion Cinematic Intro Overlay (Full-Screen GSAP Split Curtain) --}}
+    <div
+        id="skensa-intro-overlay"
+        aria-hidden="false"
+        class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none bg-[#071C3F]"
+    >
+        <div data-intro-top class="absolute inset-x-0 top-0 h-1/2 bg-[#071C3F] border-b border-yellow-skensa/40"></div>
+        <div data-intro-bottom class="absolute inset-x-0 bottom-0 h-1/2 bg-[#071C3F] border-t border-yellow-skensa/40"></div>
+
+        <div data-intro-stage class="relative z-10 w-screen h-screen flex items-center justify-center">
+            <video
+                autoplay
+                muted
+                playsinline
+                poster="/media/intro.jpg"
+                class="w-full h-full object-cover"
+            >
+                <source src="/media/intro.mp4" type="video/mp4">
+                <source src="/media/intro.webm" type="video/webm">
+            </video>
+
+            <div class="absolute bottom-7 inset-x-0 px-6 sm:px-12 flex items-center justify-between text-paper/85 text-xs font-bold uppercase tracking-widest">
+                <span class="hidden sm:inline">SMK NEGERI 1 DENPASAR &bull; SKENSA BALI</span>
+                <button
+                    type="button"
+                    data-intro-skip
+                    class="ml-auto px-5 py-2.5 rounded-xl bg-yellow-skensa text-ink font-extrabold hover:bg-paper transition-colors shadow-lg cursor-pointer"
+                >
+                    Lewati Intro [Skip]
+                </button>
+            </div>
+        </div>
+    </div>
+
     {{-- Section 1: Full-Width Academic Tech Hero (Stanford / MIT Style with Remotion Video Backdrop) --}}
     <section class="relative min-h-[86vh] flex items-center bg-navy text-paper border-b-2 border-ink overflow-hidden">
         {{-- Background Remotion Video with Multi-Layer Academic Dark Overlay --}}
@@ -14,11 +48,11 @@
                 loop
                 playsinline
                 preload="auto"
-                poster="/images/gedung_skensa.jpg"
+                poster="/media/intro.jpg"
                 class="w-full h-full object-cover opacity-45 scale-105"
             >
-                <source src="/videos/intro_skensa.webm" type="video/webm">
-                <source src="/videos/intro_skensa.mp4" type="video/mp4">
+                <source src="/media/intro.webm" type="video/webm">
+                <source src="/media/intro.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/55"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/40"></div>
@@ -61,6 +95,18 @@
                         >
                             <span>Pengumuman Kelulusan</span>
                         </a>
+                        <button
+                            type="button"
+                            data-intro-replay
+                            data-magnetic
+                            class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-sm uppercase tracking-wider border border-paper/25 hover:bg-paper/20 hover:text-yellow-skensa transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+                            title="Putar Ulang Animasi Logo Intro"
+                        >
+                            <svg class="w-4 h-4 text-yellow-skensa shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Putar Intro</span>
+                        </button>
                     </div>
                 </div>
 

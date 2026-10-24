@@ -15,7 +15,9 @@ export function initIntro() {
     const replayBtn = document.querySelector('[data-intro-replay]');
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const alreadySeen = sessionStorage.getItem('skensa_intro_seen') === '1';
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceIntro = urlParams.has('intro');
+    const alreadySeen = !forceIntro && sessionStorage.getItem('skensa_intro_seen') === '1';
 
     const closeIntroImmediate = () => {
         overlay.style.display = 'none';
