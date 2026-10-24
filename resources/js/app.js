@@ -219,9 +219,89 @@ function initFacultyExplorer() {
     });
 }
 
+function initAutoHideNavbar() {
+    const navbar = document.getElementById('site-navbar');
+    if (!navbar) return;
+
+    let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    let isHidden = false;
+    let isHoveringNavbar = false;
+    let isMouseNearTop = false;
+    const scrollThreshold = 10;
+    const topZone = 80;
+
+    const showNavbar = () => {
+        if (!isHidden) return;
+        navbar.classList.remove('-translate-y-full');
+        navbar.classList.add('translate-y-0');
+        isHidden = false;
+    };
+
+    const hideNavbar = () => {
+        const currentY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (currentY <= 70) return;
+        if (isHoveringNavbar || isMouseNearTop) return;
+
+        const mobileMenu = document.getElementById('mobile-menu-panel');
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) return;
+
+        const searchModal = document.getElementById('search-command-modal');
+        if (searchModal && !searchModal.classList.contains('hidden')) return;
+
+        if (isHidden) return;
+        navbar.classList.remove('translate-y-0');
+        navbar.classList.add('-translate-y-full');
+        isHidden = true;
+    };
+
+    const handleScrollUpdate = (currentY) => {
+        const delta = currentY - lastScrollY;
+
+        if (currentY <= 70) {
+            showNavbar();
+        } else if (delta > scrollThreshold) {
+            hideNavbar();
+        } else if (delta < -scrollThreshold) {
+            showNavbar();
+        }
+
+        lastScrollY = Math.max(0, currentY);
+    };
+
+    window.addEventListener('scroll', () => {
+        const currentY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        handleScrollUpdate(currentY);
+    }, { passive: true });
+
+    if (window.__skensaLenis) {
+        window.__skensaLenis.on('scroll', (e) => {
+            handleScrollUpdate(e.scroll);
+        });
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        if (e.clientY <= topZone) {
+            isMouseNearTop = true;
+            showNavbar();
+        } else {
+            isMouseNearTop = false;
+        }
+    }, { passive: true });
+
+    navbar.addEventListener('mouseenter', () => {
+        isHoveringNavbar = true;
+        showNavbar();
+    });
+
+    navbar.addEventListener('mouseleave', () => {
+        isHoveringNavbar = false;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initNavbarAndDrawers();
+    initAutoHideNavbar();
     initFacultyExplorer();
     initMarkers();
     initCounters();

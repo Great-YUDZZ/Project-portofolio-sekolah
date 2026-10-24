@@ -16,7 +16,7 @@
     </a>
 
     {{-- Official SMKN 1 Denpasar Navbar (Exact Match with smkn1denpasar.sch.id) --}}
-    <header id="site-navbar" class="sticky top-0 z-40 bg-[#ECEDF2]/95 backdrop-blur-md border-b border-black/5 transition-all duration-300">
+    <header id="site-navbar" class="sticky top-0 z-40 bg-[#ECEDF2]/95 backdrop-blur-md border-b border-black/5 transition-transform duration-300 ease-out will-change-transform translate-y-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between gap-6">
             {{-- Left: Logo + Divider + 9-Dot Kompetensi Dropdown --}}
             <div class="flex items-center gap-6 shrink-0">
