@@ -72,87 +72,89 @@
         </div>
 
         {{-- Main Hero Container --}}
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 w-full">
-            <div class="max-w-3xl space-y-6">
-                <div data-hero-badge class="inline-flex flex-wrap items-center gap-2.5 px-4 py-2 rounded-full bg-paper/10 backdrop-blur-md border border-yellow-skensa/50 text-yellow-skensa text-xs sm:text-sm font-bold uppercase tracking-widest shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-yellow-skensa"></span>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 sm:py-20 lg:py-24 w-full">
+            <div class="max-w-3xl space-y-5 sm:space-y-6">
+                <div data-hero-badge class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-paper/10 backdrop-blur-md border border-yellow-skensa/50 text-yellow-skensa text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-yellow-skensa shrink-0"></span>
                     <span>SMK Negeri 1 Denpasar &bull; {{ $settings['hero_highlight'] ?? '“When I Grow Up” Spirit Day!' }}</span>
                 </div>
 
-                <h1 data-hero-title class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-paper leading-[1.08] tracking-tight">
+                <h1 data-hero-title class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-paper leading-[1.12] sm:leading-[1.08] tracking-tight">
                     {{ $settings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}
-                    <span class="block text-yellow-skensa mt-3 text-2xl sm:text-4xl lg:text-5xl font-bold">
+                    <span class="block text-yellow-skensa mt-2 sm:mt-3 text-xl sm:text-3xl lg:text-4xl font-bold">
                         "{{ $settings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.' }}"
                     </span>
                 </h1>
 
-                <p class="text-paper/85 text-base sm:text-lg leading-relaxed max-w-2xl">
+                <p class="text-paper/85 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">
                     Sekolah Menengah Kejuruan Pusat Keunggulan (SMK PK) berbasis <em>Teaching Factory</em> dan sertifikasi profesi berlisensi <strong>LSP-P1 BNSP</strong> di Provinsi Bali.
                 </p>
 
-                <div data-hero-cta class="flex flex-wrap items-center gap-3.5 pt-2">
+                <div data-hero-cta class="flex flex-col sm:flex-row sm:items-center gap-3 pt-2">
                     <a
                         href="#informasi-ppdb"
                         data-magnetic
-                        class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider border-2 border-yellow-skensa hover:bg-paper transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-skensa shadow-md"
+                        class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider border-2 border-yellow-skensa hover:bg-paper transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-skensa shadow-md text-center min-h-[44px]"
                     >
                         <span>Pendaftaran PPDB / SPMB</span>
                         <span aria-hidden="true">&rarr;</span>
                     </a>
-                    <a
-                        href="#fakultas-keahlian"
-                        data-magnetic
-                        class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/30 hover:bg-paper/20 hover:text-yellow-skensa transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-                    >
-                        <span>Jelajahi 12 Jurusan</span>
-                        <span aria-hidden="true">&darr;</span>
-                    </a>
-                    <button
-                        type="button"
-                        data-intro-replay
-                        data-magnetic
-                        class="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/25 hover:bg-paper/20 hover:text-yellow-skensa transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-                        title="Putar Ulang Animasi Logo Intro"
-                    >
-                        <svg class="w-4 h-4 text-yellow-skensa shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                        </svg>
-                        <span>Putar Intro</span>
-                    </button>
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <a
+                            href="#fakultas-keahlian"
+                            data-magnetic
+                            class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/30 hover:bg-paper/20 hover:text-yellow-skensa transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper min-h-[44px] text-center"
+                        >
+                            <span>12 Jurusan</span>
+                            <span aria-hidden="true">&darr;</span>
+                        </a>
+                        <button
+                            type="button"
+                            data-intro-replay
+                            data-magnetic
+                            class="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/25 hover:bg-paper/20 hover:text-yellow-skensa transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper min-h-[44px]"
+                            title="Putar Ulang Animasi Logo Intro"
+                        >
+                            <svg class="w-4 h-4 text-yellow-skensa shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="hidden xs:inline">Intro</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
         {{-- Floating Quick Stats Bar (Mengambang di Kaki Banner Hero) --}}
-        <div class="absolute bottom-0 inset-x-0 z-20 bg-navy-950/80 backdrop-blur-md border-t border-paper/15 py-4">
+        <div class="absolute bottom-0 inset-x-0 z-20 bg-navy-950/85 backdrop-blur-md border-t border-paper/15 py-3 sm:py-4">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm font-semibold text-paper/90 divide-y sm:divide-y-0 sm:divide-x divide-paper/10">
-                    <div class="flex items-center gap-3 py-1 sm:px-3">
-                        <span class="w-8 h-8 rounded-lg bg-yellow-skensa text-ink font-extrabold flex items-center justify-center shrink-0">A</span>
-                        <div>
-                            <span class="block font-bold text-paper">Akreditasi A (Unggul)</span>
-                            <span class="text-[11px] text-paper/60">BAN-S/M &bull; SMK PK</span>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 text-xs sm:text-sm font-semibold text-paper/90 divide-y-0 sm:divide-x divide-paper/10">
+                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
+                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-yellow-skensa text-ink font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">A</span>
+                        <div class="min-w-0">
+                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">Akreditasi A</span>
+                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">BAN-S/M &bull; SMK PK</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 py-1 sm:px-3">
-                        <span class="w-8 h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0">2.6k</span>
-                        <div>
-                            <span class="block font-bold text-paper">2.680+ Siswa Aktif</span>
-                            <span class="text-[11px] text-paper/60">4.205 Pengguna LMS</span>
+                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
+                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">2.6k</span>
+                        <div class="min-w-0">
+                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">2.680+ Siswa</span>
+                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">4.205 User LMS</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 py-1 sm:px-3">
-                        <span class="w-8 h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0">12</span>
-                        <div>
-                            <span class="block font-bold text-paper">9 Program / 12 Jurusan</span>
-                            <span class="text-[11px] text-paper/60">LSP-P1 BNSP Terlisensi</span>
+                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
+                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">12</span>
+                        <div class="min-w-0">
+                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">12 Jurusan</span>
+                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">LSP-P1 BNSP</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 py-1 sm:px-3">
-                        <span class="w-8 h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0">185</span>
-                        <div>
-                            <span class="block font-bold text-paper">185+ Guru &amp; Tendik</span>
-                            <span class="text-[11px] text-paper/60">Sertifikasi Pendidik Vokasi</span>
+                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
+                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">185</span>
+                        <div class="min-w-0">
+                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">185+ Guru</span>
+                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">Pendidik Vokasi</span>
                         </div>
                     </div>
                 </div>
@@ -379,14 +381,15 @@
                     </div>
                 </div>
 
-                {{-- Kolom Kanan: Playlist Interaktif Pilihan (lg:col-span-4) --}}
-                <div class="lg:col-span-4 rounded-2xl border-2 border-ink bg-paper-2 overflow-hidden flex flex-col h-[520px] lg:h-[580px]">
+                {{-- Playlist: Horizontal Touch Carousel di Mobile/Tablet, Vertikal Sidebar di Desktop (lg:col-span-4) --}}
+                <div class="lg:col-span-4 rounded-2xl border-2 border-ink bg-paper-2 overflow-hidden flex flex-col lg:h-[580px] shadow-sm">
                     <div class="p-4 bg-navy text-paper border-b-2 border-ink flex items-center justify-between">
                         <span class="text-xs font-extrabold uppercase tracking-widest text-yellow-skensa">Playlist Video Resmi</span>
-                        <span class="text-[11px] font-bold text-paper/70">8 Video Pilihan</span>
+                        <span class="text-[11px] font-bold text-paper/70">8 Video Pilihan &bull; Geser &rarr;</span>
                     </div>
 
-                    <div class="flex-1 overflow-y-auto p-3 space-y-2.5 divide-y divide-line/60">
+                    {{-- Scroll Container: Horizontal di Mobile/Tablet, Vertikal di Desktop --}}
+                    <div class="flex lg:flex-col overflow-x-auto lg:overflow-y-auto p-3 gap-3 lg:space-y-2.5 lg:gap-0 divide-y-0 lg:divide-y lg:divide-line/60 snap-x snap-mandatory touch-pan-x">
                         @foreach($cinemaVideos as $cIdx => $cVideo)
                             <button
                                 type="button"
@@ -395,9 +398,9 @@
                                 data-video-title="{{ $cVideo['title'] }}"
                                 data-video-category="{{ $cVideo['category'] }}"
                                 data-video-desc="{{ $cVideo['desc'] }}"
-                                class="w-full text-left p-2.5 rounded-xl transition-all cursor-pointer flex gap-3 items-center group {{ $cIdx === 0 ? 'bg-navy text-paper shadow-md' : 'hover:bg-paper text-ink' }}"
+                                class="w-64 sm:w-72 lg:w-full shrink-0 snap-start text-left p-3 rounded-xl transition-all cursor-pointer flex gap-3 items-center group {{ $cIdx === 0 ? 'bg-navy text-paper shadow-md' : 'hover:bg-paper text-ink bg-paper/60 lg:bg-transparent border border-line/40 lg:border-0' }}"
                             >
-                                <div class="relative w-28 h-18 rounded-lg overflow-hidden shrink-0 border border-ink/40 bg-navy-800">
+                                <div class="relative w-24 h-16 sm:w-28 sm:h-18 rounded-lg overflow-hidden shrink-0 border border-ink/40 bg-navy-800">
                                     <img
                                         src="https://img.youtube.com/vi/{{ $cVideo['id'] }}/mqdefault.jpg"
                                         alt="{{ $cVideo['title'] }}"
@@ -591,7 +594,7 @@
                         @php
                             $slideImg = $mItem->image ?: ($majorSlidePhotos[strtoupper($mItem->code)] ?? '/images/showcase/drone_kampus.jpg');
                         @endphp
-                        <div class="w-full shrink-0 relative h-[520px] sm:h-[580px] lg:h-[620px] overflow-hidden" data-major-slide-index="{{ $mIdx }}">
+                        <div class="w-full shrink-0 relative h-[68vh] min-h-[460px] sm:h-[560px] lg:h-[620px] overflow-hidden" data-major-slide-index="{{ $mIdx }}">
                             {{-- Background Image with Gradient Overlay --}}
                             <img
                                 src="{{ $slideImg }}"
@@ -600,12 +603,12 @@
                                 loading="lazy"
                             >
                             {{-- Heavy Gradient Overlay for Bottom-Left Text Clarity --}}
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/75 to-transparent"></div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/40 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/50 to-transparent"></div>
 
                             {{-- Badge Top Right --}}
-                            <div class="absolute top-6 right-6 flex items-center gap-2">
-                                <span class="px-3.5 py-1.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-sm uppercase tracking-wider shadow-lg">
+                            <div class="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2">
+                                <span class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg">
                                     {{ $mItem->code }}
                                 </span>
                                 <span class="hidden sm:inline-block px-3 py-1.5 rounded-xl bg-navy/90 backdrop-blur-md border border-paper/20 text-paper text-xs font-bold uppercase tracking-wider">
@@ -614,40 +617,40 @@
                             </div>
 
                             {{-- DESKRIPSI SINGKAT DI BAGIAN KIRI BAWAH --}}
-                            <div class="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 max-w-2xl space-y-4">
+                            <div class="absolute bottom-4 left-4 right-4 sm:right-auto sm:bottom-10 sm:left-10 max-w-2xl space-y-2.5 sm:space-y-4">
                                 <div class="flex items-center gap-2">
-                                    <span class="px-3 py-1 rounded-md bg-paper/20 backdrop-blur-md border border-yellow-skensa/60 text-yellow-skensa font-mono font-extrabold text-xs uppercase tracking-widest">
-                                        {{ str_pad((string)($mIdx + 1), 2, '0', STR_PAD_LEFT) }} / {{ str_pad((string)$majors->count(), 2, '0', STR_PAD_LEFT) }} &bull; KONSENTRASI KEAHLIAN
+                                    <span class="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md bg-paper/20 backdrop-blur-md border border-yellow-skensa/60 text-yellow-skensa font-mono font-extrabold text-[10px] sm:text-xs uppercase tracking-widest">
+                                        {{ str_pad((string)($mIdx + 1), 2, '0', STR_PAD_LEFT) }} / {{ str_pad((string)$majors->count(), 2, '0', STR_PAD_LEFT) }} &bull; JURUSAN
                                     </span>
-                                    <span class="text-xs font-bold text-paper/70 uppercase">
+                                    <span class="text-[10px] sm:text-xs font-bold text-paper/70 uppercase">
                                         LSP-P1 BNSP
                                     </span>
                                 </div>
 
-                                <h3 class="font-display font-extrabold text-2xl sm:text-4xl text-paper leading-tight tracking-tight">
+                                <h3 class="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl text-paper leading-tight tracking-tight">
                                     {{ $mItem->name }}
                                 </h3>
 
-                                <p class="text-xs sm:text-sm text-paper/85 leading-relaxed line-clamp-3 max-w-xl">
+                                <p class="text-xs sm:text-sm text-paper/85 leading-relaxed line-clamp-2 sm:line-clamp-3 max-w-xl">
                                     {{ $mItem->description ?: $mItem->summary }}
                                 </p>
 
                                 @if(!empty($mItem->career_prospects))
-                                    <div class="flex flex-wrap gap-1.5 pt-1">
+                                    <div class="hidden sm:flex flex-wrap gap-1.5 pt-0.5 sm:pt-1">
                                         @foreach(array_slice((array) $mItem->career_prospects, 0, 3) as $prospect)
-                                            <span class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-paper/10 backdrop-blur-xs border border-paper/20 text-yellow-skensa">
+                                            <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-paper/10 backdrop-blur-xs border border-paper/20 text-yellow-skensa">
                                                 {{ $prospect }}
                                             </span>
                                         @endforeach
                                     </div>
                                 @endif
 
-                                <div class="pt-2">
+                                <div class="pt-1 sm:pt-2">
                                     <a
                                         href="{{ route('majors.show', $mItem->slug) }}"
-                                        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-yellow-skensa text-ink hover:bg-paper font-display font-extrabold text-xs uppercase tracking-wider transition-colors shadow-lg"
+                                        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-yellow-skensa text-ink hover:bg-paper font-display font-extrabold text-xs uppercase tracking-wider transition-colors shadow-lg min-h-[44px]"
                                     >
-                                        <span>Lihat Konsentrasi Keahlian Ini</span>
+                                        <span>Lihat Detail Jurusan</span>
                                         <span aria-hidden="true">&rarr;</span>
                                     </a>
                                 </div>
