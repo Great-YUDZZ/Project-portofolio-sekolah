@@ -1,58 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Skensa Jaya - Website Portofolio & LMS SMKN 1 Denpasar
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Platform digital resmi SMK Negeri 1 Denpasar (SKENSA) yang memadukan etalase portofolio institusi vokasi unggulan, direktori karya siswa dan konsentrasi keahlian, serta sistem manajemen pembelajaran (LMS).
 
-## About Laravel
+- Repositori: `https://github.com/Great-YUDZZ/Project-portofolio-sekolah`
+- Domain Live: `https://yudzz-app.my.id`
+- Semboyan: *"Abhyāsad Dhäryate Vidyä."* (Peliharalah ilmu sampai menjadi tradisi.)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 1. Ikhtisar Proyek
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+SMK Negeri 1 Denpasar merupakan Sekolah Menengah Kejuruan Pusat Keunggulan (SMK PK) berbasis *Teaching Factory* dan sertifikasi profesi berlisensi LSP-P1 BNSP di Provinsi Bali. Proyek **Skensa Jaya** dibangun untuk menyajikan informasi sekolah secara modern, interaktif, cepat, dan responsif di seluruh perangkat (ponsel, tablet, dan desktop).
 
-## Learning Laravel
+Situs ini menerapkan prinsip desain monokrom kontras tinggi yang bersih, tanpa elemen generik, serta mengedepankan performa akses optimal.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 2. Fitur Utama
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### A. Portal Publik & Portofolio Institusi
+- **Hero Section Layar Penuh (100vh)**: Tampilan visual berlatar gedung sekolah bersejarah dengan tipografi semboyan institusi dan visual siswa vokasi transparan.
+- **Sambutan Kepala Sekolah**: Paparan esensial arah dan visi vokasi dari Kepala Sekolah I Wayan Mustika, S.Pd., M.Pd.
+- **YouTube Cinema Hub**: Pemutar video resmi dengan daftar putar (playlist) horizontal yang mendukung interaksi roda mouse (mouse wheel) di desktop dan sentuhan halus di perangkat seluler.
+- **Infrastruktur & Fasilitas Pembelajaran**: Galeri laboratorium dan bengkel standar industri, mencakup Daikin Center of Excellence (TPTUP), Lab Fiber Optik (TKJ), Studio Gambar BIM (DPIB), Workshop Konstruksi (TKP), Bengkel Otomotif, dan Perpustakaan Digital.
+- **Slider 12 Konsentrasi Keahlian**: Carousel interaktif layar penuh mencakup profil, prospek karier, skema sertifikasi LSP-P1 BNSP, dan tautan eksplorasi keahlian.
+- **Ekosistem Kemitraan DUDIKA & Jejak Lulusan (BMW)**: Infinite marquee mitra industri resmi (Astra Honda Motor, Toyota Auto2000, PT Telkom Indonesia, PT Daikin, PT PLN, Schneider Electric, dll.) dan statistik penelusuran lulusan bekerja, melanjutkan, dan wirausaha.
+- **Etalase Prestasi & Kesiswaan**: Dokumentasi kejuaraan LKS tingkat kota, provinsi, dan nasional, serta kegiatan organisasi kesiswaan (OSIS/MPK, Paskibra, Pramuka, PMR, Seni Budaya).
+- **Rilis Berita dengan Interactive Hover Preview**: Tata letak dua kolom interaktif di mana kartu pratinjau di sisi kanan otomatis memperbarui foto, judul, dan kutipan sesuai posisi kursor mouse atau fokus baca pengguna.
+- **Pencarian Global Terpadu (`/cari`)**: Mesin pencari instan lintas entitas untuk menemukan jurusan, karya siswa, berita, prestasi, dan staf pengajar.
+- **Informasi PPDB / SPMB**: Jalur pendaftaran dan tahapan seleksi peserta didik baru secara komprehensif.
 
-## Agentic Development
+### B. Video Intro Sinematik & Curtain Transition
+- Animasi pembuka logo terprogram menggunakan Remotion engine yang dirender menjadi video resolusi tinggi dengan efek split curtain GSAP saat memasuki halaman utama.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### C. Panel Manajemen Konten (CMS Admin) & LMS
+- **Multi-Role Authentication**: Pengelolaan akses berbasis peran (Admin, Guru, Siswa) menggunakan middleware RBAC Laravel.
+- **Manajemen Konten Portofolio**: Modul pengelolaan artikel berita, pengumuman, agenda kegiatan, galeri foto sarana, portofolio karya siswa, dan data prestasi kejuaraan.
+- **Fondasi LMS**: Manajemen data kelas, rombel, pengajar, dan konsentrasi keahlian.
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
+## 3. Teknologi yang Digunakan
+
+- **Backend**: Laravel 12 (PHP 8.4)
+- **Frontend & Styling**: Tailwind CSS 4, Vite
+- **Animasi & Interaksi**: GSAP (ScrollTrigger), Lenis Smooth Scroll
+- **Automasi Video**: Remotion (React-based video automation)
+- **Basis Data**: SQLite / MySQL
+- **Web Server & Infrastruktur**: Nginx, Cloudflare Tunnel (HTTPS edge caching)
+
+---
+
+## 4. Struktur Direktori Utama
+
+```text
+skensa-jaya/
+├── app/
+│   ├── Enums/                     # Enum peran pengguna (Admin, Guru, Siswa)
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/             # Pengendali dashboard dan CRUD konten
+│   │   │   ├── Auth/              # Login, logout, dan otentikasi
+│   │   │   ├── Lms/               # Pengendali modul pembelajaran
+│   │   │   └── Public/            # Pengendali rute publik portofolio
+│   │   └── Middleware/            # Pengaman akses EnsureRole
+│   └── Models/                    # Model Eloquent (Major, Post, Work, Achievement, dll.)
+├── database/
+│   ├── migrations/                # Skema basis data
+│   └── seeders/                   # Seeder data resmi 9 bidang, 12 jurusan, dan konten
+├── public/                        # Aset publik statis, media video, dan gambar
+├── remotion/                      # Sumber video intro animasi komputasi
+├── resources/
+│   ├── css/                       # Gaya dasar dan variabel tema Tailwind CSS
+│   ├── js/                        # Modul interaktif (intro, lenis, search modal)
+│   └── views/
+│       ├── layouts/               # Layout umum (public.blade.php, admin, auth)
+│       └── public/                # Tampilan halaman publik (home, major, gallery, dll.)
+└── routes/
+    └── web.php                    # Deklarasi rute aplikasi
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 5. Panduan Instalasi Lokal
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prasyarat
+- PHP 8.2 atau lebih baru (disarankan PHP 8.4)
+- Composer
+- Node.js 20 atau lebih baru dan NPM
+- Ekstensi PHP: `pdo_sqlite` atau `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `fileinfo`
 
-## Code of Conduct
+### Langkah-Langkah
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Clone Repositori**:
+   ```bash
+   git clone https://github.com/Great-YUDZZ/Project-portofolio-sekolah.git
+   cd Project-portofolio-sekolah
+   ```
 
-## Security Vulnerabilities
+2. **Instal Dependensi PHP**:
+   ```bash
+   composer install
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Instal Dependensi Node.js**:
+   ```bash
+   npm install
+   ```
 
-## License
+4. **Konfigurasi Berkas Lingkungan**:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Migrasi dan Pengisian Data Awal**:
+   ```bash
+   touch database/database.sqlite
+   php artisan migrate --seed
+   ```
+
+6. **Kompilasi Aset Frontend**:
+   ```bash
+   npm run build
+   ```
+
+7. **Jalankan Server Lokal**:
+   ```bash
+   php artisan serve
+   ```
+   Akses aplikasi pada peramban melalui alamat `http://127.0.0.1:8000`.
+
+---
+
+## 6. Pengujian Otomatis
+
+Proyek dilengkapi dengan pengujian unit dan integrasi untuk memastikan reliabilitas alur autentikasi, navigasi publik, dan performa respon.
+
+Untuk menjalankan seluruh rangkaian pengujian:
+```bash
+php artisan test
+```
+
+---
+
+## 7. Lisensi
+
+Proyek ini dikembangkan untuk kebutuhan portofolio dan modernisasi sistem informasi SMK Negeri 1 Denpasar. Lisensi kode sumber terbuka di bawah [MIT License](LICENSE).
