@@ -1,598 +1,1204 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ThreeCanvas } from '@remotion/three';
+import { useThree } from '@react-three/fiber';
 import {
     AbsoluteFill,
     Audio,
+    continueRender,
+    delayRender,
     Easing,
-    Img,
     interpolate,
-    spring,
     staticFile,
     useCurrentFrame,
     useVideoConfig,
 } from 'remotion';
+import * as THREE from 'three';
 
-const SLOGAN = 'Abhyāsad Dhäryate Vidyä';
-const SUBTITLE = 'PELIHARALAH ILMU SAMPAI MENJADI TRADISI';
+interface LogoLayerTextures {
+    outerGearFront: THREE.CanvasTexture;
+    outerGearSide: THREE.CanvasTexture;
+    outerGearBevel: THREE.CanvasTexture;
+    innerRingFront: THREE.CanvasTexture;
+    innerRingSide: THREE.CanvasTexture;
+    innerRingBevel: THREE.CanvasTexture;
+    cyanDiscFront: THREE.CanvasTexture;
+    scholarFront: THREE.CanvasTexture;
+    scholarSide: THREE.CanvasTexture;
+    scholarBevel: THREE.CanvasTexture;
+}
 
-const GOLDEN_DUST_PARTICLES = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    x: ((i * 37 + 13) % 92) + 4,
-    baseY: ((i * 53 + 29) % 94) + 3,
-    size: 2.5 + (i % 4) * 1.4,
-    speed: 14 + (i % 5) * 6,
-    phase: i * 0.75,
-    isCyan: i % 5 === 0,
-}));
+const EASE_OUT_EXPO = Easing.bezier(0.16, 1, 0.3, 1);
+const EASE_MECHANICAL_LOCK = Easing.bezier(0.32, 0.04, 0.18, 1);
+const EASE_CAMERA_DOLLY = Easing.bezier(0.42, 0.0, 0.2, 1);
 
-export const SkensaIntro: React.FC = () => {
+function createAnnularTextureSet(
+    img: HTMLImageElement,
+    innerRatio: number,
+    outerRatio: number,
+    sideColorTop: string,
+    sideColorBottom: string,
+    bevelHighlightColor: string
+): {
+    front: THREE.CanvasTexture;
+    side: THREE.CanvasTexture;
+    bevel: THREE.CanvasTexture;
+} {
+    const size = 1024;
+    const cx = size / 2;
+    const cy = size / 2;
+    const maxR = size / 2;
+
+    const frontCanvas = document.createElement('canvas');
+    frontCanvas.width = size;
+    frontCanvas.height = size;
+    const fCtx = frontCanvas.getContext('2d');
+
+    if (fCtx) {
+        fCtx.clearRect(0, 0, size, size);
+        fCtx.save();
+        fCtx.beginPath();
+        fCtx.arc(cx, cy, outerRatio * maxR, 0, Math.PI * 2, false);
+        if (innerRatio > 0) {
+            fCtx.arc(cx, cy, innerRatio * maxR, 0, Math.PI * 2, true);
+        }
+        fCtx.closePath();
+        fCtx.clip();
+        fCtx.drawImage(img, 0, 0, size, size);
+        fCtx.restore();
+    }
+
+    const sideCanvas = document.createElement('canvas');
+    sideCanvas.width = size;
+    sideCanvas.height = size;
+    const sCtx = sideCanvas.getContext('2d');
+
+    if (sCtx) {
+        sCtx.drawImage(frontCanvas, 0, 0);
+        sCtx.globalCompositeOperation = 'source-in';
+        const grad = sCtx.createLinearGradient(0, 0, size, size);
+        grad.addColorStop(0, sideColorTop);
+        grad.addColorStop(1, sideColorBottom);
+        sCtx.fillStyle = grad;
+        sCtx.fillRect(0, 0, size, size);
+        sCtx.globalCompositeOperation = 'source-over';
+    }
+
+    const bevelCanvas = document.createElement('canvas');
+    bevelCanvas.width = size;
+    bevelCanvas.height = size;
+    const bCtx = bevelCanvas.getContext('2d');
+
+    if (bCtx) {
+        bCtx.drawImage(frontCanvas, 0, 0);
+        bCtx.globalCompositeOperation = 'source-in';
+        const grad = bCtx.createLinearGradient(0, 0, size, size);
+        grad.addColorStop(0, '#E0F2FE');
+        grad.addColorStop(0.45, bevelHighlightColor);
+        grad.addColorStop(1, sideColorTop);
+        bCtx.fillStyle = grad;
+        bCtx.fillRect(0, 0, size, size);
+        bCtx.globalCompositeOperation = 'source-over';
+    }
+
+    const front = new THREE.CanvasTexture(frontCanvas);
+    front.colorSpace = THREE.SRGBColorSpace;
+    front.anisotropy = 8;
+    front.needsUpdate = true;
+
+    const side = new THREE.CanvasTexture(sideCanvas);
+    side.colorSpace = THREE.SRGBColorSpace;
+    side.anisotropy = 8;
+    side.needsUpdate = true;
+
+    const bevel = new THREE.CanvasTexture(bevelCanvas);
+    bevel.colorSpace = THREE.SRGBColorSpace;
+    bevel.anisotropy = 8;
+    bevel.needsUpdate = true;
+
+    return { front, side, bevel };
+}
+
+function createScholarAndCyanTextures(img: HTMLImageElement): {
+    cyanDiscFront: THREE.CanvasTexture;
+    scholarFront: THREE.CanvasTexture;
+    scholarSide: THREE.CanvasTexture;
+    scholarBevel: THREE.CanvasTexture;
+} {
+    const size = 1024;
+    const cx = size / 2;
+    const cy = size / 2;
+    const maxR = (size / 2) * 0.496;
+
+    const cyanCanvas = document.createElement('canvas');
+    cyanCanvas.width = size;
+    cyanCanvas.height = size;
+    const cCtx = cyanCanvas.getContext('2d');
+    if (cCtx) {
+        const grad = cCtx.createRadialGradient(
+            cx - 70,
+            cy - 70,
+            20,
+            cx,
+            cy,
+            maxR
+        );
+        grad.addColorStop(0, '#44CBD8');
+        grad.addColorStop(0.72, '#35B8C4');
+        grad.addColorStop(1, '#279AA6');
+        cCtx.beginPath();
+        cCtx.arc(cx, cy, maxR, 0, Math.PI * 2);
+        cCtx.fillStyle = grad;
+        cCtx.fill();
+    }
+
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = size;
+    tempCanvas.height = size;
+    const tCtx = tempCanvas.getContext('2d');
+
+    const scholarCanvas = document.createElement('canvas');
+    scholarCanvas.width = size;
+    scholarCanvas.height = size;
+    const scCtx = scholarCanvas.getContext('2d');
+
+    const scholarSideCanvas = document.createElement('canvas');
+    scholarSideCanvas.width = size;
+    scholarSideCanvas.height = size;
+    const ssCtx = scholarSideCanvas.getContext('2d');
+
+    const scholarBevelCanvas = document.createElement('canvas');
+    scholarBevelCanvas.width = size;
+    scholarBevelCanvas.height = size;
+    const sbCtx = scholarBevelCanvas.getContext('2d');
+
+    if (tCtx && scCtx && ssCtx && sbCtx) {
+        tCtx.beginPath();
+        tCtx.arc(cx, cy, maxR * 0.96, 0, Math.PI * 2);
+        tCtx.clip();
+        tCtx.drawImage(img, 0, 0, size, size);
+
+        const imgData = tCtx.getImageData(0, 0, size, size);
+        const data = imgData.data;
+        const frontData = scCtx.createImageData(size, size);
+        const sideData = ssCtx.createImageData(size, size);
+        const bevelData = sbCtx.createImageData(size, size);
+
+        for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            const a = data[i + 3];
+
+            if (a > 20) {
+                const cyanNess = g - r * 0.35;
+                if (cyanNess < 118) {
+                    const strength = Math.min(
+                        1,
+                        Math.max(0, (118 - cyanNess) / 45)
+                    );
+                    const alpha = Math.round(a * strength);
+
+                    frontData.data[i] = r;
+                    frontData.data[i + 1] = g;
+                    frontData.data[i + 2] = b;
+                    frontData.data[i + 3] = alpha;
+
+                    sideData.data[i] = 26;
+                    sideData.data[i + 1] = 64;
+                    sideData.data[i + 2] = 108;
+                    sideData.data[i + 3] = alpha;
+
+                    bevelData.data[i] = 92;
+                    bevelData.data[i + 1] = 158;
+                    bevelData.data[i + 2] = 204;
+                    bevelData.data[i + 3] = alpha;
+                }
+            }
+        }
+
+        scCtx.putImageData(frontData, 0, 0);
+        ssCtx.putImageData(sideData, 0, 0);
+        sbCtx.putImageData(bevelData, 0, 0);
+    }
+
+    const cyanDiscFront = new THREE.CanvasTexture(cyanCanvas);
+    cyanDiscFront.colorSpace = THREE.SRGBColorSpace;
+    cyanDiscFront.anisotropy = 8;
+    cyanDiscFront.needsUpdate = true;
+
+    const scholarFront = new THREE.CanvasTexture(scholarCanvas);
+    scholarFront.colorSpace = THREE.SRGBColorSpace;
+    scholarFront.anisotropy = 8;
+    scholarFront.needsUpdate = true;
+
+    const scholarSide = new THREE.CanvasTexture(scholarSideCanvas);
+    scholarSide.colorSpace = THREE.SRGBColorSpace;
+    scholarSide.anisotropy = 8;
+    scholarSide.needsUpdate = true;
+
+    const scholarBevel = new THREE.CanvasTexture(scholarBevelCanvas);
+    scholarBevel.colorSpace = THREE.SRGBColorSpace;
+    scholarBevel.anisotropy = 8;
+    scholarBevel.needsUpdate = true;
+
+    return { cyanDiscFront, scholarFront, scholarSide, scholarBevel };
+}
+
+/**
+ * Builds a physical THREE.ExtrudeGeometry annular ring with bevels
+ * (bevelThickness: 0.02, bevelSize: 0.01) for physical specular bevel normals.
+ */
+function createBeveledAnnulusGeometry(
+    innerRadius: number,
+    outerRadius: number,
+    depth: number
+): THREE.ExtrudeGeometry {
+    const shape = new THREE.Shape();
+    shape.absarc(0, 0, outerRadius, 0, Math.PI * 2, false);
+
+    if (innerRadius > 0) {
+        const hole = new THREE.Path();
+        hole.absarc(0, 0, innerRadius, 0, Math.PI * 2, true);
+        shape.holes.push(hole);
+    }
+
+    const geometry = new THREE.ExtrudeGeometry(shape, {
+        depth,
+        bevelEnabled: true,
+        bevelThickness: 0.02,
+        bevelSize: 0.01,
+        bevelSegments: 4,
+        curveSegments: 72,
+    });
+    geometry.center();
+    return geometry;
+}
+
+/**
+ * Volumetric 3D Extruded & Beveled Layer with Opacity Control for Staggered Blueprint Awakening.
+ */
+const VolumetricExtrudedLayer: React.FC<{
+    frontTex: THREE.CanvasTexture;
+    sideTex: THREE.CanvasTexture;
+    bevelTex: THREE.CanvasTexture;
+    radius: number;
+    depth: number;
+    slices: number;
+    opacity?: number;
+    bevelCoreGeo?: THREE.ExtrudeGeometry;
+    bevelCoreColor?: string;
+}> = ({
+    frontTex,
+    sideTex,
+    bevelTex,
+    radius,
+    depth,
+    slices,
+    opacity = 1,
+    bevelCoreGeo,
+    bevelCoreColor = '#255082',
+}) => {
+    const sliceDescriptors = useMemo(() => {
+        const bevelThickness = 0.022;
+        const bevelSizeRatio = 0.0045;
+        return Array.from({ length: slices }, (_, i) => {
+            const t = slices > 1 ? i / (slices - 1) : 0.5;
+            const z = -depth / 2 + t * depth;
+            const distFromEdge = Math.min(
+                Math.abs(z - depth / 2),
+                Math.abs(z + depth / 2)
+            );
+            const isBevelZone = distFromEdge <= bevelThickness;
+            const bevelFactor = isBevelZone
+                ? distFromEdge / bevelThickness
+                : 1.0;
+            const scale =
+                1.0 - bevelSizeRatio + bevelFactor * (bevelSizeRatio * 2.0);
+            return { z, scale, isBevelZone };
+        });
+    }, [depth, slices]);
+
+    if (opacity <= 0.005) {
+        return null;
+    }
+
+    return (
+        <group>
+            {/* Physical THREE.ExtrudeGeometry Beveled Core Ring */}
+            {bevelCoreGeo && (
+                <mesh geometry={bevelCoreGeo}>
+                    <meshStandardMaterial
+                        color={bevelCoreColor}
+                        metalness={0.38}
+                        roughness={0.32}
+                        transparent={opacity < 0.999}
+                        opacity={opacity}
+                    />
+                </mesh>
+            )}
+
+            {/* Volumetric 3D Extrusion Wall & Chamfer Bevel Slices */}
+            {sliceDescriptors.map((slice, idx) => (
+                <mesh
+                    key={idx}
+                    position={[0, 0, slice.z]}
+                    scale={[slice.scale, slice.scale, 1]}
+                >
+                    <circleGeometry args={[radius, 96]} />
+                    <meshStandardMaterial
+                        map={slice.isBevelZone ? bevelTex : sideTex}
+                        transparent
+                        opacity={opacity}
+                        alphaTest={0.04}
+                        roughness={slice.isBevelZone ? 0.26 : 0.34}
+                        metalness={slice.isBevelZone ? 0.45 : 0.36}
+                        side={THREE.DoubleSide}
+                    />
+                </mesh>
+            ))}
+
+            {/* Crisp PBR Front Face */}
+            <mesh position={[0, 0, depth / 2 + 0.005]}>
+                <circleGeometry args={[radius, 96]} />
+                <meshStandardMaterial
+                    map={frontTex}
+                    transparent
+                    opacity={opacity}
+                    alphaTest={0.02}
+                    roughness={0.3}
+                    metalness={0.28}
+                />
+            </mesh>
+
+            {/* Crisp PBR Back Face */}
+            <mesh
+                position={[0, 0, -depth / 2 - 0.005]}
+                rotation={[0, Math.PI, 0]}
+            >
+                <circleGeometry args={[radius, 96]} />
+                <meshStandardMaterial
+                    map={frontTex}
+                    transparent
+                    opacity={opacity}
+                    alphaTest={0.02}
+                    roughness={0.36}
+                    metalness={0.3}
+                />
+            </mesh>
+        </group>
+    );
+};
+
+/**
+ * 3D Mechanical Blueprint Calibration Rings & Ticks:
+ * Awakens first (0.0s -> 0.8s) in 3D space to guide the exploded mechanical assembly,
+ * then settles into a clean subtle framing ring around the locked emblem.
+ */
+const BlueprintCalibrationRig: React.FC<{
+    lockProgress: number;
+}> = ({ lockProgress }) => {
+    const frame = useCurrentFrame();
+    const { fps } = useVideoConfig();
+
+    // Outer framing ring stays visible at 0.45 opacity after lock
+    const outerRingOpacity = interpolate(
+        frame,
+        [0.05 * fps, 0.55 * fps, 2.2 * fps, 2.6 * fps],
+        [0, 0.78, 0.65, 0.44],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+    const outerRingScale = interpolate(lockProgress, [0, 1], [1.14, 1.0]);
+
+    // Inner blueprint guide ring & 24 calibration ticks shine during exploded assembly (0.05s -> 2.4s), then fade into the emblem
+    const blueprintGuideOpacity = interpolate(
+        frame,
+        [0.04 * fps, 0.48 * fps, 1.95 * fps, 2.55 * fps],
+        [0, 0.65, 0.45, 0],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+    const blueprintRotZ = interpolate(lockProgress, [0, 1], [-0.95, 0]);
+    const blueprintZ = interpolate(lockProgress, [0, 1], [0.55, 0]);
+
+    const tickAngles = useMemo(
+        () => Array.from({ length: 24 }, (_, i) => (i * Math.PI * 2) / 24),
+        []
+    );
+
+    return (
+        <group>
+            {/* Permanent Minimalist Outer 3D Cyan Framing Ring */}
+            <mesh scale={outerRingScale} position={[0, 0, -0.02]}>
+                <torusGeometry args={[2.35, 0.01, 24, 128]} />
+                <meshStandardMaterial
+                    color="#35B8C4"
+                    emissive="#155E75"
+                    emissiveIntensity={0.45}
+                    metalness={0.65}
+                    roughness={0.25}
+                    transparent
+                    opacity={outerRingOpacity}
+                />
+            </mesh>
+
+            {/* Temporary 3D Mechanical Blueprint Guide Ring & Radial Calibration Ticks */}
+            {blueprintGuideOpacity > 0.005 && (
+                <group
+                    position={[0, 0, blueprintZ]}
+                    rotation={[0, 0, blueprintRotZ]}
+                >
+                    <mesh>
+                        <torusGeometry args={[1.76, 0.007, 16, 128]} />
+                        <meshStandardMaterial
+                            color="#7DD3FC"
+                            emissive="#38BDF8"
+                            emissiveIntensity={0.8}
+                            transparent
+                            opacity={blueprintGuideOpacity * 0.75}
+                        />
+                    </mesh>
+
+                    <mesh position={[0, 0, 0.42]}>
+                        <torusGeometry args={[1.12, 0.006, 16, 96]} />
+                        <meshStandardMaterial
+                            color="#35B8C4"
+                            emissive="#0284C7"
+                            emissiveIntensity={0.7}
+                            transparent
+                            opacity={blueprintGuideOpacity * 0.65}
+                        />
+                    </mesh>
+
+                    {tickAngles.map((angle, i) => {
+                        const r = 2.46;
+                        const x = Math.cos(angle) * r;
+                        const y = Math.sin(angle) * r;
+                        return (
+                            <mesh
+                                key={i}
+                                position={[x, y, 0.12]}
+                                rotation={[0, 0, angle]}
+                            >
+                                <boxGeometry
+                                    args={[
+                                        i % 3 === 0 ? 0.11 : 0.055,
+                                        0.012,
+                                        0.012,
+                                    ]}
+                                />
+                                <meshStandardMaterial
+                                    color="#7DD3FC"
+                                    emissive="#38BDF8"
+                                    emissiveIntensity={0.9}
+                                    transparent
+                                    opacity={blueprintGuideOpacity}
+                                />
+                            </mesh>
+                        );
+                    })}
+                </group>
+            )}
+        </group>
+    );
+};
+
+/**
+ * Subtle floating light dust particles (THREE.Points, opacity 12%-18%)
+ * drifting slowly upward to add atmospheric depth of field.
+ */
+const FloatingDustParticles: React.FC = () => {
     const frame = useCurrentFrame();
     const { fps } = useVideoConfig();
     const timeSec = frame / fps;
 
-    // =========================================================================
-    // STAGE 1: Outer Technical Ring & Blueprint Tick Marks (0.0s - 1.2s)
-    // =========================================================================
-    const outerRingStroke = interpolate(frame, [0, 1.05 * fps], [1560, 0], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.bezier(0.22, 1, 0.36, 1),
-    });
+    const particleData = useMemo(() => {
+        const count = 60;
+        const basePositions = new Float32Array(count * 3);
+        const speeds = new Float32Array(count);
 
-    const outerGearSpring = spring({
-        frame: frame - Math.round(0.08 * fps),
-        fps,
-        config: {
-            damping: 16,
-            stiffness: 95,
-            mass: 1.1,
-        },
-    });
+        for (let i = 0; i < count; i++) {
+            const seed1 = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
+            const rx = seed1 - Math.floor(seed1);
+            const seed2 = Math.sin(i * 45.164 + 19.135) * 23421.6312;
+            const ry = seed2 - Math.floor(seed2);
+            const seed3 = Math.sin(i * 93.719 + 51.482) * 65432.1234;
+            const rz = seed3 - Math.floor(seed3);
 
-    const outerGearScale = interpolate(outerGearSpring, [0, 1], [1.45, 1]);
-    const outerGearOpacity = interpolate(frame, [0.05 * fps, 0.45 * fps], [0, 1], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const outerGearRotate = interpolate(frame, [0, 1.35 * fps], [-68, 0], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.bezier(0.16, 1, 0.3, 1),
-    });
+            basePositions[i * 3] = (rx - 0.5) * 11.5;
+            basePositions[i * 3 + 1] = (ry - 0.5) * 6.8;
+            basePositions[i * 3 + 2] = -2.6 + rz * 3.2;
+            speeds[i] = 0.14 + (rx * 0.5 + ry * 0.5) * 0.22;
+        }
+        return { count, basePositions, speeds };
+    }, []);
 
-    // =========================================================================
-    // STAGE 2: Inner Cyan Core Ring Expansion (0.55s - 1.4s)
-    // =========================================================================
-    const cyanCoreSpring = spring({
-        frame: frame - Math.round(0.55 * fps),
-        fps,
-        config: {
-            damping: 14,
-            stiffness: 110,
-            mass: 0.9,
-        },
-    });
+    const currentPositions = useMemo(() => {
+        const arr = new Float32Array(particleData.count * 3);
+        for (let i = 0; i < particleData.count; i++) {
+            const bx = particleData.basePositions[i * 3];
+            const by = particleData.basePositions[i * 3 + 1];
+            const bz = particleData.basePositions[i * 3 + 2];
+            const speed = particleData.speeds[i];
 
-    const cyanCoreRadius = interpolate(cyanCoreSpring, [0, 1], [0, 31.5]);
-    const cyanStrokeDraw = interpolate(frame, [0.5 * fps, 1.25 * fps], [980, 0], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.bezier(0.22, 1, 0.36, 1),
-    });
+            let y = by + timeSec * speed;
+            if (y > 3.4) {
+                y = -3.4 + ((y + 3.4) % 6.8);
+            }
 
-    // =========================================================================
-    // STAGE 3: Central Symbol (Book & Scholar Silhouette) Lock-In (0.95s - 1.5s)
-    // =========================================================================
-    const centerSymbolSpring = spring({
-        frame: frame - Math.round(0.95 * fps),
-        fps,
-        config: {
-            damping: 13,
-            stiffness: 125,
-            mass: 0.85,
-        },
-    });
+            arr[i * 3] = bx;
+            arr[i * 3 + 1] = y;
+            arr[i * 3 + 2] = bz;
+        }
+        return arr;
+    }, [particleData, timeSec]);
 
-    const centerSymbolScale = interpolate(centerSymbolSpring, [0, 1], [0.55, 1]);
-    const centerSymbolOpacity = interpolate(frame, [0.95 * fps, 1.32 * fps], [0, 1], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-
-    // =========================================================================
-    // STAGE 4: Lock-In Pulse Ring, Anamorphic Flare & Light Glint (1.42s - 2.35s)
-    // =========================================================================
-    const lockFlashProgress = interpolate(frame, [1.45 * fps, 2.25 * fps], [0, 1], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.out(Easing.cubic),
-    });
-
-    const lockPulseScale = interpolate(lockFlashProgress, [0, 1], [0.88, 1.38]);
-    const lockPulseOpacity = interpolate(lockFlashProgress, [0, 0.22, 1], [0, 0.88, 0]);
-
-    const anamorphicScaleX = interpolate(frame, [1.42 * fps, 1.65 * fps, 2.35 * fps], [0.1, 1.15, 0.4], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.out(Easing.cubic),
-    });
-    const anamorphicOpacity = interpolate(frame, [1.42 * fps, 1.56 * fps, 2.35 * fps], [0, 0.85, 0], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-
-    const glintX = interpolate(frame, [1.48 * fps, 2.25 * fps], [-190, 190], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.inOut(Easing.cubic),
-    });
-
-    // Harmonic Voiceover Aura Envelope (1.35s -> 4.70s synchronized with ArdiNeural baritone)
-    const part1VoiceEnv = interpolate(
+    const dustOpacity = interpolate(
         frame,
-        [1.35 * fps, 1.5 * fps, 2.55 * fps, 2.7 * fps],
-        [0, 1, 0.85, 0.15],
-        { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+        [0, 0.55 * fps, 5.1 * fps, 5.5 * fps],
+        [0, 0.17, 0.17, 0],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
     );
-    const part2VoiceEnv = interpolate(
+
+    return (
+        <points>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    count={particleData.count}
+                    array={currentPositions}
+                    itemSize={3}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                color="#7DD3FC"
+                size={0.036}
+                transparent
+                opacity={dustOpacity}
+                depthWrite={false}
+                sizeAttenuation
+            />
+        </points>
+    );
+};
+
+/**
+ * Camera Dolly-Out Controller:
+ * Starts closer at Z = 6.35 to showcase the dramatic 3D exploded mechanical layers,
+ * smoothly dollies out to Z = 8.20 at 2.60s (frame 156), and holds 100% still thereafter.
+ */
+const CameraDollyRig: React.FC = () => {
+    const frame = useCurrentFrame();
+    const { fps } = useVideoConfig();
+    const { camera } = useThree();
+
+    const dollyProgress = interpolate(frame, [0, 2.6 * fps], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: EASE_CAMERA_DOLLY,
+    });
+
+    const camZ = interpolate(dollyProgress, [0, 1], [6.35, 8.2]);
+    camera.position.set(0, 0, camZ);
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+
+    return null;
+};
+
+const SkensaEmblem3DScene: React.FC<{
+    textures: LogoLayerTextures;
+}> = ({ textures }) => {
+    const frame = useCurrentFrame();
+    const { fps } = useVideoConfig();
+
+    const outerBevelCoreGeo = useMemo(
+        () => createBeveledAnnulusGeometry(1.365, 1.74, 0.26),
+        []
+    );
+    const innerBevelCoreGeo = useMemo(
+        () => createBeveledAnnulusGeometry(1.095, 1.28, 0.22),
+        []
+    );
+    const cyanBevelCoreGeo = useMemo(
+        () => createBeveledAnnulusGeometry(0, 1.095, 0.2),
+        []
+    );
+
+    // =========================================================================
+    // 1. Dramatic Oblique Angle (-41 deg Y, +19 deg X) -> 0 deg Lock at 2.60s
+    //    CRITICAL: 100% still (zero left/right movement) from 2.60s -> 5.50s!
+    // =========================================================================
+    const cameraLockProgress = interpolate(frame, [0, 2.6 * fps], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: EASE_CAMERA_DOLLY,
+    });
+
+    const masterRotY = interpolate(cameraLockProgress, [0, 1], [-0.72, 0]);
+    const masterRotX = interpolate(cameraLockProgress, [0, 1], [0.34, 0]);
+    const masterRotZ = interpolate(cameraLockProgress, [0, 1], [-0.15, 0]);
+    const masterPosY = interpolate(cameraLockProgress, [0, 1], [0.18, 0.44]);
+
+    // =========================================================================
+    // 2. Deep Z-Exploded 4-Tier Mechanical Assembly (0.10s -> 2.60s)
+    // =========================================================================
+    // TIER 1: Outer 24-tooth gear wakes in deep Z (-1.15) and locks at 1.40s (Click 1)
+    const outerOpacity = interpolate(frame, [0.08 * fps, 0.48 * fps], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
+    const outerProgress = interpolate(
         frame,
-        [2.75 * fps, 2.92 * fps, 4.45 * fps, 4.75 * fps],
-        [0, 1, 0.9, 0],
-        { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+        [0.08 * fps, 1.4 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: EASE_MECHANICAL_LOCK,
+        }
     );
-    const voiceEnergy = Math.max(part1VoiceEnv, part2VoiceEnv);
-    const voiceModulation =
-        0.55 +
-        0.28 * Math.sin(timeSec * 19.0) +
-        0.17 * Math.cos(timeSec * 31.0);
-    const auraScale1 = 1.0 + voiceEnergy * voiceModulation * 0.095;
-    const auraScale2 = 1.05 + voiceEnergy * (1.0 - 0.35 * Math.sin(timeSec * 14.0)) * 0.14;
-    const auraOpacity = voiceEnergy * (0.35 + 0.35 * voiceModulation);
+    const outerZ = interpolate(outerProgress, [0, 1], [-1.15, 0]);
+    const outerScale = interpolate(outerProgress, [0, 1], [0.66, 1.0]);
+    const outerRotZ = interpolate(outerProgress, [0, 1], [1.75, 0]);
+
+    // TIER 2: Inner 8-tooth navy gear glides from foreground Z (+1.45) & locks at 2.00s (Click 2)
+    const innerOpacity = interpolate(frame, [0.68 * fps, 0.98 * fps], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+    });
+    const innerProgress = interpolate(
+        frame,
+        [0.68 * fps, 2.0 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: EASE_MECHANICAL_LOCK,
+        }
+    );
+    const innerZ = interpolate(innerProgress, [0, 1], [1.45, 0.08]);
+    const innerScale = interpolate(innerProgress, [0, 1], [0.76, 1.0]);
+    const innerRotZ = interpolate(innerProgress, [0, 1], [-1.52, 0]);
+
+    // TIER 3: Beveled Cyan Core Pedestal opens like a precision iris inside the navy ring (1.25s -> 2.15s)
+    const cyanVisible = frame >= Math.round(1.22 * fps);
+    const cyanProgress = interpolate(
+        frame,
+        [1.22 * fps, 2.15 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: EASE_MECHANICAL_LOCK,
+        }
+    );
+    const cyanZ = interpolate(cyanProgress, [0, 1], [0.46, 0.15]);
+    const cyanScale = interpolate(cyanProgress, [0, 1], [0.02, 1.0]);
+
+    // TIER 4: Central Scholar & 3-Tier Open Book descends from foreground Z (+2.15 -> +0.27) & locks at 2.60s (Master Click 3)
+    const scholarOpacity = interpolate(
+        frame,
+        [1.48 * fps, 1.78 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+    const scholarProgress = interpolate(
+        frame,
+        [1.48 * fps, 2.6 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: EASE_MECHANICAL_LOCK,
+        }
+    );
+    const scholarZ = interpolate(scholarProgress, [0, 1], [2.15, 0.27]);
+    const scholarScale = interpolate(scholarProgress, [0, 1], [0.68, 1.0]);
+    const scholarRotZ = interpolate(scholarProgress, [0, 1], [0.48, 0]);
 
     // =========================================================================
-    // STAGE 5: Cinematic Typography & Slogan Reveal (1.35s - 5.0s)
+    // 3. Rim-Light Awakening (0.0s -> 1.5s) & PBR Light Sweep (2.65s -> 3.45s)
     // =========================================================================
-    const headerOpacity = interpolate(frame, [1.35 * fps, 1.8 * fps], [0, 1], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const headerY = interpolate(frame, [1.35 * fps, 1.8 * fps], [24, 0], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.out(Easing.cubic),
-    });
+    const studioAmbientIntensity = interpolate(
+        frame,
+        [0, 0.55 * fps, 1.6 * fps],
+        [0.24, 0.58, 0.94],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+    const studioKeyIntensity = interpolate(
+        frame,
+        [0, 0.65 * fps, 1.8 * fps],
+        [0.45, 1.05, 1.55],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+    const rimLightIntensity = interpolate(
+        frame,
+        [0, 0.5 * fps, 2.2 * fps, 2.8 * fps],
+        [0.3, 1.65, 1.35, 0.95],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
 
-    const yellowLineProgress = interpolate(frame, [2.05 * fps, 2.75 * fps], [0, 1], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.bezier(0.22, 1, 0.36, 1),
-    });
+    const sweepProgress = interpolate(
+        frame,
+        [2.65 * fps, 3.45 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: Easing.inOut(Easing.cubic),
+        }
+    );
+    const sweepLightX = interpolate(sweepProgress, [0, 1], [-4.8, 4.8]);
+    const sweepLightY = interpolate(sweepProgress, [0, 1], [3.6, -2.8]);
+    const sweepLightIntensity = interpolate(
+        frame,
+        [2.6 * fps, 3.02 * fps, 3.5 * fps],
+        [0, 3.8, 0.35],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
 
-    const subtitleOpacity = interpolate(frame, [2.62 * fps, 3.12 * fps], [0, 1], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
-    const subtitleY = interpolate(frame, [2.62 * fps, 3.12 * fps], [16, 0], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-        easing: Easing.out(Easing.cubic),
-    });
+    return (
+        <>
+            <CameraDollyRig />
+            <FloatingDustParticles />
 
-    // Subtle slow cinematic push-in across entire 5.0s
-    const masterCameraScale = interpolate(frame, [0, 5.0 * fps], [0.975, 1.035], {
-        extrapolateLeft: 'clamp',
-        extrapolateRight: 'clamp',
-    });
+            {/* Studio PBR Lighting Rig (Awakens from Rim-Lit Blueprint to Crisp Studio Light) */}
+            <ambientLight intensity={studioAmbientIntensity} color="#eef6ff" />
+            <hemisphereLight
+                color="#f8fafc"
+                groundColor="#071c3f"
+                intensity={0.55}
+            />
+            <directionalLight
+                position={[4.2, 5.0, 6.4]}
+                intensity={studioKeyIntensity}
+                color="#ffffff"
+            />
+            <directionalLight
+                position={[-4.8, -2.2, 4.6]}
+                intensity={rimLightIntensity}
+                color="#38bdf8"
+            />
+            <pointLight
+                position={[sweepLightX, sweepLightY, 3.6]}
+                intensity={sweepLightIntensity}
+                distance={14}
+                color="#e0f2fe"
+            />
 
-    const logoSrc = staticFile('logo_skensa.png');
-    const audioSrc = staticFile('intro_audio.mp3');
+            <group
+                position={[0, masterPosY, 0]}
+                rotation={[masterRotX, masterRotY, masterRotZ]}
+                scale={0.78}
+            >
+                {/* 3D Mechanical Blueprint Calibration Rings & Ticks */}
+                <BlueprintCalibrationRig lockProgress={cameraLockProgress} />
+
+                {/* ========================================================= */}
+                {/* TIER 1: 3D Extruded & Beveled 24-Tooth Outer Gear         */}
+                {/* ========================================================= */}
+                <group
+                    position={[0, 0, outerZ]}
+                    rotation={[0, 0, outerRotZ]}
+                    scale={outerScale}
+                >
+                    <VolumetricExtrudedLayer
+                        frontTex={textures.outerGearFront}
+                        sideTex={textures.outerGearSide}
+                        bevelTex={textures.outerGearBevel}
+                        radius={2.22}
+                        depth={0.32}
+                        slices={32}
+                        opacity={outerOpacity}
+                        bevelCoreGeo={outerBevelCoreGeo}
+                        bevelCoreColor="#2B5B91"
+                    />
+                </group>
+
+                {/* ========================================================= */}
+                {/* TIER 2: 3D Extruded & Beveled 8-Tooth Inner Navy Ring     */}
+                {/* ========================================================= */}
+                <group
+                    position={[0, 0, innerZ]}
+                    rotation={[0, 0, innerRotZ]}
+                    scale={innerScale}
+                >
+                    <VolumetricExtrudedLayer
+                        frontTex={textures.innerRingFront}
+                        sideTex={textures.innerRingSide}
+                        bevelTex={textures.innerRingBevel}
+                        radius={2.22}
+                        depth={0.26}
+                        slices={24}
+                        opacity={innerOpacity}
+                        bevelCoreGeo={innerBevelCoreGeo}
+                        bevelCoreColor="#163B65"
+                    />
+                </group>
+
+                {/* ========================================================= */}
+                {/* TIER 3: 3D Beveled Cyan Core Pedestal                     */}
+                {/* ========================================================= */}
+                {cyanVisible && (
+                    <group position={[0, 0, cyanZ]} scale={cyanScale}>
+                        <mesh geometry={cyanBevelCoreGeo}>
+                            <meshStandardMaterial
+                                color="#279AA6"
+                                metalness={0.35}
+                                roughness={0.32}
+                            />
+                        </mesh>
+
+                        <mesh position={[0, 0, 0.122]}>
+                            <circleGeometry args={[2.22, 96]} />
+                            <meshStandardMaterial
+                                map={textures.cyanDiscFront}
+                                transparent
+                                alphaTest={0.02}
+                                roughness={0.3}
+                                metalness={0.22}
+                            />
+                        </mesh>
+                    </group>
+                )}
+
+                {/* ========================================================= */}
+                {/* TIER 4: 3D Extruded Scholar & 3-Tier Open Book Silhouette */}
+                {/* ========================================================= */}
+                <group
+                    position={[0, 0, scholarZ]}
+                    rotation={[0, 0, scholarRotZ]}
+                    scale={scholarScale}
+                >
+                    <VolumetricExtrudedLayer
+                        frontTex={textures.scholarFront}
+                        sideTex={textures.scholarSide}
+                        bevelTex={textures.scholarBevel}
+                        radius={2.22}
+                        depth={0.18}
+                        slices={22}
+                        opacity={scholarOpacity}
+                    />
+                </group>
+            </group>
+        </>
+    );
+};
+
+const MOTTO_CHARS = Array.from('ABHYĀSAD DHÄRYATE VIDYÄ');
+
+export const SkensaIntro: React.FC = () => {
+    const frame = useCurrentFrame();
+    const { fps, width, height } = useVideoConfig();
+
+    const [textures, setTextures] = useState<LogoLayerTextures | null>(null);
+    const [renderHandle] = useState(() =>
+        delayRender('Loading 3D SKENSA Volumetric Logo Textures')
+    );
+
+    useEffect(() => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+            const outer = createAnnularTextureSet(
+                img,
+                0.612,
+                1.0,
+                '#29558A',
+                '#173254',
+                '#5B9BD5'
+            );
+            const inner = createAnnularTextureSet(
+                img,
+                0.492,
+                0.625,
+                '#1A4373',
+                '#0C213D',
+                '#3876B8'
+            );
+            const {
+                cyanDiscFront,
+                scholarFront,
+                scholarSide,
+                scholarBevel,
+            } = createScholarAndCyanTextures(img);
+
+            setTextures({
+                outerGearFront: outer.front,
+                outerGearSide: outer.side,
+                outerGearBevel: outer.bevel,
+                innerRingFront: inner.front,
+                innerRingSide: inner.side,
+                innerRingBevel: inner.bevel,
+                cyanDiscFront,
+                scholarFront,
+                scholarSide,
+                scholarBevel,
+            });
+            continueRender(renderHandle);
+        };
+        img.onerror = (err) => {
+            console.error('Failed to load logo_skensa.png', err);
+            continueRender(renderHandle);
+        };
+        img.src = staticFile('logo_skensa.png');
+    }, [renderHandle]);
+
+    // =========================================================================
+    // Typography & Motto Choreography (2.45s -> 3.55s, right as Master Lock hits at 2.60s)
+    // =========================================================================
+    const titleProgress = interpolate(
+        frame,
+        [2.45 * fps, 3.05 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: EASE_OUT_EXPO,
+        }
+    );
+    const titleOpacity = interpolate(
+        frame,
+        [2.45 * fps, 2.9 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+    const titleY = interpolate(titleProgress, [0, 1], [16, 0]);
+    const titleTracking = interpolate(titleProgress, [0, 1], [0.16, 0.32]);
+
+    const lineScaleX = interpolate(
+        frame,
+        [2.58 * fps, 3.15 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: EASE_OUT_EXPO,
+        }
+    );
+
+    const subtitleProgress = interpolate(
+        frame,
+        [2.95 * fps, 3.55 * fps],
+        [0, 1],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: EASE_OUT_EXPO,
+        }
+    );
+    const subtitleOpacity = interpolate(
+        frame,
+        [2.95 * fps, 3.45 * fps],
+        [0, 0.72],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+    const subtitleY = interpolate(subtitleProgress, [0, 1], [8, 0]);
+    const subtitleTracking = interpolate(subtitleProgress, [0, 1], [0.08, 0.2]);
+
+    // Optical Light Sweep Overlay (2.65s -> 3.45s, Top-Left to Bottom-Right)
+    const sheenTranslate = interpolate(
+        frame,
+        [2.65 * fps, 3.45 * fps],
+        [-130, 130],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+            easing: Easing.inOut(Easing.cubic),
+        }
+    );
+    const sheenOpacity = interpolate(
+        frame,
+        [2.65 * fps, 3.05 * fps, 3.45 * fps],
+        [0, 0.36, 0],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
+
+    // Smooth final settle before GSAP curtain split (5.15s -> 5.50s)
+    const outroContentOpacity = interpolate(
+        frame,
+        [5.15 * fps, 5.5 * fps],
+        [1, 0.92],
+        {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+        }
+    );
 
     return (
         <AbsoluteFill
             style={{
                 backgroundColor: '#071C3F',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
-                color: '#F7F6F2',
+                fontFamily:
+                    "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+                color: '#F8FAFC',
                 overflow: 'hidden',
             }}
         >
-            {/* Master Synthesized Audio + Authoritative Motto Voiceover */}
-            <Audio src={audioSrc} volume={1} />
+            {/* Minimalist 5.5s 3D Sound Effects (No Voiceover) */}
+            <Audio src={staticFile('intro_audio.mp3')} volume={0.9} />
 
-            {/* Deep Multi-stop Smooth Radial Navy Spotlight (Anti-Banding) */}
+            {/* Radial Studio Backdrop with Soft Vignette */}
             <div
                 style={{
                     position: 'absolute',
                     inset: 0,
                     background:
-                        'radial-gradient(circle at 50% 42%, #143d78 0%, #113364 25%, #0e2950 48%, #0a2040 70%, #071933 88%, #051329 100%)',
+                        'radial-gradient(circle at 50% 42%, #123366 0%, #091F44 52%, #05132B 100%)',
                 }}
             />
 
-            {/* Precision Architectural Grid Background */}
-            <div
-                style={{
-                    position: 'absolute',
-                    inset: 0,
-                    backgroundImage:
-                        'linear-gradient(to right, rgba(247,246,242,0.038) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,246,242,0.038) 1px, transparent 1px)',
-                    backgroundSize: '84px 84px',
-                }}
-            />
-
-            {/* Floating Golden & Cyan Academic Embers / Dust Particles */}
-            <div
-                style={{
-                    position: 'absolute',
-                    inset: 0,
-                    pointerEvents: 'none',
-                }}
-            >
-                {GOLDEN_DUST_PARTICLES.map((p) => {
-                    const yOffset = (timeSec * p.speed) % 100;
-                    const yPos = (p.baseY - yOffset + 100) % 100;
-                    const xSway = Math.sin(timeSec * 1.6 + p.phase) * 1.2;
-                    const pOpacity =
-                        (0.2 + 0.35 * Math.sin(timeSec * 2.4 + p.phase)) *
-                        interpolate(frame, [0, 0.4 * fps], [0, 1], {
-                            extrapolateLeft: 'clamp',
-                            extrapolateRight: 'clamp',
-                        });
-                    const color = p.isCyan ? '#2CC5D8' : '#F5B700';
-
-                    return (
-                        <div
-                            key={p.id}
-                            style={{
-                                position: 'absolute',
-                                left: `${p.x + xSway}%`,
-                                top: `${yPos}%`,
-                                width: p.size,
-                                height: p.size,
-                                borderRadius: '50%',
-                                backgroundColor: color,
-                                opacity: pOpacity,
-                                boxShadow: `0 0 ${p.size * 3}px ${color}`,
-                            }}
-                        />
-                    );
-                })}
-            </div>
-
-            {/* Main Full-Screen Cinematic Stage */}
-            <div
-                style={{
-                    position: 'relative',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transform: `scale(${masterCameraScale})`,
-                }}
-            >
-                {/* ========================================================= */}
-                {/* CIRCULAR LOGO ASSEMBLY STAGE (520x520px, NO PENTAGON)     */}
-                {/* ========================================================= */}
-                <div
-                    style={{
-                        position: 'relative',
-                        width: 520,
-                        height: 520,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: 42,
-                    }}
-                >
-                    {/* Anamorphic Horizontal Optical Lens Flare on Impact (1.42s - 2.35s) */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 1480,
-                            height: 10,
-                            borderRadius: 999,
-                            background:
-                                'linear-gradient(90deg, rgba(245,183,0,0) 0%, rgba(44,197,216,0.55) 25%, rgba(255,250,220,0.95) 50%, rgba(245,183,0,0.65) 75%, rgba(245,183,0,0) 100%)',
-                            opacity: anamorphicOpacity,
-                            transform: `scaleX(${anamorphicScaleX})`,
-                            boxShadow: '0 0 48px 8px rgba(245, 183, 0, 0.55)',
-                            pointerEvents: 'none',
-                        }}
-                    />
-
-                    {/* Harmonic Voiceover Aura Rings (Synchronized with Baritone Motto) */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 468,
-                            height: 468,
-                            borderRadius: '50%',
-                            border: '2px solid rgba(245, 183, 0, 0.72)',
-                            opacity: auraOpacity,
-                            transform: `scale(${auraScale1})`,
-                            boxShadow:
-                                '0 0 42px rgba(245, 183, 0, 0.32), inset 0 0 28px rgba(44, 197, 216, 0.22)',
-                            pointerEvents: 'none',
-                        }}
-                    />
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 496,
-                            height: 496,
-                            borderRadius: '50%',
-                            border: '1.5px solid rgba(44, 197, 216, 0.48)',
-                            opacity: auraOpacity * 0.72,
-                            transform: `scale(${auraScale2})`,
-                            pointerEvents: 'none',
-                        }}
-                    />
-
-                    {/* Lock-In Expanding Golden Shockwave Ring */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 454,
-                            height: 454,
-                            borderRadius: '50%',
-                            border: '3px solid #F5B700',
-                            opacity: lockPulseOpacity,
-                            transform: `scale(${lockPulseScale})`,
-                            boxShadow: '0 0 55px rgba(245, 183, 0, 0.42)',
-                        }}
-                    />
-
-                    {/* Outer Technical Compass / Blueprint Circles (Circular Only) */}
-                    <svg
-                        width="520"
-                        height="520"
-                        viewBox="0 0 520 520"
+            <AbsoluteFill style={{ opacity: outroContentOpacity }}>
+                {/* Remotion + Three.js WebGL 3D Canvas */}
+                {textures && (
+                    <ThreeCanvas
+                        orthographic={false}
+                        width={width}
+                        height={height}
                         style={{
                             position: 'absolute',
                             inset: 0,
                         }}
+                        camera={{ fov: 38, position: [0, 0, 8.2] }}
                     >
-                        {/* Outer Gold Drawing Ring */}
-                        <circle
-                            cx="260"
-                            cy="260"
-                            r="246"
-                            fill="none"
-                            stroke="rgba(245, 183, 0, 0.5)"
-                            strokeWidth="2.5"
-                            strokeDasharray="1560"
-                            strokeDashoffset={outerRingStroke}
-                            transform="rotate(-90 260 260)"
-                        />
+                        <SkensaEmblem3DScene textures={textures} />
+                    </ThreeCanvas>
+                )}
 
-                        {/* Subtle Rotating Technical Degree Ticks */}
-                        <circle
-                            cx="260"
-                            cy="260"
-                            r="228"
-                            fill="none"
-                            stroke="rgba(247, 246, 242, 0.18)"
-                            strokeWidth="2"
-                            strokeDasharray="5 16"
-                            style={{
-                                transformOrigin: '260px 260px',
-                                transform: `rotate(${frame * 0.25}deg)`,
-                            }}
-                        />
-
-                        {/* Inner Cyan Blueprint Trace Ring */}
-                        <circle
-                            cx="260"
-                            cy="260"
-                            r="152"
-                            fill="none"
-                            stroke="#2CC5D8"
-                            strokeWidth="3"
-                            strokeDasharray="980"
-                            strokeDashoffset={cyanStrokeDraw}
-                            opacity={0.78}
-                            transform="rotate(90 260 260)"
-                        />
-                    </svg>
-
-                    {/* LAYER 1: Outer Gear & "SMK NEGERI 1 DENPASAR" Ring Assembly */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 456,
-                            height: 456,
-                            opacity: outerGearOpacity,
-                            transform: `scale(${outerGearScale}) rotate(${outerGearRotate}deg)`,
-                            clipPath: 'circle(49% at 50% 50%)',
-                            filter: 'drop-shadow(0 24px 48px rgba(0, 0, 0, 0.5))',
-                        }}
-                    >
-                        <Img
-                            src={logoSrc}
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'contain',
-                            }}
-                        />
-                    </div>
-
-                    {/* Dark Navy Mask to Hide Inner Core Until Stage 2 */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 286,
-                            height: 286,
-                            borderRadius: '50%',
-                            backgroundColor: '#08214A',
-                            opacity: interpolate(frame, [0.55 * fps, 0.9 * fps], [1, 0], {
-                                extrapolateLeft: 'clamp',
-                                extrapolateRight: 'clamp',
-                            }),
-                        }}
-                    />
-
-                    {/* LAYER 2: Inner Cyan Disc Expanding Reveal */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 456,
-                            height: 456,
-                            clipPath: `circle(${cyanCoreRadius}% at 50% 50%)`,
-                        }}
-                    >
-                        <Img
-                            src={logoSrc}
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'contain',
-                            }}
-                        />
-                    </div>
-
-                    {/* Cyan Mask Over Central Book/Figure Until Stage 3 Pop-In */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 234,
-                            height: 234,
-                            borderRadius: '50%',
-                            backgroundColor: '#29B6C8',
-                            opacity: interpolate(
-                                frame,
-                                [0.55 * fps, 0.75 * fps, 1.0 * fps, 1.3 * fps],
-                                [0, 1, 1, 0],
-                                {
-                                    extrapolateLeft: 'clamp',
-                                    extrapolateRight: 'clamp',
-                                }
-                            ),
-                        }}
-                    />
-
-                    {/* LAYER 3: Central Scholar & Book Emblem Snap-In */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 456,
-                            height: 456,
-                            opacity: centerSymbolOpacity,
-                            transform: `scale(${centerSymbolScale})`,
-                            clipPath: 'circle(27% at 50% 50%)',
-                        }}
-                    >
-                        <Img
-                            src={logoSrc}
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'contain',
-                            }}
-                        />
-                    </div>
-
-                    {/* LAYER 4: Diagonal Light Sweep Across Circular Logo */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            width: 456,
-                            height: 456,
-                            borderRadius: '50%',
-                            overflow: 'hidden',
-                            pointerEvents: 'none',
-                        }}
-                    >
-                        <div
-                            style={{
-                                position: 'absolute',
-                                top: -80,
-                                bottom: -80,
-                                width: 120,
-                                background:
-                                    'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0) 100%)',
-                                transform: `translateX(${glintX * 2.5}px) rotate(25deg)`,
-                            }}
-                        />
-                    </div>
-                </div>
-
-                {/* ========================================================= */}
-                {/* CINEMATIC TYPOGRAPHY & SLOGAN                             */}
-                {/* ========================================================= */}
+                {/* Top-Left to Bottom-Right Optical Gleam across Logo Area (2.65s -> 3.45s) */}
                 <div
                     style={{
-                        textAlign: 'center',
+                        position: 'absolute',
+                        left: '50%',
+                        top: '41%',
+                        width: 460,
+                        height: 460,
+                        marginLeft: -230,
+                        marginTop: -230,
+                        borderRadius: '50%',
+                        overflow: 'hidden',
+                        pointerEvents: 'none',
+                        opacity: sheenOpacity,
+                        mixBlendMode: 'screen',
+                    }}
+                >
+                    <div
+                        style={{
+                            position: 'absolute',
+                            inset: -120,
+                            background:
+                                'linear-gradient(135deg, rgba(255,255,255,0) 38%, rgba(224,242,254,0.65) 50%, rgba(255,255,255,0) 62%)',
+                            transform: `translate(${sheenTranslate}%, ${sheenTranslate}%)`,
+                        }}
+                    />
+                </div>
+
+                {/* Minimalist Typography & Animated Motto Footer */}
+                <div
+                    style={{
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        bottom: 68,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        justifyContent: 'center',
+                        pointerEvents: 'none',
                     }}
                 >
-                    {/* School Identity Pill Badge */}
+                    {/* Main School Title */}
                     <div
                         style={{
-                            opacity: headerOpacity,
-                            transform: `translateY(${headerY}px)`,
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 16,
-                            padding: '10px 30px',
-                            borderRadius: 999,
-                            backgroundColor: 'rgba(245, 183, 0, 0.14)',
-                            border: '2px solid rgba(245, 183, 0, 0.5)',
-                            marginBottom: 22,
+                            fontSize: 26,
+                            fontWeight: 700,
+                            letterSpacing: `${titleTracking}em`,
+                            textTransform: 'uppercase',
+                            color: '#F8FAFC',
+                            opacity: titleOpacity,
+                            transform: `translateY(${titleY}px)`,
+                            marginBottom: 12,
                         }}
                     >
-                        <span
-                            style={{
-                                width: 10,
-                                height: 10,
-                                borderRadius: '50%',
-                                backgroundColor: '#F5B700',
-                            }}
-                        />
-                        <span
-                            style={{
-                                fontSize: 22,
-                                letterSpacing: 7.5,
-                                textTransform: 'uppercase',
-                                color: '#F5B700',
-                                fontWeight: 800,
-                            }}
-                        >
-                            SMK NEGERI 1 DENPASAR &bull; SKENSA
-                        </span>
-                        <span
-                            style={{
-                                width: 10,
-                                height: 10,
-                                borderRadius: '50%',
-                                backgroundColor: '#F5B700',
-                            }}
-                        />
+                        SMK NEGERI 1 DENPASAR
                     </div>
 
-                    {/* Per-Character Animated Slogan: Abhyāsad Dhäryate Vidyä */}
+                    {/* Cyan-Ice Divider Line (Strictly Zero Yellow) */}
                     <div
                         style={{
-                            fontSize: 96,
-                            fontWeight: 900,
-                            letterSpacing: -2,
+                            width: 68,
+                            height: 2,
+                            background:
+                                'linear-gradient(90deg, rgba(53,184,196,0.2) 0%, #35B8C4 50%, rgba(53,184,196,0.2) 100%)',
+                            borderRadius: 999,
+                            transform: `scaleX(${lineScaleX})`,
+                            marginBottom: 14,
+                        }}
+                    />
+
+                    {/* Animated Sanskrit Motto (Staggered Per-Character Reveal + Cyan Gleam) */}
+                    <div
+                        style={{
                             display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
                             justifyContent: 'center',
-                            lineHeight: 1.08,
-                            paddingBottom: 22,
-                            textShadow: '0 12px 36px rgba(0, 0, 0, 0.5)',
+                            fontSize: 15,
+                            fontWeight: 600,
+                            letterSpacing: '0.26em',
+                            textTransform: 'uppercase',
+                            marginBottom: 7,
                         }}
                     >
-                        {SLOGAN.split('').map((char, index) => {
-                            const startFrame = 1.38 * fps + index * 1.45;
+                        {MOTTO_CHARS.map((char, idx) => {
+                            const charStart = (2.64 + idx * 0.018) * fps;
+                            const charEnd = charStart + 0.36 * fps;
+
+                            const charProgress = interpolate(
+                                frame,
+                                [charStart, charEnd],
+                                [0, 1],
+                                {
+                                    extrapolateLeft: 'clamp',
+                                    extrapolateRight: 'clamp',
+                                    easing: EASE_OUT_EXPO,
+                                }
+                            );
                             const charOpacity = interpolate(
                                 frame,
-                                [startFrame, startFrame + 8],
+                                [charStart, charStart + 0.22 * fps],
                                 [0, 1],
                                 {
                                     extrapolateLeft: 'clamp',
@@ -600,34 +1206,49 @@ export const SkensaIntro: React.FC = () => {
                                 }
                             );
                             const charY = interpolate(
-                                frame,
-                                [startFrame, startFrame + 8],
-                                [30, 0],
-                                {
-                                    extrapolateLeft: 'clamp',
-                                    extrapolateRight: 'clamp',
-                                    easing: Easing.bezier(0.16, 1, 0.3, 1),
-                                }
+                                charProgress,
+                                [0, 1],
+                                [10, 0]
                             );
                             const charScale = interpolate(
+                                charProgress,
+                                [0, 1],
+                                [0.92, 1]
+                            );
+
+                            // Subtle cyan highlight as each character settles into crisp ice-white
+                            const highlightMix = interpolate(
                                 frame,
-                                [startFrame, startFrame + 8],
-                                [0.85, 1],
+                                [
+                                    charStart + 0.1 * fps,
+                                    charEnd,
+                                    charEnd + 0.25 * fps,
+                                ],
+                                [1, 0.4, 0],
                                 {
                                     extrapolateLeft: 'clamp',
                                     extrapolateRight: 'clamp',
-                                    easing: Easing.out(Easing.back(1.6)),
                                 }
                             );
 
                             return (
                                 <span
-                                    key={index}
+                                    key={idx}
                                     style={{
+                                        display: 'inline-block',
+                                        whiteSpace: 'pre',
                                         opacity: charOpacity,
                                         transform: `translateY(${charY}px) scale(${charScale})`,
-                                        display: 'inline-block',
-                                        whiteSpace: char === ' ' ? 'pre' : 'normal',
+                                        color:
+                                            highlightMix > 0.35
+                                                ? '#7DD3FC'
+                                                : '#E2E8F0',
+                                        textShadow:
+                                            highlightMix > 0.2
+                                                ? `0 0 12px rgba(53, 184, 196, ${
+                                                      highlightMix * 0.55
+                                                  })`
+                                                : 'none',
                                     }}
                                 >
                                     {char}
@@ -636,43 +1257,21 @@ export const SkensaIntro: React.FC = () => {
                         })}
                     </div>
 
-                    {/* SKENSA Golden Brush Line */}
+                    {/* Animated Motto Meaning Subtitle */}
                     <div
                         style={{
-                            width: 780,
-                            height: 8,
-                            backgroundColor: 'rgba(247, 246, 242, 0.14)',
-                            borderRadius: 999,
-                            margin: '0 auto 24px auto',
-                            overflow: 'hidden',
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: `${yellowLineProgress * 100}%`,
-                                height: '100%',
-                                backgroundColor: '#F5B700',
-                                borderRadius: 999,
-                                boxShadow: '0 0 24px rgba(245, 183, 0, 0.65)',
-                            }}
-                        />
-                    </div>
-
-                    {/* Subtitle Meaning */}
-                    <div
-                        style={{
+                            fontSize: 12,
+                            fontWeight: 400,
+                            letterSpacing: `${subtitleTracking}em`,
+                            color: 'rgba(226, 232, 240, 0.72)',
                             opacity: subtitleOpacity,
                             transform: `translateY(${subtitleY}px)`,
-                            fontSize: 24,
-                            letterSpacing: 5.5,
-                            color: 'rgba(247, 246, 242, 0.9)',
-                            fontWeight: 600,
                         }}
                     >
-                        {SUBTITLE}
+                        Peliharalah ilmu sampai menjadi tradisi
                     </div>
                 </div>
-            </div>
+            </AbsoluteFill>
         </AbsoluteFill>
     );
 };

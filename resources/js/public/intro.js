@@ -11,25 +11,53 @@ export function initIntro() {
     const bottomCurtain = overlay.querySelector('[data-intro-bottom]');
     const videoWrap = overlay.querySelector('[data-intro-stage]');
     const video = overlay.querySelector('video');
-    const soundGate = overlay.querySelector('[data-intro-sound-gate]');
+    const audioToggleBtn = overlay.querySelector('[data-intro-audio-toggle]');
+    const audioDot = overlay.querySelector('[data-intro-audio-dot]');
+    const audioLabel = overlay.querySelector('[data-intro-audio-label]');
+    const skipBtn = overlay.querySelector('[data-intro-skip]');
+    const progressBar = overlay.querySelector('[data-intro-progress]');
     const replayBtn = document.querySelector('[data-intro-replay]');
 
+    const introVersion = overlay.dataset.introVersion || '55';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const urlParams = new URLSearchParams(window.location.search);
     const forceIntro = urlParams.has('intro');
-    const alreadySeen = !forceIntro && sessionStorage.getItem('skensa_intro_seen') === '1';
+    const alreadySeen =
+        !forceIntro &&
+        sessionStorage.getItem('skensa_intro_seen_ver') === introVersion;
 
     let fallbackTimer = null;
+    let progressTween = null;
 
-    const clearFallbackTimer = () => {
+    const clearTimers = () => {
         if (fallbackTimer) {
             fallbackTimer.kill();
             fallbackTimer = null;
         }
+        if (progressTween) {
+            progressTween.kill();
+            progressTween = null;
+        }
+    };
+
+    const updateAudioButtonState = (isMuted) => {
+        if (!audioDot || !audioLabel) return;
+        if (isMuted) {
+            audioDot.classList.remove('bg-[#35B8C4]');
+            audioDot.classList.add('bg-paper/40');
+            audioLabel.textContent = 'Suara Mati';
+        } else {
+            audioDot.classList.remove('bg-paper/40');
+            audioDot.classList.add('bg-[#35B8C4]');
+            audioLabel.textContent = 'Suara Aktif';
+        }
     };
 
     const closeIntroImmediate = () => {
-        clearFallbackTimer();
+        clearTimers();
+        if (video) {
+            video.pause();
+        }
         overlay.style.display = 'none';
         overlay.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('overflow-hidden');
@@ -39,11 +67,15 @@ export function initIntro() {
     const runSplitReveal = () => {
         if (overlay.dataset.closing === '1') return;
         overlay.dataset.closing = '1';
-        clearFallbackTimer();
-        sessionStorage.setItem('skensa_intro_seen', '1');
+        clearTimers();
+        sessionStorage.setItem('skensa_intro_seen_ver', introVersion);
+
+        const heroTargets = document.querySelectorAll(
+            '[data-hero-animate], [data-hero-badge], [data-hero-title], [data-hero-cta]'
+        );
 
         const tl = gsap.timeline({
-            defaults: { ease: 'power3.inOut' },
+            defaults: { ease: 'expo.inOut' },
             onComplete: () => {
                 closeIntroImmediate();
             },
@@ -51,36 +83,53 @@ export function initIntro() {
 
         tl.to(videoWrap, {
             opacity: 0,
-            scale: 0.96,
-            duration: 0.45,
+            scale: 1.02,
+            duration: 0.36,
             ease: 'power2.in',
         })
             .to(
                 topCurtain,
                 {
                     yPercent: -100,
-                    duration: 0.85,
+                    duration: 0.78,
                 },
-                '-=0.15'
+                '-=0.12'
             )
             .to(
                 bottomCurtain,
                 {
                     yPercent: 100,
-                    duration: 0.85,
+                    duration: 0.78,
                 },
                 '<'
-            )
-            .fromTo(
-                '[data-hero-animate]',
-                { y: 28, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out' },
-                '-=0.45'
             );
+
+        if (heroTargets.length) {
+            tl.fromTo(
+                heroTargets,
+                { y: 22, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.07,
+                    ease: 'power3.out',
+                },
+                '-=0.42'
+            );
+        }
     };
 
-    const armFallbackTimer = (seconds = 5.6) => {
-        clearFallbackTimer();
+    const armFallbackTimer = (seconds = 5.85) => {
+        clearTimers();
+        if (progressBar) {
+            gsap.set(progressBar, { scaleX: 0 });
+            progressTween = gsap.to(progressBar, {
+                scaleX: 1,
+                duration: 5.5,
+                ease: 'none',
+            });
+        }
         fallbackTimer = gsap.delayedCall(seconds, () => {
             if (overlay.dataset.closing !== '1') {
                 runSplitReveal();
@@ -94,67 +143,62 @@ export function initIntro() {
         overlay.setAttribute('aria-hidden', 'false');
         document.body.classList.add('overflow-hidden');
 
-        if (soundGate) {
-            soundGate.classList.add('hidden');
-        }
-
         gsap.set([topCurtain, bottomCurtain], { yPercent: 0 });
         gsap.set(videoWrap, { opacity: 1, scale: 1 });
 
         if (video) {
             video.currentTime = 0;
             video.muted = false;
-            video.volume = 1.0;
+            video.volume = 0.85;
             video.onended = () => runSplitReveal();
+
+            armFallbackTimer(5.85);
 
             const playPromise = video.play();
             if (playPromise !== undefined) {
                 playPromise
                     .then(() => {
-                        armFallbackTimer(5.6);
+                        updateAudioButtonState(false);
                     })
                     .catch(() => {
-                        // Browser blocked unmuted autoplay on initial visit:
-                        // Pause at frame 0 and show sleek click-anywhere sound gate so user hears full motto voiceover
-                        video.pause();
-                        video.currentTime = 0;
-                        if (soundGate) {
-                            soundGate.classList.remove('hidden');
-                        }
-
-                        const unlockAndPlay = () => {
-                            if (soundGate) {
-                                soundGate.classList.add('hidden');
-                            }
-                            window.removeEventListener('keydown', unlockAndPlay);
-                            overlay.removeEventListener('click', unlockAndPlay);
-
-                            video.currentTime = 0;
-                            video.muted = false;
-                            video.volume = 1.0;
-                            armFallbackTimer(5.6);
-                            video.play().catch(() => {
-                                video.muted = true;
-                                video.play().catch(() => {
-                                    gsap.delayedCall(1.8, runSplitReveal);
-                                });
-                            });
-                        };
-
-                        overlay.addEventListener('click', unlockAndPlay, { once: true });
-                        window.addEventListener('keydown', unlockAndPlay, { once: true });
+                        // Browser blocked unmuted autoplay: immediately play muted so 3D intro never stalls
+                        video.muted = true;
+                        updateAudioButtonState(true);
+                        video.play().catch(() => {
+                            gsap.delayedCall(1.5, runSplitReveal);
+                        });
                     });
-            } else {
-                armFallbackTimer(5.6);
             }
         } else {
-            armFallbackTimer(2.5);
+            armFallbackTimer(2.0);
         }
     };
 
+    audioToggleBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!video) return;
+        video.muted = !video.muted;
+        if (!video.muted) {
+            video.volume = 0.85;
+            video.play().catch(() => {});
+        }
+        updateAudioButtonState(video.muted);
+    });
+
+    skipBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        runSplitReveal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.style.display !== 'none' && overlay.dataset.closing !== '1') {
+            runSplitReveal();
+        }
+    });
+
     if (replayBtn) {
         replayBtn.addEventListener('click', () => {
-            sessionStorage.removeItem('skensa_intro_seen');
+            sessionStorage.removeItem('skensa_intro_seen_ver');
             startIntro();
         });
     }
