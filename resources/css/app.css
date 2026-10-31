@@ -22,9 +22,9 @@
     --color-ink-muted: #53545B;
     --color-navy: #0E1133;
     --color-navy-700: #1B214D;
-    --color-skensa-blue: #2B4EFF;
-    --color-skensa-blue-hover: #1E3FE0;
-    --color-skensa-soft: #EAEDFF;
+    --color-skensa-blue: #0E1133;
+    --color-skensa-blue-hover: #000000;
+    --color-skensa-soft: #F0F2F5;
     --color-alert-skensa: #D72630;
     --color-line: #E2E4E8;
 }

@@ -7,7 +7,7 @@
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest">
-                <a href="{{ route('publications.index') }}" class="text-[#2B4EFF] hover:underline">&larr; Kembali ke Publikasi</a>
+                <a href="{{ route('publications.index') }}" class="text-ink hover:underline">&larr; Kembali ke Publikasi</a>
                 <span>•</span>
                 <span class="px-2.5 py-0.5 rounded bg-navy-700 text-paper">{{ $post->category }}</span>
                 <span>•</span>

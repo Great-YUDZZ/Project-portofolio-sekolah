@@ -6,7 +6,7 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
+            <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                 Sumber Daya Manusia SKENSA
             </span>
             <h1 class="font-display font-extrabold text-4xl sm:text-5xl mt-3">Manajemen, Pendidik & Tendik</h1>
@@ -53,7 +53,7 @@
                     @if($group)
                         <input type="hidden" name="group" value="{{ $group }}">
                     @endif
-                    <button type="submit" class="px-4 py-2 rounded-lg bg-[#2B4EFF] text-white hover:bg-[#1E3FE0] text-xs font-extrabold uppercase tracking-wider cursor-pointer transition-colors shadow-sm">
+                    <button type="submit" class="px-4 py-2 rounded-lg bg-ink text-white hover:bg-slate-800 text-xs font-extrabold uppercase tracking-wider cursor-pointer transition-colors shadow-sm">
                         Filter
                     </button>
                 </div>
@@ -74,7 +74,7 @@
                         <article class="p-6 rounded-2xl bg-paper-2/60 border border-line flex flex-col justify-between hover:border-navy transition-colors">
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-3">
-                                    <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-bold uppercase tracking-wider">
+                                    <span class="px-2.5 py-0.5 rounded bg-ink text-white text-[11px] font-bold uppercase tracking-wider">
                                         {{ strtoupper($person->group) }}
                                     </span>
                                     @if($person->department)

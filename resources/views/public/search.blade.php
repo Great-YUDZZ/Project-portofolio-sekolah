@@ -6,7 +6,7 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="text-xs font-bold uppercase tracking-widest text-[#2B4EFF]">Mesin Pencari Terpadu SKENSA</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-ink">Mesin Pencari Terpadu SKENSA</span>
             <h1 class="font-display font-extrabold text-3xl sm:text-4xl mt-2">
                 Hasil Pencarian: "{{ $q ?: 'Semua Entitas' }}"
             </h1>
@@ -19,7 +19,7 @@
                     placeholder="Ketik nama jurusan, berita, karya siswa, prestasi, atau guru..."
                     class="flex-1 px-4 py-3 rounded-xl bg-paper text-ink text-sm font-medium focus:outline-none"
                 >
-                <button type="submit" class="px-6 py-3 rounded-xl bg-[#2B4EFF] text-white hover:bg-[#1E3FE0] font-extrabold text-xs uppercase tracking-wider cursor-pointer transition-colors shadow-sm">
+                <button type="submit" class="px-6 py-3 rounded-xl bg-ink text-white hover:bg-slate-800 font-extrabold text-xs uppercase tracking-wider cursor-pointer transition-colors shadow-sm">
                     Cari Sekarang
                 </button>
             </form>
@@ -53,8 +53,8 @@
                         <h2 class="font-display font-bold text-xl text-ink mb-4">Konsentrasi Keahlian ({{ $majors->count() }})</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             @foreach($majors as $m)
-                                <a href="{{ route('majors.show', $m->slug) }}" class="p-5 rounded-xl bg-paper-2 border border-line hover:border-[#2B4EFF] block transition-colors">
-                                    <span class="px-2 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-bold">{{ $m->code }}</span>
+                                <a href="{{ route('majors.show', $m->slug) }}" class="p-5 rounded-xl bg-paper-2 border border-line hover:border-ink block transition-colors">
+                                    <span class="px-2 py-0.5 rounded bg-ink text-white text-xs font-bold">{{ $m->code }}</span>
                                     <h3 class="font-display font-bold text-base text-ink mt-2">{{ $m->name }}</h3>
                                     <p class="text-xs text-ink-muted mt-1 line-clamp-2">{{ $m->summary }}</p>
                                 </a>

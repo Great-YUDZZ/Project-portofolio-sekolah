@@ -6,7 +6,7 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
+            <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                 Hall of Fame SKENSA
             </span>
             <h1 class="font-display font-extrabold text-4xl sm:text-5xl mt-3">Prestasi Siswa & Institusi</h1>
@@ -54,7 +54,7 @@
                         <article class="p-6 rounded-2xl bg-paper-2/70 border border-line flex flex-col justify-between">
                             <div>
                                 <div class="flex flex-wrap items-center gap-2 mb-3">
-                                    <span class="px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase">
+                                    <span class="px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase">
                                         {{ $achievement->medal }}
                                     </span>
                                     <span class="px-3 py-1 rounded bg-navy text-paper text-xs font-bold uppercase">
