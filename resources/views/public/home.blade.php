@@ -4,44 +4,57 @@
 
 @section('content')
 
-    {{-- Remotion Cinematic Intro Overlay (Full-Screen GSAP Split Curtain, Unskippable with Audio) --}}
+    {{-- Remotion + Three.js 3D Minimalist Intro Overlay (Auto-Play, Non-Blocking Audio & Skip) --}}
+    @php
+        $introVer = @filemtime(public_path('media/intro.mp4')) ?: '55';
+    @endphp
     <div
         id="skensa-intro-overlay"
+        data-intro-version="{{ $introVer }}"
         aria-hidden="false"
         class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none bg-[#071C3F]"
     >
-        <div data-intro-top class="absolute inset-x-0 top-0 h-1/2 bg-[#071C3F] border-b border-yellow-skensa/40"></div>
-        <div data-intro-bottom class="absolute inset-x-0 bottom-0 h-1/2 bg-[#071C3F] border-t border-yellow-skensa/40"></div>
+        <div data-intro-top class="absolute inset-x-0 top-0 h-1/2 bg-[#071C3F] border-b border-paper/10 will-change-transform"></div>
+        <div data-intro-bottom class="absolute inset-x-0 bottom-0 h-1/2 bg-[#071C3F] border-t border-paper/10 will-change-transform"></div>
 
-        <div data-intro-stage class="relative z-10 w-screen h-screen flex items-center justify-center">
+        <div data-intro-stage class="relative z-10 w-screen h-screen flex items-center justify-center will-change-transform">
             <video
                 autoplay
                 playsinline
                 preload="auto"
-                poster="/media/intro.jpg"
+                poster="/media/intro.jpg?v={{ $introVer }}"
                 class="w-full h-full object-cover"
             >
-                <source src="/media/intro.mp4" type="video/mp4">
-                <source src="/media/intro.webm" type="video/webm">
+                <source src="/media/intro.mp4?v={{ $introVer }}" type="video/mp4">
+                <source src="/media/intro.webm?v={{ $introVer }}" type="video/webm">
             </video>
 
-            {{-- Browser Autoplay-with-Sound Gate Fallback (Shown only if browser blocks unmuted autoplay) --}}
-            <button
-                type="button"
-                data-intro-sound-gate
-                class="hidden absolute inset-0 z-20 flex flex-col items-center justify-end pb-16 bg-gradient-to-t from-[#051329]/90 via-[#071C3F]/25 to-transparent text-paper cursor-pointer focus:outline-none group"
-            >
-                <div class="inline-flex items-center gap-3.5 px-7 py-4 rounded-2xl bg-[#071C3F]/95 border-2 border-yellow-skensa text-yellow-skensa font-display font-extrabold text-xs sm:text-sm uppercase tracking-[0.2em] shadow-2xl group-hover:bg-yellow-skensa group-hover:text-ink transition-all duration-300">
-                    <span class="relative flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-skensa opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-skensa group-hover:bg-ink"></span>
-                    </span>
-                    <span>Klik di Mana Saja untuk Memasuki SKENSA dengan Suara</span>
-                </div>
-            </button>
+            {{-- Minimalist Non-Blocking Controls (Audio Toggle & Skip Intro) --}}
+            <div class="absolute bottom-6 right-6 z-20 flex items-center gap-2.5">
+                <button
+                    type="button"
+                    data-intro-audio-toggle
+                    aria-label="Aktifkan atau matikan suara intro"
+                    class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-[#071C3F]/75 backdrop-blur-sm border border-paper/15 text-paper/80 hover:text-paper hover:border-[#35B8C4]/60 text-xs font-medium tracking-wider uppercase transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#35B8C4]"
+                >
+                    <span data-intro-audio-dot class="w-2 h-2 rounded-full bg-[#35B8C4]"></span>
+                    <span data-intro-audio-label>Suara</span>
+                </button>
 
-            <div class="absolute bottom-7 inset-x-0 px-6 sm:px-12 flex items-center justify-center text-paper/75 text-[11px] font-bold uppercase tracking-[0.25em] pointer-events-none">
-                <span>SMK NEGERI 1 DENPASAR &bull; ABHYĀSAD DHÄRYATE VIDYÄ</span>
+                <button
+                    type="button"
+                    data-intro-skip
+                    aria-label="Lewati intro"
+                    class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-[#071C3F]/75 backdrop-blur-sm border border-paper/15 text-paper/80 hover:text-paper hover:border-[#35B8C4]/60 text-xs font-medium tracking-wider uppercase transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#35B8C4]"
+                >
+                    <span>Lewati</span>
+                    <span class="text-[10px] text-paper/50 font-mono">ESC</span>
+                </button>
+            </div>
+
+            {{-- Minimalist Bottom Progress Line --}}
+            <div class="absolute bottom-0 inset-x-0 h-[2px] bg-paper/10 pointer-events-none">
+                <div data-intro-progress class="h-full w-full bg-[#35B8C4] origin-left scale-x-0 will-change-transform"></div>
             </div>
         </div>
     </div>
@@ -50,112 +63,89 @@
     {{-- KATEGORI 1: BERANDA & IDENTITAS UTAMA (HERO SECTION)                  --}}
     {{-- ===================================================================== --}}
     {{-- ===================================================================== --}}
-    {{-- SECTION 1: HERO MAJESTIC FULL-WIDTH BANNER & QUICK STATS (ALA SMANSA)  --}}
+    {{-- SECTION 1: HERO MAJESTIC FULL VIEWPORT (100VH MANDIRI)               --}}
     {{-- ===================================================================== --}}
-    <section class="relative min-h-[580px] lg:min-h-[640px] flex items-center bg-navy text-paper border-b-2 border-ink overflow-hidden">
-        {{-- Background Media / Backdrop --}}
+    <section class="relative min-h-[calc(100vh-6rem)] flex items-center bg-[#0E1133] text-paper border-b border-line/20 overflow-hidden">
+        {{-- Background Gedung Sekolah Asli (Tanpa Siswa, Opacity Gelap Halus) --}}
         <div class="absolute inset-0 z-0">
-            <video
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="auto"
-                poster="/images/showcase/drone_kampus.jpg"
-                class="w-full h-full object-cover opacity-40 scale-105"
+            <img
+                src="/images/gedung_skensa.jpg"
+                alt="Gedung SMK Negeri 1 Denpasar"
+                class="w-full h-full object-cover object-center opacity-30 scale-100"
+                fetchpriority="high"
             >
-                <source src="/media/intro.webm" type="video/webm">
-                <source src="/media/intro.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/35"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0E1133] via-[#0E1133]/90 to-[#0E1133]/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0E1133] via-transparent to-[#0E1133]/60"></div>
         </div>
 
-        {{-- Main Hero Container --}}
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 sm:py-20 lg:py-24 w-full">
-            <div class="max-w-3xl space-y-5 sm:space-y-6">
-                <div data-hero-badge class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-paper/10 backdrop-blur-md border border-yellow-skensa/50 text-yellow-skensa text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-widest shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-yellow-skensa shrink-0"></span>
-                    <span>SMK Negeri 1 Denpasar &bull; {{ $settings['hero_highlight'] ?? '“When I Grow Up” Spirit Day!' }}</span>
-                </div>
+        {{-- Main Hero Container (2 Kolom: Kiri Slogan & Aksi, Kanan Foto Siswa Berbagai Kejuruan) --}}
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                {{-- Kolom Kiri: Semboyan & Navigasi Aksi (lg:col-span-7) --}}
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    <div data-hero-badge class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#2B4EFF] text-xs sm:text-sm font-bold uppercase tracking-widest shadow-xs">
+                        <span class="w-2 h-2 rounded-full bg-[#2B4EFF] shrink-0"></span>
+                        <span class="text-white">SMK Negeri 1 Denpasar</span>
+                        <span class="text-white/40">&bull;</span>
+                        <span class="text-[#2B4EFF]">Spirit Day</span>
+                    </div>
 
-                <h1 data-hero-title class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-paper leading-[1.12] sm:leading-[1.08] tracking-tight">
-                    {{ $settings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}
-                    <span class="block text-yellow-skensa mt-2 sm:mt-3 text-xl sm:text-3xl lg:text-4xl font-bold">
-                        "{{ $settings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.' }}"
-                    </span>
-                </h1>
+                    <h1 data-hero-title class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white leading-[1.12] tracking-tight">
+                        {{ $settings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}
+                        <span class="block text-[#2B4EFF] mt-3 text-xl sm:text-3xl lg:text-4xl font-bold">
+                            "{{ $settings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.' }}"
+                        </span>
+                    </h1>
 
-                <p class="text-paper/85 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">
-                    Sekolah Menengah Kejuruan Pusat Keunggulan (SMK PK) berbasis <em>Teaching Factory</em> dan sertifikasi profesi berlisensi <strong>LSP-P1 BNSP</strong> di Provinsi Bali.
-                </p>
+                    <p class="text-white/80 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">
+                        Sekolah Menengah Kejuruan Pusat Keunggulan (SMK PK) berbasis <em>Teaching Factory</em> dan sertifikasi profesi berlisensi <strong>LSP-P1 BNSP</strong> di Provinsi Bali.
+                    </p>
 
-                <div data-hero-cta class="flex flex-col sm:flex-row sm:items-center gap-3 pt-2">
-                    <a
-                        href="#informasi-ppdb"
-                        data-magnetic
-                        class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider border-2 border-yellow-skensa hover:bg-paper transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-skensa shadow-md text-center min-h-[44px]"
-                    >
-                        <span>Pendaftaran PPDB / SPMB</span>
-                        <span aria-hidden="true">&rarr;</span>
-                    </a>
-                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <div data-hero-cta class="flex flex-col sm:flex-row sm:items-center gap-3.5 pt-2">
                         <a
-                            href="#fakultas-keahlian"
-                            data-magnetic
-                            class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/30 hover:bg-paper/20 hover:text-yellow-skensa transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper min-h-[44px] text-center"
+                            href="#informasi-ppdb"
+                            class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#2B4EFF] text-white hover:bg-[#1E3FE0] font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-colors shadow-lg min-h-[46px] text-center"
                         >
-                            <span>12 Jurusan</span>
-                            <span aria-hidden="true">&darr;</span>
+                            <span>Pendaftaran PPDB / SPMB</span>
+                            <span aria-hidden="true">&rarr;</span>
                         </a>
-                        <button
-                            type="button"
-                            data-intro-replay
-                            data-magnetic
-                            class="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-paper/10 backdrop-blur-md text-paper font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-paper/25 hover:bg-paper/20 hover:text-yellow-skensa transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper min-h-[44px]"
-                            title="Putar Ulang Animasi Logo Intro"
-                        >
-                            <svg class="w-4 h-4 text-yellow-skensa shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                            </svg>
-                            <span class="hidden xs:inline">Intro</span>
-                        </button>
+                        <div class="flex items-center gap-3">
+                            <a
+                                href="#fakultas-keahlian"
+                                class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 backdrop-blur-md text-white font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-white/25 hover:bg-white/20 transition-colors min-h-[46px] text-center"
+                            >
+                                <span>12 Jurusan</span>
+                                <span aria-hidden="true">&darr;</span>
+                            </a>
+                            <button
+                                type="button"
+                                data-intro-replay
+                                class="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-white/10 backdrop-blur-md text-white font-display font-bold text-xs sm:text-sm uppercase tracking-wider border border-white/20 hover:bg-white/20 transition-colors cursor-pointer min-h-[46px]"
+                                title="Putar Ulang Animasi Logo Intro"
+                            >
+                                <svg class="w-4 h-4 text-[#2B4EFF] shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="hidden xs:inline">Intro</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        {{-- Floating Quick Stats Bar (Mengambang di Kaki Banner Hero) --}}
-        <div class="absolute bottom-0 inset-x-0 z-20 bg-navy-950/85 backdrop-blur-md border-t border-paper/15 py-3 sm:py-4">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 text-xs sm:text-sm font-semibold text-paper/90 divide-y-0 sm:divide-x divide-paper/10">
-                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
-                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-yellow-skensa text-ink font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">A</span>
-                        <div class="min-w-0">
-                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">Akreditasi A</span>
-                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">BAN-S/M &bull; SMK PK</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
-                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">2.6k</span>
-                        <div class="min-w-0">
-                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">2.680+ Siswa</span>
-                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">4.205 User LMS</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
-                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">12</span>
-                        <div class="min-w-0">
-                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">12 Jurusan</span>
-                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">LSP-P1 BNSP</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2.5 sm:gap-3 py-1 sm:px-3">
-                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-paper/15 text-yellow-skensa font-extrabold flex items-center justify-center shrink-0 text-xs sm:text-sm">185</span>
-                        <div class="min-w-0">
-                            <span class="block font-bold text-paper text-xs sm:text-sm truncate">185+ Guru</span>
-                            <span class="text-[10px] sm:text-[11px] text-paper/60 block truncate">Pendidik Vokasi</span>
-                        </div>
+                {{-- Kolom Kanan: Foto Siswa Berbagai Kejuruan (Transparan Tanpa Background) (lg:col-span-5) --}}
+                <div class="lg:col-span-5 flex items-center justify-center pt-4 lg:pt-0">
+                    <div class="relative w-full max-w-[420px] flex items-center justify-center">
+                        {{-- Soft Ambient Glow --}}
+                        <div class="absolute inset-0 bg-[#2B4EFF]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <img
+                            src="/images/hero_siswa_transparan.png"
+                            alt="Siswa-siswi SMK Negeri 1 Denpasar"
+                            width="400"
+                            height="460"
+                            class="relative z-10 w-full max-h-[420px] sm:max-h-[480px] lg:max-h-[520px] object-contain drop-shadow-2xl"
+                            loading="eager"
+                        >
                     </div>
                 </div>
             </div>
@@ -163,49 +153,40 @@
     </section>
 
     {{-- ===================================================================== --}}
-    {{-- SECTION 2: SAMBUTAN KEPALA SEKOLAH (2 KOLOM LAPANG ALA SMANSA)        --}}
+    {{-- SECTION 2: SAMBUTAN KEPALA SEKOLAH (BERSIH & FOKUS)                   --}}
     {{-- ===================================================================== --}}
-    <section id="sambutan-kepala-sekolah" class="py-20 bg-paper-2 border-b-2 border-ink">
+    <section id="sambutan-kepala-sekolah" class="py-20 bg-paper-2 border-b border-line/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-                {{-- Kolom Kiri: Potret Kepala Sekolah dengan Floating Nameplate Badge ala SMANSA --}}
+                {{-- Kolom Kiri: Potret Resmi Kepala Sekolah --}}
                 <div class="lg:col-span-5 flex flex-col items-center">
-                    <div class="relative w-full max-w-[360px] rounded-3xl overflow-hidden border-2 border-ink bg-navy shadow-xl group">
+                    <div class="relative w-full max-w-[360px] rounded-3xl overflow-hidden border border-line bg-[#0E1133] shadow-xl group">
                         <img
                             src="/images/kepala-sekolah-i-wayan-mustika.jpg"
                             alt="I Wayan Mustika, S.Pd., M.Pd. - Kepala SMK Negeri 1 Denpasar"
                             width="400"
                             height="480"
                             loading="lazy"
-                            class="w-full h-[400px] object-cover object-top group-hover:scale-103 transition-transform duration-500"
+                            class="w-full h-[380px] sm:h-[420px] object-cover object-top group-hover:scale-103 transition-transform duration-500"
                         >
-                        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy via-navy/80 to-transparent"></div>
+                        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0E1133] via-[#0E1133]/80 to-transparent"></div>
                     </div>
 
-                    {{-- Floating Nameplate Card (Seperti Gaya SMANSA) --}}
-                    <div class="relative -mt-8 z-10 w-[90%] max-w-[330px] p-4 rounded-2xl bg-paper border-2 border-ink shadow-lg text-center">
+                    {{-- Nameplate Card Ringkas --}}
+                    <div class="relative -mt-8 z-10 w-[90%] max-w-[330px] p-4 rounded-2xl bg-white border border-line shadow-lg text-center">
                         <h3 class="font-display font-extrabold text-lg text-ink">
                             I Wayan Mustika, S.Pd., M.Pd.
                         </h3>
-                        <p class="text-xs font-bold uppercase tracking-wider text-navy mt-0.5">
+                        <p class="text-xs font-bold uppercase tracking-wider text-[#2B4EFF] mt-0.5">
                             Kepala SMK Negeri 1 Denpasar
                         </p>
-                        <span class="inline-block mt-2 px-2.5 py-0.5 rounded-md bg-yellow-skensa/20 border border-yellow-skensa/50 text-ink text-[10px] font-extrabold uppercase">
-                            SMK Pusat Keunggulan &bull; LSP-P1 BNSP
-                        </span>
-                    </div>
-
-                    {{-- Legalitas & Sejarah Singkat --}}
-                    <div class="mt-4 text-center text-xs text-ink-muted">
-                        <p>NPSN: <strong>50103118</strong> &bull; Berdiri: <strong>24 September 1962</strong></p>
-                        <p>SK Pendirian: No. 17/D.J.P.T/B1/1962</p>
                     </div>
                 </div>
 
-                {{-- Kolom Kanan: Sambutan Resmi & Visi Misi --}}
+                {{-- Kolom Kanan: Teks Sambutan Hangat & Fokus --}}
                 <div class="lg:col-span-7 space-y-6">
                     <div>
-                        <span class="inline-block px-3 py-1 rounded-md bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
+                        <span class="inline-block px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                             Sambutan Kepala Sekolah
                         </span>
                         <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-3 leading-tight">
@@ -213,49 +194,24 @@
                         </h2>
                     </div>
 
-                    <div class="prose max-w-none text-ink text-sm sm:text-base leading-relaxed space-y-3">
-                        <p class="font-semibold text-navy italic">
+                    <div class="prose max-w-none text-ink text-sm sm:text-base leading-relaxed space-y-4">
+                        <p class="font-semibold text-[#2B4EFF] italic">
                             "Om Swastyastu, Assalamu’alaikum Warahmatullahi Wabarakatuh, Salam Sejahtera, Rahayu."
                         </p>
                         <p>
                             Selamat datang di situs resmi <strong>SMK Negeri 1 Denpasar (SKENSA)</strong>. Sejak berdiri pada tahun 1962 sebagai STM Negeri Denpasar, kami konsisten mengemban amanah melahirkan generasi teknisi dan insan kreatif yang tidak hanya menguasai keahlian industri terkini, namun juga berakar kuat pada nilai luhur semboyan <em>Abhyāsad Dhäryate Vidyä</em> (Peliharalah ilmu sampai menjadi tradisi).
                         </p>
                         <p>
-                            Melalui kurikulum berbasis <em>Teaching Factory</em>, kemitraan strategis dengan puluhan industri nasional dan multinasional, serta sertifikasi keahlian berstandar nasional (LSP-P1 BNSP), kami memastikan setiap peserta didik siap melangkah ke dunia kerja, melanjutkan ke perguruan tinggi, maupun membangun wirausaha mandiri.
+                            Melalui kurikulum berbasis <em>Teaching Factory</em>, kemitraan strategis dengan puluhan industri nasional dan multinasional, serta sertifikasi keahlian berstandar nasional (LSP-P1 BNSP), kami memastikan setiap peserta didik siap melangkah ke dunia kerja, melanjutkan ke jenjang perguruan tinggi, maupun membangun wirausaha mandiri.
                         </p>
                     </div>
 
-                    {{-- 4 Pilar Karakter SKENSA (SISIKOBER) --}}
-                    <div class="pt-2">
-                        <span class="block text-xs font-extrabold uppercase tracking-wider text-navy mb-3">
-                            4 Pilar Budaya Kerja &amp; Karakter Siswa:
-                        </span>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
-                                <span class="block font-display font-extrabold text-navy text-base">Siap</span>
-                                <span class="text-[11px] text-ink-muted">Tangguh &amp; Siaga</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
-                                <span class="block font-display font-extrabold text-navy text-base">Kompeten</span>
-                                <span class="text-[11px] text-ink-muted">Sertifikasi Profesi</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
-                                <span class="block font-display font-extrabold text-navy text-base">Disiplin</span>
-                                <span class="text-[11px] text-ink-muted">Budaya Industri</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-paper border border-line text-center">
-                                <span class="block font-display font-extrabold text-navy text-base">Beretika</span>
-                                <span class="text-[11px] text-ink-muted">Kearifan Lokal</span>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="flex flex-wrap items-center gap-3 pt-2">
-                        <a href="{{ route('profile.index') }}" class="px-5 py-2.5 rounded-xl bg-navy text-paper text-xs font-extrabold uppercase tracking-wider hover:bg-navy-700 transition-colors">
+                        <a href="{{ route('profile.index') }}" class="px-5 py-2.5 rounded-xl bg-[#2B4EFF] text-white hover:bg-[#1E3FE0] text-xs font-extrabold uppercase tracking-wider transition-colors shadow-sm">
                             Profil &amp; Sejarah Sekolah &rarr;
                         </a>
-                        <a href="{{ route('staff.index') }}" class="px-5 py-2.5 rounded-xl bg-paper border-2 border-ink text-ink text-xs font-extrabold uppercase tracking-wider hover:border-navy transition-colors">
-                            Direktori Pimpinan &amp; Guru &rarr;
+                        <a href="{{ route('staff.index') }}" class="px-5 py-2.5 rounded-xl bg-white border border-line text-ink hover:border-[#2B4EFF] hover:text-[#2B4EFF] text-xs font-extrabold uppercase tracking-wider transition-colors">
+                            Direktori Tenaga Pendidik &rarr;
                         </a>
                     </div>
                 </div>
@@ -270,18 +226,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                    <span class="inline-block px-3 py-1 rounded-md bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
+                    <span class="inline-block px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                         Galeri Multimedia &amp; Video Resmi
                     </span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-3">
-                        Eksplorasi Profil &amp; <span class="marker-highlight">Aktivitas Kampus</span>
+                        Eksplorasi Profil &amp; <span class="marker-highlight">Aktivitas Sekolah</span>
                     </h2>
                 </div>
                 <a
                     href="https://www.youtube.com/@smkn1denpasar/videos"
                     target="_blank"
                     rel="noopener"
-                    class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline"
+                    class="text-xs font-extrabold uppercase tracking-wider text-[#2B4EFF] hover:underline"
                 >
                     Kanal Resmi YouTube @smkn1denpasar &nearr;
                 </a>
@@ -298,7 +254,7 @@
                     [
                         'id' => 'PGel3Be5L_E',
                         'title' => 'Pengalaman Belajar & Praktik Kejuruan di SMKN 1 Denpasar',
-                        'category' => 'Kehidupan Kampus',
+                        'category' => 'Kehidupan Sekolah',
                         'desc' => 'Melihat langsung suasana belajar teori, praktik bengkel standar industri, kedisiplinan budaya kerja, dan atmosfer belajar di SKENSA.',
                     ],
                     [
@@ -357,9 +313,9 @@
                     </div>
 
                     {{-- Metadata Video Aktif --}}
-                    <div class="p-6 rounded-2xl bg-paper-2 border-2 border-ink flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="p-6 rounded-2xl bg-paper-2 border border-line flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div class="space-y-1">
-                            <span id="cinema-active-badge" class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                            <span id="cinema-active-badge" class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-extrabold uppercase tracking-wider">
                                 Profil Keahlian
                             </span>
                             <h3 id="cinema-active-title" class="font-display font-extrabold text-xl text-ink leading-snug">
@@ -374,7 +330,7 @@
                             href="https://www.youtube.com/watch?v=uTDYUJLP3xY"
                             target="_blank"
                             rel="noopener"
-                            class="px-4 py-2.5 rounded-xl bg-navy text-paper text-xs font-bold uppercase tracking-wider hover:bg-navy-700 transition-colors shrink-0 text-center"
+                            class="px-5 py-2.5 rounded-xl bg-[#2B4EFF] text-white hover:bg-[#1E3FE0] text-xs font-bold uppercase tracking-wider transition-colors shrink-0 text-center shadow-sm"
                         >
                             Tonton di YouTube &nearr;
                         </a>
@@ -382,14 +338,14 @@
                 </div>
 
                 {{-- Playlist: Horizontal Touch Carousel di Mobile/Tablet, Vertikal Sidebar di Desktop (lg:col-span-4) --}}
-                <div class="lg:col-span-4 rounded-2xl border-2 border-ink bg-paper-2 overflow-hidden flex flex-col lg:h-[580px] shadow-sm">
-                    <div class="p-4 bg-navy text-paper border-b-2 border-ink flex items-center justify-between">
-                        <span class="text-xs font-extrabold uppercase tracking-widest text-yellow-skensa">Playlist Video Resmi</span>
-                        <span class="text-[11px] font-bold text-paper/70">8 Video Pilihan &bull; Geser &rarr;</span>
+                <div class="lg:col-span-4 rounded-2xl border border-line bg-paper-2 overflow-hidden flex flex-col lg:h-[580px] shadow-sm">
+                    <div class="p-4 bg-[#0E1133] text-white border-b border-line flex items-center justify-between">
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-[#2B4EFF]">Playlist Video Resmi</span>
+                        <span class="text-[11px] font-bold text-white/70">8 Video Pilihan &bull; Scroll Mouse / Geser &rarr;</span>
                     </div>
 
-                    {{-- Scroll Container: Horizontal di Mobile/Tablet, Vertikal di Desktop --}}
-                    <div class="flex lg:flex-col overflow-x-auto lg:overflow-y-auto p-3 gap-3 lg:space-y-2.5 lg:gap-0 divide-y-0 lg:divide-y lg:divide-line/60 snap-x snap-mandatory touch-pan-x">
+                    {{-- Scroll Container: Horizontal di Mobile/Tablet, Vertikal di Desktop (Mendukung Mouse Wheel) --}}
+                    <div id="cinema-playlist-scroll" class="flex lg:flex-col overflow-x-auto lg:overflow-y-auto p-3 gap-3 lg:space-y-2.5 lg:gap-0 divide-y-0 lg:divide-y lg:divide-line/60 snap-x snap-mandatory touch-pan-x">
                         @foreach($cinemaVideos as $cIdx => $cVideo)
                             <button
                                 type="button"
@@ -398,9 +354,9 @@
                                 data-video-title="{{ $cVideo['title'] }}"
                                 data-video-category="{{ $cVideo['category'] }}"
                                 data-video-desc="{{ $cVideo['desc'] }}"
-                                class="w-64 sm:w-72 lg:w-full shrink-0 snap-start text-left p-3 rounded-xl transition-all cursor-pointer flex gap-3 items-center group {{ $cIdx === 0 ? 'bg-navy text-paper shadow-md' : 'hover:bg-paper text-ink bg-paper/60 lg:bg-transparent border border-line/40 lg:border-0' }}"
+                                class="w-64 sm:w-72 lg:w-full shrink-0 snap-start text-left p-3 rounded-xl transition-all cursor-pointer flex gap-3 items-center group {{ $cIdx === 0 ? 'bg-[#0E1133] text-white shadow-md' : 'hover:bg-white text-ink bg-white/70 lg:bg-transparent border border-line/40 lg:border-0' }}"
                             >
-                                <div class="relative w-24 h-16 sm:w-28 sm:h-18 rounded-lg overflow-hidden shrink-0 border border-ink/40 bg-navy-800">
+                                <div class="relative w-24 h-16 sm:w-28 sm:h-18 rounded-lg overflow-hidden shrink-0 border border-line/40 bg-navy-800">
                                     <img
                                         src="https://img.youtube.com/vi/{{ $cVideo['id'] }}/mqdefault.jpg"
                                         alt="{{ $cVideo['title'] }}"
@@ -410,7 +366,7 @@
                                     <span class="absolute bottom-1 right-1 px-1.5 py-0.2 rounded bg-black/80 text-[9px] font-bold text-white">YT</span>
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <span class="block text-[10px] font-extrabold uppercase tracking-wider {{ $cIdx === 0 ? 'text-yellow-skensa' : 'text-navy' }}" data-item-cat>
+                                    <span class="block text-[10px] font-extrabold uppercase tracking-wider {{ $cIdx === 0 ? 'text-[#2B4EFF]' : 'text-slate-500' }}" data-item-cat>
                                         {{ $cVideo['category'] }}
                                     </span>
                                     <h4 class="font-display font-bold text-xs line-clamp-2 leading-snug mt-0.5" data-item-title>
@@ -428,26 +384,26 @@
     {{-- ===================================================================== --}}
     {{-- SECTION 4: FASILITAS PENUNJANG PEMBELAJARAN (BENGKEL, LAB & SARANA)   --}}
     {{-- ===================================================================== --}}
-    <section id="fasilitas-kampus" class="py-20 bg-paper-2 border-b-2 border-ink">
+    <section id="fasilitas-sekolah" class="py-20 bg-paper-2 border-b-2 border-ink">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                    <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Infrastruktur Kampus 16.610 m&sup2;</span>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-[#2B4EFF]">Infrastruktur Sekolah Kejuruan 16.610 m&sup2;</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-1">
                         Fasilitas Penunjang <span class="marker-highlight">Pembelajaran &amp; Praktik</span>
                     </h2>
                 </div>
-                <a href="{{ route('gallery.index') }}" class="text-xs font-extrabold uppercase tracking-wider text-navy hover:underline">
+                <a href="{{ route('gallery.index') }}" class="text-xs font-extrabold uppercase tracking-wider text-[#2B4EFF] hover:underline">
                     Lihat Galeri Fasilitas Lengkap &rarr;
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {{-- 1. Laboratorium Jaringan Komputer & Fiber Optik (TKJ) --}}
-                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
-                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                <div class="rounded-2xl bg-paper border border-line overflow-hidden flex flex-col justify-between shadow-sm hover:border-[#2B4EFF] transition-all">
+                    <div class="relative h-52 bg-navy border-b border-line overflow-hidden">
                         <img src="/images/showcase/lab_fiber.jpg" alt="Praktik Splicing Fiber Optik Jurusan Teknik Komputer dan Jaringan (TKJ) SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] border border-[#2B4EFF]/20 text-[11px] font-extrabold uppercase tracking-wider">
                             Jurusan TKJ
                         </span>
                     </div>
@@ -458,17 +414,17 @@
                                 Fasilitas praktik siswa <strong>Teknik Komputer dan Jaringan (TKJ)</strong> yang dilengkapi alat <em>Fusion Splicer</em> serat optik FTTH, router/switch Cisco &amp; MikroTik, serta server administrasi jaringan.
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-[#2B4EFF]">
                             TUK Tersertifikasi LSP-P1 BNSP &bull; Teknik Komputer &amp; Jaringan
                         </div>
                     </div>
                 </div>
 
                 {{-- 2. Workshop Praktik Konstruksi Gedung (TKP & DPIB) --}}
-                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
-                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                <div class="rounded-2xl bg-paper border border-line overflow-hidden flex flex-col justify-between shadow-sm hover:border-[#2B4EFF] transition-all">
+                    <div class="relative h-52 bg-navy border-b border-line overflow-hidden">
                         <img src="/images/showcase/ukk_2026.jpg" alt="Praktik Konstruksi dan Uji Kompetensi Keahlian TKP SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] border border-[#2B4EFF]/20 text-[11px] font-extrabold uppercase tracking-wider">
                             Jurusan TKP &amp; DPIB
                         </span>
                     </div>
@@ -479,17 +435,17 @@
                                 Area praktik lapangan <strong>Teknik Konstruksi dan Perumahan (TKP)</strong> serta studio gambar <strong>DPIB</strong> untuk pelaksanaan Uji Kompetensi Keahlian (UKK) Pelaksana Lapangan Pekerjaan Gedung.
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-[#2B4EFF]">
                             Skema Sertifikasi BNSP Level 2 &bull; TKP &amp; DPIB
                         </div>
                     </div>
                 </div>
 
                 {{-- 3. Daikin Center of Excellence & Bengkel Rekayasa --}}
-                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
-                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                <div class="rounded-2xl bg-paper border border-line overflow-hidden flex flex-col justify-between shadow-sm hover:border-[#2B4EFF] transition-all">
+                    <div class="relative h-52 bg-navy border-b border-line overflow-hidden">
                         <img src="/images/showcase/daikin_coe.jpg" alt="Peresmian Daikin Center of Excellence SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] border border-[#2B4EFF]/20 text-[11px] font-extrabold uppercase tracking-wider">
                             Center of Excellence
                         </span>
                     </div>
@@ -500,18 +456,18 @@
                                 Pusat keunggulan tata udara (<strong>TPTUP</strong>) berstandar PT Daikin Airconditioning Indonesia, berdampingan dengan bengkel mesin CNC (<strong>TPM</strong>), kelistrikan (<strong>TITL</strong>), dan otomotif (<strong>TKR/TSM</strong>).
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-[#2B4EFF]">
                             Kelas Industri DUDIKA &bull; TPTUP, TITL, TPM, TKR, TSM
                         </div>
                     </div>
                 </div>
 
                 {{-- 4. Perpustakaan Digital, Sarana Olahraga & Aula Utama --}}
-                <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-xs hover:border-navy transition-all">
-                    <div class="relative h-52 bg-navy border-b-2 border-ink overflow-hidden">
+                <div class="rounded-2xl bg-paper border border-line overflow-hidden flex flex-col justify-between shadow-sm hover:border-[#2B4EFF] transition-all">
+                    <div class="relative h-52 bg-navy border-b border-line overflow-hidden">
                         <img src="/images/showcase/lapangan_upacara.jpg" alt="Lapangan Olahraga, Perpustakaan, dan Aula SMKN 1 Denpasar" loading="lazy" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase tracking-wider">
-                            Sarana Umum Kampus
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] border border-[#2B4EFF]/20 text-[11px] font-extrabold uppercase tracking-wider">
+                            Sarana Umum Sekolah
                         </span>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
@@ -521,7 +477,7 @@
                                 Terintegrasi dengan portal <em>lib.smkn1denpasar.sch.id</em>, lapangan olahraga utama untuk kegiatan apel &amp; ekstrakurikuler, aula serbaguna Gelora SKENSA, serta laboratorium RPL/DKV/PRF.
                             </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-navy">
+                        <div class="mt-4 pt-3 border-t border-line text-xs font-bold text-[#2B4EFF]">
                             Mendukung Pembelajaran Holistik &amp; Kegiatan Kesiswaan
                         </div>
                     </div>
@@ -554,7 +510,7 @@
         {{-- Section Top Header Bar --}}
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
-                <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+                <span class="inline-block px-3 py-1 rounded bg-[#2B4EFF] text-white text-xs font-extrabold uppercase tracking-widest">
                     Direktori Akademik &amp; Konsentrasi Keahlian
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-paper mt-2">
@@ -563,14 +519,14 @@
             </div>
             <div class="flex items-center gap-4">
                 <span class="text-xs font-bold uppercase tracking-wider text-paper/70">
-                    Geser Kiri/Kanan &bull; <strong id="major-slider-indicator" class="text-yellow-skensa font-mono font-extrabold">01 / {{ str_pad((string)$majors->count(), 2, '0', STR_PAD_LEFT) }}</strong>
+                    Geser Kiri/Kanan &bull; <strong id="major-slider-indicator" class="text-[#2B4EFF] font-mono font-extrabold">01 / {{ str_pad((string)$majors->count(), 2, '0', STR_PAD_LEFT) }}</strong>
                 </span>
                 <div class="flex items-center gap-2">
                     <button
                         type="button"
                         id="major-slide-prev"
                         aria-label="Jurusan Sebelumnya"
-                        class="w-10 h-10 rounded-xl bg-paper/10 border border-paper/30 hover:bg-yellow-skensa hover:text-ink text-paper flex items-center justify-center transition-colors cursor-pointer"
+                        class="w-10 h-10 rounded-xl bg-paper/10 border border-paper/30 hover:bg-[#2B4EFF] hover:text-white text-paper flex items-center justify-center transition-colors cursor-pointer"
                     >
                         &larr;
                     </button>
@@ -578,7 +534,7 @@
                         type="button"
                         id="major-slide-next"
                         aria-label="Jurusan Berikutnya"
-                        class="w-10 h-10 rounded-xl bg-paper/10 border border-paper/30 hover:bg-yellow-skensa hover:text-ink text-paper flex items-center justify-center transition-colors cursor-pointer"
+                        class="w-10 h-10 rounded-xl bg-paper/10 border border-paper/30 hover:bg-[#2B4EFF] hover:text-white text-paper flex items-center justify-center transition-colors cursor-pointer"
                     >
                         &rarr;
                     </button>
@@ -608,7 +564,7 @@
 
                             {{-- Badge Top Right --}}
                             <div class="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2">
-                                <span class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg">
+                                <span class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl bg-[#2B4EFF] text-white font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg">
                                     {{ $mItem->code }}
                                 </span>
                                 <span class="hidden sm:inline-block px-3 py-1.5 rounded-xl bg-navy/90 backdrop-blur-md border border-paper/20 text-paper text-xs font-bold uppercase tracking-wider">
@@ -619,7 +575,7 @@
                             {{-- DESKRIPSI SINGKAT DI BAGIAN KIRI BAWAH --}}
                             <div class="absolute bottom-4 left-4 right-4 sm:right-auto sm:bottom-10 sm:left-10 max-w-2xl space-y-2.5 sm:space-y-4">
                                 <div class="flex items-center gap-2">
-                                    <span class="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md bg-paper/20 backdrop-blur-md border border-yellow-skensa/60 text-yellow-skensa font-mono font-extrabold text-[10px] sm:text-xs uppercase tracking-widest">
+                                    <span class="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md bg-[#2B4EFF]/30 backdrop-blur-md border border-[#2B4EFF]/50 text-white font-mono font-extrabold text-[10px] sm:text-xs uppercase tracking-widest">
                                         {{ str_pad((string)($mIdx + 1), 2, '0', STR_PAD_LEFT) }} / {{ str_pad((string)$majors->count(), 2, '0', STR_PAD_LEFT) }} &bull; JURUSAN
                                     </span>
                                     <span class="text-[10px] sm:text-xs font-bold text-paper/70 uppercase">
@@ -638,7 +594,7 @@
                                 @if(!empty($mItem->career_prospects))
                                     <div class="hidden sm:flex flex-wrap gap-1.5 pt-0.5 sm:pt-1">
                                         @foreach(array_slice((array) $mItem->career_prospects, 0, 3) as $prospect)
-                                            <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-paper/10 backdrop-blur-xs border border-paper/20 text-yellow-skensa">
+                                            <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-paper/10 backdrop-blur-xs border border-paper/20 text-white">
                                                 {{ $prospect }}
                                             </span>
                                         @endforeach
@@ -648,7 +604,7 @@
                                 <div class="pt-1 sm:pt-2">
                                     <a
                                         href="{{ route('majors.show', $mItem->slug) }}"
-                                        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-yellow-skensa text-ink hover:bg-paper font-display font-extrabold text-xs uppercase tracking-wider transition-colors shadow-lg min-h-[44px]"
+                                        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-[#2B4EFF] text-white hover:bg-[#1E3FE0] font-display font-extrabold text-xs uppercase tracking-wider transition-colors shadow-lg min-h-[44px]"
                                     >
                                         <span>Lihat Detail Jurusan</span>
                                         <span aria-hidden="true">&rarr;</span>
@@ -668,7 +624,7 @@
                     type="button"
                     data-major-dot="{{ $dIdx }}"
                     aria-label="Pilih Jurusan {{ $dItem->code }}"
-                    class="h-2 rounded-full transition-all cursor-pointer {{ $dIdx === 0 ? 'w-8 bg-yellow-skensa' : 'w-2 bg-paper/30 hover:bg-paper/60' }}"
+                    class="h-2 rounded-full transition-all cursor-pointer {{ $dIdx === 0 ? 'w-8 bg-[#2B4EFF]' : 'w-2 bg-paper/30 hover:bg-paper/60' }}"
                 ></button>
             @endforeach
         </div>
@@ -682,7 +638,7 @@
             {{-- Header Kemitraan & DUDIKA --}}
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                    <span class="inline-block px-3 py-1 rounded-md bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
+                    <span class="inline-block px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                         Ekosistem DUDIKA &amp; Bursa Kerja Khusus (BKK)
                     </span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-3">
@@ -769,10 +725,10 @@
                 <div class="lg:col-span-5 rounded-2xl bg-navy text-paper border-2 border-ink p-7 flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-wider">
+                            <span class="px-3 py-1 rounded bg-[#2B4EFF] text-white text-xs font-extrabold uppercase tracking-wider">
                                 Data Tracer Vokasi &amp; BKK
                             </span>
-                            <a href="https://tracervokasi.kemendikdasmen.go.id" target="_blank" rel="noopener" class="text-xs text-yellow-skensa hover:underline">
+                            <a href="https://tracervokasi.kemendikdasmen.go.id" target="_blank" rel="noopener" class="text-xs text-[#2B4EFF] hover:underline">
                                 Tracer Vokasi &nearr;
                             </a>
                         </div>
@@ -789,17 +745,17 @@
                             <div>
                                 <div class="flex justify-between text-xs font-bold mb-1">
                                     <span class="text-paper">Bekerja di Industri Dalam &amp; Luar Negeri</span>
-                                    <span class="text-yellow-skensa tabular-nums">62%</span>
+                                    <span class="text-[#2B4EFF] tabular-nums">62%</span>
                                 </div>
                                 <div class="w-full h-2.5 rounded-full bg-paper/15 overflow-hidden">
-                                    <div class="h-full bg-yellow-skensa rounded-full" style="width: 62%"></div>
+                                    <div class="h-full bg-[#2B4EFF] rounded-full" style="width: 62%"></div>
                                 </div>
                             </div>
 
                             <div>
                                 <div class="flex justify-between text-xs font-bold mb-1">
                                     <span class="text-paper">Melanjutkan Pendidikan Tinggi (PTN / Politeknik / PTS)</span>
-                                    <span class="text-yellow-skensa tabular-nums">26%</span>
+                                    <span class="text-cyan-400 tabular-nums">26%</span>
                                 </div>
                                 <div class="w-full h-2.5 rounded-full bg-paper/15 overflow-hidden">
                                     <div class="h-full bg-cyan-400 rounded-full" style="width: 26%"></div>
@@ -809,7 +765,7 @@
                             <div>
                                 <div class="flex justify-between text-xs font-bold mb-1">
                                     <span class="text-paper">Wirausaha Mandiri &amp; Pekerja Lepas Kreatif</span>
-                                    <span class="text-yellow-skensa tabular-nums">12%</span>
+                                    <span class="text-emerald-400 tabular-nums">12%</span>
                                 </div>
                                 <div class="w-full h-2.5 rounded-full bg-paper/15 overflow-hidden">
                                     <div class="h-full bg-emerald-400 rounded-full" style="width: 12%"></div>
@@ -821,8 +777,8 @@
                     <div class="mt-6 pt-5 border-t border-paper/15 flex items-center gap-4">
                         <img src="/images/showcase/job_fair_2026.jpg" alt="Job Fair SMKN 1 Denpasar" width="96" height="64" loading="lazy" class="w-24 h-16 rounded-xl object-cover border border-paper/25 shrink-0">
                         <div class="text-xs">
-                            <span class="font-bold text-yellow-skensa block">Job Fair SMKN 1 Denpasar 2026</span>
-                            <span class="text-paper/80">Puluhan perusahaan mitra hadir merekrut langsung lulusan kelas XII di kampus SKENSA.</span>
+                            <span class="font-bold text-[#2B4EFF] block">Job Fair SMKN 1 Denpasar 2026</span>
+                            <span class="text-paper/80">Puluhan perusahaan mitra hadir merekrut langsung lulusan kelas XII di sekolah SKENSA.</span>
                         </div>
                     </div>
                 </div>
@@ -853,16 +809,16 @@
                     @endphp
 
                     @foreach($alumniTestimonials as $alumni)
-                        <div class="p-6 rounded-2xl bg-paper-2 border-2 border-ink flex flex-col justify-between hover:border-navy transition-colors">
+                        <div class="p-6 rounded-2xl bg-paper-2 border border-line flex flex-col justify-between hover:border-[#2B4EFF] transition-colors">
                             <p class="text-sm text-ink leading-relaxed italic">
                                 "{{ $alumni['quote'] }}"
                             </p>
                             <div class="mt-4 pt-3 border-t border-line flex flex-wrap items-center justify-between gap-2">
                                 <div>
-                                    <h4 class="font-display font-extrabold text-base text-navy">{{ $alumni['name'] }}</h4>
+                                    <h4 class="font-display font-extrabold text-base text-ink">{{ $alumni['name'] }}</h4>
                                     <span class="text-xs font-semibold text-ink-muted block">{{ $alumni['role'] }}</span>
                                 </div>
-                                <span class="px-3 py-1 rounded-lg bg-navy text-yellow-skensa text-[11px] font-extrabold uppercase tracking-wider">
+                                <span class="px-3 py-1 rounded-lg bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-extrabold uppercase tracking-wider">
                                     {{ $alumni['grad_year'] }}
                                 </span>
                             </div>
@@ -882,14 +838,14 @@
             <div>
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
                     <div>
-                        <span class="inline-block px-3 py-1 rounded-md bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
+                        <span class="inline-block px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                             Hall of Fame &bull; Rekor 157+ Prestasi Nasional
                         </span>
                         <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-3">
                             Etalase <span class="marker-highlight">Prestasi</span> Siswa SKENSA
                         </h2>
                     </div>
-                    <a href="{{ route('achievements.index') }}" class="px-5 py-2.5 rounded-xl bg-navy text-paper text-xs font-extrabold uppercase tracking-wider hover:bg-navy-700 transition-colors">
+                    <a href="{{ route('achievements.index') }}" class="px-5 py-2.5 rounded-xl bg-[#2B4EFF] text-white text-xs font-extrabold uppercase tracking-wider hover:bg-[#1E3FE0] transition-colors">
                         Direktori Prestasi Lengkap &rarr;
                     </a>
                 </div>
@@ -899,13 +855,13 @@
                     <div class="lg:col-span-5 rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-lg">
                         <div class="relative h-64 overflow-hidden border-b-2 border-ink">
                             <img src="/images/showcase/lks_2026.jpg" alt="Lomba Kompetensi Siswa LKS Bidang Teknologi Provinsi Bali 2026" loading="lazy" class="w-full h-full object-cover">
-                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase">
+                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded bg-[#2B4EFF] text-white text-xs font-extrabold uppercase">
                                 Tuan Rumah &amp; Juara Umum LKS
                             </span>
                         </div>
                         <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-widest text-yellow-skensa">Capaian Kota, Provinsi, Nasional &amp; Internasional</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-[#2B4EFF]">Capaian Kota, Provinsi, Nasional &amp; Internasional</span>
                                 <h3 class="font-display font-extrabold text-2xl text-paper mt-1">
                                     Dominasi Medali Lomba Kompetensi Siswa (LKS) &amp; Ajang Talenta Vokasi
                                 </h3>
@@ -913,7 +869,7 @@
                                     SMK Negeri 1 Denpasar secara konsisten meraih medali emas pada ajang LKS tingkat Kota Denpasar, Provinsi Bali, hingga mewakili Bali di tingkat Nasional serta kolaborasi teknologi internasional.
                                 </p>
                             </div>
-                            <div class="pt-3 border-t border-paper/15 flex items-center justify-between text-xs font-bold text-yellow-skensa">
+                            <div class="pt-3 border-t border-paper/15 flex items-center justify-between text-xs font-bold text-[#2B4EFF]">
                                 <span>Akademik, Teknologi &amp; Olahraga/Seni</span>
                                 <a href="{{ route('achievements.index') }}" class="underline hover:text-paper">Lihat Semua &rarr;</a>
                             </div>
@@ -923,10 +879,10 @@
                     {{-- Daftar Kejuaraan dari Database --}}
                     <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
                         @foreach($achievements as $achievement)
-                            <article class="p-6 rounded-2xl bg-paper border-2 border-ink flex flex-col justify-between hover:border-navy transition-colors">
+                            <article class="p-6 rounded-2xl bg-paper border border-line flex flex-col justify-between hover:border-[#2B4EFF] transition-colors">
                                 <div>
                                     <div class="flex flex-wrap items-center gap-2 mb-3">
-                                        <span class="px-2.5 py-1 rounded bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase">
+                                        <span class="px-2.5 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-extrabold uppercase">
                                             {{ $achievement->medal }}
                                         </span>
                                         <span class="px-2.5 py-1 rounded bg-navy text-paper text-[11px] font-bold uppercase">
@@ -938,7 +894,7 @@
                                     <p class="text-xs text-ink-muted mt-1.5 leading-relaxed">{{ $achievement->competition_name }}</p>
                                 </div>
                                 <div class="mt-5 pt-3 border-t border-line flex items-center justify-between text-xs font-bold">
-                                    <span class="text-navy truncate pr-2">{{ $achievement->winner_name }}</span>
+                                    <span class="text-[#2B4EFF] truncate pr-2">{{ $achievement->winner_name }}</span>
                                     <span class="px-2.5 py-0.5 rounded bg-paper-2 border border-line text-ink shrink-0">
                                         {{ $achievement->major?->code ?? 'SKENSA' }}
                                     </span>
@@ -967,7 +923,7 @@
                         <div class="rounded-2xl bg-paper border-2 border-ink overflow-hidden">
                             <img src="/images/showcase/paskibra_osis.jpg" alt="OSIS, MPK, dan Paskibra SMK Negeri 1 Denpasar" loading="lazy" class="w-full h-48 object-cover border-b-2 border-ink">
                             <div class="p-5 space-y-2">
-                                <span class="px-2.5 py-0.5 rounded bg-navy text-yellow-skensa text-[10px] font-extrabold uppercase tracking-wider">
+                                <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[10px] font-extrabold uppercase tracking-wider">
                                     Organisasi Kesiswaan Resmi
                                 </span>
                                 <h4 class="font-display font-extrabold text-lg text-ink">OSIS &amp; Majelis Perwakilan Kelas (MPK) SKENSA</h4>
@@ -981,32 +937,32 @@
                     {{-- 4 Klaster Ekstrakurikuler & Dokumentasi SUBAKTI --}}
                     <div class="lg:col-span-7 space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div class="p-5 rounded-2xl bg-paper border-2 border-ink">
-                                <span class="px-2.5 py-1 rounded bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase">01 &bull; Kepemimpinan &amp; Bela Negara</span>
+                            <div class="p-5 rounded-2xl bg-paper border border-line hover:border-[#2B4EFF] transition-colors">
+                                <span class="px-2.5 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-extrabold uppercase">01 &bull; Kepemimpinan &amp; Bela Negara</span>
                                 <h4 class="font-display font-extrabold text-lg text-ink mt-2.5">Paskibra, Pramuka &amp; PMR</h4>
                                 <p class="text-xs text-ink-muted mt-1.5 leading-relaxed">
                                     Pramuka Wajib &amp; Regu Inti, Pasukan Pengibar Bendera (Paskibra SKENSA), Palang Merah Remaja (PMR), serta Kerohanian (KHD/KMK/Rohis).
                                 </p>
                             </div>
 
-                            <div class="p-5 rounded-2xl bg-paper border-2 border-ink">
-                                <span class="px-2.5 py-1 rounded bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase">02 &bull; Teknologi &amp; Akademik</span>
+                            <div class="p-5 rounded-2xl bg-paper border border-line hover:border-[#2B4EFF] transition-colors">
+                                <span class="px-2.5 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-extrabold uppercase">02 &bull; Teknologi &amp; Akademik</span>
                                 <h4 class="font-display font-extrabold text-lg text-ink mt-2.5">IT Club, Robotik &amp; KIR</h4>
                                 <p class="text-xs text-ink-muted mt-1.5 leading-relaxed">
                                     Skensa IT &amp; Cybersecurity Club, Robotik &amp; IoT, Kelompok Ilmiah Remaja (KIR), English Debate Club, dan Japanese Club.
                                 </p>
                             </div>
 
-                            <div class="p-5 rounded-2xl bg-paper border-2 border-ink">
-                                <span class="px-2.5 py-1 rounded bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase">03 &bull; Olahraga &amp; Bela Diri</span>
+                            <div class="p-5 rounded-2xl bg-paper border border-line hover:border-[#2B4EFF] transition-colors">
+                                <span class="px-2.5 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-extrabold uppercase">03 &bull; Olahraga &amp; Bela Diri</span>
                                 <h4 class="font-display font-extrabold text-lg text-ink mt-2.5">Basket, Futsal, Voli &amp; Silat</h4>
                                 <p class="text-xs text-ink-muted mt-1.5 leading-relaxed">
                                     Bola Basket, Bola Voli, Futsal &amp; Sepak Bola, Bulu Tangkis, Pencak Silat Bakti Negara, Karate, Taekwondo, dan E-Sports SKENSA.
                                 </p>
                             </div>
 
-                            <div class="p-5 rounded-2xl bg-paper border-2 border-ink">
-                                <span class="px-2.5 py-1 rounded bg-yellow-skensa text-ink text-[11px] font-extrabold uppercase">04 &bull; Seni, Budaya &amp; Media</span>
+                            <div class="p-5 rounded-2xl bg-paper border border-line hover:border-[#2B4EFF] transition-colors">
+                                <span class="px-2.5 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[11px] font-extrabold uppercase">04 &bull; Seni, Budaya &amp; Media</span>
                                 <h4 class="font-display font-extrabold text-lg text-ink mt-2.5">Tabuh/Tari Bali, Musik &amp; Jurnalistik</h4>
                                 <p class="text-xs text-ink-muted mt-1.5 leading-relaxed">
                                     Seni Tabuh (Karawitan) &amp; Tari Tradisional Bali, Teater, Paduan Suara, Band/Musik Modern, serta Jurnalistik &amp; Sinematografi SKENSA.
@@ -1016,14 +972,14 @@
 
                         {{-- Kartu Dokumentasi Agenda Tahunan SUBAKTI 2026 --}}
                         <div class="p-5 rounded-2xl bg-navy text-paper border-2 border-ink flex flex-col sm:flex-row items-center gap-5">
-                            <img src="/images/showcase/subakti_2026.jpg" alt="SUBAKTI 2026 Skensa Unjuk Bakat dan Aksi" width="180" height="108" loading="lazy" class="w-full sm:w-44 h-28 rounded-xl object-cover border border-yellow-skensa/40 shrink-0">
+                            <img src="/images/showcase/subakti_2026.jpg" alt="SUBAKTI 2026 Skensa Unjuk Bakat dan Aksi" width="180" height="108" loading="lazy" class="w-full sm:w-44 h-28 rounded-xl object-cover border border-[#2B4EFF]/40 shrink-0">
                             <div class="space-y-2">
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-skensa">Dokumentasi Agenda Tahunan Kesiswaan</span>
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#2B4EFF]">Dokumentasi Agenda Tahunan Kesiswaan</span>
                                 <h4 class="font-display font-bold text-base sm:text-lg text-paper">
                                     Rangkaian Lomba SUBAKTI (Skensa Unjuk Bakat dan Aksi) 2026
                                 </h4>
                                 <div class="flex flex-wrap gap-3 pt-1">
-                                    <a href="https://www.youtube.com/watch?v=Fsez1chT7Jw" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase">
+                                    <a href="https://www.youtube.com/watch?v=Fsez1chT7Jw" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#2B4EFF] text-white text-xs font-extrabold uppercase hover:bg-[#1E3FE0] transition-colors">
                                         <span>Tonton Video SUBAKTI 2026</span>
                                         <span>&nearr;</span>
                                     </a>
@@ -1041,130 +997,207 @@
     </section>
 
     {{-- ===================================================================== --}}
-    {{-- KATEGORI 6: BERITA, KALENDER AGENDA & INFORMASI LENGKAP PPDB / SPMB   --}}
+    {{-- SECTION 6: BERITA, KALENDER AGENDA & INFORMASI LENGKAP PPDB / SPMB   --}}
     {{-- ===================================================================== --}}
     <section id="pengumuman-resmi" class="py-20 bg-paper border-b-2 border-ink">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-            {{-- Bagian 6A: Berita, Pengumuman & Kalender Agenda Kegiatan --}}
+            {{-- Bagian 6A: Berita Terkini dengan Interactive Hover Preview --}}
             <div>
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
                     <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-navy">Media, Publikasi &amp; Kalender Akademik</span>
-                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-1">
-                            Berita, Pengumuman &amp; <span class="marker-highlight">Agenda</span>
+                        <span class="inline-block px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
+                            Media &amp; Publikasi Resmi
+                        </span>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-3">
+                            Kabar &amp; <span class="marker-highlight">Berita Terkini</span> SKENSA
                         </h2>
                     </div>
-                    <a href="{{ route('publications.index') }}" class="text-xs font-bold uppercase tracking-wider text-navy hover:underline">
+                    <a href="{{ route('publications.index') }}" class="text-xs font-extrabold uppercase tracking-wider text-[#2B4EFF] hover:underline">
                         Lihat Seluruh Arsip Publikasi &rarr;
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    {{-- Pengumuman Utama Kelulusan (lg:col-span-5) --}}
-                    <div class="lg:col-span-5">
-                        <div class="rounded-2xl bg-navy text-paper border-2 border-ink p-7 h-full flex flex-col justify-between shadow-lg">
-                            <div class="space-y-4">
-                                <span class="inline-block px-3 py-1 rounded-md bg-yellow-skensa text-ink font-display font-extrabold text-xs uppercase tracking-wider">
-                                    Pengumuman Resmi &bull; 1 Mei 2025
-                                </span>
-
-                                <h3 class="font-display font-extrabold text-2xl text-paper leading-tight">
-                                    Kelulusan Kelas XII Tahun Ajaran 2024/2025
+                {{-- Interactive News Hover Preview Grid: Kiri Daftar Berita (lg:col-span-6) + Kanan Sticky Preview (lg:col-span-6) --}}
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    {{-- Kolom Kiri: Daftar Berita (Judul + Deskripsi Singkat) --}}
+                    <div class="lg:col-span-6 space-y-4" id="news-items-list">
+                        @foreach($posts as $pIdx => $post)
+                            @php
+                                $postImg = $post->featured_image ?: '/images/gedung_skensa.jpg';
+                                $postDate = optional($post->published_at)->translatedFormat('d F Y') ?? 'Mei 2025';
+                            @endphp
+                            <div
+                                data-news-item
+                                data-index="{{ $pIdx }}"
+                                data-title="{{ $post->title }}"
+                                data-category="{{ $post->category }}"
+                                data-date="{{ $postDate }}"
+                                data-excerpt="{{ $post->excerpt }}"
+                                data-image="{{ $postImg }}"
+                                data-url="{{ route('publications.show', $post->slug) }}"
+                                class="p-5 sm:p-6 rounded-2xl border transition-all duration-200 cursor-pointer group {{ $pIdx === 0 ? 'bg-white border-[#2B4EFF] shadow-md ring-1 ring-[#2B4EFF]/20' : 'bg-paper-2 border-line hover:border-[#2B4EFF]/50 hover:bg-white' }}"
+                            >
+                                <div class="flex items-center justify-between gap-2 text-[11px] mb-2.5">
+                                    <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] font-extrabold uppercase tracking-wider" data-item-badge>
+                                        {{ $post->category }}
+                                    </span>
+                                    <time datetime="{{ optional($post->published_at)->toDateString() }}" class="text-ink-muted font-semibold tabular-nums">
+                                        {{ $postDate }}
+                                    </time>
+                                </div>
+                                <h3 class="font-display font-extrabold text-base sm:text-lg text-ink group-hover:text-[#2B4EFF] transition-colors leading-snug">
+                                    <a href="{{ route('publications.show', $post->slug) }}">
+                                        {{ $post->title }}
+                                    </a>
                                 </h3>
-
-                                <p class="text-sm text-paper/85 leading-relaxed">
-                                    Pengumuman kelulusan siswa kelas XII SMK Negeri 1 Denpasar tahun ajaran 2024/2025 ditetapkan pada tanggal <strong class="text-yellow-skensa">5 Mei 2025</strong> secara daring melalui portal resmi <strong class="text-yellow-skensa">https://lulus.smkn1denpasar.sch.id</strong> mulai pukul 08.00 WIB.
+                                <p class="text-xs sm:text-sm text-ink-muted mt-2 line-clamp-2 leading-relaxed">
+                                    {{ $post->excerpt }}
                                 </p>
                             </div>
-
-                            <div class="mt-6 pt-5 border-t border-paper/15 flex flex-wrap items-center gap-3">
-                                <a
-                                    href="https://lulus.smkn1denpasar.sch.id"
-                                    target="_blank"
-                                    rel="noopener"
-                                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs uppercase tracking-wider hover:bg-paper transition-colors"
-                                >
-                                    <span>Portal Kelulusan</span>
-                                    <span>&nearr;</span>
-                                </a>
-                                <a
-                                    href="{{ route('publications.index', ['kategori' => 'pengumuman']) }}"
-                                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-paper/10 text-paper font-bold text-xs uppercase tracking-wider hover:bg-paper/20 transition-colors"
-                                >
-                                    <span>Arsip Pengumuman</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Artikel Berita Terkini (lg:col-span-4) --}}
-                    <div class="lg:col-span-4 flex flex-col gap-4">
-                        @foreach($posts->take(2) as $post)
-                            <article class="p-5 rounded-2xl bg-paper-2 border-2 border-ink flex flex-col justify-between hover:border-navy transition-colors flex-1">
-                                <div>
-                                    <div class="flex items-center justify-between gap-2 text-[11px] text-ink-muted mb-2">
-                                        <span class="font-extrabold uppercase tracking-wider text-navy px-2 py-0.5 rounded bg-paper border border-line">
-                                            {{ $post->category }}
-                                        </span>
-                                        <time datetime="{{ optional($post->published_at)->toDateString() }}" class="tabular-nums font-semibold">
-                                            {{ optional($post->published_at)->translatedFormat('d M Y') ?? 'Mei 2025' }}
-                                        </time>
-                                    </div>
-                                    <h3 class="font-display font-extrabold text-base text-ink leading-snug">
-                                        <a href="{{ route('publications.show', $post->slug) }}" class="hover:text-navy">
-                                            {{ $post->title }}
-                                        </a>
-                                    </h3>
-                                    <p class="text-xs text-ink-muted mt-1.5 line-clamp-2 leading-relaxed">
-                                        {{ $post->excerpt }}
-                                    </p>
-                                </div>
-                                <a href="{{ route('publications.show', $post->slug) }}" class="mt-3 text-xs font-extrabold uppercase tracking-wider text-navy hover:underline">
-                                    Baca Berita &rarr;
-                                </a>
-                            </article>
                         @endforeach
                     </div>
 
-                    {{-- Kalender Akademik / Jadwal Agenda Kegiatan (lg:col-span-3) --}}
-                    <div class="lg:col-span-3 rounded-2xl bg-paper-2 border-2 border-ink p-5 flex flex-col justify-between">
-                        <div>
-                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-navy block mb-1">Kalender Akademik</span>
-                            <h3 class="font-display font-extrabold text-lg text-ink mb-4 pb-2 border-b border-line">
-                                Agenda &amp; Kegiatan
-                            </h3>
+                    {{-- Kolom Kanan: Live Preview Panel Lengkap (Foto, Judul, Deskripsi & Tombol Baca) --}}
+                    <div class="lg:col-span-6 lg:sticky lg:top-24">
+                        @php
+                            $firstPost = $posts->first();
+                            $initImg = $firstPost ? ($firstPost->featured_image ?: '/images/gedung_skensa.jpg') : '/images/gedung_skensa.jpg';
+                            $initTitle = $firstPost ? $firstPost->title : 'Berita SMK Negeri 1 Denpasar';
+                            $initCat = $firstPost ? $firstPost->category : 'Publikasi';
+                            $initDate = $firstPost ? (optional($firstPost->published_at)->translatedFormat('d F Y') ?? 'Mei 2025') : 'Mei 2025';
+                            $initExcerpt = $firstPost ? $firstPost->excerpt : 'Informasi dan warta seputar pendidikan kejuruan di SMK Negeri 1 Denpasar.';
+                            $initUrl = $firstPost ? route('publications.show', $firstPost->slug) : route('publications.index');
+                        @endphp
+                        <div id="news-preview-card" class="rounded-3xl bg-paper-2 border border-line p-6 sm:p-8 shadow-sm flex flex-col justify-between transition-all duration-300">
+                            <div>
+                                {{-- Preview Image --}}
+                                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-[#0E1133] border border-line shadow-inner mb-6 group">
+                                    <img
+                                        id="news-preview-image"
+                                        src="{{ $initImg }}"
+                                        alt="{{ $initTitle }}"
+                                        class="w-full h-full object-cover transition-opacity duration-300"
+                                        loading="lazy"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                                    <span
+                                        id="news-preview-category"
+                                        class="absolute top-4 left-4 px-3 py-1 rounded-lg bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-wider shadow-sm"
+                                    >
+                                        {{ $initCat }}
+                                    </span>
+                                </div>
 
-                            <div class="space-y-3.5">
-                                @forelse($events as $event)
-                                    <div class="p-3 rounded-xl bg-paper border border-line">
-                                        <span class="text-[10px] font-extrabold uppercase text-navy block tabular-nums">
-                                            {{ optional($event->start_time)->translatedFormat('d F Y') }}
-                                        </span>
-                                        <h4 class="font-display font-bold text-xs text-ink mt-0.5 leading-snug">{{ $event->title }}</h4>
-                                        <span class="text-[11px] text-ink-muted block mt-0.5">{{ $event->location }}</span>
-                                    </div>
-                                @empty
-                                    <div class="p-3 rounded-xl bg-paper border border-line">
-                                        <span class="text-[10px] font-extrabold uppercase text-navy block">Mei - Juli 2025</span>
-                                        <h4 class="font-display font-bold text-xs text-ink mt-0.5">Pelaksanaan SPMB / PPDB Provinsi Bali</h4>
-                                    </div>
-                                @endforelse
+                                {{-- Date & Title --}}
+                                <time id="news-preview-date" class="text-xs font-bold text-ink-muted uppercase tracking-wider block mb-1.5 tabular-nums">
+                                    {{ $initDate }}
+                                </time>
+                                <h3 id="news-preview-title" class="font-display font-extrabold text-xl sm:text-2xl text-ink leading-snug">
+                                    {{ $initTitle }}
+                                </h3>
+
+                                {{-- Excerpt --}}
+                                <p id="news-preview-desc" class="text-xs sm:text-sm text-ink-muted mt-3 leading-relaxed">
+                                    {{ $initExcerpt }}
+                                </p>
+                            </div>
+
+                            {{-- Action CTA --}}
+                            <div class="mt-8 pt-5 border-t border-line flex flex-wrap items-center justify-between gap-4">
+                                <a
+                                    id="news-preview-link"
+                                    href="{{ $initUrl }}"
+                                    class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-[#2B4EFF] text-white hover:bg-[#1E3FE0] font-display font-extrabold text-xs uppercase tracking-wider transition-colors shadow-sm"
+                                >
+                                    <span>Baca Selengkapnya</span>
+                                    <span>&rarr;</span>
+                                </a>
+                                <span class="text-xs font-semibold text-ink-muted hidden sm:inline">
+                                    Arahkan kursor pada daftar berita
+                                </span>
                             </div>
                         </div>
-
-                        <a href="{{ route('publications.index') }}" class="mt-4 pt-3 border-t border-line text-xs font-extrabold uppercase tracking-wider text-navy hover:underline block">
-                            Lihat Kalender Penuh &rarr;
-                        </a>
                     </div>
                 </div>
             </div>
 
-            {{-- Bagian 6B: Pusat Informasi PPDB / SPMB SMK Negeri 1 Denpasar --}}
-            <div id="informasi-ppdb" class="rounded-3xl bg-navy text-paper border-2 border-ink p-8 lg:p-12 shadow-xl">
+            {{-- Bagian 6B: Pengumuman Kelulusan & Kalender Agenda --}}
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                {{-- Pengumuman Utama Kelulusan (lg:col-span-7) --}}
+                <div class="lg:col-span-7">
+                    <div class="rounded-3xl bg-[#0E1133] text-paper border border-line p-7 sm:p-9 h-full flex flex-col justify-between shadow-xl">
+                        <div class="space-y-4">
+                            <span class="inline-block px-3 py-1 rounded-md bg-[#2B4EFF] text-white font-display font-extrabold text-xs uppercase tracking-wider">
+                                Pengumuman Resmi &bull; 1 Mei 2025
+                            </span>
+
+                            <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-paper leading-tight">
+                                Kelulusan Kelas XII Tahun Ajaran 2024/2025
+                            </h3>
+
+                            <p class="text-sm text-paper/85 leading-relaxed">
+                                Pengumuman kelulusan siswa kelas XII SMK Negeri 1 Denpasar tahun ajaran 2024/2025 ditetapkan pada tanggal <strong class="text-[#2B4EFF]">5 Mei 2025</strong> secara daring melalui portal resmi <strong class="text-[#2B4EFF]">https://lulus.smkn1denpasar.sch.id</strong> mulai pukul 08.00 WIB.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-5 border-t border-paper/15 flex flex-wrap items-center gap-3">
+                            <a
+                                href="https://lulus.smkn1denpasar.sch.id"
+                                target="_blank"
+                                rel="noopener"
+                                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#2B4EFF] text-white font-display font-extrabold text-xs uppercase tracking-wider hover:bg-[#1E3FE0] transition-colors"
+                            >
+                                <span>Portal Kelulusan</span>
+                                <span>&nearr;</span>
+                            </a>
+                            <a
+                                href="{{ route('publications.index', ['kategori' => 'pengumuman']) }}"
+                                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-paper/10 text-paper font-bold text-xs uppercase tracking-wider hover:bg-paper/20 transition-colors"
+                            >
+                                <span>Arsip Pengumuman</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Kalender Akademik / Jadwal Agenda Kegiatan (lg:col-span-5) --}}
+                <div class="lg:col-span-5 rounded-3xl bg-paper-2 border border-line p-7 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <span class="text-[11px] font-extrabold uppercase tracking-widest text-[#2B4EFF] block mb-1">Kalender Akademik</span>
+                        <h3 class="font-display font-extrabold text-xl text-ink mb-4 pb-2 border-b border-line">
+                            Agenda &amp; Kegiatan
+                        </h3>
+
+                        <div class="space-y-3.5">
+                            @forelse($events as $event)
+                                <div class="p-3.5 rounded-xl bg-paper border border-line">
+                                    <span class="text-[10px] font-extrabold uppercase text-[#2B4EFF] block tabular-nums">
+                                        {{ optional($event->start_time)->translatedFormat('d F Y') }}
+                                    </span>
+                                    <h4 class="font-display font-bold text-sm text-ink mt-0.5 leading-snug">{{ $event->title }}</h4>
+                                    <span class="text-xs text-ink-muted block mt-0.5">{{ $event->location }}</span>
+                                </div>
+                            @empty
+                                <div class="p-3.5 rounded-xl bg-paper border border-line">
+                                    <span class="text-[10px] font-extrabold uppercase text-[#2B4EFF] block">Mei - Juli 2025</span>
+                                    <h4 class="font-display font-bold text-sm text-ink mt-0.5">Pelaksanaan SPMB / PPDB Provinsi Bali</h4>
+                                </div>
+                            @endforelse
+                        </div>
+                    </div>
+
+                    <a href="{{ route('publications.index') }}" class="mt-4 pt-3 border-t border-line text-xs font-extrabold uppercase tracking-wider text-[#2B4EFF] hover:underline block">
+                        Lihat Kalender Penuh &rarr;
+                    </a>
+                </div>
+            </div>
+
+            {{-- Bagian 6C: Pusat Informasi PPDB / SPMB SMK Negeri 1 Denpasar --}}
+            <div id="informasi-ppdb" class="rounded-3xl bg-[#0E1133] text-paper border border-line p-8 lg:p-12 shadow-xl">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                     {{-- Left Column: Juknis, Syarat & Tombol Pendaftaran / Brosur PDF --}}
                     <div class="lg:col-span-6 space-y-5">
-                        <span class="inline-block px-3.5 py-1 rounded-full bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+                        <span class="inline-block px-3.5 py-1 rounded-full bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                             Penerimaan Peserta Didik Baru (PPDB / SPMB)
                         </span>
                         <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-paper leading-tight">
@@ -1175,7 +1208,7 @@
                         </p>
 
                         <div class="p-5 rounded-2xl bg-navy-700/90 border border-paper/20 space-y-2.5">
-                            <h4 class="font-display font-bold text-sm uppercase tracking-wider text-yellow-skensa">
+                            <h4 class="font-display font-bold text-sm uppercase tracking-wider text-[#2B4EFF]">
                                 Syarat Umum Pendaftaran:
                             </h4>
                             <ul class="space-y-1.5 text-xs sm:text-sm text-paper/90">
@@ -1192,7 +1225,7 @@
                                 href="https://spmb.baliprov.go.id"
                                 target="_blank"
                                 rel="noopener"
-                                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-yellow-skensa text-ink font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:bg-paper transition-colors"
+                                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#2B4EFF] text-white font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#1E3FE0] transition-colors shadow-sm"
                             >
                                 <span>Portal Pendaftaran Online</span>
                                 <span>&nearr;</span>
@@ -1210,13 +1243,13 @@
 
                     {{-- Right Column: Timeline 4 Tahapan Seleksi & Jalur PPDB --}}
                     <div class="lg:col-span-6 space-y-5">
-                        <h4 class="font-display font-extrabold text-lg uppercase tracking-wider text-yellow-skensa">
+                        <h4 class="font-display font-extrabold text-lg uppercase tracking-wider text-[#2B4EFF]">
                             Timeline Tahapan Seleksi &amp; Jalur Pendaftaran
                         </h4>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="p-5 rounded-2xl bg-paper/10 border border-paper/20">
-                                <span class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink text-[10px] font-extrabold uppercase">Tahap 01 &bull; Juni</span>
+                                <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[10px] font-extrabold uppercase">Tahap 01 &bull; Juni</span>
                                 <h5 class="font-display font-bold text-base text-paper mt-2">Sosialisasi &amp; Pembuatan Akun</h5>
                                 <p class="text-xs text-paper/80 mt-1 leading-relaxed">
                                     Pengunduhan juknis, konsultasi pemilihan 12 konsentrasi keahlian, dan pembuatan akun pendaftaran daring.
@@ -1224,7 +1257,7 @@
                             </div>
 
                             <div class="p-5 rounded-2xl bg-paper/10 border border-paper/20">
-                                <span class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink text-[10px] font-extrabold uppercase">Tahap 02 &bull; Juni</span>
+                                <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[10px] font-extrabold uppercase">Tahap 02 &bull; Juni</span>
                                 <h5 class="font-display font-bold text-base text-paper mt-2">Pendaftaran &amp; Unggah Berkas</h5>
                                 <p class="text-xs text-paper/80 mt-1 leading-relaxed">
                                     Pemilihan jalur seleksi (Afirmasi, Domisili/Zonasi, Prestasi Akademik/Non-Akademik, &amp; Ranking Nilai Rapor) serta verifikasi dokumen.
@@ -1232,7 +1265,7 @@
                             </div>
 
                             <div class="p-5 rounded-2xl bg-paper/10 border border-paper/20">
-                                <span class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink text-[10px] font-extrabold uppercase">Tahap 03 &bull; Juli</span>
+                                <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[10px] font-extrabold uppercase">Tahap 03 &bull; Juli</span>
                                 <h5 class="font-display font-bold text-base text-paper mt-2">Pengumuman Hasil Seleksi</h5>
                                 <p class="text-xs text-paper/80 mt-1 leading-relaxed">
                                     Penetapan dan pengumuman resmi calon peserta didik yang diterima di SMK Negeri 1 Denpasar secara terbuka.
@@ -1240,7 +1273,7 @@
                             </div>
 
                             <div class="p-5 rounded-2xl bg-paper/10 border border-paper/20">
-                                <span class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink text-[10px] font-extrabold uppercase">Tahap 04 &bull; Juli</span>
+                                <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-[10px] font-extrabold uppercase">Tahap 04 &bull; Juli</span>
                                 <h5 class="font-display font-bold text-base text-paper mt-2">Daftar Ulang &amp; MPLS</h5>
                                 <p class="text-xs text-paper/80 mt-1 leading-relaxed">
                                     Pendaftaran ulang peserta didik baru dilanjutkan Masa Pengenalan Lingkungan Sekolah (MPLS) SKENSA.
@@ -1262,7 +1295,7 @@
                 {{-- Kolom Kiri (lg:col-span-5): Informasi Lokasi, Alamat Kode Pos, Telepon/WA, Email & Medsos --}}
                 <div class="lg:col-span-5 p-8 lg:p-10 flex flex-col justify-between space-y-6 border-b-2 lg:border-b-0 lg:border-r-2 border-ink">
                     <div class="space-y-4">
-                        <span class="inline-block px-3 py-1 rounded bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-widest">
+                        <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                             Lokasi &amp; Saluran Komunikasi Resmi
                         </span>
                         <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-ink">
@@ -1348,13 +1381,26 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. YouTube Cinema Hub Switcher
+            // 1. YouTube Cinema Hub Switcher & Mouse Wheel Scroll
             const cinemaItems = document.querySelectorAll('[data-cinema-item]');
             const mainIframe = document.getElementById('cinema-main-iframe');
             const activeBadge = document.getElementById('cinema-active-badge');
             const activeTitle = document.getElementById('cinema-active-title');
             const activeDesc = document.getElementById('cinema-active-desc');
             const activeLink = document.getElementById('cinema-active-link');
+            const cinemaScroll = document.getElementById('cinema-playlist-scroll');
+
+            // Mouse wheel horizontal scroll on playlist
+            if (cinemaScroll) {
+                cinemaScroll.addEventListener('wheel', (e) => {
+                    if (cinemaScroll.scrollWidth > cinemaScroll.clientWidth) {
+                        if (e.deltaY !== 0) {
+                            e.preventDefault();
+                            cinemaScroll.scrollLeft += e.deltaY;
+                        }
+                    }
+                }, { passive: false });
+            }
 
             cinemaItems.forEach(item => {
                 item.addEventListener('click', () => {
@@ -1375,18 +1421,18 @@
                         const isCurrent = el === item;
                         const catSpan = el.querySelector('[data-item-cat]');
                         if (isCurrent) {
-                            el.classList.add('bg-navy', 'text-paper', 'shadow-md');
-                            el.classList.remove('hover:bg-paper', 'text-ink');
+                            el.classList.add('bg-[#0E1133]', 'text-white', 'shadow-md');
+                            el.classList.remove('hover:bg-white', 'text-ink');
                             if (catSpan) {
-                                catSpan.classList.add('text-yellow-skensa');
-                                catSpan.classList.remove('text-navy');
+                                catSpan.classList.add('text-[#2B4EFF]');
+                                catSpan.classList.remove('text-slate-500');
                             }
                         } else {
-                            el.classList.remove('bg-navy', 'text-paper', 'shadow-md');
-                            el.classList.add('hover:bg-paper', 'text-ink');
+                            el.classList.remove('bg-[#0E1133]', 'text-white', 'shadow-md');
+                            el.classList.add('hover:bg-white', 'text-ink');
                             if (catSpan) {
-                                catSpan.classList.remove('text-yellow-skensa');
-                                catSpan.classList.add('text-navy');
+                                catSpan.classList.remove('text-[#2B4EFF]');
+                                catSpan.classList.add('text-slate-500');
                             }
                         }
                     });
@@ -1414,10 +1460,10 @@
                 }
                 dots.forEach((dot, dIdx) => {
                     if (dIdx === currentSlide) {
-                        dot.classList.add('w-8', 'bg-yellow-skensa');
+                        dot.classList.add('w-8', 'bg-[#2B4EFF]');
                         dot.classList.remove('w-2', 'bg-paper/30', 'hover:bg-paper/60');
                     } else {
-                        dot.classList.remove('w-8', 'bg-yellow-skensa');
+                        dot.classList.remove('w-8', 'bg-[#2B4EFF]');
                         dot.classList.add('w-2', 'bg-paper/30', 'hover:bg-paper/60');
                     }
                 });
@@ -1464,6 +1510,54 @@
                 } else if (e.key === 'ArrowRight') {
                     updateSlider(currentSlide + 1);
                 }
+            });
+
+            // 3. News Interactive Hover & Focus Preview Switcher
+            const newsItems = document.querySelectorAll('[data-news-item]');
+            const previewImg = document.getElementById('news-preview-image');
+            const previewBadge = document.getElementById('news-preview-category');
+            const previewDate = document.getElementById('news-preview-date');
+            const previewTitle = document.getElementById('news-preview-title');
+            const previewDesc = document.getElementById('news-preview-desc');
+            const previewLink = document.getElementById('news-preview-link');
+
+            const setActiveNews = (item) => {
+                const title = item.getAttribute('data-title');
+                const cat = item.getAttribute('data-category');
+                const date = item.getAttribute('data-date');
+                const excerpt = item.getAttribute('data-excerpt');
+                const image = item.getAttribute('data-image');
+                const url = item.getAttribute('data-url');
+
+                if (previewImg && previewImg.src !== image) {
+                    previewImg.style.opacity = '0.3';
+                    setTimeout(() => {
+                        previewImg.src = image;
+                        previewImg.alt = title;
+                        previewImg.style.opacity = '1';
+                    }, 150);
+                }
+                if (previewBadge) previewBadge.textContent = cat;
+                if (previewDate) previewDate.textContent = date;
+                if (previewTitle) previewTitle.textContent = title;
+                if (previewDesc) previewDesc.textContent = excerpt;
+                if (previewLink) previewLink.href = url;
+
+                newsItems.forEach(el => {
+                    if (el === item) {
+                        el.classList.add('bg-white', 'border-[#2B4EFF]', 'shadow-md', 'ring-1', 'ring-[#2B4EFF]/20');
+                        el.classList.remove('bg-paper-2', 'border-line');
+                    } else {
+                        el.classList.remove('bg-white', 'border-[#2B4EFF]', 'shadow-md', 'ring-1', 'ring-[#2B4EFF]/20');
+                        el.classList.add('bg-paper-2', 'border-line');
+                    }
+                });
+            };
+
+            newsItems.forEach(item => {
+                item.addEventListener('mouseenter', () => setActiveNews(item));
+                item.addEventListener('focus', () => setActiveNews(item));
+                item.addEventListener('click', () => setActiveNews(item));
             });
         });
     </script>

@@ -7,14 +7,14 @@
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-widest">
-                <a href="{{ route('majors.index') }}" class="text-yellow-skensa hover:underline">13 Jurusan</a>
+                <a href="{{ route('majors.index') }}" class="text-[#2B4EFF] hover:underline">12 Jurusan</a>
                 <span>/</span>
                 <span class="text-paper/80">{{ $major->field?->name }}</span>
             </div>
 
             <div class="mt-4 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
                 <div>
-                    <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-wider">
+                    <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-wider">
                         Kode Jurusan: {{ $major->code }}
                     </span>
                     <h1 class="font-display font-extrabold text-3xl sm:text-5xl mt-3">{{ $major->name }}</h1>
@@ -25,7 +25,7 @@
 
                 @if($major->head_of_major)
                     <div class="p-5 rounded-2xl bg-navy-700 border border-paper/20 shrink-0">
-                        <span class="text-[11px] font-bold uppercase tracking-widest text-yellow-skensa">Ketua Program Keahlian</span>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-[#2B4EFF]">Ketua Program Keahlian</span>
                         <div class="font-display font-bold text-base text-paper mt-1">{{ $major->head_of_major }}</div>
                         <div class="text-xs text-paper/75 mt-1">{{ $major->classrooms->count() }} Rombongan Belajar Aktif</div>
                     </div>
@@ -51,10 +51,10 @@
                     $majorPhoto = $major->hero_image ?: ($majorShowcasePhotos[strtoupper($major->code)] ?? '/images/showcase/drone_kampus.jpg');
                 @endphp
 
-                <div class="rounded-2xl bg-paper-2/70 border-2 border-ink overflow-hidden">
-                    <div class="relative aspect-video bg-navy border-b-2 border-ink overflow-hidden">
+                <div class="rounded-2xl bg-paper-2/70 border border-line overflow-hidden">
+                    <div class="relative aspect-video bg-navy border-b border-line overflow-hidden">
                         <img src="{{ $majorPhoto }}" alt="Dokumentasi Praktik {{ $major->name }} ({{ $major->code }}) SMK Negeri 1 Denpasar" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-wider">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-wider">
                             Dokumentasi {{ $major->code }}
                         </span>
                     </div>
@@ -92,7 +92,7 @@
                             <h4 class="font-display font-bold text-xs uppercase tracking-wider text-ink-muted mt-5 mb-2">Mitra DUDI:</h4>
                             <div class="flex flex-wrap gap-1.5">
                                 @foreach((array) $major->industry_partners as $partner)
-                                    <span class="px-2.5 py-1 rounded bg-navy text-yellow-skensa text-xs font-bold">{{ $partner }}</span>
+                                    <span class="px-2.5 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-bold">{{ $partner }}</span>
                                 @endforeach
                             </div>
                         @endif
@@ -104,7 +104,7 @@
                     <h3 class="font-display font-bold text-lg text-ink mb-4">Struktur Kelas / Rombongan Belajar ({{ $major->code }})</h3>
                     <div class="flex flex-wrap gap-2.5">
                         @foreach($major->classrooms as $room)
-                            <span class="px-3.5 py-2 rounded-xl bg-paper border border-line text-xs font-bold text-navy">
+                            <span class="px-3.5 py-2 rounded-xl bg-paper border border-line text-xs font-bold text-[#2B4EFF]">
                                 {{ $room->name }} ({{ $room->academic_year }})
                             </span>
                         @endforeach
@@ -118,7 +118,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             @foreach($major->studentWorks as $work)
                                 <div class="p-5 rounded-2xl bg-paper-2 border border-line">
-                                    <span class="text-xs font-bold text-navy">{{ $work->year }} • {{ $work->student_name }}</span>
+                                    <span class="text-xs font-bold text-[#2B4EFF]">{{ $work->year }} • {{ $work->student_name }}</span>
                                     <h4 class="font-display font-bold text-base text-ink mt-1">{{ $work->title }}</h4>
                                     <p class="text-xs text-ink-muted mt-2">{{ $work->description }}</p>
                                 </div>
@@ -137,7 +137,7 @@
                             <li>
                                 <a href="{{ route('majors.show', $other->slug) }}" class="flex items-center justify-between p-2.5 rounded-lg bg-paper hover:bg-navy hover:text-paper text-sm font-semibold transition-colors">
                                     <span class="truncate pr-2">{{ $other->name }}</span>
-                                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-yellow-skensa text-ink shrink-0">{{ $other->code }}</span>
+                                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] shrink-0">{{ $other->code }}</span>
                                 </a>
                             </li>
                         @endforeach

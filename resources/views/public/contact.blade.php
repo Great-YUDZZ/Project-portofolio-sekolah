@@ -6,12 +6,12 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+            <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                 Layanan Informasi Publik & Kemitraan DUDI
             </span>
             <h1 class="font-display font-extrabold text-4xl sm:text-5xl mt-3">Hubungi SMK Negeri 1 Denpasar</h1>
             <p class="text-paper/80 text-base max-w-3xl mt-2">
-                Sampaikan pertanyaan seputar PPDB, kerja sama industri (PKL & rekrutmen BKK), legalisir dokumen, atau kunjungan studi ke kampus SKENSA.
+                Sampaikan pertanyaan seputar PPDB, kerja sama industri (PKL & rekrutmen BKK), legalisir dokumen, atau kunjungan studi ke sekolah SKENSA.
             </p>
         </div>
     </section>
@@ -21,7 +21,7 @@
             {{-- Contact Info --}}
             <div class="lg:col-span-5 space-y-6">
                 <div class="p-6 rounded-2xl bg-paper-2 border border-line space-y-4">
-                    <h2 class="font-display font-bold text-xl text-ink">Identitas & Koordinat Kampus</h2>
+                    <h2 class="font-display font-bold text-xl text-ink">Identitas & Koordinat Sekolah</h2>
 
                     <div>
                         <span class="block text-xs font-bold uppercase tracking-wider text-navy">Alamat Lengkap & Kode Pos</span>
@@ -47,17 +47,17 @@
                 </div>
 
                 {{-- Interactive Google Maps Embed Card --}}
-                <div class="rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden">
+                <div class="rounded-2xl bg-navy text-paper border border-line overflow-hidden">
                     <div class="p-5 border-b border-navy-700 flex items-center justify-between gap-3">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-widest text-yellow-skensa">Peta Lokasi Interaktif</span>
-                            <h3 class="font-display font-bold text-base mt-0.5">Kampus Jalan HOS. Cokroaminoto No. 84</h3>
+                            <span class="text-xs font-bold uppercase tracking-widest text-[#2B4EFF]">Peta Lokasi Interaktif</span>
+                            <h3 class="font-display font-bold text-base mt-0.5">Gedung Utama Jalan HOS. Cokroaminoto No. 84</h3>
                         </div>
                         <a
                             href="https://maps.google.com/?q=SMK+Negeri+1+Denpasar"
                             target="_blank"
                             rel="noopener"
-                            class="px-3 py-1.5 rounded-lg bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-wider shrink-0"
+                            class="px-3 py-1.5 rounded-lg bg-[#2B4EFF] text-white text-xs font-extrabold uppercase tracking-wider shrink-0 hover:bg-[#1E3FE0]"
                         >
                             Rute &nearr;
                         </a>

@@ -8,10 +8,10 @@
     <link rel="icon" type="image/png" href="/images/logo_emblem.png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-paper text-ink antialiased selection:bg-yellow-skensa selection:text-ink min-h-screen flex flex-col">
+<body class="bg-paper text-ink antialiased selection:bg-skensa-blue selection:text-white min-h-screen flex flex-col">
 
     {{-- Skip to Content Link for Accessibility --}}
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-yellow-skensa focus:text-ink focus:font-bold focus:shadow-lg">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-skensa-blue focus:text-white focus:font-bold focus:shadow-lg">
         Langsung ke Konten Utama
     </a>
 
@@ -433,7 +433,7 @@
     >
         <div class="w-full max-w-xl rounded-2xl bg-paper border-2 border-ink shadow-2xl overflow-hidden">
             <div class="px-5 py-3.5 bg-navy text-paper flex items-center justify-between">
-                <span id="search-modal-title" class="text-xs font-bold uppercase tracking-widest text-yellow-skensa">Pencarian Akademik SKENSA</span>
+                <span id="search-modal-title" class="text-xs font-bold uppercase tracking-widest text-[#2B4EFF]">Pencarian Akademik SKENSA</span>
                 <button type="button" id="search-modal-close" class="text-xs font-bold uppercase text-paper/80 hover:text-paper cursor-pointer">Tutup [ESC]</button>
             </div>
             <form action="{{ route('search.index') }}" method="GET" class="p-5">
@@ -473,10 +473,10 @@
             data-toast
             role="status"
             aria-live="polite"
-            class="fixed bottom-6 right-6 z-50 max-w-md bg-navy text-paper border-l-4 {{ session('error') ? 'border-alert-skensa' : 'border-yellow-skensa' }} px-5 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-start gap-3.5"
+            class="fixed bottom-6 right-6 z-50 max-w-md bg-navy text-paper border-l-4 {{ session('error') ? 'border-alert-skensa' : 'border-[#2B4EFF]' }} px-5 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-start gap-3.5"
         >
             <div class="flex-1 text-sm">
-                <p class="font-bold text-yellow-skensa uppercase tracking-wider text-xs mb-0.5">
+                <p class="font-bold text-[#2B4EFF] uppercase tracking-wider text-xs mb-0.5">
                     {{ session('error') ? 'Peringatan Sistem' : 'Konfirmasi Sistem' }}
                 </p>
                 <p class="text-paper/95 leading-relaxed">{{ session('toast_success') ?? session('error') }}</p>
@@ -491,7 +491,7 @@
     </main>
 
     {{-- Editorial Institutional Footer (100% Data Resmi smkn1denpasar.sch.id) --}}
-    <footer class="bg-navy text-paper border-t-4 border-yellow-skensa mt-20">
+    <footer class="bg-navy text-paper border-t-4 border-[#2B4EFF] mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-navy-700">
                 {{-- Column 1: Official Identity & Contact --}}
@@ -500,7 +500,7 @@
                         <img src="/images/logo_emblem.png" alt="Logo SMK Negeri 1 Denpasar" width="48" height="48" loading="lazy" class="w-12 h-12 object-contain bg-paper p-1 rounded-lg">
                         <div>
                             <h2 class="font-display font-extrabold text-xl tracking-tight text-paper">SMK NEGERI 1 DENPASAR</h2>
-                            <p class="text-xs font-semibold tracking-wider text-yellow-skensa">{{ $siteSettings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}</p>
+                            <p class="text-xs font-semibold tracking-wider text-[#2B4EFF]">{{ $siteSettings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.' }}</p>
                         </div>
                     </div>
                     <p class="text-xs italic text-paper/80">
@@ -510,21 +510,21 @@
                         {{ $siteSettings['contact_address'] ?? 'Jalan HOS. Cokroaminoto No. 84 Denpasar, Bali 80118' }}
                     </p>
                     <div class="text-xs text-paper/85 space-y-1.5 pt-1">
-                        <p><span class="font-bold text-yellow-skensa">Telepon:</span> <a href="tel:{{ $siteSettings['contact_phone'] ?? '081236396662' }}" class="hover:underline tabular-nums">{{ $siteSettings['contact_phone'] ?? '081236396662' }}</a></p>
-                        <p><span class="font-bold text-yellow-skensa">Email:</span> <a href="mailto:{{ $siteSettings['contact_email'] ?? 'fo@smkn1denpasar.sch.id' }}" class="hover:underline">{{ $siteSettings['contact_email'] ?? 'fo@smkn1denpasar.sch.id' }}</a></p>
+                        <p><span class="font-bold text-[#2B4EFF]">Telepon:</span> <a href="tel:{{ $siteSettings['contact_phone'] ?? '081236396662' }}" class="hover:underline tabular-nums">{{ $siteSettings['contact_phone'] ?? '081236396662' }}</a></p>
+                        <p><span class="font-bold text-[#2B4EFF]">Email:</span> <a href="mailto:{{ $siteSettings['contact_email'] ?? 'fo@smkn1denpasar.sch.id' }}" class="hover:underline">{{ $siteSettings['contact_email'] ?? 'fo@smkn1denpasar.sch.id' }}</a></p>
                     </div>
                 </div>
 
                 {{-- Column 2: 9 Program Keahlian --}}
                 <div class="lg:col-span-5 space-y-3">
-                    <h3 class="font-display font-bold text-sm uppercase tracking-wider text-yellow-skensa">9 Program &amp; 12 Konsentrasi Keahlian</h3>
+                    <h3 class="font-display font-bold text-sm uppercase tracking-wider text-[#2B4EFF]">9 Program &amp; 12 Konsentrasi Keahlian</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs text-paper/85">
                         @foreach($navFields as $field)
                             <div>
                                 <span class="font-bold text-paper">{{ $field->name }}:</span>
                                 <span class="text-paper/70">
                                     @foreach($field->majors as $m)
-                                        <a href="{{ route('majors.show', $m->slug) }}" class="hover:text-yellow-skensa underline decoration-paper/30">{{ $m->code }}</a>{{ !$loop->last ? ', ' : '' }}
+                                        <a href="{{ route('majors.show', $m->slug) }}" class="hover:text-[#2B4EFF] underline decoration-paper/30">{{ $m->code }}</a>{{ !$loop->last ? ', ' : '' }}
                                     @endforeach
                                 </span>
                             </div>
@@ -534,34 +534,34 @@
 
                 {{-- Column 3: Tautan Ekosistem Resmi (smkn1denpasar.sch.id Footer) --}}
                 <div class="lg:col-span-3 space-y-3">
-                    <h3 class="font-display font-bold text-sm uppercase tracking-wider text-yellow-skensa">Tautan Resmi</h3>
+                    <h3 class="font-display font-bold text-sm uppercase tracking-wider text-[#2B4EFF]">Tautan Resmi</h3>
                     <ul class="space-y-2.5 text-sm text-paper/85">
                         <li>
-                            <a href="https://lib.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-yellow-skensa transition-colors">
+                            <a href="https://lib.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-[#2B4EFF] transition-colors">
                                 <span>e-Library</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://lms.skensa.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-yellow-skensa transition-colors">
+                            <a href="https://lms.skensa.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-[#2B4EFF] transition-colors">
                                 <span>e-Learning (LMS SKENSA)</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://tracervokasi.kemendikdasmen.go.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-yellow-skensa transition-colors">
+                            <a href="https://tracervokasi.kemendikdasmen.go.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-[#2B4EFF] transition-colors">
                                 <span>Tracer Vokasi</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://lsp-smkn1denpasar.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-yellow-skensa transition-colors">
+                            <a href="https://lsp-smkn1denpasar.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-[#2B4EFF] transition-colors">
                                 <span>LSP SMKN 1 Denpasar</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://lulus.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-yellow-skensa transition-colors">
+                            <a href="https://lulus.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-[#2B4EFF] transition-colors">
                                 <span>Portal Kelulusan</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
@@ -573,15 +573,15 @@
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-paper/65 gap-4">
                 <p>&copy; {{ date('Y') }} SMK Negeri 1 Denpasar (SKENSA). Jalan HOS. Cokroaminoto No. 84 Denpasar, Bali 80118. Hak Cipta Dilindungi.</p>
                 <div class="flex flex-wrap items-center gap-4">
-                    <a href="https://instagram.com/smkn1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">Instagram</a>
-                    <a href="https://youtube.com/@smkn1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">YouTube</a>
-                    <a href="https://www.facebook.com/smknegeri1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">Facebook</a>
-                    <a href="https://www.tiktok.com/@smkn1denpasar" target="_blank" rel="noopener" class="hover:text-yellow-skensa">TikTok</a>
+                    <a href="https://instagram.com/smkn1denpasar" target="_blank" rel="noopener" class="hover:text-[#2B4EFF]">Instagram</a>
+                    <a href="https://youtube.com/@smkn1denpasar" target="_blank" rel="noopener" class="hover:text-[#2B4EFF]">YouTube</a>
+                    <a href="https://www.facebook.com/smknegeri1denpasar" target="_blank" rel="noopener" class="hover:text-[#2B4EFF]">Facebook</a>
+                    <a href="https://www.tiktok.com/@smkn1denpasar" target="_blank" rel="noopener" class="hover:text-[#2B4EFF]">TikTok</a>
                 </div>
             </div>
 
             <details class="mt-4 pt-4 border-t border-navy-800 text-xs text-paper/65 group">
-                <summary class="cursor-pointer hover:text-yellow-skensa font-semibold inline-flex items-center gap-2">
+                <summary class="cursor-pointer hover:text-[#2B4EFF] font-semibold inline-flex items-center gap-2">
                     <span>Kebijakan Privasi &amp; Syarat Ketentuan Layanan Informasi Publik</span>
                     <span class="text-[10px] group-open:rotate-180 transition-transform">&#9662;</span>
                 </summary>

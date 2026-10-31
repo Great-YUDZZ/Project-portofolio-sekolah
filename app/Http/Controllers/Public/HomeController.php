@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $posts = Post::where('is_published', true)
             ->orderByDesc('published_at')
-            ->take(3)
+            ->take(4)
             ->get();
 
         $events = Event::orderBy('start_time')

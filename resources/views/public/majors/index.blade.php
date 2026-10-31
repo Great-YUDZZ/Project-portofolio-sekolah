@@ -6,7 +6,7 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="inline-block px-3 py-1 rounded-md bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+            <span class="inline-block px-3 py-1 rounded-md bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                 Struktur Akademik Resmi SKENSA
             </span>
             <h1 class="font-display font-extrabold text-4xl sm:text-5xl mt-3">9 Program &amp; 12 Konsentrasi Keahlian</h1>
@@ -47,11 +47,11 @@
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($majors as $index => $major)
-                        <article class="rounded-2xl bg-paper border-2 border-ink p-6 flex flex-col justify-between hover:border-navy transition-colors group">
+                        <article class="rounded-2xl bg-paper border border-line p-6 flex flex-col justify-between hover:border-[#2B4EFF] transition-colors group">
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-line">
                                     <div class="flex items-center gap-2">
-                                        <span class="px-3 py-1 rounded-lg bg-navy text-yellow-skensa text-xs font-extrabold uppercase tracking-wider">
+                                        <span class="px-3 py-1 rounded-lg bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-wider">
                                             {{ $major->code }}
                                         </span>
                                         <span class="text-xs font-bold text-ink-muted tabular-nums">
@@ -63,7 +63,7 @@
                                     </span>
                                 </div>
 
-                                <h2 class="font-display font-extrabold text-xl text-ink group-hover:text-navy transition-colors leading-snug">
+                                <h2 class="font-display font-extrabold text-xl text-ink group-hover:text-[#2B4EFF] transition-colors leading-snug">
                                     <a href="{{ route('majors.show', $major->slug) }}" class="focus-visible:outline-none focus-visible:underline">{{ $major->name }}</a>
                                 </h2>
 
@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="mt-6 pt-4 border-t border-line">
-                                <a href="{{ route('majors.show', $major->slug) }}" class="flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-navy text-paper group-hover:bg-yellow-skensa group-hover:text-ink text-xs font-bold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy">
+                                <a href="{{ route('majors.show', $major->slug) }}" class="flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-navy text-paper group-hover:bg-[#2B4EFF] group-hover:text-white text-xs font-bold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2B4EFF]">
                                     <span>Lihat Detail &amp; Kurikulum</span>
                                     <span aria-hidden="true">&rarr;</span>
                                 </a>

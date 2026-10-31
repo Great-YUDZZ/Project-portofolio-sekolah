@@ -6,7 +6,7 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+            <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                 Ruang Redaksi & Humas SKENSA
             </span>
             <h1 class="font-display font-extrabold text-4xl sm:text-5xl mt-3">Publikasi, Pengumuman & Agenda</h1>
@@ -50,7 +50,7 @@
                         @foreach($posts as $post)
                             <article class="p-6 rounded-2xl bg-paper-2/70 border border-line hover:border-navy transition-colors">
                                 <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-wider mb-2">
-                                    <span class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink">{{ $post->category }}</span>
+                                    <span class="px-2.5 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF]">{{ $post->category }}</span>
                                     <span class="text-ink-muted">{{ optional($post->published_at)->format('d M Y') }}</span>
                                 </div>
                                 <h2 class="font-display font-extrabold text-2xl text-ink hover:text-navy">
@@ -69,12 +69,12 @@
             </div>
 
             <aside class="lg:col-span-4 space-y-6">
-                <div class="p-6 rounded-2xl bg-navy text-paper border-2 border-ink">
-                    <h2 class="font-display font-bold text-lg text-yellow-skensa uppercase tracking-wider mb-4">Agenda Akademik Terdekat</h2>
+                <div class="p-6 rounded-2xl bg-navy text-paper border border-line">
+                    <h2 class="font-display font-bold text-lg text-[#2B4EFF] uppercase tracking-wider mb-4">Agenda Akademik Terdekat</h2>
                     <div class="space-y-4">
                         @foreach($events as $event)
                             <div class="p-4 rounded-xl bg-navy-700 border border-paper/15">
-                                <div class="text-xs font-bold text-yellow-skensa">
+                                <div class="text-xs font-bold text-[#2B4EFF]">
                                     {{ optional($event->start_date)->format('d M Y') }}
                                 </div>
                                 <h3 class="font-display font-bold text-base text-paper mt-1">{{ $event->title }}</h3>

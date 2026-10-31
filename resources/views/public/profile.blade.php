@@ -8,7 +8,7 @@
     <section class="bg-navy text-paper border-b-2 border-ink py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+                <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                     Profil Institusi Resmi • NPSN {{ $settings['school_npsn'] ?? '50103118' }}
                 </span>
                 <span class="inline-block px-3 py-1 rounded bg-navy-800 border border-navy-600 text-paper text-xs font-bold uppercase tracking-wider">
@@ -41,7 +41,7 @@
                             <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 @foreach($page->meta['items'] as $item)
                                     <li class="p-4 rounded-xl bg-paper border border-line text-sm text-ink font-medium flex items-start gap-2.5">
-                                        <span class="px-2 py-0.5 rounded bg-yellow-skensa text-ink text-xs font-extrabold">{{ $loop->iteration }}</span>
+                                        <span class="px-2 py-0.5 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold">{{ $loop->iteration }}</span>
                                         <span>{{ $item }}</span>
                                     </li>
                                 @endforeach
@@ -68,16 +68,16 @@
 
             {{-- Visual Pimpinan & 4 Wakil Kepala Sekolah --}}
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
-                <div class="lg:col-span-5 rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden flex flex-col sm:flex-row items-center">
+                <div class="lg:col-span-5 rounded-2xl bg-navy text-paper border border-line overflow-hidden flex flex-col sm:flex-row items-center">
                     <div class="w-full sm:w-48 h-64 sm:h-full bg-navy-800 shrink-0 overflow-hidden">
                         <img src="/images/kepala-sekolah-i-wayan-mustika.jpg" alt="I Wayan Mustika, S.Pd., M.Pd. - Kepala SMK Negeri 1 Denpasar" class="w-full h-full object-cover object-top">
                     </div>
                     <div class="p-6">
-                        <span class="px-2.5 py-0.5 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase">Kepala Sekolah</span>
+                        <span class="px-2.5 py-0.5 rounded bg-[#2B4EFF] text-white text-xs font-extrabold uppercase">Kepala Sekolah</span>
                         <h3 class="font-display font-bold text-xl mt-3">{{ $principal->name ?? 'I Wayan Mustika, S.Pd., M.Pd.' }}</h3>
                         <p class="text-xs text-paper/80 mt-1">{{ $principal->position ?? 'Kepala SMK Negeri 1 Denpasar' }}</p>
                         @if(!empty($principal->nip))
-                            <p class="text-xs text-yellow-skensa font-mono mt-2">NIP: {{ $principal->nip }}</p>
+                            <p class="text-xs text-[#2B4EFF] font-mono mt-2">NIP: {{ $principal->nip }}</p>
                         @endif
                         <p class="text-xs text-paper/85 mt-3 leading-relaxed">
                             {{ $principal->bio ?? 'Memimpin transformasi SMK Pusat Keunggulan berbasis Teaching Factory, sertifikasi profesi LSP-P1 BNSP, dan sinergi industri nasional maupun global.' }}
@@ -93,7 +93,7 @@
                         <span class="text-[11px] font-extrabold uppercase tracking-widest text-navy">Sinergi Manajemen</span>
                         <h3 class="font-display font-bold text-xl text-ink mt-1">4 Wakil Kepala Sekolah</h3>
                         <p class="text-xs text-ink-muted mt-2 leading-relaxed">
-                            Mengawal empat bidang strategis kampus: Bidang Kurikulum & Pembelajaran, Bidang Kesiswaan & Karakter, Bidang Sarana Prasarana, serta Bidang Humas & Hubungan Industri (DUDIKA).
+                            Mengawal empat bidang strategis sekolah: Bidang Kurikulum & Pembelajaran, Bidang Kesiswaan & Karakter, Bidang Sarana Prasarana, serta Bidang Humas & Hubungan Industri (DUDIKA).
                         </p>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
     {{-- Sarana & Prasarana --}}
     <section class="py-16 bg-paper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="text-xs font-bold uppercase tracking-widest text-navy">Infrastruktur Kampus</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-[#2B4EFF]">Infrastruktur Sekolah Kejuruan</span>
             <h2 class="font-display font-extrabold text-3xl text-ink mt-1 mb-8">Sarana, Bengkel & Laboratorium</h2>
 
             @php

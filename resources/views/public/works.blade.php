@@ -6,7 +6,7 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+            <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                 Teaching Factory & Produk Kreatif
             </span>
             <h1 class="font-display font-extrabold text-4xl sm:text-5xl mt-3">Showcase Karya & Inovasi Siswa</h1>
@@ -43,7 +43,7 @@
                         @foreach($years as $y)
                             <a
                                 href="{{ route('works.index', array_filter(['jurusan' => $majorCode, 'tahun' => $y])) }}"
-                                class="px-3 py-1.5 rounded-lg text-xs font-bold {{ (int) $year === (int) $y ? 'bg-yellow-skensa text-ink' : 'bg-paper border border-line text-ink' }}"
+                                class="px-3 py-1.5 rounded-lg text-xs font-bold {{ (int) $year === (int) $y ? 'bg-[#2B4EFF] text-white' : 'bg-paper border border-line text-ink' }}"
                             >
                                 {{ $y }}
                             </a>
@@ -68,7 +68,7 @@
                             <div>
                                 <div class="aspect-video bg-navy relative overflow-hidden border-b border-line">
                                     <img src="{{ $work->thumbnail ?: '/images/hero_siswa.jpg' }}" alt="{{ $work->title }}" class="w-full h-full object-cover">
-                                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-navy text-yellow-skensa text-xs font-extrabold uppercase">
+                                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase">
                                         {{ $work->major?->code ?? 'SKENSA' }} • {{ $work->year }}
                                     </span>
                                 </div>

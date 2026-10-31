@@ -6,12 +6,12 @@
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="inline-block px-3 py-1 rounded bg-yellow-skensa text-ink text-xs font-extrabold uppercase tracking-widest">
+            <span class="inline-block px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] text-xs font-extrabold uppercase tracking-widest">
                 Arsip Visual SKENSA
             </span>
             <h1 class="font-display font-extrabold text-4xl sm:text-5xl mt-3">Galeri Dokumentasi Sekolah</h1>
             <p class="text-paper/80 text-base max-w-3xl mt-2">
-                Dokumentasi kegiatan praktik bengkel 13 konsentrasi keahlian, kejuaraan vokasi, gelar karya projek penguatan profil pelajar Pancasila, dan aktivitas kampus.
+                Dokumentasi kegiatan praktik bengkel 13 konsentrasi keahlian, kejuaraan vokasi, gelar karya projek penguatan profil pelajar Pancasila, dan aktivitas sekolah.
             </p>
         </div>
     </section>
@@ -34,7 +34,7 @@
                                 <h2 class="font-display font-extrabold text-2xl text-ink mt-1">{{ $album->title }}</h2>
                                 <p class="text-sm text-ink-muted mt-1">{{ $album->description }}</p>
                             </div>
-                            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded bg-navy text-yellow-skensa shrink-0">
+                            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded bg-[#EAEDFF] text-[#2B4EFF] shrink-0">
                                 {{ $album->photos->count() }} Foto Dokumentasi
                             </span>
                         </div>
