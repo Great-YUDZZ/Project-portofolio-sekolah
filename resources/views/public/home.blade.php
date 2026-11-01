@@ -985,6 +985,17 @@
                             </div>
                         </div>
 
+                        {{-- Banner Akses Direktori Lengkap 51 Ekstrakurikuler --}}
+                        <div data-reveal class="p-4 sm:p-5 rounded-2xl bg-paper-2 border border-line flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[11px] font-extrabold uppercase tracking-widest text-navy">Direktori Resmi 51 Ekstrakurikuler</span>
+                                <h4 class="font-display font-extrabold text-base text-ink mt-0.5">31 Olahraga &amp; Bela Diri, 20 Klub Akademik &amp; Teknologi</h4>
+                            </div>
+                            <a href="{{ route('extracurriculars.index') }}" class="px-5 py-2.5 rounded-xl bg-navy text-paper hover:bg-navy-700 text-xs font-bold uppercase tracking-wider transition-colors shrink-0 shadow-xs">
+                                Buka 51 Ekstrakurikuler &rarr;
+                            </a>
+                        </div>
+
                         {{-- Kartu Dokumentasi Agenda Tahunan SUBAKTI 2026 --}}
                         <div data-reveal class="p-5 rounded-2xl bg-navy text-paper border-2 border-ink flex flex-col sm:flex-row items-center gap-5">
                             <img src="/images/showcase/subakti_2026.jpg" alt="SUBAKTI 2026 Skensa Unjuk Bakat dan Aksi" width="180" height="108" loading="lazy" class="w-full sm:w-44 h-28 rounded-xl object-cover border border-ink/40 shrink-0">

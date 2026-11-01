@@ -28,6 +28,7 @@ class PortfolioPhaseTwoTest extends TestCase
             '/galeri',
             '/kontak',
             '/ekosistem',
+            '/ekstrakurikuler',
             '/cari?q=RPL',
         ];
 
@@ -75,6 +76,30 @@ class PortfolioPhaseTwoTest extends TestCase
             'email' => 'wirawan@industri.co.id',
             'subject' => 'Kemitraan PKL Jurusan RPL',
         ]);
+    }
+
+    public function test_extracurriculars_page_loads_with_authentic_data(): void
+    {
+        $this->get('/ekstra')
+            ->assertRedirect(route('extracurriculars.index'));
+
+        $response = $this->get('/ekstrakurikuler');
+        $response->assertStatus(200);
+        $response->assertSee('Direktori Ekstrakurikuler SKENSA');
+        $response->assertSee('Atletik');
+        $response->assertSee('Robotik');
+        $response->assertSee('Paskibraka');
+
+        // Test Category Filter
+        $this->get('/ekstrakurikuler?kategori=akademik')
+            ->assertStatus(200)
+            ->assertSee('Robotik')
+            ->assertSee('Tabuh');
+
+        // Test Search Filter
+        $this->get('/ekstrakurikuler?q=Robotik')
+            ->assertStatus(200)
+            ->assertSee('Robotik');
     }
 
     public function test_admin_can_access_and_manage_portfolio_content(): void

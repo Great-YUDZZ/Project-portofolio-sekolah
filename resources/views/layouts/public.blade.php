@@ -208,6 +208,11 @@
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
+                                    <a href="{{ route('extracurriculars.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('extracurriculars.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                        Ekstrakurikuler
+                                    </a>
+                                </li>
+                                <li class="border-b border-slate-100">
                                     <a href="{{ route('staff.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('staff.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Staff
                                     </a>
@@ -406,6 +411,9 @@
                         <a href="{{ route('works.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('works.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Karya &amp; Produk Siswa (TeFa)
                         </a>
+                        <a href="{{ route('extracurriculars.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('extracurriculars.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
+                            Direktori Ekstrakurikuler (51 Ekstra)
+                        </a>
                         <a href="{{ route('staff.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('staff.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Direktori Guru &amp; Tendik
                         </a>
@@ -591,6 +599,12 @@
                         <li>
                             <a href="https://lsp-smkn1denpasar.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-blue-600 transition-colors">
                                 <span>LSP SMKN 1 Denpasar</span>
+                                <span class="text-xs text-paper/50">&nearr;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('extracurriculars.index') }}" class="flex items-center justify-between hover:text-blue-600 transition-colors">
+                                <span>Ekstrakurikuler Siswa (51 Ekstra)</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>

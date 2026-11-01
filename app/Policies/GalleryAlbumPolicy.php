@@ -14,7 +14,15 @@ class GalleryAlbumPolicy
 
     public function view(User $user, GalleryAlbum $album): bool
     {
-        return $user->isAdmin() || $user->isGuru();
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        if ($user->isGuru()) {
+            return is_null($album->major_id) || ($user->major_id && $album->major_id === $user->major_id);
+        }
+
+        return false;
     }
 
     public function create(User $user): bool

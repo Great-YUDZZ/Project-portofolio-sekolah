@@ -15,7 +15,8 @@ class SearchController extends Controller
 {
     public function index(Request $request): View
     {
-        $q = trim((string) $request->query('q', ''));
+        $rawQuery = trim((string) $request->query('q', ''));
+        $q = mb_substr($rawQuery, 0, 100);
 
         $majors = collect();
         $posts = collect();
@@ -24,37 +25,53 @@ class SearchController extends Controller
         $staff = collect();
 
         if ($q !== '') {
+            $escaped = addcslashes($q, '%_\\');
+            $pattern = "%{$escaped}%";
+
             $majors = Major::with('field')
-                ->where('name', 'like', "%{$q}%")
-                ->orWhere('code', 'like', "%{$q}%")
-                ->orWhere('tagline', 'like', "%{$q}%")
-                ->orWhere('description', 'like', "%{$q}%")
+                ->where(function ($query) use ($pattern) {
+                    $query->where('name', 'like', $pattern)
+                        ->orWhere('code', 'like', $pattern)
+                        ->orWhere('tagline', 'like', $pattern)
+                        ->orWhere('description', 'like', $pattern);
+                })
+                ->limit(30)
                 ->get();
 
             $posts = Post::where('is_published', true)
-                ->where(function ($query) use ($q) {
-                    $query->where('title', 'like', "%{$q}%")
-                        ->orWhere('excerpt', 'like', "%{$q}%")
-                        ->orWhere('content', 'like', "%{$q}%");
+                ->where(function ($query) use ($pattern) {
+                    $query->where('title', 'like', $pattern)
+                        ->orWhere('excerpt', 'like', $pattern)
+                        ->orWhere('content', 'like', $pattern);
                 })
                 ->latest('published_at')
+                ->limit(30)
                 ->get();
 
             $works = StudentWork::with('major')
-                ->where('title', 'like', "%{$q}%")
-                ->orWhere('student_name', 'like', "%{$q}%")
-                ->orWhere('description', 'like', "%{$q}%")
+                ->where(function ($query) use ($pattern) {
+                    $query->where('title', 'like', $pattern)
+                        ->orWhere('student_name', 'like', $pattern)
+                        ->orWhere('description', 'like', $pattern);
+                })
+                ->limit(30)
                 ->get();
 
             $achievements = Achievement::with('major')
-                ->where('title', 'like', "%{$q}%")
-                ->orWhere('student_or_team', 'like', "%{$q}%")
-                ->orWhere('description', 'like', "%{$q}%")
+                ->where(function ($query) use ($pattern) {
+                    $query->where('title', 'like', $pattern)
+                        ->orWhere('student_or_team', 'like', $pattern)
+                        ->orWhere('description', 'like', $pattern);
+                })
+                ->limit(30)
                 ->get();
 
-            $staff = StaffMember::where('name', 'like', "%{$q}%")
-                ->orWhere('role_title', 'like', "%{$q}%")
-                ->orWhere('department', 'like', "%{$q}%")
+            $staff = StaffMember::where(function ($query) use ($pattern) {
+                $query->where('name', 'like', $pattern)
+                    ->orWhere('role_title', 'like', $pattern)
+                    ->orWhere('department', 'like', $pattern);
+            })
+                ->limit(30)
                 ->get();
         }
 
