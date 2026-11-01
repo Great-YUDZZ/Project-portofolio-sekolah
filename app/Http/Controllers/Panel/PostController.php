@@ -120,6 +120,9 @@ class PostController extends Controller
 
         // Allowed categories: Siswa can ONLY create 'berita'
         $allowedCategories = $user->isSiswa() ? ['berita'] : ['berita', 'pengumuman'];
+        $videoFileRules = $user->isSiswa()
+            ? ['prohibited']
+            : ['nullable', 'file', 'mimetypes:video/mp4', 'max:51200'];
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:200'],
@@ -129,7 +132,7 @@ class PostController extends Controller
             'content' => ['required', 'string', 'min:20'],
             'featured_image' => ['nullable', 'image', 'max:5120'], // 5MB
             'video_url' => ['nullable', 'url', 'regex:/^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}/i'],
-            'video_file' => ['nullable', 'file', 'mimetypes:video/mp4', 'max:51200'], // 50MB (admin/guru only)
+            'video_file' => $videoFileRules, // 50MB (admin/guru only)
             'action' => ['nullable', Rule::in(['draft', 'publish', 'submit'])],
         ], [
             'title.required' => 'Judul publikasi wajib diisi.',
@@ -139,6 +142,7 @@ class PostController extends Controller
             'content.min' => 'Isi artikel minimal terdiri dari 20 karakter.',
             'featured_image.max' => 'Ukuran gambar unggulan maksimal adalah 5 MB.',
             'video_url.regex' => 'Format URL video harus berupa tautan YouTube yang valid (contoh: https://youtube.com/watch?v=... atau https://youtu.be/...).',
+            'video_file.prohibited' => 'Akun siswa tidak diizinkan mengunggah file video secara langsung.',
             'video_file.max' => 'Ukuran file video MP4 maksimal adalah 50 MB.',
         ]);
 
@@ -164,7 +168,7 @@ class PostController extends Controller
 
         // 4. Handle Video File Upload (Admin & Guru only)
         $videoFilePath = null;
-        if ($request->hasFile('video_file')) {
+        if (!$user->isSiswa() && $request->hasFile('video_file')) {
             $videoMedia = MediaService::storeVideo($request->file('video_file'), $user, $validated['title']);
             $videoFilePath = $videoMedia->url;
         }
@@ -188,8 +192,10 @@ class PostController extends Controller
             }
         }
 
-        // Determine major_id
-        $majorId = ($validated['major_id'] ?? null) ?: $user->major_id;
+        // Enforce major_id boundary: only Admin can assign arbitrary major_id
+        $majorId = $user->isAdmin()
+            ? (($validated['major_id'] ?? null) ?: null)
+            : $user->major_id;
 
         $post = Post::create([
             'author_id' => $user->id,
@@ -247,6 +253,9 @@ class PostController extends Controller
         Gate::authorize('update', $post);
 
         $allowedCategories = $user->isSiswa() ? ['berita'] : ['berita', 'pengumuman'];
+        $videoFileRules = $user->isSiswa()
+            ? ['prohibited']
+            : ['nullable', 'file', 'mimetypes:video/mp4', 'max:51200'];
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:200'],
@@ -256,7 +265,7 @@ class PostController extends Controller
             'content' => ['required', 'string', 'min:20'],
             'featured_image' => ['nullable', 'image', 'max:5120'],
             'video_url' => ['nullable', 'url', 'regex:/^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}/i'],
-            'video_file' => ['nullable', 'file', 'mimetypes:video/mp4', 'max:51200'],
+            'video_file' => $videoFileRules,
             'action' => ['nullable', Rule::in(['draft', 'publish', 'submit'])],
         ]);
 
@@ -272,7 +281,7 @@ class PostController extends Controller
         }
 
         // 3. Handle Video File
-        if ($request->hasFile('video_file')) {
+        if (!$user->isSiswa() && $request->hasFile('video_file')) {
             $videoMedia = MediaService::storeVideo($request->file('video_file'), $user, $validated['title']);
             $post->video_path = $videoMedia->url;
         }
@@ -300,7 +309,9 @@ class PostController extends Controller
 
         $post->title = $validated['title'];
         $post->category = $validated['category'];
-        $post->major_id = ($validated['major_id'] ?? null) ?: $post->major_id;
+        $post->major_id = $user->isAdmin()
+            ? (($validated['major_id'] ?? null) ?: $post->major_id)
+            : ($user->major_id ?: $post->major_id);
         $post->excerpt = ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($cleanContent), 180);
         $post->content = $cleanContent;
         $post->video_url = ($validated['video_url'] ?? null) ?: null;

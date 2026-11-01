@@ -48,12 +48,15 @@ class AdminContentController extends Controller
             'body' => ['required', 'string'],
         ]);
 
+        $cleanContent = \App\Services\HtmlSanitizer::clean($data['body']);
+
         Post::create([
             'title' => $data['title'],
             'slug' => Str::slug($data['title']) . '-' . Str::lower(Str::random(4)),
             'category' => $data['category'],
+            'status' => \App\Enums\PostStatus::Published,
             'excerpt' => $data['excerpt'],
-            'content' => $data['body'],
+            'content' => $cleanContent,
             'featured_image' => '/images/gedung_skensa.jpg',
             'author_id' => $request->user()?->id,
             'is_published' => true,

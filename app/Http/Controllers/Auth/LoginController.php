@@ -59,9 +59,9 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
 
-        // 2. Pre-check user account status
+        // 2. Pre-check user account status ONLY if password matches (prevents username enumeration)
         $existingUser = User::where($field, $identity)->first();
-        if ($existingUser) {
+        if ($existingUser && \Illuminate\Support\Facades\Hash::check($request->input('password'), $existingUser->password)) {
             if ($existingUser->status === UserStatus::Pending) {
                 RateLimiter::hit($throttleIdentityKey, 60);
                 RateLimiter::hit($throttleIpKey, 60);
@@ -82,7 +82,7 @@ class LoginController extends Controller
         $remember = $request->boolean('remember');
 
         // 3. Attempt authentication
-        if (Auth::attempt($credentials, $remember)) {
+        if ($existingUser && $existingUser->status === UserStatus::Active && Auth::attempt($credentials, $remember)) {
             RateLimiter::clear($throttleIdentityKey);
             RateLimiter::clear($throttleIpKey);
             $request->session()->regenerate();

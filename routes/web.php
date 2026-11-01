@@ -15,6 +15,7 @@ use App\Http\Controllers\Panel\UserController;
 use App\Http\Controllers\Public\AchievementController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\EcosystemController;
+use App\Http\Controllers\Public\ExtracurricularController;
 use App\Http\Controllers\Public\FacilityController;
 use App\Http\Controllers\Public\GalleryController;
 use App\Http\Controllers\Public\HomeController;
@@ -37,11 +38,13 @@ Route::get('/jurusan', [MajorController::class, 'index'])->name('majors.index');
 Route::get('/jurusan/{slug}', [MajorController::class, 'show'])->name('majors.show');
 Route::get('/karya', [StudentWorkController::class, 'index'])->name('works.index');
 Route::get('/prestasi', [AchievementController::class, 'index'])->name('achievements.index');
+Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('extracurriculars.index');
+Route::get('/ekstra', fn () => redirect()->route('extracurriculars.index'));
 Route::get('/publikasi', [PublicationController::class, 'index'])->name('publications.index');
 Route::get('/publikasi/{slug}', [PublicationController::class, 'show'])->name('publications.show');
 Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/kontak', [ContactController::class, 'store'])->middleware('throttle:10,1')->name('contact.store');
 Route::get('/ekosistem', [EcosystemController::class, 'index'])->name('ecosystem.index');
 Route::get('/cari', [SearchController::class, 'index'])->name('search.index');
 
@@ -49,9 +52,9 @@ Route::get('/cari', [SearchController::class, 'index'])->name('search.index');
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+    Route::get('/daftar', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/daftar', [RegisterController::class, 'register'])->name('register.post');
 });
-Route::get('/daftar', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/daftar', [RegisterController::class, 'register'])->name('register.post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Autentikasi Dua Faktor (2FA TOTP)
@@ -75,7 +78,7 @@ Route::prefix('admin')->middleware(['auth', 'active', 'role:admin,guru,siswa', '
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
     // Unggah Media Asinkron untuk Tiptap Editor
-    Route::post('/media/upload', [MediaUploadController::class, 'upload'])->name('media.upload');
+    Route::post('/media/upload', [MediaUploadController::class, 'upload'])->middleware('throttle:20,1')->name('media.upload');
 
     // Moderasi & Persetujuan Berita Siswa (Admin & Guru)
     Route::get('/review', [ReviewController::class, 'index'])->name('review.index');
@@ -117,7 +120,7 @@ Route::prefix('admin')->middleware(['auth', 'active', 'role:admin,guru,siswa', '
 });
 
 // Area Administrator Legacy (Kompatibilitas Konten Lama)
-Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'active', 'role:admin', '2fa'])->name('admin.')->group(function () {
     Route::get('/konten', [\App\Http\Controllers\Admin\AdminContentController::class, 'index'])->name('content');
     Route::post('/konten/publikasi', [\App\Http\Controllers\Admin\AdminContentController::class, 'storePost'])->name('posts.store');
     Route::delete('/konten/publikasi/{post}', [\App\Http\Controllers\Admin\AdminContentController::class, 'destroyPost'])->name('posts.destroy');
@@ -130,5 +133,5 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
 });
 
 // Alias & Redirect untuk kompatibilitas tautan lama
-Route::get('/admin/dashboard', fn () => redirect()->route('panel.dashboard'))->name('admin.dashboard');
-Route::get('/lms', fn () => redirect()->route('panel.dashboard'));
+Route::get('/admin/dashboard', fn () => redirect()->route('panel.dashboard'))->middleware(['auth', 'active', '2fa'])->name('admin.dashboard');
+Route::get('/lms', fn () => redirect()->route('panel.dashboard'))->middleware(['auth', 'active', '2fa']);
