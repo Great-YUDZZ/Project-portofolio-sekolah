@@ -11,6 +11,9 @@ import { initMarkers } from './public/sections/marker';
 import { initScrollCraftHistory } from './public/scrollcraft-history';
 import { initPartnerFlowColumns } from './public/sections/partner-flow-engine';
 import { initVisionMission } from './public/sections/vision-mission';
+import { initLoginMotion } from './auth/login-motion';
+import { initTiptapEditor } from './panel/editor';
+import { initServerMonitor } from './panel/server-monitor';
 
 function initNavbarAndDrawers() {
     const megaToggle = document.getElementById('mega-menu-toggle');
@@ -367,4 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollCraftHistory();
     initPartnerFlowColumns();
     initVisionMission();
+    initLoginMotion();
+    initTiptapEditor();
+    initServerMonitor();
 });

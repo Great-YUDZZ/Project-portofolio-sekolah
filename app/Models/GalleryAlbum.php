@@ -16,6 +16,8 @@ class GalleryAlbum extends Model
         'description',
         'cover_image',
         'event_date',
+        'major_id',
+        'created_by',
     ];
 
     protected function casts(): array
@@ -23,6 +25,16 @@ class GalleryAlbum extends Model
         return [
             'event_date' => 'date',
         ];
+    }
+
+    public function major()
+    {
+        return $this->belongsTo(Major::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function photos()

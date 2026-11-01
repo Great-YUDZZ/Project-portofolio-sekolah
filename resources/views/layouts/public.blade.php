@@ -173,30 +173,40 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </a>
-                        <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-48 z-50">
+                        <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-52 z-50">
                             <ul class="bg-white shadow-xl border border-slate-100">
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('history.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('history.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                    <a href="{{ route('history.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('history.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Sejarah
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('vision-mission.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('vision-mission.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                    <a href="{{ route('vision-mission.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('vision-mission.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Visi &amp; Misi
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('facilities.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('facilities.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                    <a href="{{ route('facilities.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('facilities.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Fasilitas &amp; Lab
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('gallery.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('gallery.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                    <a href="{{ route('gallery.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('gallery.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Galeri Kegiatan
                                     </a>
                                 </li>
+                                <li class="border-b border-slate-100">
+                                    <a href="{{ route('achievements.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('achievements.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                        Prestasi &amp; Juara
+                                    </a>
+                                </li>
+                                <li class="border-b border-slate-100">
+                                    <a href="{{ route('works.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('works.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                        Karya &amp; Produk Siswa
+                                    </a>
+                                </li>
                                 <li>
-                                    <a href="{{ route('staff.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('staff.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                    <a href="{{ route('staff.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('staff.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Staff
                                     </a>
                                 </li>

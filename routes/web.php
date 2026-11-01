@@ -1,9 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminContentController;
-use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Lms\LmsDashboardController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\TwoFactorController;
+use App\Http\Controllers\Panel\AuditLogController;
+use App\Http\Controllers\Panel\DashboardController;
+use App\Http\Controllers\Panel\GalleryController as PanelGalleryController;
+use App\Http\Controllers\Panel\MediaUploadController;
+use App\Http\Controllers\Panel\PostController;
+use App\Http\Controllers\Panel\ReviewController;
+use App\Http\Controllers\Panel\ServerMonitorController;
+use App\Http\Controllers\Panel\StaffController as PanelStaffController;
+use App\Http\Controllers\Panel\UserController;
 use App\Http\Controllers\Public\AchievementController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\EcosystemController;
@@ -37,28 +45,90 @@ Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store
 Route::get('/ekosistem', [EcosystemController::class, 'index'])->name('ecosystem.index');
 Route::get('/cari', [SearchController::class, 'index'])->name('search.index');
 
-// Autentikasi
+// Autentikasi Pengguna & Registrasi Siswa
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+    Route::get('/daftar', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/daftar', [RegisterController::class, 'register'])->name('register.post');
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Area Administrator
-Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/konten', [AdminContentController::class, 'index'])->name('content');
-    Route::post('/konten/publikasi', [AdminContentController::class, 'storePost'])->name('posts.store');
-    Route::delete('/konten/publikasi/{post}', [AdminContentController::class, 'destroyPost'])->name('posts.destroy');
-    Route::post('/konten/karya', [AdminContentController::class, 'storeWork'])->name('works.store');
-    Route::delete('/konten/karya/{work}', [AdminContentController::class, 'destroyWork'])->name('works.destroy');
-    Route::post('/konten/prestasi', [AdminContentController::class, 'storeAchievement'])->name('achievements.store');
-    Route::delete('/konten/prestasi/{achievement}', [AdminContentController::class, 'destroyAchievement'])->name('achievements.destroy');
-    Route::patch('/konten/pesan/{message}/baca', [AdminContentController::class, 'markMessageRead'])->name('messages.read');
-    Route::post('/konten/pengaturan', [AdminContentController::class, 'updateSettings'])->name('settings.update');
+// Autentikasi Dua Faktor (2FA TOTP)
+Route::middleware(['auth', 'active'])->group(function () {
+    Route::get('/two-factor/setup', [TwoFactorController::class, 'setup'])->name('two-factor.setup');
+    Route::post('/two-factor/setup', [TwoFactorController::class, 'confirmSetup'])->name('two-factor.setup.confirm');
+    Route::get('/two-factor/challenge', [TwoFactorController::class, 'challenge'])->name('two-factor.challenge');
+    Route::post('/two-factor/challenge', [TwoFactorController::class, 'verifyChallenge'])->name('two-factor.challenge.verify');
 });
 
-// Area LMS (Guru & Siswa)
-Route::prefix('lms')->middleware(['auth', 'role:guru,siswa'])->name('lms.')->group(function () {
-    Route::get('/', [LmsDashboardController::class, 'index'])->name('dashboard');
+// Area Panel Terpadu (Admin, Guru, Siswa)
+Route::prefix('admin')->middleware(['auth', 'active', 'role:admin,guru,siswa', '2fa'])->name('panel.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Manajemen Berita & Pengumuman
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    // Unggah Media Asinkron untuk Tiptap Editor
+    Route::post('/media/upload', [MediaUploadController::class, 'upload'])->name('media.upload');
+
+    // Moderasi & Persetujuan Berita Siswa (Admin & Guru)
+    Route::get('/review', [ReviewController::class, 'index'])->name('review.index');
+    Route::get('/review/{post}', [ReviewController::class, 'show'])->name('review.show');
+    Route::post('/review/{post}/approve', [ReviewController::class, 'approve'])->name('review.approve');
+    Route::post('/review/{post}/reject', [ReviewController::class, 'reject'])->name('review.reject');
+
+    // Manajemen Staf & Tenaga Pendidik (Admin)
+    Route::get('/staff', [PanelStaffController::class, 'index'])->name('staff.index');
+    Route::get('/staff/create', [PanelStaffController::class, 'create'])->name('staff.create');
+    Route::post('/staff', [PanelStaffController::class, 'store'])->name('staff.store');
+    Route::get('/staff/{staff}/edit', [PanelStaffController::class, 'edit'])->name('staff.edit');
+    Route::put('/staff/{staff}', [PanelStaffController::class, 'update'])->name('staff.update');
+    Route::delete('/staff/{staff}', [PanelStaffController::class, 'destroy'])->name('staff.destroy');
+
+    // Manajemen Galeri Kegiatan (Admin & Guru)
+    Route::get('/gallery', [PanelGalleryController::class, 'index'])->name('gallery.index');
+    Route::post('/gallery', [PanelGalleryController::class, 'store'])->name('gallery.store');
+    Route::get('/gallery/{gallery}', [PanelGalleryController::class, 'show'])->name('gallery.show');
+    Route::post('/gallery/{gallery}/photos', [PanelGalleryController::class, 'uploadPhotos'])->name('gallery.photos.upload');
+    Route::delete('/gallery/{gallery}/photos/{photo}', [PanelGalleryController::class, 'destroyPhoto'])->name('gallery.photos.destroy');
+    Route::delete('/gallery/{gallery}', [PanelGalleryController::class, 'destroy'])->name('gallery.destroy');
+
+    // Manajemen Akun & Verifikasi Siswa (Admin & Guru)
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create-guru', [UserController::class, 'createGuru'])->name('users.create-guru');
+    Route::post('/users/guru', [UserController::class, 'storeGuru'])->name('users.store-guru');
+    Route::post('/users/{user}/activate', [UserController::class, 'activateStudent'])->name('users.activate');
+    Route::post('/users/{user}/reject', [UserController::class, 'rejectStudent'])->name('users.reject');
+    Route::post('/users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    // Pemantau Beban Server (Admin)
+    Route::get('/server', [ServerMonitorController::class, 'index'])->name('server.index');
+    Route::get('/server/poll', [ServerMonitorController::class, 'poll'])->name('server.poll');
+
+    // Catatan Audit Keamanan (Admin)
+    Route::get('/audit', [AuditLogController::class, 'index'])->name('audit.index');
 });
+
+// Area Administrator Legacy (Kompatibilitas Konten Lama)
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
+    Route::get('/konten', [\App\Http\Controllers\Admin\AdminContentController::class, 'index'])->name('content');
+    Route::post('/konten/publikasi', [\App\Http\Controllers\Admin\AdminContentController::class, 'storePost'])->name('posts.store');
+    Route::delete('/konten/publikasi/{post}', [\App\Http\Controllers\Admin\AdminContentController::class, 'destroyPost'])->name('posts.destroy');
+    Route::post('/konten/karya', [\App\Http\Controllers\Admin\AdminContentController::class, 'storeWork'])->name('works.store');
+    Route::delete('/konten/karya/{work}', [\App\Http\Controllers\Admin\AdminContentController::class, 'destroyWork'])->name('works.destroy');
+    Route::post('/konten/prestasi', [\App\Http\Controllers\Admin\AdminContentController::class, 'storeAchievement'])->name('achievements.store');
+    Route::delete('/konten/prestasi/{achievement}', [\App\Http\Controllers\Admin\AdminContentController::class, 'destroyAchievement'])->name('achievements.destroy');
+    Route::patch('/konten/pesan/{message}/baca', [\App\Http\Controllers\Admin\AdminContentController::class, 'markMessageRead'])->name('messages.read');
+    Route::post('/konten/pengaturan', [\App\Http\Controllers\Admin\AdminContentController::class, 'updateSettings'])->name('settings.update');
+});
+
+// Alias & Redirect untuk kompatibilitas tautan lama
+Route::get('/admin/dashboard', fn () => redirect()->route('panel.dashboard'))->name('admin.dashboard');
+Route::get('/lms', fn () => redirect()->route('panel.dashboard'));

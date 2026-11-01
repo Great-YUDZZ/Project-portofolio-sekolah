@@ -4,12 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StaffMember extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'role_title', 'department', 'photo', 'email', 'order_index'];
+    protected $fillable = [
+        'name',
+        'role_title',
+        'department',
+        'photo',
+        'email',
+        'order_index',
+    ];
 
     public function getPositionAttribute(): string
     {

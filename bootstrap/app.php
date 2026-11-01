@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Middleware\EnsureAccountActive;
 use App\Http\Middleware\EnsureRole;
+use App\Http\Middleware\EnsureTwoFactorVerified;
+use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,8 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*');
+        $middleware->web(append: [
+            SecurityHeaders::class,
+        ]);
         $middleware->alias([
             'role' => EnsureRole::class,
+            'active' => EnsureAccountActive::class,
+            '2fa' => EnsureTwoFactorVerified::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
