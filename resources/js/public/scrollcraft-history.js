@@ -426,7 +426,7 @@ export function initScrollCraftHistory() {
                 panCards.forEach((card, idx) => {
                     const isFocused = idx === activeMilestone;
                     card.classList.toggle('ring-2', isFocused);
-                    card.classList.toggle('ring-[#D97706]', isFocused);
+                    card.classList.toggle('ring-[#2563EB]', isFocused);
                 });
             }
         });
@@ -463,7 +463,7 @@ export function initScrollCraftHistory() {
 
                 originProgressDots.forEach((dot, dIdx) => {
                     const isActive = dIdx === targetStep;
-                    dot.classList.toggle('bg-[#D97706]', isActive);
+                    dot.classList.toggle('bg-[#2563EB]', isActive);
                     dot.classList.toggle('w-8', isActive);
                     dot.classList.toggle('bg-slate-300', !isActive);
                     dot.classList.toggle('w-3', !isActive);
@@ -501,8 +501,8 @@ export function initScrollCraftHistory() {
 
         traceNodeBtns.forEach((btn, idx) => {
             const current = idx === activeStop.nodeIndex;
-            btn.classList.toggle('bg-amber-50', current);
-            btn.classList.toggle('text-[#D97706]', current);
+            btn.classList.toggle('bg-blue-50', current);
+            btn.classList.toggle('text-[#2563EB]', current);
             btn.classList.toggle('font-bold', current);
         });
     };
@@ -852,7 +852,7 @@ export function initScrollCraftHistory() {
                 block.style.opacity = match ? '1' : '0.35';
                 block.style.transform = match ? 'scale(1)' : 'scale(0.99)';
                 block.classList.toggle('ring-2', match && filter !== 'all');
-                block.classList.toggle('ring-[#D97706]', match && filter !== 'all');
+                block.classList.toggle('ring-[#2563EB]', match && filter !== 'all');
             });
 
             clusterCards.forEach((card) => {
@@ -886,7 +886,7 @@ export function initScrollCraftHistory() {
                 const match = target === 'all' || id === target;
                 row.style.opacity = match ? '1' : '0.3';
                 row.classList.toggle('ring-2', match && target !== 'all');
-                row.classList.toggle('ring-[#D97706]', match && target !== 'all');
+                row.classList.toggle('ring-[#2563EB]', match && target !== 'all');
             });
         });
     });
@@ -900,9 +900,9 @@ export function initScrollCraftHistory() {
             const col = btn.getAttribute('data-era-highlight') || 'all';
             eraFilterBtns.forEach((b) => {
                 const active = b === btn;
-                b.classList.toggle('bg-[#67E8F9]', active);
-                b.classList.toggle('text-[#0E1133]', active);
-                b.classList.toggle('border-[#67E8F9]', active);
+                b.classList.toggle('bg-[#2563EB]', active);
+                b.classList.toggle('text-white', active);
+                b.classList.toggle('border-[#2563EB]', active);
                 b.classList.toggle('bg-white/10', !active);
                 b.classList.toggle('text-slate-200', !active);
                 b.classList.toggle('border-white/15', !active);
@@ -912,7 +912,7 @@ export function initScrollCraftHistory() {
                 const c = cell.getAttribute('data-era-col');
                 const isMatch = col === 'all' || c === col;
                 cell.style.opacity = isMatch ? '1' : '0.35';
-                cell.classList.toggle('bg-cyan-950/40', col !== 'all' && isMatch);
+                cell.classList.toggle('bg-blue-950/60', col !== 'all' && isMatch);
             });
         });
     });
