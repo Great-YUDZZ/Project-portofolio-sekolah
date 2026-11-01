@@ -397,193 +397,323 @@
                 </div>
             </div>
 
-            {{-- 2-Root Pipeline Architecture --}}
-            <div class="space-y-8">
-                {{-- Block 1: Rumpun Teknik Konstruksi & Properti --}}
-                <div data-genealogy-block="bangunan" class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-2xs transition-all duration-300">
-                    <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-                        <span class="w-3 h-3 rounded-full bg-[#2563EB]"></span>
-                        <h3 class="font-display font-extrabold text-lg text-[#0E1133]">
-                            Rumpun I • Teknik Konstruksi &amp; Properti
-                        </h3>
-                        <span class="font-mono text-xs text-slate-500 ml-auto hidden sm:inline">1 Bidang • 3 Konsentrasi Keahlian</span>
-                    </div>
+            {{-- Top-Down Branching Tree Architecture (Blueprint Technical Canvas) --}}
+            <div class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-10 shadow-sm relative overflow-hidden" style="background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px); background-size: 20px 20px;">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    {{-- ========================================================
+                         LEFT LINEAGE: RUMPUN BANGUNAN / TEKNIK SIPIL (1962)
+                         ======================================================== --}}
+                    <div data-genealogy-block="bangunan" class="lg:col-span-4 flex flex-col transition-all duration-300">
+                        {{-- Root Pioneer Card 1 --}}
+                        <div class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-blue-400 transition-all border-t-4 border-t-[#2563EB]">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="px-2.5 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-[11px] font-bold">
+                                    Akar Pionir 1962
+                                </span>
+                                <span class="text-[11px] font-mono text-slate-400 font-semibold">SK No. 17/1962</span>
+                            </div>
+                            <h3 class="font-display font-extrabold text-xl text-[#0E1133] mt-2">
+                                Jurusan Bangunan Gedung
+                            </h3>
+                            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                Diinisiasi bekerja sama dengan Departemen Pekerjaan Umum (PU) untuk defisit teknisi sipil Bali pascakemerdekaan.
+                            </p>
+                            <div class="mt-3.5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                                <span>SD Percobaan Tulangampiang</span>
+                                <span class="font-bold text-[#2563EB]">Kelas Sore</span>
+                            </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                        {{-- Root Pioneer Card (1962) --}}
-                        <div class="lg:col-span-4">
-                            <div class="h-full p-6 rounded-2xl bg-slate-50 border border-slate-200 border-l-4 border-l-[#2563EB] flex flex-col justify-between space-y-4">
-                                <div>
-                                    <div class="flex items-center justify-between gap-2">
-                                        <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#2563EB]">
-                                            Akar Pionir 1962
-                                        </span>
-                                        <span class="px-2 py-0.5 rounded bg-blue-100/70 text-[#2563EB] font-mono text-[11px] font-bold">
-                                            SK No. 17/1962
-                                        </span>
-                                    </div>
-                                    <h4 class="font-display font-extrabold text-xl text-[#0E1133] mt-2">
-                                        Jurusan Bangunan Gedung
-                                    </h4>
-                                    <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                                        Diinisiasi bekerja sama dengan Departemen Pekerjaan Umum (PU) untuk mencetak teknisi infrastruktur sipil pertama di Bali. Menumpang sore hari di SD Percobaan Tulangampiang.
-                                    </p>
-                                </div>
-
-                                <div class="pt-4 border-t border-slate-200/80">
-                                    <span class="text-[11px] font-mono font-semibold text-slate-500 block mb-1">Cakupan Kejuruan Awal:</span>
-                                    <p class="text-xs text-slate-600 leading-relaxed">
-                                        Gambar teknik bangunan, konstruksi batu beton, dan pertukangan kayu perintis.
-                                    </p>
-                                </div>
-
-                                <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#2563EB] pt-2">
-                                    <span>Transformasi Menjadi 1 Bidang Induk</span>
-                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </div>
+                            {{-- Bottom Output Terminal Node --}}
+                            <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                             </div>
                         </div>
 
-                        {{-- Modern Branch Card --}}
+                        {{-- Vertical Connector Line (Top-Down Flow) --}}
+                        <div class="flex flex-col items-center py-2" aria-hidden="true">
+                            <div class="w-0.5 h-5 bg-[#2563EB]"></div>
+                            <div class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-[10px] font-bold shadow-2xs my-0.5">
+                                Evolusi 64 Tahun ↓
+                            </div>
+                            <div class="w-0.5 h-5 bg-[#2563EB]"></div>
+                        </div>
+
+                        {{-- Modern Cluster Card 1 --}}
                         @php
                             $bangunanCluster = collect($curriculumGenealogy['modern_clusters'])->firstWhere('id', 'cluster-bangunan');
                         @endphp
                         @if($bangunanCluster)
-                            <div class="lg:col-span-8">
-                                <article
-                                    data-genealogy-cluster="{{ $bangunanCluster['id'] }}"
-                                    data-pioneer-origin="bangunan"
-                                    class="h-full p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-slate-200 hover:border-blue-400 hover:shadow-xs transition-all flex flex-col justify-between"
-                                >
+                            <article
+                                data-genealogy-cluster="{{ $bangunanCluster['id'] }}"
+                                data-pioneer-origin="bangunan"
+                                class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-blue-400 hover:shadow-md transition-all border-t-2 border-t-[#2563EB]"
+                            >
+                                {{-- Top Input Terminal Node --}}
+                                <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                                </div>
+
+                                <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-slate-200">
                                     <div>
-                                        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-                                            <div>
-                                                <span class="text-xs font-mono font-bold text-slate-400 uppercase">Bidang Keahlian Modern</span>
-                                                <h4 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-0.5">
-                                                    {{ $bangunanCluster['field'] }}
-                                                </h4>
-                                            </div>
-                                            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-mono text-xs font-bold">
-                                                {{ $bangunanCluster['accreditation'] }}
-                                            </span>
-                                        </div>
-
-                                        <div class="mt-3.5 text-xs font-mono text-slate-500">
-                                            <strong class="text-slate-700">Era Transisi BBC/CBT (1999-2004):</strong> {{ $bangunanCluster['era_1999'] }}
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <span class="text-xs font-semibold text-slate-700 block mb-2">Konsentrasi Keahlian Saat Ini:</span>
-                                            <ul class="flex flex-wrap gap-2">
-                                                @foreach($bangunanCluster['era_modern'] as $modMajor)
-                                                    <li class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs sm:text-sm font-bold text-[#0E1133] shadow-2xs">
-                                                        {{ $modMajor }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
+                                        <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">Bidang Keahlian Modern</span>
+                                        <h4 class="font-display font-extrabold text-lg text-[#0E1133] mt-0.5">
+                                            {{ $bangunanCluster['field'] }}
+                                        </h4>
                                     </div>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[11px] font-bold">
+                                        {{ $bangunanCluster['accreditation'] }}
+                                    </span>
+                                </div>
 
-                                    <div class="mt-5 pt-4 border-t border-slate-200 text-xs text-slate-600 leading-relaxed bg-white/70 p-3.5 rounded-xl border border-slate-200/80">
-                                        <strong class="text-[#0E1133] block mb-0.5">Fokus Kompetensi &amp; Sertifikasi:</strong>
-                                        {{ $bangunanCluster['focus'] }}
-                                    </div>
-                                </article>
-                            </div>
+                                <div class="text-[11px] font-mono text-slate-500 mt-2.5 mb-3">
+                                    <strong>Era BBC/CBT (1999):</strong> {{ $bangunanCluster['era_1999'] }}
+                                </div>
+
+                                <div class="space-y-1.5 mb-3.5">
+                                    <span class="text-xs font-semibold text-slate-700 block">Konsentrasi Keahlian:</span>
+                                    <ul class="flex flex-wrap gap-1.5">
+                                        @foreach($bangunanCluster['era_modern'] as $modMajor)
+                                            <li class="px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200 text-xs font-bold text-[#0E1133]">
+                                                {{ $modMajor }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
+                                <p class="text-xs text-slate-600 leading-relaxed pt-3 border-t border-slate-100">
+                                    {{ $bangunanCluster['focus'] }}
+                                </p>
+                            </article>
                         @endif
                     </div>
-                </div>
 
-                {{-- Block 2: Rumpun Rekayasa Manufaktur, Energi & TIK --}}
-                <div data-genealogy-block="mesin" class="rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-2xs transition-all duration-300">
-                    <div class="flex items-center gap-3 pb-4 mb-6 border-b border-slate-100">
-                        <span class="w-3 h-3 rounded-full bg-[#EA580C]"></span>
-                        <h3 class="font-display font-extrabold text-lg text-[#0E1133]">
-                            Rumpun II • Rekayasa Manufaktur, Energi &amp; Teknologi Digital
-                        </h3>
-                        <span class="font-mono text-xs text-slate-500 ml-auto hidden sm:inline">4 Bidang • 9 Konsentrasi Keahlian</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                        {{-- Root Pioneer Card (1962 / 1977) --}}
-                        <div class="lg:col-span-4">
-                            <div class="h-full p-6 rounded-2xl bg-slate-50 border border-slate-200 border-l-4 border-l-[#EA580C] flex flex-col justify-between space-y-4">
-                                <div>
-                                    <div class="flex items-center justify-between gap-2">
-                                        <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#EA580C]">
-                                            Akar Pionir 1962 &amp; 1977
-                                        </span>
-                                        <span class="px-2 py-0.5 rounded bg-orange-100/70 text-[#EA580C] font-mono text-[11px] font-bold">
-                                            Ir. Cokorda Sukawati
-                                        </span>
-                                    </div>
-                                    <h4 class="font-display font-extrabold text-xl text-[#0E1133] mt-2">
-                                        Jurusan Mesin &amp; Listrik
-                                    </h4>
-                                    <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                                        Dikoordinasikan oleh Ir. Cokorda Raka Sukawati (penemu teknologi landasan putar Sosrobahu) bersama tim ahli CIP Denpasar. Diperluas dengan Jurusan Listrik pada 1977 berstandar 80% praktik lapangan.
-                                    </p>
+                    {{-- ========================================================
+                         RIGHT LINEAGE: RUMPUN MESIN, LISTRIK & TIK (1962/1977)
+                         ======================================================== --}}
+                    <div data-genealogy-block="mesin" class="lg:col-span-8 flex flex-col transition-all duration-300">
+                        {{-- Root Pioneer Card 2 (Spans full width of right column) --}}
+                        <div class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-orange-400 transition-all border-t-4 border-t-[#EA580C]">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-md bg-orange-50 border border-orange-200 text-[#EA580C] font-mono text-[11px] font-bold">
+                                        Akar Pionir 1962 &amp; 1977
+                                    </span>
+                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px] font-semibold">
+                                        Ir. Cokorda Raka Sukawati
+                                    </span>
                                 </div>
+                                <span class="text-[11px] font-mono text-slate-400 font-semibold">Praktik Lapangan 80%</span>
+                            </div>
+                            <h3 class="font-display font-extrabold text-xl text-[#0E1133] mt-2">
+                                Jurusan Mesin (1962) &amp; Ekspansi Listrik (1977)
+                            </h3>
+                            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                Dibina oleh penemu konstruksi landasan putar Sosrobahu bersama tim ahli CIP Denpasar. Rahim lahirnya rekayasa mekanik presisi, kelistrikan industri, hingga konvergensi teknologi digital.
+                            </p>
+                            <div class="mt-3.5 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 font-mono">
+                                <span>Proyek Bandara Ngurah Rai, Grand Bali Beach Sanur &amp; Patal Tohpati</span>
+                                <span class="font-bold text-[#EA580C]">4 Bidang Induk Modern ↓</span>
+                            </div>
 
-                                <div class="pt-4 border-t border-slate-200/80">
-                                    <span class="text-[11px] font-mono font-semibold text-slate-500 block mb-1">Cakupan Kejuruan Awal:</span>
-                                    <p class="text-xs text-slate-600 leading-relaxed">
-                                        Pemesinan bubut perkakas, mekanik otomotif, instalasi tenaga listrik, hingga cikal bakal elektronika komunikasi.
-                                    </p>
-                                </div>
-
-                                <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#EA580C] pt-2">
-                                    <span>Transformasi 4 Bidang Modern</span>
-                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </div>
+                            {{-- Bottom Output Terminal Node --}}
+                            <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                             </div>
                         </div>
 
-                        {{-- Modern Branches: Balanced 2x2 Grid --}}
+                        {{-- Branching SVG Circuit Fork (Drops & Splits into 2 Columns at 25% and 75%) --}}
+                        <div class="relative h-14 flex items-center justify-center my-0.5" aria-hidden="true">
+                            <svg class="w-full h-14 overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 50">
+                                <!-- Center vertical drop -->
+                                <path d="M 50 0 L 50 20" stroke="#EA580C" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                <circle cx="50" cy="20" r="3" fill="#EA580C" />
+                                <!-- Left branch (Mesin/Mekanik) to 25% -->
+                                <path d="M 50 20 L 25 20 L 25 50" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <!-- Right branch (Listrik/TIK) to 75% -->
+                                <path d="M 50 20 L 75 20 L 75 50" stroke="#0891B2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                            </svg>
+                            <div class="absolute top-2 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 font-mono text-[10px] font-bold shadow-2xs">
+                                Cabang Rekayasa &amp; Teknologi ↓
+                            </div>
+                        </div>
+
+                        {{-- Two Sub-Columns under the Branch --}}
                         @php
-                            $mesinClusters = collect($curriculumGenealogy['modern_clusters'])->where('id', '!==', 'cluster-bangunan');
+                            $clusterMesin = collect($curriculumGenealogy['modern_clusters'])->firstWhere('id', 'cluster-mesin');
+                            $clusterElektronika = collect($curriculumGenealogy['modern_clusters'])->firstWhere('id', 'cluster-elektronika');
+                            $clusterListrik = collect($curriculumGenealogy['modern_clusters'])->firstWhere('id', 'cluster-listrik');
+                            $clusterTik = collect($curriculumGenealogy['modern_clusters'])->firstWhere('id', 'cluster-tik');
                         @endphp
-                        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            @foreach($mesinClusters as $cluster)
-                                <article
-                                    data-genealogy-cluster="{{ $cluster['id'] }}"
-                                    data-pioneer-origin="mesin"
-                                    class="p-5 sm:p-6 rounded-2xl bg-[#F8F9FA] border border-slate-200 hover:border-blue-400 hover:shadow-xs transition-all flex flex-col justify-between"
-                                >
-                                    <div>
-                                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-slate-200">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+                            
+                            {{-- Sub-Column A: Mesin & Otomotif -> Elektronika (Center at 25%) --}}
+                            <div class="flex flex-col space-y-4">
+                                {{-- Card Mesin & Otomotif --}}
+                                @if($clusterMesin)
+                                    <article
+                                        data-genealogy-cluster="{{ $clusterMesin['id'] }}"
+                                        data-pioneer-origin="mesin"
+                                        class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-orange-400 hover:shadow-md transition-all border-t-2 border-t-[#EA580C]"
+                                    >
+                                        {{-- Top Input Terminal Node --}}
+                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                                        </div>
+
+                                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-200">
                                             <h4 class="font-display font-extrabold text-base text-[#0E1133]">
-                                                {{ $cluster['field'] }}
+                                                {{ $clusterMesin['field'] }}
                                             </h4>
-                                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[11px] font-bold">
-                                                {{ $cluster['accreditation'] }}
+                                            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[10px] font-bold">
+                                                {{ $clusterMesin['accreditation'] }}
                                             </span>
                                         </div>
-
-                                        <div class="text-[11px] font-mono text-slate-500 mt-2.5 mb-3">
-                                            <strong>Era BBC/CBT 1999-2004:</strong> {{ $cluster['era_1999'] }}
+                                        <div class="text-[10px] font-mono text-slate-500 mt-2 mb-2.5">
+                                            <strong>Era BBC/CBT:</strong> {{ $clusterMesin['era_1999'] }}
                                         </div>
-
                                         <ul class="flex flex-wrap gap-1.5 mb-3">
-                                            @foreach($cluster['era_modern'] as $modMajor)
-                                                <li class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-xs font-bold text-[#0E1133] shadow-2xs">
+                                            @foreach($clusterMesin['era_modern'] as $modMajor)
+                                                <li class="px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200 text-[11px] font-bold text-[#0E1133]">
                                                     {{ $modMajor }}
                                                 </li>
                                             @endforeach
                                         </ul>
-                                    </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed pt-2.5 border-t border-slate-100">
+                                            {{ $clusterMesin['focus'] }}
+                                        </p>
+                                    </article>
+                                @endif
 
-                                    <p class="text-xs text-slate-600 leading-relaxed pt-3 border-t border-slate-200/80">
-                                        {{ $cluster['focus'] }}
-                                    </p>
-                                </article>
-                            @endforeach
+                                {{-- Connector Down to Elektronika --}}
+                                <div class="flex flex-col items-center py-1" aria-hidden="true">
+                                    <div class="w-0.5 h-4 bg-[#EA580C]"></div>
+                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[9px] font-bold my-0.5">Ekspansi 1990-an ↓</span>
+                                    <div class="w-0.5 h-4 bg-[#EA580C]"></div>
+                                </div>
+
+                                {{-- Card Elektronika --}}
+                                @if($clusterElektronika)
+                                    <article
+                                        data-genealogy-cluster="{{ $clusterElektronika['id'] }}"
+                                        data-pioneer-origin="mesin"
+                                        class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-orange-400 hover:shadow-md transition-all border-t-2 border-t-[#EA580C]"
+                                    >
+                                        {{-- Top Input Terminal Node --}}
+                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                                        </div>
+
+                                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-200">
+                                            <h4 class="font-display font-extrabold text-base text-[#0E1133]">
+                                                {{ $clusterElektronika['field'] }}
+                                            </h4>
+                                            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[10px] font-bold">
+                                                {{ $clusterElektronika['accreditation'] }}
+                                            </span>
+                                        </div>
+                                        <div class="text-[10px] font-mono text-slate-500 mt-2 mb-2.5">
+                                            <strong>Era BBC/CBT:</strong> {{ $clusterElektronika['era_1999'] }}
+                                        </div>
+                                        <ul class="flex flex-wrap gap-1.5 mb-3">
+                                            @foreach($clusterElektronika['era_modern'] as $modMajor)
+                                                <li class="px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200 text-[11px] font-bold text-[#0E1133]">
+                                                    {{ $modMajor }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                        <p class="text-xs text-slate-600 leading-relaxed pt-2.5 border-t border-slate-100">
+                                            {{ $clusterElektronika['focus'] }}
+                                        </p>
+                                    </article>
+                                @endif
+                            </div>
+
+                            {{-- Sub-Column B: Ketenagalistrikan & HVAC -> TIK & Kreatif (Center at 75%) --}}
+                            <div class="flex flex-col space-y-4">
+                                {{-- Card Ketenagalistrikan & Tata Udara --}}
+                                @if($clusterListrik)
+                                    <article
+                                        data-genealogy-cluster="{{ $clusterListrik['id'] }}"
+                                        data-pioneer-origin="mesin"
+                                        class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-cyan-400 hover:shadow-md transition-all border-t-2 border-t-[#0891B2]"
+                                    >
+                                        {{-- Top Input Terminal Node --}}
+                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#0891B2] border-2 border-white shadow-xs flex items-center justify-center">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                                        </div>
+
+                                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-200">
+                                            <h4 class="font-display font-extrabold text-base text-[#0E1133]">
+                                                {{ $clusterListrik['field'] }}
+                                            </h4>
+                                            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[10px] font-bold">
+                                                {{ $clusterListrik['accreditation'] }}
+                                            </span>
+                                        </div>
+                                        <div class="text-[10px] font-mono text-slate-500 mt-2 mb-2.5">
+                                            <strong>Era BBC/CBT:</strong> {{ $clusterListrik['era_1999'] }}
+                                        </div>
+                                        <ul class="flex flex-wrap gap-1.5 mb-3">
+                                            @foreach($clusterListrik['era_modern'] as $modMajor)
+                                                <li class="px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200 text-[11px] font-bold text-[#0E1133]">
+                                                    {{ $modMajor }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                        <p class="text-xs text-slate-600 leading-relaxed pt-2.5 border-t border-slate-100">
+                                            {{ $clusterListrik['focus'] }}
+                                        </p>
+                                    </article>
+                                @endif
+
+                                {{-- Connector Down to TIK --}}
+                                <div class="flex flex-col items-center py-1" aria-hidden="true">
+                                    <div class="w-0.5 h-4 bg-[#0891B2]"></div>
+                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[9px] font-bold my-0.5">Revolusi TIK 1999 ↓</span>
+                                    <div class="w-0.5 h-4 bg-[#0891B2]"></div>
+                                </div>
+
+                                {{-- Card TIK & Kreatif --}}
+                                @if($clusterTik)
+                                    <article
+                                        data-genealogy-cluster="{{ $clusterTik['id'] }}"
+                                        data-pioneer-origin="mesin"
+                                        class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-cyan-400 hover:shadow-md transition-all border-t-2 border-t-[#0891B2]"
+                                    >
+                                        {{-- Top Input Terminal Node --}}
+                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#0891B2] border-2 border-white shadow-xs flex items-center justify-center">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                                        </div>
+
+                                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-200">
+                                            <h4 class="font-display font-extrabold text-base text-[#0E1133]">
+                                                {{ $clusterTik['field'] }}
+                                            </h4>
+                                            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[10px] font-bold">
+                                                {{ $clusterTik['accreditation'] }}
+                                            </span>
+                                        </div>
+                                        <div class="text-[10px] font-mono text-slate-500 mt-2 mb-2.5">
+                                            <strong>Era BBC/CBT:</strong> {{ $clusterTik['era_1999'] }}
+                                        </div>
+                                        <ul class="flex flex-wrap gap-1.5 mb-3">
+                                            @foreach($clusterTik['era_modern'] as $modMajor)
+                                                <li class="px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200 text-[11px] font-bold text-[#0E1133]">
+                                                    {{ $modMajor }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                        <p class="text-xs text-slate-600 leading-relaxed pt-2.5 border-t border-slate-100">
+                                            {{ $clusterTik['focus'] }}
+                                        </p>
+                                    </article>
+                                @endif
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
 
