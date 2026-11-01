@@ -173,23 +173,16 @@
 
                                 @if($facility['major_code'])
                                     @php
-                                        $majorSlugMap = [
-                                            'TPTUP' => 'teknik-pendingin-dan-tata-udara',
-                                            'TKJ' => 'teknik-komputer-dan-jaringan',
-                                            'TP' => 'teknik-pemesinan',
-                                            'DKV' => 'desain-komunikasi-visual',
-                                            'RPL' => 'rekayasa-perangkat-lunak',
-                                        ];
-                                        $majorSlug = $majorSlugMap[$facility['major_code']] ?? null;
+                                        $targetCode = strtoupper(trim($facility['major_code']));
+                                        if ($targetCode === 'TP') $targetCode = 'TPM';
+                                        $majorSlug = strtolower($targetCode);
                                     @endphp
-                                    @if($majorSlug)
-                                        <a
-                                            href="{{ route('majors.show', $majorSlug) }}"
-                                            class="text-xs font-mono font-bold uppercase text-navy hover:underline shrink-0"
-                                        >
-                                            Jurusan {{ $facility['major_code'] }} &rarr;
-                                        </a>
-                                    @endif
+                                    <a
+                                        href="{{ route('majors.show', $majorSlug) }}"
+                                        class="text-xs font-mono font-bold uppercase text-navy hover:underline shrink-0"
+                                    >
+                                        Jurusan {{ $facility['major_code'] }} &rarr;
+                                    </a>
                                 @endif
                             </div>
                         </article>

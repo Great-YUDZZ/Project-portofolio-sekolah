@@ -27,9 +27,54 @@ class MajorController extends Controller
 
     public function show(string $slug): View
     {
+        $slugClean = strtolower(trim($slug));
+
         $major = Major::with(['field', 'classrooms', 'studentWorks', 'achievements'])
-            ->where('slug', $slug)
-            ->firstOrFail();
+            ->where('slug', $slugClean)
+            ->first();
+
+        if (! $major) {
+            $major = Major::with(['field', 'classrooms', 'studentWorks', 'achievements'])
+                ->where('code', strtoupper($slugClean))
+                ->first();
+        }
+
+        if (! $major) {
+            $slugAliases = [
+                'teknik-komputer-dan-jaringan' => 'TKJ',
+                'teknik-komputer-jaringan' => 'TKJ',
+                'rekayasa-perangkat-lunak' => 'RPL',
+                'desain-komunikasi-visual' => 'DKV',
+                'teknik-pemesinan' => 'TPM',
+                'teknik-mesin' => 'TPM',
+                'teknik-pendingin-dan-tata-udara' => 'TPTUP',
+                'teknik-pendingin-tata-udara' => 'TPTUP',
+                'teknik-instalasi-tenaga-listrik' => 'TITL',
+                'teknik-tenaga-listrik' => 'TITL',
+                'teknik-konstruksi-dan-properti' => 'TKP',
+                'teknik-konstruksi-properti' => 'TKP',
+                'desain-pemodelan-dan-informasi-bangunan' => 'DPIB',
+                'desain-pemodelan-informasi-bangunan' => 'DPIB',
+                'teknik-kendaraan-ringan' => 'TKR',
+                'teknik-kendaraan-ringan-otomotif' => 'TKR',
+                'teknik-sepeda-motor' => 'TSM',
+                'teknik-bisnis-sepeda-motor' => 'TSM',
+                'teknik-audio-video' => 'TAV',
+                'teknik-elektronika-industri' => 'ELIN',
+                'produksi-dan-siaran-program-televisi' => 'PRF',
+                'produksi-siaran-program-televisi' => 'PRF',
+            ];
+
+            if (isset($slugAliases[$slugClean])) {
+                $major = Major::with(['field', 'classrooms', 'studentWorks', 'achievements'])
+                    ->where('code', $slugAliases[$slugClean])
+                    ->first();
+            }
+        }
+
+        if (! $major) {
+            abort(404);
+        }
 
         $otherMajors = Major::where('id', '!=', $major->id)
             ->orderBy('order_index')
