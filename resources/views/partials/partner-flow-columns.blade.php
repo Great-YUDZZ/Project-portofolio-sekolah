@@ -288,7 +288,7 @@
 <div id="partner-cards-container"
      class="absolute inset-0 w-full max-w-[1440px] mx-auto pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0%,#000_12%,#000_88%,transparent_100%)] select-none">
     @foreach ($partnerColumns as $col)
-        <div class="partner-flow-column absolute top-0 bottom-0 {{ $col['pos'] }} {{ $col['vis'] }} w-11 sm:w-12 lg:w-[165px] 2xl:w-[180px] will-change-transform"
+        <div class="partner-flow-column absolute top-0 bottom-0 {{ $col['pos'] }} {{ $col['vis'] }} w-12 sm:w-14 lg:w-[175px] xl:w-[190px] will-change-transform"
              data-column="{{ $col['id'] }}" data-speed="{{ $col['speed'] }}" data-depth="{{ $col['depth'] }}" data-offset="{{ $col['offset'] }}">
             @foreach ($col['items'] as $key)
                 @php $p = $flowPartners[$key]; @endphp
@@ -304,9 +304,9 @@
                             aria-haspopup="dialog"
                             aria-label="Lihat rincian kemitraan {{ $p['name'] }}"
                             style="--brand: {{ $p['color'] }}; --brand-rgb: {{ $p['rgb'] }};"
-                            class="partner-compact-orb group w-11 sm:w-12 lg:w-full flex items-center justify-center lg:justify-start gap-2 lg:gap-3 p-1 sm:p-1.5 lg:p-2.5 rounded-2xl bg-white/95 border-2 border-ink shadow-sm backdrop-blur-md cursor-pointer transition-all duration-300 hover:scale-[1.05] hover:border-[var(--brand)] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-navy">
-                        <span class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-xl bg-paper border border-line/70 p-1 flex items-center justify-center shrink-0 overflow-hidden transition-all duration-300 group-hover:border-ink">
-                            <img src="{{ $p['logo'] }}" alt="Logo {{ $p['name'] }}" class="max-h-4 sm:max-h-5 lg:max-h-6 max-w-[26px] sm:max-w-[30px] lg:max-w-[38px] w-auto h-auto object-contain pointer-events-none" loading="lazy" />
+                            class="partner-compact-orb group w-12 sm:w-14 lg:w-full flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3 p-1.5 sm:p-2 lg:p-2 rounded-2xl bg-white/95 border-2 border-ink shadow-sm backdrop-blur-md cursor-pointer transition-all duration-300 hover:scale-[1.05] hover:border-[var(--brand)] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-navy">
+                        <span class="w-10 h-9 sm:w-11 sm:h-10 lg:w-12 lg:h-10 rounded-xl bg-paper border border-line/70 p-1 flex items-center justify-center shrink-0 overflow-hidden transition-all duration-300 group-hover:border-ink">
+                            <img src="{{ $p['logo'] }}" alt="Logo {{ $p['name'] }}" class="max-h-6 sm:max-h-7 lg:max-h-7 max-w-[34px] sm:max-w-[40px] lg:max-w-[42px] w-auto h-auto object-contain pointer-events-none" loading="lazy" />
                         </span>
                         <span class="hidden lg:block text-left min-w-0 pr-1">
                             <span class="block text-xs font-display font-extrabold text-ink group-hover:text-navy truncate leading-tight">{{ $p['name'] }}</span>

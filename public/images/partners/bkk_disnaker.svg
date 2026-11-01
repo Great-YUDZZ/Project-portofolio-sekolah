@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
-  <rect x="18" y="15" width="30" height="30" rx="8" fill="#0E1133"/>
-  <path d="M26 25H40V37H26V25ZM30 25V22C30 20.8954 30.8954 20 32 20H34C35.1046 20 36 20.8954 36 22V25" stroke="#FFFFFF" stroke-width="2"/>
-  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="13" fill="#0E1133" letter-spacing="0.5">BKK DISNAKER</text>
-  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#64748B" letter-spacing="0.8">BURSA KERJA KHUSUS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none">
+  <rect width="64" height="48" rx="10" fill="#0E1133"/>
+  <rect x="17" y="17" width="30" height="22" rx="4" stroke="#FBBF24" stroke-width="3.5" fill="none"/>
+  <path d="M26 17V13C26 11.5 27.5 10 29.5 10H34.5C36.5 10 38 11.5 38 13V17" stroke="#FBBF24" stroke-width="3.5" fill="none"/>
+  <line x1="17" y1="26" x2="47" y2="26" stroke="#FBBF24" stroke-width="2.5"/>
 </svg>

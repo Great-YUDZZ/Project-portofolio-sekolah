@@ -151,6 +151,7 @@ export function initIntro() {
             video.muted = false;
             video.volume = 0.85;
             video.onended = () => runSplitReveal();
+            video.onerror = () => runSplitReveal();
 
             armFallbackTimer(5.85);
 

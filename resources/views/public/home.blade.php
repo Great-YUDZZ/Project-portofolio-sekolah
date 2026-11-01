@@ -12,7 +12,7 @@
         id="skensa-intro-overlay"
         data-intro-version="{{ $introVer }}"
         aria-hidden="false"
-        class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none bg-[#071C3F] cursor-pointer"
+        class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none bg-transparent cursor-pointer"
         title="Klik di mana saja atau tekan ESC untuk melanjutkan"
     >
         <div data-intro-top class="absolute inset-x-0 top-0 h-1/2 bg-[#071C3F] border-b border-paper/10 will-change-transform"></div>
@@ -26,6 +26,7 @@
                 poster="/media/intro.jpg?v={{ $introVer }}"
                 class="w-full h-full object-cover"
             >
+                <source src="/media/intro.mp4?v={{ $introVer }}" type="video/mp4">
                 <source src="/media/intro.webm?v={{ $introVer }}" type="video/webm">
             </video>
 
@@ -641,45 +642,20 @@
                     {{-- 4 Vertical Flow Columns --}}
                     @include('partials.partner-flow-columns')
 
-                    {{-- Center Anchor Layer: Logo Sekolah & Identitas Pusat Keunggulan --}}
-                    <div id="partner-center-anchor" class="relative z-20 w-[264px] sm:w-[350px] lg:w-full lg:max-w-md mx-auto text-center px-3.5 py-5 sm:p-7 rounded-3xl bg-white/95 backdrop-blur-md border border-line/80 shadow-md pointer-events-auto">
-                        {{-- School Crest Badge --}}
-                        <div class="inline-flex flex-col items-center justify-center mb-3 sm:mb-4">
-                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-paper border-2 border-ink p-2 sm:p-2.5 shadow-md flex items-center justify-center hover:scale-105 transition-transform duration-300">
-                                <img src="/images/logo_skensa.png" alt="Logo SMK Negeri 1 Denpasar" class="w-full h-full object-contain drop-shadow-xs" />
+                    {{-- Center Anchor Layer: Logo Sekolah & Judul Minimalis (Di Luar Box) --}}
+                    <div id="partner-center-anchor" class="relative z-20 max-w-sm mx-auto text-center pointer-events-auto select-none">
+                        {{-- School Logo Mark --}}
+                        <div class="inline-flex flex-col items-center justify-center mb-4">
+                            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-white/95 border-2 border-ink p-3 shadow-md flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                                <img src="/images/logo_skensa.png" alt="Logo SMK Negeri 1 Denpasar" class="w-full h-full object-contain" />
                             </div>
                         </div>
 
-                        {{-- Subhead: EKOSISTEM KEMITRAAN DUDIKA --}}
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy text-white text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest mb-2.5 shadow-xs">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>Kemitraan DUDIKA &amp; BKK</span>
-                        </div>
-
-                        {{-- Main Headline --}}
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-display font-extrabold text-ink tracking-tight leading-tight mb-2 sm:mb-3">
-                            Jejaring Industri <span class="marker-highlight">SMKN 1 Denpasar</span>
+                        {{-- Minimalist Title --}}
+                        <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-ink tracking-tight leading-tight">
+                            Mitra Kerja <br />
+                            <span class="marker-highlight">SMKN 1 Denpasar</span>
                         </h3>
-
-                        {{-- Short Description --}}
-                        <p class="text-xs sm:text-sm text-ink-muted leading-relaxed mb-4 max-w-xs sm:max-w-sm mx-auto font-medium">
-                            Kolaborasi strategis kurikulum terpadu bersama lebih dari 140 industri nasional dan multinasional untuk mencetak talenta vokasi siap kerja.
-                        </p>
-
-                        {{-- Badges & Interaction Guide --}}
-                        <div class="flex flex-wrap items-center justify-center gap-2">
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-paper border border-line text-[11px] sm:text-xs font-bold text-ink shadow-2xs">
-                                <svg class="w-3.5 h-3.5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                </svg>
-                                <span>140+ Mitra Terdaftar</span>
-                            </span>
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-paper border border-line text-[11px] sm:text-xs font-bold text-ink shadow-2xs">
-                                <span class="w-2 h-2 rounded-full bg-navy"></span>
-                                <span>13 Jurusan Vokasi</span>
-                            </span>
-                        </div>
-                        <p class="text-[10px] sm:text-[11px] text-ink-muted mt-2.5">Arahkan kursor ke kartu mana saja untuk menjeda, klik untuk melihat rincian kerjasama.</p>
                     </div>
                 </div>
 

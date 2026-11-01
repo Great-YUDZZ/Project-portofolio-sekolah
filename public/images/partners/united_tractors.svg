@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
-  <rect x="18" y="15" width="30" height="30" rx="8" fill="#FBBF24"/>
-  <path d="M26 23H40V27H35V37H31V27H26V23Z" fill="#14161A"/>
-  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="12" fill="#14161A" letter-spacing="0.5">UNITED TRACTORS</text>
-  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#52565E" letter-spacing="0.8">ALAT BERAT &amp; PEMESINAN</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none">
+  <rect width="64" height="48" rx="10" fill="#FBBF24"/>
+  <path d="M15 13H25V27C25 31 22.5 33.5 19 33.5H15V29H19C20 29 20.5 28.5 20.5 27.5V13H15Z" fill="#14161A"/>
+  <path d="M29 13H49V18.5H41.5V33.5H36.5V18.5H29V13Z" fill="#14161A"/>
 </svg>

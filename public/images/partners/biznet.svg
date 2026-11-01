@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
-  <rect x="18" y="15" width="30" height="30" rx="8" fill="#FF5E00"/>
-  <circle cx="33" cy="30" r="7" fill="#FFFFFF"/>
-  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="14" fill="#0F172A" letter-spacing="0.5">BIZNET</text>
-  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#64748B" letter-spacing="0.8">FIBER OPTIC BROADBAND</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none">
+  <rect width="64" height="48" rx="10" fill="#FF5E00"/>
+  <circle cx="32" cy="24" r="11" fill="#FFFFFF"/>
+  <circle cx="32" cy="24" r="5" fill="#FF5E00"/>
 </svg>

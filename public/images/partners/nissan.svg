@@ -1,7 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
-  <circle cx="36" cy="30" r="18" stroke="#C3002F" stroke-width="3.5" fill="none"/>
-  <rect x="18" y="24" width="36" height="12" fill="#14161A" rx="2"/>
-  <text x="36" y="32.5" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="7.5" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">NISSAN</text>
-  <text x="64" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="13" fill="#14161A" letter-spacing="0.5">NISSAN GIANYAR</text>
-  <text x="64" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#52565E" letter-spacing="0.8">MITRA PKL OTOMOTIF TKR</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none">
+  <circle cx="32" cy="24" r="18" stroke="#C3002F" stroke-width="4.5" fill="none"/>
+  <rect x="8" y="18" width="48" height="12" fill="#14161A" rx="2"/>
+  <text x="32" y="27" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="9.5" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">NISSAN</text>
 </svg>

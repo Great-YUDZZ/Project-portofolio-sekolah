@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
-  <rect x="18" y="15" width="30" height="30" rx="8" fill="#15803D"/>
-  <path d="M28 22H38M33 22V38M27 38H39" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
-  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="12" fill="#15803D" letter-spacing="0.5">BAMBOOMEDIA</text>
-  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#64748B" letter-spacing="0.8">SOFTWARE PENDIDIKAN</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none">
+  <rect width="64" height="48" rx="10" fill="#15803D"/>
+  <path d="M21 11V37M32 9V39M43 13V35" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M17 24H25M28 21H36M39 26H47" stroke="#86EFAC" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="32" cy="18" r="3" fill="#FACC15"/>
 </svg>

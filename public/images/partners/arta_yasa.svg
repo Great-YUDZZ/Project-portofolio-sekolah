@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
-  <rect x="18" y="15" width="30" height="30" rx="8" fill="#DC2626"/>
-  <circle cx="33" cy="30" r="7" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
-  <path d="M29 30H37M33 26V34" stroke="#FFFFFF" stroke-width="2"/>
-  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="13" fill="#14161A" letter-spacing="0.5">ARTA YASA MOTOR</text>
-  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#52565E" letter-spacing="0.8">BENGKEL MITRA TSM BALI</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none">
+  <rect width="64" height="48" rx="10" fill="#DC2626"/>
+  <circle cx="32" cy="24" r="13" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+  <circle cx="32" cy="24" r="5" fill="#FFFFFF"/>
+  <path d="M32 9V13M32 35V39M17 24H21M43 24H47" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
 </svg>

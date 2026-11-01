@@ -102,6 +102,7 @@ export function initPartnerFlowColumns() {
             spacing: 0,
             setX: gsap.quickSetter(col, 'x', 'px'),
             setCardY: cards.map((c) => gsap.quickSetter(c, 'y', 'px')),
+            setCardOpacity: cards.map((c) => gsap.quickSetter(c, 'opacity')),
         };
 
         const pause = () => { state.hovered = true; };
@@ -166,6 +167,8 @@ export function initPartnerFlowColumns() {
 
         currentMX += (targetMX - currentMX) * Math.min(1, dt * 4.5);
 
+        const fadeZone = Math.max(120, stageH * 0.22); // 22% top & bottom fade zone
+
         flowCols.forEach((c) => {
             if (!c.loopH) return;
 
@@ -179,12 +182,20 @@ export function initPartnerFlowColumns() {
             // Progress upward
             c.progress += c.speed * c.factor * dt;
 
-            // Update card Y positions
+            // Update card Y positions & coordinate-based opacity (fade in on enter, fade out on exit)
             const numCards = c.cards.length;
             for (let i = 0; i < numCards; i++) {
                 let y = (i * c.spacing - c.progress) % c.loopH;
                 if (y < 0) y += c.loopH;
                 c.setCardY[i](y);
+
+                let opacity = 1;
+                if (y < fadeZone) {
+                    opacity = Math.max(0, Math.min(1, y / fadeZone));
+                } else if (y > stageH - fadeZone) {
+                    opacity = Math.max(0, Math.min(1, (stageH - y) / fadeZone));
+                }
+                c.setCardOpacity[i](opacity);
             }
         });
     };
