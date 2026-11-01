@@ -7,7 +7,9 @@
 
     <title>{{ $title ?? 'Portal Resmi' }} | SMK Negeri 1 Denpasar</title>
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo_emblem.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo_emblem.png') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
