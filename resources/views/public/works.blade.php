@@ -19,7 +19,7 @@
     <section class="py-12 bg-paper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {{-- Filter Jurusan & Tahun --}}
-            <form method="GET" action="{{ route('works.index') }}" class="p-5 rounded-2xl bg-paper-2 border border-line mb-10 flex flex-wrap items-center justify-between gap-4">
+            <form data-reveal method="GET" action="{{ route('works.index') }}" class="p-5 rounded-2xl bg-paper-2 border border-line mb-10 flex flex-wrap items-center justify-between gap-4">
                 <div class="flex flex-wrap items-center gap-2">
                     <a
                         href="{{ route('works.index') }}"
@@ -62,7 +62,7 @@
                     </a>
                 </div>
             @else
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($works as $work)
                         <article class="rounded-2xl bg-paper-2/70 border border-line overflow-hidden flex flex-col justify-between hover:border-navy transition-colors">
                             <div>

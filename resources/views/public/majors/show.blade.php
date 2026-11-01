@@ -51,7 +51,7 @@
                     $majorPhoto = $major->hero_image ?: ($majorShowcasePhotos[strtoupper($major->code)] ?? '/images/showcase/drone_kampus.jpg');
                 @endphp
 
-                <div class="rounded-2xl bg-paper-2/70 border border-line overflow-hidden">
+                <div data-reveal class="rounded-2xl bg-paper-2/70 border border-line overflow-hidden">
                     <div class="relative aspect-video bg-navy border-b border-line overflow-hidden">
                         <img src="{{ $majorPhoto }}" alt="Dokumentasi Praktik {{ $major->name }} ({{ $major->code }}) SMK Negeri 1 Denpasar" class="w-full h-full object-cover">
                         <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-ink text-white text-xs font-extrabold uppercase tracking-wider">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="p-6 rounded-2xl bg-paper-2/70 border border-line">
                         <h3 class="font-display font-bold text-lg text-navy mb-3">Prospek Karir Lulusan</h3>
                         <ul class="space-y-2 text-sm text-ink">
@@ -100,7 +100,7 @@
                 </div>
 
                 {{-- Rombongan Belajar --}}
-                <div class="p-6 rounded-2xl bg-paper-2/70 border border-line">
+                <div data-reveal class="p-6 rounded-2xl bg-paper-2/70 border border-line">
                     <h3 class="font-display font-bold text-lg text-ink mb-4">Struktur Kelas / Rombongan Belajar ({{ $major->code }})</h3>
                     <div class="flex flex-wrap gap-2.5">
                         @foreach($major->classrooms as $room)
@@ -113,7 +113,7 @@
 
                 {{-- Karya Siswa Jurusan Ini --}}
                 @if($major->studentWorks->isNotEmpty())
-                    <div>
+                    <div data-reveal-stagger>
                         <h3 class="font-display font-extrabold text-2xl text-ink mb-4">Karya Inovasi Siswa {{ $major->code }}</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             @foreach($major->studentWorks as $work)
@@ -129,7 +129,7 @@
             </div>
 
             {{-- Sidebar: Jurusan Lainnya --}}
-            <aside class="lg:col-span-4 space-y-6">
+            <aside data-reveal class="lg:col-span-4 space-y-6">
                 <div class="p-6 rounded-2xl bg-paper-2 border border-line">
                     <h3 class="font-display font-bold text-base uppercase tracking-wider text-navy mb-4">Konsentrasi Keahlian Lainnya</h3>
                     <ul class="space-y-2">

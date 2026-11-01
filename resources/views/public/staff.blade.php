@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-reveal>
             <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                 Sumber Daya Manusia SKENSA
             </span>
@@ -19,7 +19,7 @@
     <section class="py-12 bg-paper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {{-- Filter & Search Bar --}}
-            <form method="GET" action="{{ route('staff.index') }}" class="p-5 rounded-2xl bg-paper-2 border border-line mb-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            <form method="GET" action="{{ route('staff.index') }}" class="p-5 rounded-2xl bg-paper-2 border border-line mb-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4" data-reveal>
                 <div class="flex flex-wrap items-center gap-2">
                     @php
                         $groups = [
@@ -69,7 +69,7 @@
                     </a>
                 </div>
             @else
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-stagger>
                     @foreach($staffMembers as $person)
                         <article class="p-6 rounded-2xl bg-paper-2/60 border border-line flex flex-col justify-between hover:border-navy transition-colors">
                             <div>

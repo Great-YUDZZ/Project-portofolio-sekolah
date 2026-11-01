@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-reveal>
             <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                 Layanan Informasi Publik & Kemitraan DUDI
             </span>
@@ -19,7 +19,7 @@
     <section class="py-14 bg-paper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
             {{-- Contact Info --}}
-            <div class="lg:col-span-5 space-y-6">
+            <div class="lg:col-span-5 space-y-6" data-reveal>
                 <div class="p-6 rounded-2xl bg-paper-2 border border-line space-y-4">
                     <h2 class="font-display font-bold text-xl text-ink">Identitas & Koordinat Sekolah</h2>
 
@@ -73,7 +73,7 @@
             </div>
 
             {{-- Contact Form --}}
-            <div class="lg:col-span-7">
+            <div class="lg:col-span-7" data-reveal data-reveal-delay="0.1">
                 <form method="POST" action="{{ route('contact.store') }}" class="p-8 rounded-2xl bg-paper-2/80 border-2 border-ink space-y-5">
                     @csrf
                     <h2 class="font-display font-extrabold text-2xl text-ink">Kirim Pesan Resmi ke Humas SKENSA</h2>

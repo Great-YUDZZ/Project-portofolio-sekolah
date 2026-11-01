@@ -4,15 +4,14 @@
 @section('meta_description', 'Telusuri perjalanan sejarah SMK Negeri 1 Denpasar (Skensa) sejak berdiri sebagai STM Negeri Denpasar pada 24 September 1962 di kelas sore Tulangampiang hingga menjadi SMK Pusat Keunggulan di Ubung.')
 
 @section('content')
-<div id="skensa-history-scrollcraft" class="bg-[#F8F9FA] text-[#0E1133] pb-24 selection:bg-[#2563EB] selection:text-white">
+<div id="skensa-history-scrollcraft" class="bg-[#F8F9FA] text-[#0E1133] pb-24 selection:bg-[#D97706] selection:text-white">
 
-    {{-- =====================================================================
     {{-- =====================================================================
          ACT 1: EDITORIAL HERO (Clean, White, Focused)
          ===================================================================== --}}
     <section id="act-recognition" data-sc-act="flow" class="bg-white border-b border-slate-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14 sm:pt-28 sm:pb-18 lg:pt-32 lg:pb-20">
-            <p class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#2563EB]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14 sm:pt-28 sm:pb-18 lg:pt-32 lg:pb-20" data-reveal>
+            <p class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#D97706]">
                 Sejarah SMK Negeri 1 Denpasar
             </p>
 
@@ -27,7 +26,7 @@
             <div class="mt-8">
                 <a
                     href="#act-origin"
-                    class="inline-flex items-center gap-2 text-sm font-semibold text-[#0E1133] border-b-2 border-[#0E1133] pb-1 hover:text-[#2563EB] hover:border-[#2563EB] transition-colors"
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-[#0E1133] border-b-2 border-[#0E1133] pb-1 hover:text-[#D97706] hover:border-[#D97706] transition-colors"
                 >
                     <span>Mulai membaca kronik</span>
                     <span aria-hidden="true">&darr;</span>
@@ -60,7 +59,7 @@
                 {{-- Left Sticky Aside Column (lg:col-span-4) --}}
                 <div class="lg:col-span-4">
                     <div class="lg:sticky lg:top-28 space-y-4">
-                        <span class="inline-block text-xs font-mono font-bold uppercase tracking-widest text-[#2563EB]">
+                        <span class="inline-block text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
                             Babak I • Era Perintisan (1962 - 1976)
                         </span>
 
@@ -74,7 +73,7 @@
 
                         {{-- Progress indicators --}}
                         <div class="flex items-center gap-2 pt-2" aria-hidden="true">
-                            <div data-origin-progress-dot="0" class="h-1 rounded-full bg-[#2563EB] w-8 transition-all duration-300"></div>
+                            <div data-origin-progress-dot="0" class="h-1 rounded-full bg-[#D97706] w-8 transition-all duration-300"></div>
                             <div data-origin-progress-dot="1" class="h-1 rounded-full bg-slate-300 w-3 transition-all duration-300"></div>
                             <div data-origin-progress-dot="2" class="h-1 rounded-full bg-slate-300 w-3 transition-all duration-300"></div>
                         </div>
@@ -91,7 +90,7 @@
                     {{-- Step 1 --}}
                     <article data-origin-step="0" class="scroll-mt-28 space-y-4" data-sc-in>
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-mono font-bold text-[#2563EB]">Tahap 01</span>
+                            <span class="text-xs font-mono font-bold text-[#D97706]">Tahap 01</span>
                             <span class="text-slate-300">•</span>
                             <span class="text-xs font-mono text-slate-500">24 September 1962</span>
                         </div>
@@ -116,7 +115,7 @@
                     {{-- Step 2 --}}
                     <article data-origin-step="1" class="scroll-mt-28 space-y-4" data-sc-in>
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-mono font-bold text-[#2563EB]">Tahap 02</span>
+                            <span class="text-xs font-mono font-bold text-[#D97706]">Tahap 02</span>
                             <span class="text-slate-300">•</span>
                             <span class="text-xs font-mono text-slate-500">1965 • Dua Jurusan Pertama</span>
                         </div>
@@ -141,7 +140,7 @@
                     {{-- Step 3 --}}
                     <article data-origin-step="2" class="scroll-mt-28 space-y-4" data-sc-in>
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-mono font-bold text-[#2563EB]">Tahap 03</span>
+                            <span class="text-xs font-mono font-bold text-[#D97706]">Tahap 03</span>
                             <span class="text-slate-300">•</span>
                             <span class="text-xs font-mono text-slate-500">1962 - 1976</span>
                         </div>
@@ -210,7 +209,7 @@
     <section id="act-milestones" data-sc-act="flow" class="py-16 lg:py-20 bg-white text-[#0E1133] border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center mb-10 lg:mb-14" data-sc-in>
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                     Babak II • Lintasan Tonggak Sejarah Institusional
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0E1133] mt-2 tracking-tight">
@@ -224,7 +223,7 @@
             {{-- Left-Rail Editorial Timeline Container --}}
             <div class="relative max-w-4xl mx-auto">
                 {{-- Continuous Vertical Spine on the Left --}}
-                <div class="absolute left-6 sm:left-8 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#2563EB] via-blue-300 to-slate-200" aria-hidden="true"></div>
+                <div class="absolute left-6 sm:left-8 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#D97706] via-amber-300 to-slate-200" aria-hidden="true"></div>
 
                 <div class="space-y-8 sm:space-y-10">
                     @foreach($milestones as $idx => $ms)
@@ -236,21 +235,21 @@
                         >
                             {{-- Left Timeline Node --}}
                             <div class="absolute left-6 sm:left-8 top-6 -translate-x-1/2 z-10 flex items-center justify-center">
-                                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white border-4 border-[#2563EB] shadow-xs flex items-center justify-center font-mono font-extrabold text-[11px] sm:text-xs text-[#0E1133] group-hover:scale-105 transition-transform">
+                                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white border-4 border-[#D97706] shadow-xs flex items-center justify-center font-mono font-extrabold text-[11px] sm:text-xs text-[#0E1133] group-hover:scale-105 transition-transform">
                                     {{ $ms['year'] }}
                                 </div>
                             </div>
 
                             {{-- Card Column --}}
                             <div class="w-full pl-12 sm:pl-16">
-                                <article class="p-5 sm:p-6 lg:p-7 rounded-2xl bg-[#F8F9FA] border border-slate-200 shadow-2xs hover:border-blue-400 hover:shadow-md transition-all">
+                                <article class="p-5 sm:p-6 lg:p-7 rounded-2xl bg-[#F8F9FA] border border-slate-200 shadow-2xs hover:border-amber-400 hover:shadow-md transition-all">
                                     {{-- Card Top Meta --}}
                                     <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
                                         <div class="flex flex-wrap items-center gap-2">
                                             <span class="w-7 h-7 rounded-lg bg-[#0E1133] text-white font-mono text-xs font-extrabold flex items-center justify-center shrink-0">
                                                 {{ $ms['number'] }}
                                             </span>
-                                            <span class="px-2.5 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-xs font-bold">
+                                            <span class="px-2.5 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-[#D97706] font-mono text-xs font-bold">
                                                 {{ $ms['date_badge'] }}
                                             </span>
                                             <span class="px-2.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[11px] text-[#0E1133] font-semibold">
@@ -305,7 +304,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-sc-in>
             <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
                 <div>
-                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-300">
+                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#67E8F9]">
                         Matriks Perbandingan Institusional • Tiga Era Utama
                     </span>
                     <h2 class="font-display font-extrabold text-3xl text-white mt-1">
@@ -315,7 +314,7 @@
 
                 {{-- Interactive Era Column Highlighter --}}
                 <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Sorot Era Institusional">
-                    <button type="button" data-era-highlight="all" class="px-3.5 py-2 rounded-lg border text-xs font-mono font-bold bg-[#2563EB] text-white border-[#2563EB] cursor-pointer transition-colors">
+                    <button type="button" data-era-highlight="all" class="px-3.5 py-2 rounded-lg border text-xs font-mono font-bold bg-[#67E8F9] text-[#0E1133] border-[#67E8F9] cursor-pointer transition-colors">
                         Tampilkan Semua Era
                     </button>
                     <button type="button" data-era-highlight="era_1" class="px-3.5 py-2 rounded-lg border text-xs font-mono font-bold bg-white/10 text-slate-200 border-white/15 cursor-pointer transition-colors">
@@ -372,7 +371,7 @@
             {{-- Header & Interactive Pioneer Filter --}}
             <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12" data-sc-in>
                 <div>
-                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
+                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                         Babak III • Genealogi Struktur Kurikulum &amp; Ekosistem Kompetensi
                     </span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0E1133] mt-1">
@@ -388,10 +387,10 @@
                     <button type="button" data-genealogy-filter="all" class="px-3.5 py-2 rounded-xl border text-xs font-mono font-bold bg-[#0E1133] text-white border-[#0E1133] cursor-pointer transition-colors">
                         Semua Silsilah Kejuruan
                     </button>
-                    <button type="button" data-genealogy-filter="bangunan" class="px-3.5 py-2 rounded-xl border text-xs font-mono font-bold bg-white text-[#0E1133] border-slate-300 hover:border-blue-400 cursor-pointer transition-colors">
+                    <button type="button" data-genealogy-filter="bangunan" class="px-3.5 py-2 rounded-xl border text-xs font-mono font-bold bg-white text-[#0E1133] border-slate-300 hover:border-amber-400 cursor-pointer transition-colors">
                         Rumpun Konstruksi (Akar 1962)
                     </button>
-                    <button type="button" data-genealogy-filter="mesin" class="px-3.5 py-2 rounded-xl border text-xs font-mono font-bold bg-white text-[#0E1133] border-slate-300 hover:border-blue-400 cursor-pointer transition-colors">
+                    <button type="button" data-genealogy-filter="mesin" class="px-3.5 py-2 rounded-xl border text-xs font-mono font-bold bg-white text-[#0E1133] border-slate-300 hover:border-orange-400 cursor-pointer transition-colors">
                         Rumpun Manufaktur &amp; TIK (Akar 1962/1977)
                     </button>
                 </div>
@@ -406,9 +405,9 @@
                          ======================================================== --}}
                     <div data-genealogy-block="bangunan" class="lg:col-span-4 flex flex-col transition-all duration-300">
                         {{-- Root Pioneer Card 1 --}}
-                        <div class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-blue-400 transition-all border-t-4 border-t-[#2563EB]">
+                        <div class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-amber-400 transition-all border-t-4 border-t-[#D97706]">
                             <div class="flex items-center justify-between gap-2">
-                                <span class="px-2.5 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-[11px] font-bold">
+                                <span class="px-2.5 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-[#D97706] font-mono text-[11px] font-bold">
                                     Akar Pionir 1962
                                 </span>
                                 <span class="text-[11px] font-mono text-slate-400 font-semibold">SK No. 17/1962</span>
@@ -421,22 +420,22 @@
                             </p>
                             <div class="mt-3.5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono">
                                 <span>SD Percobaan Tulangampiang</span>
-                                <span class="font-bold text-[#2563EB]">Kelas Sore</span>
+                                <span class="font-bold text-[#D97706]">Kelas Sore</span>
                             </div>
 
                             {{-- Bottom Output Terminal Node --}}
-                            <div data-genealogy-node="root-bangunan" class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
+                            <div data-genealogy-node="root-bangunan" class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#D97706] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                 <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                             </div>
                         </div>
 
                         {{-- Vertical Connector Line (Top-Down Flow) --}}
                         <div class="flex flex-col items-center py-2" aria-hidden="true">
-                            <div data-genealogy-line="bangunan-top" class="w-0.5 h-5 bg-[#2563EB] origin-top transition-transform duration-300"></div>
-                            <div data-genealogy-badge="bangunan-evolusi" class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-[10px] font-bold shadow-2xs my-0.5 transition-all duration-300">
+                            <div data-genealogy-line="bangunan-top" class="w-0.5 h-5 bg-[#D97706] origin-top transition-transform duration-300"></div>
+                            <div data-genealogy-badge="bangunan-evolusi" class="px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-[#D97706] font-mono text-[10px] font-bold shadow-2xs my-0.5 transition-all duration-300">
                                 Evolusi 64 Tahun ↓
                             </div>
-                            <div data-genealogy-line="bangunan-bottom" class="w-0.5 h-5 bg-[#2563EB] origin-top transition-transform duration-300"></div>
+                            <div data-genealogy-line="bangunan-bottom" class="w-0.5 h-5 bg-[#D97706] origin-top transition-transform duration-300"></div>
                         </div>
 
                         {{-- Modern Cluster Card 1 --}}
@@ -447,10 +446,10 @@
                             <article
                                 data-genealogy-cluster="{{ $bangunanCluster['id'] }}"
                                 data-pioneer-origin="bangunan"
-                                class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-blue-400 hover:shadow-md transition-all border-t-2 border-t-[#2563EB]"
+                                class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-amber-400 hover:shadow-md transition-all border-t-2 border-t-[#D97706]"
                             >
                                 {{-- Top Input Terminal Node --}}
-                                <div data-genealogy-node="input-bangunan" class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
+                                <div data-genealogy-node="input-bangunan" class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#D97706] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                     <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                                 </div>
 
@@ -721,7 +720,7 @@
                 <div class="mt-10 pt-8 border-t border-slate-200" data-sc-in>
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
                         <div>
-                            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
+                            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                                 Hilirisasi Keterampilan Vokasi &amp; Teknopreneur (Era Kurikulum Berbasis Kompetensi)
                             </span>
                             <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-0.5">
@@ -735,13 +734,13 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
                         @foreach($coreBusinesses as $cb)
-                            <div class="p-4 rounded-xl bg-[#F8F9FA] border border-slate-200 hover:border-blue-500 transition-colors flex items-start gap-3">
+                            <div class="p-4 rounded-xl bg-[#F8F9FA] border border-slate-200 hover:border-amber-400 transition-colors flex items-start gap-3">
                                 <span class="px-2.5 py-1 rounded-lg bg-[#0E1133] text-white font-mono text-xs font-extrabold shrink-0">
                                     {{ $cb['code'] }}
                                 </span>
                                 <div>
                                     <div class="font-display font-bold text-sm text-[#0E1133]">{{ $cb['name'] }}</div>
-                                    <div class="text-[11px] font-mono text-[#2563EB] font-semibold">{{ $cb['category'] }}</div>
+                                    <div class="text-[11px] font-mono text-[#D97706] font-semibold">{{ $cb['category'] }}</div>
                                     <p class="text-xs text-slate-600 mt-1 leading-relaxed">{{ $cb['desc'] }}</p>
                                 </div>
                             </div>
@@ -753,7 +752,7 @@
                 <div class="mt-10 pt-8 border-t border-slate-200" data-sc-in>
                     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
                         <div>
-                            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
+                            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                                 Rekam Jejak Kompetisi Vokasi
                             </span>
                             <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-0.5">
@@ -787,7 +786,7 @@
                             >
                                 <div class="flex items-center justify-between mb-2">
                                     <span class="font-display font-extrabold text-base text-[#0E1133]">{{ $cluster['name'] }}</span>
-                                    <span class="font-mono font-extrabold text-sm text-[#2563EB]">{{ $cluster['count'] }} Gelar Podium</span>
+                                    <span class="font-mono font-extrabold text-sm text-[#D97706]">{{ $cluster['count'] }} Gelar Podium</span>
                                 </div>
                                 <div class="h-3 w-full bg-slate-200 rounded-full overflow-hidden mb-3">
                                     <div class="h-full rounded-full" style="width: {{ $pct }}%; background-color: {{ $cluster['color'] }};"></div>
@@ -795,7 +794,7 @@
                                 <div class="flex flex-wrap gap-1.5">
                                     @foreach($cluster['fields'] as $fieldItem)
                                         <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700">
-                                            {{ $fieldItem }}
+                                             {{ $fieldItem }}
                                         </span>
                                     @endforeach
                                 </div>
@@ -805,10 +804,10 @@
 
                     <div class="mt-4 p-4 rounded-2xl bg-[#0E1133] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div class="text-xs sm:text-sm">
-                            <strong class="text-cyan-300 font-mono uppercase tracking-wider">Capaian Terkini (Agustus 2025):</strong>
+                            <strong class="text-[#67E8F9] font-mono uppercase tracking-wider">Capaian Terkini (Agustus 2025):</strong>
                             Kontingen SMK Negeri 1 Denpasar menyumbangkan <strong>3 dari 5 medali Provinsi Bali</strong> (4 Perak &amp; 1 Perunggu tingkat nasional) pada ajang Lomba Kompetensi Siswa (LKS) Nasional 2025.
                         </div>
-                        <a href="{{ route('achievements.index') }}" class="shrink-0 px-4 py-2 rounded-xl bg-[#2563EB] hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                        <a href="{{ route('achievements.index') }}" class="shrink-0 px-4 py-2 rounded-xl bg-[#67E8F9] hover:bg-cyan-300 text-[#0E1133] text-xs font-bold transition-colors">
                             Lihat Galeri Prestasi &rarr;
                         </a>
                     </div>
@@ -867,7 +866,7 @@
     <section id="act-leadership" data-sc-act="flow" class="py-20 bg-white border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mb-12" data-sc-in>
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                     Babak IV • Suksesi Kepemimpinan &amp; Penjaga Visi
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0E1133] mt-1">
@@ -884,7 +883,7 @@
                     @if(!$leader['has_photo'])
                         <article
                             data-sc-tilt="4"
-                            class="rounded-2xl bg-[#F8F9FA] border border-slate-200 p-6 sm:p-7 flex flex-col justify-between shadow-2xs hover:border-blue-500 transition-colors"
+                            class="rounded-2xl bg-[#F8F9FA] border border-slate-200 p-6 sm:p-7 flex flex-col justify-between shadow-2xs hover:border-amber-400 transition-colors"
                         >
                             <div>
                                 <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-200">
@@ -892,7 +891,7 @@
                                         <span class="px-2.5 py-1 rounded-md bg-[#0E1133] text-white font-mono text-xs font-extrabold">
                                             KEPSEK {{ $leader['order'] }}
                                         </span>
-                                        <span class="font-mono text-xs font-bold text-[#2563EB]">
+                                        <span class="font-mono text-xs font-bold text-[#D97706]">
                                             {{ $leader['period'] }}
                                         </span>
                                     </div>
@@ -903,7 +902,7 @@
                                     @endif
                                 </div>
 
-                                <span class="inline-block mt-4 px-2.5 py-0.5 rounded bg-blue-50 border border-blue-200 text-[#2563EB] text-[11px] font-bold uppercase tracking-wider">
+                                <span class="inline-block mt-4 px-2.5 py-0.5 rounded bg-amber-50 border border-amber-200 text-[#D97706] text-[11px] font-bold uppercase tracking-wider">
                                     {{ $leader['role_badge'] }}
                                 </span>
 
@@ -917,8 +916,7 @@
 
                                 <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
                                     {{ $leader['description'] }}
-                                </p>
-                            </div>
+                                </div>
 
                             <div class="mt-5 pt-4 border-t border-slate-200">
                                 <div class="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-bold mb-2">
@@ -927,7 +925,7 @@
                                 <ul class="space-y-1.5 text-xs text-slate-700">
                                     @foreach($leader['achievements'] as $ach)
                                         <li class="flex items-start gap-2">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-[#2563EB] mt-1.5 shrink-0"></span>
+                                            <span class="w-1.5 h-1.5 rounded-full bg-[#D97706] mt-1.5 shrink-0"></span>
                                             <span>{{ $ach }}</span>
                                         </li>
                                     @endforeach
@@ -943,18 +941,18 @@
                 $currentLeader = collect($principals)->firstWhere('has_photo', true);
             @endphp
             @if($currentLeader)
-                <div data-sc-reveal="up" data-sc-reveal-at="0.05 0.45" class="rounded-3xl bg-[#07132C] text-white border border-blue-400/30 overflow-hidden shadow-xl">
+                <div data-sc-reveal="up" data-sc-reveal-at="0.05 0.45" class="rounded-3xl bg-[#07132C] text-white border border-[#67E8F9]/30 overflow-hidden shadow-xl">
                     <div class="grid grid-cols-1 lg:grid-cols-12">
                         {{-- Left Photo Column: Foto Asli Kepala Sekolah I Wayan Mustika --}}
                         <div class="lg:col-span-5 bg-[#0D1F44] relative flex flex-col justify-between p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-white/10">
                             <div>
-                                <span class="inline-block px-3 py-1 rounded-full bg-cyan-400/15 border border-cyan-400/30 font-mono text-xs text-cyan-300 font-bold">
+                                <span class="inline-block px-3 py-1 rounded-full bg-[#67E8F9]/15 border border-[#67E8F9]/30 font-mono text-xs text-[#67E8F9] font-bold">
                                     {{ $currentLeader['period'] }}
                                 </span>
                                 <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-3">
                                     {{ $currentLeader['name'] }}
                                 </h3>
-                                <p class="text-xs font-mono text-blue-200 mt-1">
+                                <p class="text-xs font-mono text-cyan-200 mt-1">
                                     {{ $currentLeader['nip'] }}
                                 </p>
                             </div>
@@ -967,18 +965,18 @@
                                         class="w-full h-full object-cover object-top"
                                     >
                                 </div>
-                                <div class="rounded-2xl overflow-hidden border border-cyan-400/30 bg-[#07132C]/80 p-2 flex flex-col items-center justify-end">
+                                <div class="rounded-2xl overflow-hidden border border-[#67E8F9]/30 bg-[#07132C]/80 p-2 flex flex-col items-center justify-end">
                                     <img
                                         src="{{ $currentLeader['cutout_photo'] }}"
                                         alt="Potret Meja Kerja Kepala Sekolah {{ $currentLeader['name'] }}"
                                         class="w-full h-44 object-contain object-bottom"
                                     >
-                                    <span class="text-[10px] font-mono text-cyan-300 mt-1">Meja Kerja Kepala Sekolah</span>
+                                    <span class="text-[10px] font-mono text-[#67E8F9] mt-1">Meja Kerja Kepala Sekolah</span>
                                 </div>
                             </div>
 
                             <div class="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 text-xs text-slate-200">
-                                <strong class="text-cyan-300 font-mono uppercase">Dedikasi Pengabdian:</strong>
+                                <strong class="text-[#67E8F9] font-mono uppercase">Dedikasi Pengabdian:</strong>
                                 Mengabdi lebih dari 3 dekade sejak menjadi guru STM Negeri Ubung tahun 1990 hingga dipercaya memimpin almamater tercinta dengan filosofi kepemimpinan bersahaja, berkarakter, dan berdaya saing global.
                             </div>
                         </div>
@@ -986,7 +984,7 @@
                         {{-- Right Narrative Column --}}
                         <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between">
                             <div>
-                                <div class="inline-block px-3 py-1 rounded bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider">
+                                <div class="inline-block px-3 py-1 rounded bg-[#67E8F9]/15 border border-[#67E8F9]/30 text-[#67E8F9] text-xs font-mono font-bold uppercase tracking-wider">
                                     {{ $currentLeader['role_badge'] }}
                                 </div>
 
@@ -1001,7 +999,7 @@
                                 <div class="mt-6 space-y-2.5">
                                     @foreach($currentLeader['achievements'] as $ach)
                                         <div class="p-3.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs sm:text-sm text-slate-200 flex items-start gap-2.5">
-                                            <span class="w-2 h-2 rounded-full bg-cyan-400 mt-1.5 shrink-0"></span>
+                                            <span class="w-2 h-2 rounded-full bg-[#67E8F9] mt-1.5 shrink-0"></span>
                                             <span>{{ $ach }}</span>
                                         </div>
                                     @endforeach
@@ -1039,7 +1037,7 @@
             <div class="rounded-3xl bg-[#0E1133] text-white p-8 sm:p-12 shadow-lg mb-10" data-sc-in>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div class="lg:col-span-8">
-                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-300">
+                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#67E8F9]">
                             Sintesis &amp; Kesimpulan Historis Perjalanan Skensa
                         </span>
                         <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 leading-tight">
@@ -1052,7 +1050,7 @@
                     <div class="lg:col-span-4 flex flex-col gap-3">
                         <a
                             href="{{ route('majors.index') }}"
-                            class="w-full py-3.5 px-5 rounded-xl bg-[#2563EB] hover:bg-blue-500 text-white font-bold text-sm text-center transition-colors"
+                            class="w-full py-3.5 px-5 rounded-xl bg-[#67E8F9] hover:bg-cyan-300 text-[#0E1133] font-bold text-sm text-center transition-colors"
                         >
                             Jelajahi 13 Konsentrasi Keahlian Saat Ini &rarr;
                         </a>
@@ -1076,7 +1074,7 @@
             <div class="rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 shadow-2xs" data-sc-in>
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
+                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                             Verifikasi Akademik &amp; Sumber Data Primer
                         </span>
                         <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-0.5">
@@ -1092,7 +1090,7 @@
                         id="sc-citations-toggle"
                         aria-expanded="false"
                         aria-controls="sc-citations-panel"
-                        class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0E1133] hover:bg-blue-700 text-white text-xs font-mono font-bold transition-colors cursor-pointer"
+                        class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0E1133] hover:bg-slate-800 text-white text-xs font-mono font-bold transition-colors cursor-pointer"
                     >
                         <span id="sc-citations-toggle-label">Buka Laci 29 Sumber Kutipan Arsip Resmi</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -1107,7 +1105,7 @@
                             type="search"
                             id="sc-citations-search"
                             placeholder="Cari sumber kutipan (misal: Daikin, Mustika, LKS, STEKOM, Kemendikdasmen)..."
-                            class="w-full sm:max-w-md px-4 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-[#2563EB]"
+                            class="w-full sm:max-w-md px-4 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-[#D97706]"
                         >
                         <span id="sc-citations-count" class="font-mono text-xs text-slate-500">
                             29 dari 29 sumber ditampilkan
@@ -1122,13 +1120,13 @@
                                 rel="noopener noreferrer"
                                 data-citation-item
                                 data-citation-text="{{ $cite['no'] }} {{ $cite['title'] }} {{ $cite['source'] }}"
-                                class="p-3.5 rounded-xl bg-[#F8F9FA] hover:bg-blue-50/60 border border-slate-200 hover:border-blue-400 transition-colors flex items-start gap-3 group"
+                                class="p-3.5 rounded-xl bg-[#F8F9FA] hover:bg-amber-50/50 border border-slate-200 hover:border-amber-400 transition-colors flex items-start gap-3 group"
                             >
-                                <span class="px-2 py-0.5 rounded bg-[#0E1133] group-hover:bg-[#2563EB] text-white font-mono text-[11px] font-bold shrink-0">
+                                <span class="px-2 py-0.5 rounded bg-[#0E1133] group-hover:bg-[#D97706] text-white font-mono text-[11px] font-bold shrink-0">
                                     [{{ $cite['no'] }}]
                                 </span>
                                 <div class="min-w-0">
-                                    <div class="text-xs font-bold text-[#0E1133] group-hover:text-[#2563EB] leading-snug">
+                                    <div class="text-xs font-bold text-[#0E1133] group-hover:text-[#D97706] leading-snug">
                                         {{ $cite['title'] }}
                                     </div>
                                     <div class="text-[11px] font-mono text-slate-500 mt-1 truncate">
@@ -1154,7 +1152,7 @@
     >
         {{-- Continuous Scroll Trace Bar --}}
         <div class="h-0.5 w-full bg-slate-100 overflow-hidden">
-            <div id="sc-trace-fill" class="h-full bg-[#2563EB] origin-left scale-x-0"></div>
+            <div id="sc-trace-fill" class="h-full bg-[#D97706] origin-left scale-x-0"></div>
         </div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-11 flex items-center justify-between gap-4">
@@ -1194,7 +1192,7 @@
                         type="button"
                         data-sc-trace-node="0"
                         data-sc-trace-target="#act-origin"
-                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
+                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-amber-50 hover:text-[#D97706] transition-colors cursor-pointer"
                     >
                         1962 • Tulangampiang
                     </button>
@@ -1202,7 +1200,7 @@
                         type="button"
                         data-sc-trace-node="1"
                         data-sc-trace-target="#milestone-1"
-                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
+                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-amber-50 hover:text-[#D97706] transition-colors cursor-pointer"
                     >
                         1970-an • PELITA / N.95
                     </button>
@@ -1210,7 +1208,7 @@
                         type="button"
                         data-sc-trace-node="2"
                         data-sc-trace-target="#milestone-2"
-                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
+                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-amber-50 hover:text-[#D97706] transition-colors cursor-pointer"
                     >
                         1977 • Gedung Ubung
                     </button>
@@ -1218,7 +1216,7 @@
                         type="button"
                         data-sc-trace-node="3"
                         data-sc-trace-target="#milestone-3"
-                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
+                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-amber-50 hover:text-[#D97706] transition-colors cursor-pointer"
                     >
                         1997 • SMKN 1 Denpasar
                     </button>
@@ -1226,7 +1224,7 @@
                         type="button"
                         data-sc-trace-node="4"
                         data-sc-trace-target="#act-genealogy"
-                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
+                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-amber-50 hover:text-[#D97706] transition-colors cursor-pointer"
                     >
                         2006 • ISO &amp; Kurikulum
                     </button>
@@ -1234,7 +1232,7 @@
                         type="button"
                         data-sc-trace-node="5"
                         data-sc-trace-target="#act-leadership"
-                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
+                        class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-amber-50 hover:text-[#D97706] transition-colors cursor-pointer"
                     >
                         Masa Depan Vokasi • Kepemimpinan
                     </button>

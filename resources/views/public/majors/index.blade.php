@@ -19,7 +19,7 @@
     <section class="py-12 bg-paper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {{-- Filter Bidang Keahlian --}}
-            <div class="p-5 rounded-2xl bg-paper-2 border border-line mb-10">
+            <div data-reveal class="p-5 rounded-2xl bg-paper-2 border border-line mb-10">
                 <div class="text-xs font-bold uppercase tracking-widest text-navy mb-3">Filter Berdasarkan Program Keahlian (9 Program):</div>
                 <div class="flex flex-wrap gap-2">
                     <a
@@ -45,7 +45,7 @@
                     <a href="{{ route('majors.index') }}" class="inline-block mt-4 px-4 py-2 rounded-xl bg-navy text-paper text-xs font-bold uppercase">Tampilkan Semua</a>
                 </div>
             @else
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($majors as $index => $major)
                         <article class="rounded-2xl bg-paper border border-line p-6 flex flex-col justify-between hover:border-ink transition-colors group">
                             <div>

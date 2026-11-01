@@ -137,7 +137,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
                 {{-- Kolom Kiri: Potret Resmi Kepala Sekolah --}}
-                <div class="lg:col-span-5 flex flex-col items-center">
+                <div data-reveal class="lg:col-span-5 flex flex-col items-center">
                     <div class="relative w-full max-w-[360px] rounded-3xl overflow-hidden border border-line bg-[#0E1133] shadow-xl group">
                         <img
                             src="/images/kepala-sekolah-i-wayan-mustika.jpg"
@@ -162,7 +162,7 @@
                 </div>
 
                 {{-- Kolom Kanan: Teks Sambutan Hangat & Fokus --}}
-                <div class="lg:col-span-7 space-y-6">
+                <div data-reveal-stagger class="lg:col-span-7 space-y-6">
                     <div>
                         <span class="inline-block px-3 py-1 rounded-md bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                             Sambutan Kepala Sekolah
@@ -202,7 +202,7 @@
     {{-- ===================================================================== --}}
     <section id="skensa-cinema-hub" class="py-20 bg-paper border-b-2 border-ink">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div data-reveal class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
                     <span class="inline-block px-3 py-1 rounded-md bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                         Galeri Multimedia &amp; Video Resmi
@@ -277,7 +277,7 @@
             {{-- Grid Video Cinema 12 Kolom (8 Kolom Player Kiri + 4 Kolom Playlist Kanan) --}}
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 {{-- Kolom Kiri: Player Utama Layar Besar (lg:col-span-8) --}}
-                <div class="lg:col-span-8 space-y-4">
+                <div data-reveal class="lg:col-span-8 space-y-4">
                     <div class="relative aspect-video w-full rounded-2xl overflow-hidden border-2 border-ink bg-black shadow-2xl">
                         <iframe
                             id="cinema-main-iframe"
@@ -316,7 +316,7 @@
                 </div>
 
                 {{-- Playlist: Horizontal Touch Carousel di Mobile/Tablet, Vertikal Sidebar di Desktop (lg:col-span-4) --}}
-                <div class="lg:col-span-4 rounded-2xl border border-line bg-paper-2 overflow-hidden flex flex-col lg:h-[580px] shadow-sm">
+                <div data-reveal class="lg:col-span-4 rounded-2xl border border-line bg-paper-2 overflow-hidden flex flex-col lg:h-[580px] shadow-sm">
                     <div class="p-4 bg-[#0E1133] text-white border-b border-line flex items-center justify-between">
                         <span class="text-xs font-extrabold uppercase tracking-widest text-white">Playlist Video Resmi</span>
                         <span class="text-[11px] font-bold text-white/70">8 Video Pilihan &bull; Scroll Mouse / Geser &rarr;</span>
@@ -364,7 +364,7 @@
     {{-- ===================================================================== --}}
     <section id="fasilitas-sekolah" class="py-20 bg-paper-2 border-b-2 border-ink">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div data-reveal class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
                     <span class="text-xs font-extrabold uppercase tracking-widest text-ink">Infrastruktur Sekolah Kejuruan 16.610 m&sup2;</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-1">
@@ -376,7 +376,7 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {{-- 1. Laboratorium Jaringan Komputer & Fiber Optik (TKJ) --}}
                 <div class="rounded-2xl bg-paper border border-line overflow-hidden flex flex-col justify-between shadow-sm hover:border-ink transition-all">
                     <div class="relative h-52 bg-navy border-b border-line overflow-hidden">
@@ -486,7 +486,7 @@
     @endphp
     <section id="fakultas-keahlian" class="relative min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between bg-navy text-paper border-b-2 border-ink overflow-hidden py-10 lg:py-14 select-none">
         {{-- Section Top Header Bar --}}
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div data-reveal class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
                 <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                     Direktori Akademik &amp; Konsentrasi Keahlian
@@ -614,7 +614,7 @@
     <section id="kemitraan-alumni" class="py-20 bg-paper border-b-2 border-ink overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             {{-- Header Kemitraan & DUDIKA --}}
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div data-reveal class="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
                     <span class="inline-block px-3 py-1 rounded-md bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                         Ekosistem DUDIKA &amp; Bursa Kerja Khusus (BKK)
@@ -662,7 +662,7 @@
                 </div>
 
                 {{-- 4 Bentuk Program Kolaborasi DUDIKA --}}
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div data-reveal-stagger class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="p-4 rounded-xl bg-paper border border-line">
                         <span class="text-[11px] font-extrabold uppercase text-navy">01 &bull; Kelas Industri</span>
                         <h3 class="font-display font-bold text-sm text-ink mt-1">Sinkronisasi Kurikulum &amp; CoE</h3>
@@ -689,7 +689,7 @@
             {{-- Data Statistik Lulusan (BMW) & Testimoni Alumni --}}
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                 {{-- Left Column (lg:col-span-5): Statistik Keterserapan Lulusan & Foto Job Fair --}}
-                <div class="lg:col-span-5 rounded-2xl bg-navy text-paper border-2 border-ink p-7 flex flex-col justify-between">
+                <div data-reveal class="lg:col-span-5 rounded-2xl bg-navy text-paper border-2 border-ink p-7 flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
                             <span class="px-3 py-1 rounded bg-white text-ink text-xs font-extrabold uppercase tracking-wider">
@@ -751,7 +751,7 @@
                 </div>
 
                 {{-- Right Column (lg:col-span-7): 3 Kartu Testimoni Alumni --}}
-                <div class="lg:col-span-7 flex flex-col justify-between gap-4">
+                <div data-reveal-stagger class="lg:col-span-7 flex flex-col justify-between gap-4">
                     @php
                         $alumniTestimonials = [
                             [
@@ -850,7 +850,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
             {{-- Bagian 5A: Etalase Prestasi Akademik & Non-Akademik --}}
             <div>
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+                <div data-reveal class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
                     <div>
                         <span class="inline-block px-3 py-1 rounded-md bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                             Hall of Fame &bull; Rekor 157+ Prestasi Nasional
@@ -866,7 +866,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                     {{-- Foto Dokumentasi Penerimaan Penghargaan / LKS 2026 --}}
-                    <div class="lg:col-span-5 rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-lg">
+                    <div data-reveal class="lg:col-span-5 rounded-2xl bg-navy text-paper border-2 border-ink overflow-hidden flex flex-col justify-between shadow-lg">
                         <div class="relative h-64 overflow-hidden border-b-2 border-ink">
                             <img src="/images/showcase/lks_2026.jpg" alt="Lomba Kompetensi Siswa LKS Bidang Teknologi Provinsi Bali 2026" loading="lazy" class="w-full h-full object-cover">
                             <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded bg-white text-ink text-xs font-extrabold uppercase">
@@ -891,7 +891,7 @@
                     </div>
 
                     {{-- Daftar Kejuaraan dari Database --}}
-                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div data-reveal-stagger class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
                         @foreach($achievements as $achievement)
                             <article class="p-6 rounded-2xl bg-paper border border-line flex flex-col justify-between hover:border-ink transition-colors">
                                 <div>
@@ -923,7 +923,7 @@
             <div class="pt-12 border-t-2 border-line">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                     {{-- Profil OSIS / MPK & Video SUBAKTI 2026 --}}
-                    <div class="lg:col-span-5 space-y-6">
+                    <div data-reveal class="lg:col-span-5 space-y-6">
                         <div>
                             <span class="text-xs font-extrabold uppercase tracking-widest text-navy">Kepemimpinan &amp; Bakat Siswa</span>
                             <h3 class="font-display font-extrabold text-3xl text-ink mt-1">
@@ -950,7 +950,7 @@
 
                     {{-- 4 Klaster Ekstrakurikuler & Dokumentasi SUBAKTI --}}
                     <div class="lg:col-span-7 space-y-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div data-reveal-stagger class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div class="p-5 rounded-2xl bg-paper border border-line hover:border-ink transition-colors">
                                 <span class="px-2.5 py-1 rounded bg-ink text-white text-[11px] font-extrabold uppercase">01 &bull; Kepemimpinan &amp; Bela Negara</span>
                                 <h4 class="font-display font-extrabold text-lg text-ink mt-2.5">Paskibra, Pramuka &amp; PMR</h4>
@@ -985,7 +985,7 @@
                         </div>
 
                         {{-- Kartu Dokumentasi Agenda Tahunan SUBAKTI 2026 --}}
-                        <div class="p-5 rounded-2xl bg-navy text-paper border-2 border-ink flex flex-col sm:flex-row items-center gap-5">
+                        <div data-reveal class="p-5 rounded-2xl bg-navy text-paper border-2 border-ink flex flex-col sm:flex-row items-center gap-5">
                             <img src="/images/showcase/subakti_2026.jpg" alt="SUBAKTI 2026 Skensa Unjuk Bakat dan Aksi" width="180" height="108" loading="lazy" class="w-full sm:w-44 h-28 rounded-xl object-cover border border-ink/40 shrink-0">
                             <div class="space-y-2">
                                 <span class="text-[10px] font-extrabold uppercase tracking-widest text-ink">Dokumentasi Agenda Tahunan Kesiswaan</span>
@@ -1017,7 +1017,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
             {{-- Bagian 6A: Berita Terkini dengan Interactive Hover Preview --}}
             <div>
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+                <div data-reveal class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
                     <div>
                         <span class="inline-block px-3 py-1 rounded-md bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                             Media &amp; Publikasi Resmi
@@ -1034,7 +1034,7 @@
                 {{-- Interactive News Hover Preview Grid: Kiri Daftar Berita (lg:col-span-6) + Kanan Sticky Preview (lg:col-span-6) --}}
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {{-- Kolom Kiri: Daftar Berita (Judul + Deskripsi Singkat) --}}
-                    <div class="lg:col-span-6 space-y-4" id="news-items-list">
+                    <div data-reveal-stagger class="lg:col-span-6 space-y-4" id="news-items-list">
                         @foreach($posts as $pIdx => $post)
                             @php
                                 $postImg = $post->featured_image ?: '/images/gedung_skensa.jpg';
@@ -1072,7 +1072,7 @@
                     </div>
 
                     {{-- Kolom Kanan: Live Preview Panel Lengkap (Foto, Judul, Deskripsi & Tombol Baca) --}}
-                    <div class="lg:col-span-6 lg:sticky lg:top-24">
+                    <div data-reveal class="lg:col-span-6 lg:sticky lg:top-24">
                         @php
                             $firstPost = $posts->first();
                             $initImg = $firstPost ? ($firstPost->featured_image ?: '/images/gedung_skensa.jpg') : '/images/gedung_skensa.jpg';
@@ -1136,7 +1136,7 @@
             </div>
 
             {{-- Bagian 6B: Pengumuman Kelulusan & Kalender Agenda --}}
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div data-reveal class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                 {{-- Pengumuman Utama Kelulusan (lg:col-span-7) --}}
                 <div class="lg:col-span-7">
                     <div class="rounded-3xl bg-[#0E1133] text-paper border border-line p-7 sm:p-9 h-full flex flex-col justify-between shadow-xl">
@@ -1207,7 +1207,7 @@
             </div>
 
             {{-- Bagian 6C: Pusat Informasi PPDB / SPMB SMK Negeri 1 Denpasar --}}
-            <div id="informasi-ppdb" class="rounded-3xl bg-[#0E1133] text-paper border border-line p-8 lg:p-12 shadow-xl">
+            <div data-reveal id="informasi-ppdb" class="rounded-3xl bg-[#0E1133] text-paper border border-line p-8 lg:p-12 shadow-xl">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                     {{-- Left Column: Juknis, Syarat & Tombol Pendaftaran / Brosur PDF --}}
                     <div class="lg:col-span-6 space-y-5">
@@ -1307,7 +1307,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="rounded-3xl bg-paper border-2 border-ink overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-12">
                 {{-- Kolom Kiri (lg:col-span-5): Informasi Lokasi, Alamat Kode Pos, Telepon/WA, Email & Medsos --}}
-                <div class="lg:col-span-5 p-8 lg:p-10 flex flex-col justify-between space-y-6 border-b-2 lg:border-b-0 lg:border-r-2 border-ink">
+                <div data-reveal class="lg:col-span-5 p-8 lg:p-10 flex flex-col justify-between space-y-6 border-b-2 lg:border-b-0 lg:border-r-2 border-ink">
                     <div class="space-y-4">
                         <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                             Lokasi &amp; Saluran Komunikasi Resmi
@@ -1346,7 +1346,7 @@
                                     <a href="https://instagram.com/smkn1denpasar" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-paper-2 border border-line text-xs font-bold text-ink hover:bg-navy hover:text-paper transition-colors">
                                         Instagram
                                     </a>
-                                    <a href="https://www.youtube.com/@smkn1denpasar" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-paper-2 border border-line text-xs font-bold text-ink hover:bg-navy hover:text-paper transition-colors">
+                                    <a href="https://youtube.com/@smkn1denpasar" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-paper-2 border border-line text-xs font-bold text-ink hover:bg-navy hover:text-paper transition-colors">
                                         YouTube
                                     </a>
                                     <a href="https://www.facebook.com/smknegeri1denpasar" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-paper-2 border border-line text-xs font-bold text-ink hover:bg-navy hover:text-paper transition-colors">
@@ -1379,7 +1379,7 @@
                 </div>
 
                 {{-- Kolom Kanan (lg:col-span-7): Embed Peta Digital Google Maps Interaktif --}}
-                <div class="lg:col-span-7 min-h-[380px] lg:min-h-full bg-navy/10 relative">
+                <div data-reveal class="lg:col-span-7 min-h-[380px] lg:min-h-full bg-navy/10 relative">
                     <iframe
                         title="Peta Lokasi SMK Negeri 1 Denpasar"
                         src="https://www.google.com/maps?q=SMK+Negeri+1+Denpasar+Jl.+HOS+Cokroaminoto+No.84+Denpasar&output=embed"

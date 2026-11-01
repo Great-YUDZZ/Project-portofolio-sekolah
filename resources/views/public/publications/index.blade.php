@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-reveal>
             <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                 Ruang Redaksi & Humas SKENSA
             </span>
@@ -20,7 +20,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div class="lg:col-span-8">
                 {{-- Filter Kategori --}}
-                <div class="flex flex-wrap gap-2 mb-8">
+                <div class="flex flex-wrap gap-2 mb-8" data-reveal>
                     @php
                         $cats = [
                             '' => 'Semua Publikasi',
@@ -46,7 +46,7 @@
                         <a href="{{ route('publications.index') }}" class="inline-block mt-3 text-xs font-bold uppercase text-navy hover:underline">Tampilkan Semua</a>
                     </div>
                 @else
-                    <div class="space-y-6">
+                    <div class="space-y-6" data-reveal-stagger>
                         @foreach($posts as $post)
                             <article class="p-6 rounded-2xl bg-paper-2/70 border border-line hover:border-navy transition-colors">
                                 <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-wider mb-2">
@@ -68,7 +68,7 @@
                 @endif
             </div>
 
-            <aside class="lg:col-span-4 space-y-6">
+            <aside class="lg:col-span-4 space-y-6" data-reveal>
                 <div class="p-6 rounded-2xl bg-navy text-paper border border-line">
                     <h2 class="font-display font-bold text-lg text-ink uppercase tracking-wider mb-4">Agenda Akademik Terdekat</h2>
                     <div class="space-y-4">

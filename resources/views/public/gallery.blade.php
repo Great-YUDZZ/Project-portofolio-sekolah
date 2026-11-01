@@ -25,7 +25,7 @@
                 </div>
             @else
                 @foreach($albums as $album)
-                    <div class="p-8 rounded-2xl bg-paper-2/70 border border-line">
+                    <div data-reveal class="p-8 rounded-2xl bg-paper-2/70 border border-line">
                         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-5 mb-6 border-b border-line">
                             <div>
                                 <span class="text-xs font-bold uppercase tracking-widest text-navy">
@@ -39,7 +39,7 @@
                             </span>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <div data-reveal-stagger class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                             @foreach($album->photos as $photo)
                                 <button
                                     type="button"

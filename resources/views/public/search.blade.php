@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="bg-navy text-paper border-b-2 border-ink py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-reveal>
             <span class="text-xs font-bold uppercase tracking-widest text-ink">Mesin Pencari Terpadu SKENSA</span>
             <h1 class="font-display font-extrabold text-3xl sm:text-4xl mt-2">
                 Hasil Pencarian: "{{ $q ?: 'Semua Entitas' }}"
@@ -30,13 +30,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             @if($q === '')
                 {{-- Loading Skeleton / Initial Prompt State --}}
-                <div class="p-10 rounded-2xl bg-paper-2 border border-line text-center">
+                <div class="p-10 rounded-2xl bg-paper-2 border border-line text-center" data-reveal>
                     <h2 class="font-display font-bold text-xl text-ink">Masukkan Kata Kunci Pencarian</h2>
                     <p class="text-sm text-ink-muted mt-1">Gunakan kolom di atas untuk mencari jurusan (misal: RPL, TKJ, DPIB), karya inovasi, prestasi, atau berita sekolah.</p>
                 </div>
             @elseif($totalResults === 0)
                 {{-- Empty State Boundary --}}
-                <div class="p-12 rounded-2xl bg-paper-2 border border-line text-center">
+                <div class="p-12 rounded-2xl bg-paper-2 border border-line text-center" data-reveal>
                     <h2 class="font-display font-bold text-xl text-ink">Tidak Ditemukan Hasil untuk "{{ $q }}"</h2>
                     <p class="text-sm text-ink-muted mt-1">Coba gunakan kata kunci yang lebih umum atau periksa ejaan singkatan jurusan.</p>
                     <a href="{{ route('majors.index') }}" class="inline-block mt-4 px-4 py-2 rounded-lg bg-navy text-paper text-xs font-bold uppercase">
@@ -44,14 +44,14 @@
                     </a>
                 </div>
             @else
-                <p class="text-xs font-bold uppercase tracking-widest text-navy">
+                <p class="text-xs font-bold uppercase tracking-widest text-navy" data-reveal>
                     Ditemukan {{ $totalResults }} entitas yang relevan dengan "{{ $q }}"
                 </p>
 
                 @if($majors->isNotEmpty())
-                    <div>
+                    <div data-reveal>
                         <h2 class="font-display font-bold text-xl text-ink mb-4">Konsentrasi Keahlian ({{ $majors->count() }})</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-reveal-stagger>
                             @foreach($majors as $m)
                                 <a href="{{ route('majors.show', $m->slug) }}" class="p-5 rounded-xl bg-paper-2 border border-line hover:border-ink block transition-colors">
                                     <span class="px-2 py-0.5 rounded bg-ink text-white text-xs font-bold">{{ $m->code }}</span>

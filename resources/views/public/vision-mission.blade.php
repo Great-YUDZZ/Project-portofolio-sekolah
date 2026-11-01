@@ -10,26 +10,26 @@
     <section class="relative bg-[#071C3F] text-paper border-b-2 border-ink py-16 sm:py-20 overflow-hidden">
         {{-- Subtle Grid & Ambient Glow (Anti-Slop: clean geometric mesh without heavy blurs) --}}
         <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(#FFFFFF 1px, transparent 1px); background-size: 28px 28px;"></div>
-        <div class="absolute -top-36 -right-36 w-96 h-96 rounded-full bg-[#2563EB]/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-36 -right-36 w-96 h-96 rounded-full bg-[#67E8F9]/10 blur-3xl pointer-events-none"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {{-- Breadcrumb Navigasi --}}
             <nav aria-label="Breadcrumb" class="mb-6">
                 <ol class="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-300">
                     <li>
-                        <a href="{{ route('home') }}" class="hover:text-cyan-300 transition-colors">Beranda</a>
+                        <a href="{{ route('home') }}" class="hover:text-[#67E8F9] transition-colors">Beranda</a>
                     </li>
                     <li class="text-slate-500">/</li>
                     <li>
-                        <a href="{{ route('profile.index') }}" class="hover:text-cyan-300 transition-colors">Profil</a>
+                        <a href="{{ route('profile.index') }}" class="hover:text-[#67E8F9] transition-colors">Profil</a>
                     </li>
                     <li class="text-slate-500">/</li>
-                    <li class="text-cyan-300 font-bold" aria-current="page">Visi &amp; Misi</li>
+                    <li class="text-[#67E8F9] font-bold" aria-current="page">Visi &amp; Misi</li>
                 </ol>
             </nav>
 
             <div class="flex flex-wrap items-center gap-2 mb-4">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 border border-white/15 text-cyan-300 text-xs font-mono font-bold uppercase tracking-widest">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 border border-white/15 text-[#67E8F9] text-xs font-mono font-bold uppercase tracking-widest">
                     SMK Pusat Keunggulan • Rujukan Nasional
                 </span>
                 <span class="inline-block px-3 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300 text-xs font-mono uppercase tracking-wider">
@@ -48,10 +48,10 @@
                 </div>
 
                 {{-- Quick Metric Pills --}}
-                <div class="lg:col-span-4 grid grid-cols-2 gap-3 shrink-0">
+                <div data-reveal-stagger class="lg:col-span-4 grid grid-cols-2 gap-3 shrink-0">
                     @foreach($qualityMetrics as $metric)
                         <div class="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-xs">
-                            <div class="font-display font-extrabold text-2xl text-cyan-300 leading-none">
+                            <div class="font-display font-extrabold text-2xl text-[#67E8F9] leading-none">
                                 {{ $metric['value'] }}
                             </div>
                             <div class="text-xs font-bold text-white mt-1.5 leading-snug">
@@ -72,8 +72,8 @@
     {{-- ===================================================================== --}}
     <section class="py-16 sm:py-20 bg-paper border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mb-10">
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-navy">
+            <div data-reveal class="max-w-3xl mb-10">
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                     Landasan Visi Institusional
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-2 tracking-tight">
@@ -85,15 +85,15 @@
             </div>
 
             {{-- Editorial Quotation Box --}}
-            <div class="relative p-8 sm:p-12 rounded-3xl bg-[#071C3F] text-white border-2 border-ink shadow-lg overflow-hidden mb-12">
+            <div data-reveal class="relative p-8 sm:p-12 rounded-3xl bg-[#071C3F] text-white border-2 border-ink shadow-lg overflow-hidden mb-12">
                 <div class="absolute -right-12 -bottom-12 text-white/[0.04] font-display font-extrabold text-[180px] select-none pointer-events-none leading-none">
                     VISI
                 </div>
 
                 <div class="relative z-10">
                     <div class="flex items-center gap-3 mb-6">
-                        <span class="w-10 h-1 bg-cyan-400 rounded-full"></span>
-                        <span class="text-xs font-mono font-bold tracking-widest uppercase text-cyan-300">
+                        <span class="w-10 h-1 bg-[#67E8F9] rounded-full"></span>
+                        <span class="text-xs font-mono font-bold tracking-widest uppercase text-[#67E8F9]">
                             Pernyataan Resmi Masa Depan
                         </span>
                     </div>
@@ -105,7 +105,7 @@
                     <div class="mt-8 pt-8 border-t border-white/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div>
                             <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Semboyan Sanskrit Tradisi Keilmuan:</span>
-                            <div class="font-display font-bold text-lg text-cyan-300 mt-0.5">
+                            <div class="font-display font-bold text-lg text-[#67E8F9] mt-0.5">
                                 {{ $vision['slogan'] }}
                             </div>
                             <div class="text-xs text-slate-300 italic mt-0.5">
@@ -122,7 +122,7 @@
             </div>
 
             {{-- 3 Pilar Nilai Visi --}}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach($vision['pillars'] as $pillar)
                     <div class="p-6 sm:p-8 rounded-2xl bg-white border border-line shadow-xs hover:border-navy hover:shadow-md transition-all flex flex-col justify-between">
                         <div>
@@ -155,9 +155,9 @@
     {{-- ===================================================================== --}}
     <section class="py-16 sm:py-20 bg-white border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+            <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
                 <div class="max-w-3xl">
-                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-navy">
+                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                         Rencana Aksi Strategis
                     </span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-2 tracking-tight">
@@ -174,7 +174,7 @@
             </div>
 
             {{-- Grid 6 Misi Strategis --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($missions as $mission)
                     <div class="p-6 sm:p-7 rounded-2xl bg-paper border border-line hover:border-navy hover:shadow-md transition-all flex flex-col justify-between group">
                         <div>
@@ -224,8 +224,8 @@
     {{-- ===================================================================== --}}
     <section id="nilai-karakter" class="py-16 sm:py-20 bg-paper border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mb-12">
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-navy">
+            <div data-reveal class="max-w-3xl mb-12">
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                     Karakter Kerja Vokasi Skensa
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-2 tracking-tight">
@@ -237,7 +237,7 @@
             </div>
 
             {{-- Interactive Character Value Component --}}
-            <div class="rounded-3xl bg-white border-2 border-ink shadow-md overflow-hidden" data-char-component>
+            <div data-reveal class="rounded-3xl bg-white border-2 border-ink shadow-md overflow-hidden" data-char-component>
                 {{-- Tab Buttons Navigation --}}
                 <div class="p-2 sm:p-3 bg-paper border-b border-line grid grid-cols-2 lg:grid-cols-4 gap-2" role="tablist" aria-label="Navigasi 4 Nilai Karakter">
                     @foreach($characterValues as $index => $char)
@@ -296,8 +296,8 @@
                                     </p>
 
                                     {{-- Konteks Industri Nyata --}}
-                                    <div class="mt-6 p-4 rounded-xl bg-navy-50 border border-blue-200 text-xs text-navy leading-relaxed">
-                                        <strong class="font-mono uppercase tracking-wide block mb-1 text-blue-900">
+                                    <div class="mt-6 p-4 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-slate-800 leading-relaxed">
+                                        <strong class="font-mono uppercase tracking-wide block mb-1 text-[#D97706]">
                                             Penerapan di Dunia Industri &amp; Bengkel:
                                         </strong>
                                         {{ $char['workplace_context'] }}
@@ -335,8 +335,8 @@
     {{-- ===================================================================== --}}
     <section class="py-16 sm:py-20 bg-white border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mb-12">
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-navy">
+            <div data-reveal class="max-w-3xl mb-12">
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#D97706]">
                     Output &amp; Dampak Pembelajaran
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-2 tracking-tight">
@@ -347,7 +347,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @foreach($bmwOutcomes as $outcome)
                     <div class="p-8 rounded-3xl bg-paper border-2 border-line hover:border-navy hover:shadow-lg transition-all flex flex-col justify-between">
                         <div>
@@ -386,11 +386,11 @@
     {{-- ===================================================================== --}}
     <section class="py-16 bg-paper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div data-reveal-stagger class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {{-- Gateway Sejarah --}}
                 <div class="p-8 rounded-3xl bg-[#071C3F] text-white border-2 border-ink flex flex-col justify-between">
                     <div>
-                        <span class="px-2.5 py-1 rounded bg-blue-600 text-white text-[11px] font-mono font-bold uppercase tracking-widest">
+                        <span class="px-2.5 py-1 rounded bg-[#67E8F9]/15 border border-[#67E8F9]/30 text-[#67E8F9] text-[11px] font-mono font-bold uppercase tracking-widest">
                             Arsip Sejarah 1962 - Sekarang
                         </span>
                         <h3 class="font-display font-extrabold text-2xl text-white mt-4">
@@ -403,7 +403,7 @@
                     <div class="mt-6 pt-4 border-t border-white/10">
                         <a
                             href="{{ route('history.index') }}"
-                            class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-colors"
+                            class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#67E8F9] hover:bg-cyan-300 text-[#071C3F] font-bold text-xs uppercase tracking-wider transition-colors"
                         >
                             <span>Buka Kronik Sejarah</span>
                             <span>&rarr;</span>

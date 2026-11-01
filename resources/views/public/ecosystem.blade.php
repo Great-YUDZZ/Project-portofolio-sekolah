@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="bg-navy text-paper border-b-2 border-ink py-14">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-reveal>
             <span class="inline-block px-3 py-1 rounded bg-ink text-white text-xs font-extrabold uppercase tracking-widest">
                 Infrastruktur Digital Terintegrasi
             </span>
@@ -18,7 +18,7 @@
 
     <section class="py-14 bg-paper">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-stagger>
                 @foreach($links as $link)
                     <article class="p-6 rounded-2xl bg-paper-2/70 border border-line flex flex-col justify-between hover:border-ink transition-colors">
                         <div>
