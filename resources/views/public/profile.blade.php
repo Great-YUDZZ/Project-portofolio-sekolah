@@ -35,7 +35,7 @@
                             Arsip Interaktif Scroll-Craft
                         </span>
                         <span class="px-2.5 py-1 rounded bg-white/10 border border-white/15 text-slate-200 text-[11px] font-mono uppercase tracking-wider">
-                            24 September 1962 - 2026 (64 Tahun)
+                            24 September 1962 - Sekarang
                         </span>
                     </div>
                     <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
@@ -50,7 +50,36 @@
                         href="{{ route('history.index') }}"
                         class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-colors"
                     >
-                        <span>Buka Kronik Sejarah (1962 - 2026)</span>
+                        <span>Buka Kronik Sejarah</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Gateway Banner ke Halaman Visi & Misi (/visi-misi) --}}
+            <div id="visi-misi" class="p-8 sm:p-10 rounded-2xl bg-white text-ink border-2 border-line hover:border-navy transition-all shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div class="max-w-3xl">
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                        <span class="px-2.5 py-1 rounded bg-navy-50 text-navy text-[11px] font-mono font-bold uppercase tracking-widest">
+                            Nilai &amp; Arah Masa Depan
+                        </span>
+                        <span class="px-2.5 py-1 rounded bg-paper-2 border border-line text-slate-600 text-[11px] font-mono uppercase tracking-wider">
+                            Pusat Keunggulan • 4 Pilar Karakter
+                        </span>
+                    </div>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-ink">
+                        Visi, 6 Misi Strategis, &amp; 4 Nilai Karakter (Siap, Kompeten, Disiplin, Beretika)
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+                        Pelajari manifesto visi resmi, rencana aksi strategis vokasi, showcase interaktif 4 karakter kerja industri, serta skema keterserapan lulusan BMW (Bekerja, Melanjutkan, Wirausaha).
+                    </p>
+                </div>
+                <div class="shrink-0">
+                    <a
+                        href="{{ route('vision-mission.index') }}"
+                        class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-navy hover:bg-ink text-paper font-bold text-xs uppercase tracking-wider transition-colors"
+                    >
+                        <span>Eksplorasi Visi &amp; Misi</span>
                         <span>&rarr;</span>
                     </a>
                 </div>

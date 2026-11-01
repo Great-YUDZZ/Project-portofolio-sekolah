@@ -18,6 +18,8 @@ class PortfolioPhaseTwoTest extends TestCase
         $routes = [
             '/',
             '/profil',
+            '/sejarah',
+            '/visi-misi',
             '/sdm',
             '/jurusan',
             '/karya',
@@ -43,6 +45,19 @@ class PortfolioPhaseTwoTest extends TestCase
         $this->get('/publikasi/' . $post->slug)
             ->assertStatus(200)
             ->assertSee($post->title);
+    }
+
+    public function test_vision_mission_page_loads_with_authentic_data(): void
+    {
+        $response = $this->get('/visi-misi');
+        $response->assertStatus(200);
+        $response->assertSee('Terwujudnya sekolah sebagai pusat pendidikan dan pelatihan kejuruan');
+        $response->assertSee('Empat Pilar Nilai Karakter');
+        $response->assertSee('Siap');
+        $response->assertSee('Kompeten');
+        $response->assertSee('Disiplin');
+        $response->assertSee('Beretika');
+        $response->assertSee('BMW');
     }
 
     public function test_contact_form_submits_and_stores_message(): void

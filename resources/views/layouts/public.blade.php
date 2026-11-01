@@ -181,7 +181,7 @@
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('profile.index') }}#visi-misi" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium">
+                                    <a href="{{ route('vision-mission.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('vision-mission.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Visi &amp; Misi
                                     </a>
                                 </li>
@@ -366,10 +366,10 @@
                         </svg>
                     </button>
                     <div data-mobile-accordion-panel="tentang" class="hidden bg-slate-50/80 border-t border-slate-100 px-3 py-2 space-y-1 text-xs">
-                        <a href="{{ route('history.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
-                            Sejarah Sekolah (1962 - 2026)
+                        <a href="{{ route('history.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('history.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
+                            Sejarah Sekolah (1962 - Sekarang)
                         </a>
-                        <a href="{{ route('profile.index') }}#visi-misi" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
+                        <a href="{{ route('vision-mission.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('vision-mission.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Visi &amp; Misi
                         </a>
                         <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">

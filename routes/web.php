@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/sejarah', [ProfileController::class, 'history'])->name('history.index');
+Route::get('/visi-misi', [ProfileController::class, 'visionMission'])->name('vision-mission.index');
 Route::get('/sdm', [StaffController::class, 'index'])->name('staff.index');
 Route::get('/jurusan', [MajorController::class, 'index'])->name('majors.index');
 Route::get('/jurusan/{slug}', [MajorController::class, 'show'])->name('majors.show');

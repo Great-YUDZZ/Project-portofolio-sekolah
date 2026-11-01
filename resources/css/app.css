@@ -297,7 +297,7 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* ============================================================================
-   Floating Partner Stage System (#partner-floating-stage)
+   Infinite Vertical Flow Columns Partner Showcase (#partner-flow-stage)
    ========================================================================== */
 .partner-stage-grid {
     background-color: #F8F9FA;
@@ -305,42 +305,25 @@ h1, h2, h3, h4, .font-display {
     background-size: 24px 24px;
 }
 
-@keyframes float-soft {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-8px) rotate(0.8deg);
-    }
-}
-
-.partner-floating-badge {
-    touch-action: none;
+.partner-flow-column {
     user-select: none;
     -webkit-user-select: none;
-    will-change: transform;
+    contain: layout style;
 }
 
-.partner-floating-inner {
-    animation: float-soft var(--float-duration, 3.6s) ease-in-out infinite;
-    animation-delay: var(--float-delay, 0s);
-    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease;
+.partner-compact-orb {
+    box-shadow: 0 4px 14px -3px rgba(14, 17, 51, 0.08);
 }
 
-.partner-floating-badge:hover .partner-floating-inner {
-    transform: scale(1.06);
-}
-
-.partner-floating-badge.is-dragging .partner-floating-inner {
-    animation-play-state: paused;
-    transform: scale(1.08) rotate(-1.5deg);
-    box-shadow: 0 16px 32px -8px rgba(14, 17, 51, 0.25);
-    border-color: #2563EB;
+.partner-compact-orb:hover {
+    box-shadow: 0 10px 24px -4px rgba(var(--brand-rgb), 0.22);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .partner-floating-inner {
-        animation: none !important;
+    .partner-flow-column,
+    .partner-flow-card {
+        transform: none !important;
     }
 }
+
 

@@ -482,4 +482,211 @@ class ProfileController extends Controller
             'citations'
         ));
     }
+
+    public function visionMission(): View
+    {
+        $settings = SiteSetting::pluck('value', 'key');
+
+        $vision = [
+            'statement' => 'Terwujudnya sekolah sebagai pusat pendidikan dan pelatihan kejuruan dengan layanan pendidikan berbasis keunggulan lokal yang menghasilkan sumber daya manusia yang berstandar internasional, berwawasan budaya dan berakhlak mulia.',
+            'slogan' => $settings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.',
+            'slogan_meaning' => $settings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.',
+            'decree_reference' => 'SK Pendirian No. 17/D.J.P.T/B1/1962 • Penetapan SMK Pusat Keunggulan',
+            'pillars' => [
+                [
+                    'number' => '01',
+                    'title' => 'Keunggulan Lokal',
+                    'tagline' => 'Akar Identitas & Kearifan Bali',
+                    'desc' => 'Penyelenggaraan pendidikan kejuruan berakar kuat pada nilai luhur budaya Bali, tata ruang arsitektur tradisional, kearifan lokal, serta menjawab dinamika industri pariwisata, teknologi rekayasa, dan ekonomi kreatif di daerah.',
+                ],
+                [
+                    'number' => '02',
+                    'title' => 'Standar Internasional',
+                    'tagline' => 'Daya Saing DUDIKA Global',
+                    'desc' => 'Penerapan kurikulum berbasis industri kelas dunia, sertifikasi kompetensi nasional LSP-P1 BNSP, lisensi industri Daikin, Schneider, Honda, dan Toyota, serta penyiapan talenta global berstandar pasar kerja internasional.',
+                ],
+                [
+                    'number' => '03',
+                    'title' => 'Akhlak Mulia',
+                    'tagline' => 'Integritas & Karakter Vokasi',
+                    'desc' => 'Menempa insan berkarakter jujur, tangguh, religius, beretika sosial luhur, dan berdisiplin tinggi, selaras dengan profil Pelajar Pancasila dan tuntutan budaya kerja profesional modern.',
+                ],
+            ],
+        ];
+
+        $missions = [
+            [
+                'number' => '01',
+                'category' => 'Kelembagaan Vokasi',
+                'title' => 'Pusat Diklat Kejuruan Bali',
+                'statement' => 'Meningkatkan profesionalisme lembaga pendidikan sebagai pusat pendidikan dan pelatihan kejuruan di daerah Bali.',
+                'action_badge' => 'Penguatan Tata Kelola & Kapasitas',
+                'detail' => 'Mengembangkan fasilitas bengkel berstandar industri modern, sertifikasi asesor kompetensi bagi seluruh pendidik, dan manajemen sekolah berbasis standar penjaminan mutu prima.',
+                'metric' => 'SMK PK & Rujukan Vokasi se-Bali',
+            ],
+            [
+                'number' => '02',
+                'category' => 'Kurikulum & Pembelajaran',
+                'title' => 'Sistem Fleksibel & Efektif',
+                'statement' => 'Melaksanakan sistem pendidikan yang fleksibel dan efektif.',
+                'action_badge' => 'Kurikulum Merdeka & Teaching Factory',
+                'detail' => 'Mengintegrasikan pembelajaran modular berbasis proyek (Project-Based Learning), kelas industri, serta sistem blok yang adaptif terhadap kecepatan perkembangan teknologi perangkat lunak, mekatronika, dan rekayasa.',
+                'metric' => '12 Konsentrasi Keahlian Terakreditasi A',
+            ],
+            [
+                'number' => '03',
+                'category' => 'Layanan Publik & Industri',
+                'title' => 'Layanan Berbasis Keunggulan Lokal',
+                'statement' => 'Menyediakan layanan pendidikan dan pelatihan pada masyarakat berbasis keunggulan lokal dan bermutu.',
+                'action_badge' => '9 Unit Core Business Berizin',
+                'detail' => 'Membuka akses pelatihan kerja, uji kompetensi kejuruan bagi masyarakat umum, serta hilirisasi karya siswa melalui 9 unit usaha komersial yang beroperasi secara legal dan berdaya guna.',
+                'metric' => 'Mitra Layanan Sertifikasi & Produksi',
+            ],
+            [
+                'number' => '04',
+                'category' => 'Transformasi Sosial & Budaya',
+                'title' => 'Pusat Budaya & Agent of Change',
+                'statement' => 'Menciptakan sekolah sebagai pusat budaya dan agent of change (agen perubahan).',
+                'action_badge' => 'Ekosistem Karakter Berkelanjutan',
+                'detail' => 'Menumbuhkan budaya literasi, inovasi riset terapan tepat guna, pelestarian seni arsitektur Bali pada program konstruksi, serta kesadaran ekologis dan kepemimpinan siswa di lingkungan sekolah.',
+                'metric' => 'Sekolah Ramah Anak & Berwawasan Budaya',
+            ],
+            [
+                'number' => '05',
+                'category' => 'Standarisasi Tata Kelola',
+                'title' => 'Sistem Manajemen Internasional',
+                'statement' => 'Melaksanakan sistem manajemen yang berstandar internasional.',
+                'action_badge' => 'Standar Mutu ISO & Tata Pamong Terpadu',
+                'detail' => 'Menerapkan continuous improvement (Kaizen) dalam administrasi akademik, audit mutu internal berkala, transparansi sistem informasi sekolah terpadu, dan tata kelola sarana prasarana yang akuntabel.',
+                'metric' => 'Manajemen Berstandar ISO & Digitalized',
+            ],
+            [
+                'number' => '06',
+                'category' => 'Keterserapan Lulusan',
+                'title' => 'Lulusan Unggul Siap BMW',
+                'statement' => 'Menyiapkan lulusan yang berdaya saing tinggi dan siap BMW (Bekerja, Melanjutkan studi, Wirausaha).',
+                'action_badge' => 'Jejaring BKK & Inkubasi Bisnis',
+                'detail' => 'Memastikan setiap alumni memiliki portofolio keahlian terverifikasi, paspor kompetensi BNSP, akses bursa kerja khusus ke 140+ mitra industri, serta bekal mental kewirausahaan mandiri.',
+                'metric' => '85%+ Tingkat Keterserapan Alumni',
+            ],
+        ];
+
+        $characterValues = [
+            [
+                'code' => '01',
+                'title' => 'Siap',
+                'tagline' => 'Siaga Menghadapi Tantangan, Berkomitmen Mencapai Tujuan',
+                'description' => 'Membangun kesiagaan fisik, mental, dan keilmuan sebelum memasuki lingkungan kerja industri. Siswa dilatih untuk selalu tanggap terhadap instruksi kerja, mengutamakan keselamatan kerja (K3), dan berorientasi pada penyelesaian masalah.',
+                'workplace_context' => 'Di industri konstruksi, pemesinan, dan otomotif modern, kesiapan awal menentukan nol kecelakaan kerja (Zero Accident) dan kepatuhan prosedur operasional standar (SOP).',
+                'behaviors' => [
+                    'Disiplin waktu dan kehadiran sebelum kegiatan praktik kerja dimulai.',
+                    'Kepatuhan ketat terhadap pemakaian Alat Pelindung Diri (APD) di bengkel dan lab.',
+                    'Responsif menerima penugasan proyek dengan pemahaman instruksi yang cermat.',
+                    'Inisiatif dalam membaca manual teknis dan mempersiapkan peralatan kerja mandiri.',
+                ],
+                'badge_color' => 'bg-blue-600',
+            ],
+            [
+                'code' => '02',
+                'title' => 'Kompeten',
+                'tagline' => 'Keselarasan Pengetahuan, Keterampilan, dan Bukti Kinerja',
+                'description' => 'Mencapai penguasaan keterampilan teknis (hard skills) yang presisi sesuai standar industri terkini, dibuktikan melalui sertifikasi profesi resmi dan portofolio karya nyata yang dapat diuji mutunya.',
+                'workplace_context' => 'Dunia usaha membutuhkan keahlian teruji yang siap pakai tanpa perlu proses pelatihan ulang yang memakan waktu lama.',
+                'behaviors' => [
+                    'Menguasai metodologi kerja, alat ukur presisi, dan perangkat lunak industri terkini.',
+                    'Meraih sertifikat kompetensi keahlian berstandar nasional BNSP pada skema jurusannya.',
+                    'Mampu menganalisis kegagalan teknis dan menerapkan troubleshooting secara akurat.',
+                    'Menghasilkan benda kerja atau produk digital yang memenuhi toleransi mutu yang disyaratkan.',
+                ],
+                'badge_color' => 'bg-emerald-600',
+            ],
+            [
+                'code' => '03',
+                'title' => 'Disiplin',
+                'tagline' => 'Pembiasaan Terstruktur dengan Penuh Tanggung Jawab',
+                'description' => 'Konsistensi dalam mematuhi norma, tata tertib, dan etos kerja profesional tanpa harus diawasi terus-menerus. Menjadikan ketertiban sebagai bagian dari integritas diri sehari-hari.',
+                'workplace_context' => 'Prinsip 5R/5S (Ringkas, Rapi, Resik, Rawat, Rajin) di bengkel kerja Skensa menjadi fondasi budaya industri manufaktur dan teknologi dunia.',
+                'behaviors' => [
+                    'Menjaga kebersihan dan penataan peralatan bengkel sesuai standar 5S setelah sesi kerja.',
+                    'Konsisten menuntaskan tenggat waktu proyek (project deadline) dengan standar optimal.',
+                    'Menghargai hierarki kerja dan etika pelaporan tugas secara berkala dan terstruktur.',
+                    'Menjaga aset sekolah dan bengkel produksi seperti milik sendiri dengan penuh amanah.',
+                ],
+                'badge_color' => 'bg-amber-600',
+            ],
+            [
+                'code' => '04',
+                'title' => 'Beretika',
+                'tagline' => 'Menjunjung Tinggi Norma Moral dalam Berkehidupan Sosial',
+                'description' => 'Menjaga tata krama, kesantunan bertutur kata, kejujuran profesi, serta menghargai keberagaman sesama insan kerja. Menempatkan karakter moral sebagai mahkota tertinggi dari seluruh kecakapan teknis.',
+                'workplace_context' => 'Kemampuan berkolaborasi dalam tim (teamwork) dan integritas moral menjadi faktor penentu utama keberlanjutan karier profesional di level nasional maupun global.',
+                'behaviors' => [
+                    'Menerapkan budaya 5S (Senyum, Salam, Sapa, Sopan, Santun) kepada seluruh warga sekolah dan tamu industri.',
+                    'Menjunjung tinggi orisinalitas karya serta menghindari plagiarisme dalam tugas dan proyek inovasi.',
+                    'Berkomunikasi secara santun dan konstruktif saat menyampaikan saran maupun menerima masukan perbaikan.',
+                    'Menghormati perbedaan latar belakang dan saling mendukung keberhasilan sesama rekan belajar.',
+                ],
+                'badge_color' => 'bg-violet-600',
+            ],
+        ];
+
+        $bmwOutcomes = [
+            [
+                'letter' => 'B',
+                'label' => 'Bekerja',
+                'sub' => 'Terserap Langsung di DUDIKA Bereputasi',
+                'desc' => 'Lulusan memiliki sertifikat kompetensi BNSP dan portofolio proyek industri nyata, memungkinkan mereka langsung mengisi formasi teknisi, perancang, maupun operator ahli di berbagai perusahaan mitra skala lokal, nasional, hingga internasional.',
+                'metrics' => '140+ Mitra DUDIKA Aktif • Akses Rekrutmen Terjadwal BKK',
+                'icon_accent' => 'border-blue-500 bg-blue-50 text-blue-700',
+            ],
+            [
+                'letter' => 'M',
+                'label' => 'Melanjutkan',
+                'sub' => 'Studi Lanjut ke Perguruan Tinggi Vokasi & Akademik',
+                'desc' => 'Fondasi matematika terapan, sains teknik, dan literasi teknologi yang kokoh membuka gerbang bagi alumni untuk melanjutkan studi ke Politeknik Negeri Bali, universitas negeri/swasta terkemuka, maupun beasiswa vokasi luar negeri.',
+                'metrics' => 'Jalur Prestasi SNBP & Portofolio Karya Juara LKS',
+                'icon_accent' => 'border-emerald-500 bg-emerald-50 text-emerald-700',
+            ],
+            [
+                'letter' => 'W',
+                'label' => 'Wirausaha',
+                'sub' => 'Membangun Unit Usaha Mandiri Berbasis Keahlian',
+                'desc' => 'Pengalaman langsung di 9 unit usaha komersial sekolah (Teaching Factory) membekali siswa dengan pemahaman rantai pasok, kepuasan pelanggan, kalkulasi biaya operasional, dan keberanian merintis usaha mandiri di bidang kejuruan masing-masing.',
+                'metrics' => 'Inkubasi Bisnis Siswa • Sertifikasi Kewirausahaan',
+                'icon_accent' => 'border-amber-500 bg-amber-50 text-amber-700',
+            ],
+        ];
+
+        $qualityMetrics = [
+            [
+                'value' => 'A',
+                'label' => 'Akreditasi Unggul',
+                'sub' => 'BAN-PDM Kemendikbudristek',
+            ],
+            [
+                'value' => 'LSP-P1',
+                'label' => 'Lisensi Resmi BNSP',
+                'sub' => 'BNSP-LSP-757-ID',
+            ],
+            [
+                'value' => '140+',
+                'label' => 'Jejaring Mitra Industri',
+                'sub' => 'Dapodik & Disnaker Bali',
+            ],
+            [
+                'value' => '12',
+                'label' => 'Konsentrasi Keahlian',
+                'sub' => '9 Bidang Vokasi Terpadu',
+            ],
+        ];
+
+        return view('public.vision-mission', compact(
+            'settings',
+            'vision',
+            'missions',
+            'characterValues',
+            'bmwOutcomes',
+            'qualityMetrics'
+        ));
+    }
 }
