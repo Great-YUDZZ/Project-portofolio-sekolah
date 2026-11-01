@@ -11,13 +11,8 @@ export function initIntro() {
     const bottomCurtain = overlay.querySelector('[data-intro-bottom]');
     const videoWrap = overlay.querySelector('[data-intro-stage]');
     const video = overlay.querySelector('video');
-    const audioToggleBtn = overlay.querySelector('[data-intro-audio-toggle]');
-    const audioDot = overlay.querySelector('[data-intro-audio-dot]');
-    const audioLabel = overlay.querySelector('[data-intro-audio-label]');
-    const skipBtn = overlay.querySelector('[data-intro-skip]');
     const progressBar = overlay.querySelector('[data-intro-progress]');
     const replayBtn = document.querySelector('[data-intro-replay]');
-
     const introVersion = overlay.dataset.introVersion || '55';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const urlParams = new URLSearchParams(window.location.search);
@@ -40,18 +35,6 @@ export function initIntro() {
         }
     };
 
-    const updateAudioButtonState = (isMuted) => {
-        if (!audioDot || !audioLabel) return;
-        if (isMuted) {
-            audioDot.classList.remove('bg-[#35B8C4]');
-            audioDot.classList.add('bg-paper/40');
-            audioLabel.textContent = 'Suara Mati';
-        } else {
-            audioDot.classList.remove('bg-paper/40');
-            audioDot.classList.add('bg-[#35B8C4]');
-            audioLabel.textContent = 'Suara Aktif';
-        }
-    };
 
     const closeIntroImmediate = () => {
         clearTimers();
@@ -147,17 +130,30 @@ export function initIntro() {
         gsap.set(videoWrap, { opacity: 1, scale: 1 });
 
         if (video) {
-            video.muted = true;
-            video.volume = 0.85;
-            updateAudioButtonState(true);
+            // Attempt unmuted autoplay by default
+            video.muted = false;
+            video.volume = 0.95;
             video.onended = () => runSplitReveal();
             video.onerror = () => runSplitReveal();
 
             armFallbackTimer(5.85);
 
+            // Listeners to instantly restore sound on ANY first user gesture
+            const gestureEvents = ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'wheel'];
+            const onFirstGesture = () => {
+                if (video && video.muted) {
+                    video.muted = false;
+                    video.volume = 0.95;
+                }
+                gestureEvents.forEach((ev) => window.removeEventListener(ev, onFirstGesture, true));
+            };
+            gestureEvents.forEach((ev) => window.addEventListener(ev, onFirstGesture, { capture: true, once: true }));
+
             const playPromise = video.play();
             if (playPromise !== undefined) {
                 playPromise.catch(() => {
+                    // Browser strictly blocked unmuted autoplay on cold session:
+                    // Play muted so visual is seamless, and let the gesture listener unmute on the very first touch/click/scroll!
                     video.muted = true;
                     video.play().catch(() => {
                         gsap.delayedCall(1.5, runSplitReveal);
@@ -169,25 +165,14 @@ export function initIntro() {
         }
     };
 
-    audioToggleBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (!video) return;
-        video.muted = !video.muted;
-        if (!video.muted) {
-            video.volume = 0.85;
-        }
-        video.play().catch(() => {});
-        updateAudioButtonState(video.muted);
-    });
-
-    skipBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        runSplitReveal();
-    });
-
     overlay.addEventListener('click', () => {
         if (overlay.style.display !== 'none' && overlay.dataset.closing !== '1') {
-            runSplitReveal();
+            if (video && video.muted) {
+                video.muted = false;
+                video.volume = 0.95;
+            } else {
+                runSplitReveal();
+            }
         }
     });
 

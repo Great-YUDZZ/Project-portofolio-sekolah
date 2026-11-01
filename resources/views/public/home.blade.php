@@ -21,7 +21,6 @@
         <div data-intro-stage class="relative z-10 w-screen h-screen flex items-center justify-center will-change-transform">
             <video
                 autoplay
-                muted
                 playsinline
                 preload="auto"
                 poster="/media/intro.jpg?v={{ $introVer }}"
@@ -30,29 +29,6 @@
                 <source src="/media/intro.mp4?v={{ $introVer }}" type="video/mp4">
                 <source src="/media/intro.webm?v={{ $introVer }}" type="video/webm">
             </video>
-
-            {{-- Minimalist Non-Blocking Controls (Audio Toggle & Skip Intro) --}}
-            <div class="absolute bottom-6 right-6 z-20 flex items-center gap-2.5">
-                <button
-                    type="button"
-                    data-intro-audio-toggle
-                    aria-label="Aktifkan atau matikan suara intro"
-                    class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-[#071C3F]/85 backdrop-blur-md border border-paper/20 text-paper/90 hover:text-white hover:border-[#35B8C4]/70 text-xs font-medium tracking-wider uppercase transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#35B8C4] shadow-lg"
-                >
-                    <span data-intro-audio-dot class="w-2 h-2 rounded-full bg-paper/40 transition-colors"></span>
-                    <span data-intro-audio-label>Suara</span>
-                </button>
-
-                <button
-                    type="button"
-                    data-intro-skip
-                    aria-label="Lewati intro"
-                    class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-[#071C3F]/85 backdrop-blur-md border border-paper/20 text-paper/90 hover:text-white hover:border-[#35B8C4]/70 text-xs font-medium tracking-wider uppercase transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#35B8C4] shadow-lg"
-                >
-                    <span>Lewati</span>
-                    <span class="text-[10px] text-paper/50 font-mono">ESC</span>
-                </button>
-            </div>
 
             {{-- Minimalist Bottom Progress Line --}}
             <div class="absolute bottom-0 inset-x-0 h-[2px] bg-paper/10 pointer-events-none">
