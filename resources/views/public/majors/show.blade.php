@@ -69,124 +69,132 @@
     {{-- 2. WORKSPACE LAYOUT: STICKY QUICK-JUMP SIDEBAR & CONTENT STREAM       --}}
     {{-- ===================================================================== --}}
     <section class="py-14 sm:py-20 bg-paper">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
 
             {{-- ----------------------------------------------------------------- --}}
             {{-- STICKY QUICK-JUMP SIDEBAR (4 Kolom Desktop)                       --}}
             {{-- ----------------------------------------------------------------- --}}
-            <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6" data-reveal>
+            <aside class="lg:col-span-4 relative self-stretch">
+                <div class="lg:sticky lg:top-24 space-y-6 max-h-[calc(100vh-7rem)] overflow-y-auto no-scrollbar pb-6">
 
-                {{-- Table of Contents Card --}}
-                <div class="p-6 rounded-3xl bg-paper-2 border border-line shadow-xs">
-                    <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-navy block mb-4">
-                        Navigasi Cepat Kejuruan:
-                    </span>
+                    {{-- Table of Contents Card --}}
+                    <div class="p-6 rounded-3xl bg-paper-2 border border-line shadow-xs">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-navy block mb-4">
+                            Navigasi Cepat Kejuruan:
+                        </span>
 
-                    <nav class="space-y-1.5 text-xs font-semibold" aria-label="Daftar Isi Jurusan">
-                        <a
-                            href="#seksi-kompetensi"
-                            class="flex items-center justify-between p-3 rounded-xl hover:bg-paper hover:text-navy border border-transparent hover:border-line transition-all group"
-                        >
-                            <span class="flex items-center gap-2.5">
-                                <span class="font-mono text-ink-muted group-hover:text-navy">01.</span>
-                                <span class="text-ink group-hover:text-navy">Profil &amp; Filosofi Kompetensi</span>
-                            </span>
-                            <span class="text-ink-muted group-hover:text-navy group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                        </a>
-
-                        <a
-                            href="#seksi-kurikulum"
-                            class="flex items-center justify-between p-3 rounded-xl hover:bg-paper hover:text-navy border border-transparent hover:border-line transition-all group"
-                        >
-                            <span class="flex items-center gap-2.5">
-                                <span class="font-mono text-ink-muted group-hover:text-navy">02.</span>
-                                <span class="text-ink group-hover:text-navy">Struktur Kurikulum Merdeka</span>
-                            </span>
-                            <span class="text-ink-muted group-hover:text-navy group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                        </a>
-
-                        <a
-                            href="#seksi-laboratorium"
-                            class="flex items-center justify-between p-3 rounded-xl hover:bg-paper hover:text-navy border border-transparent hover:border-line transition-all group"
-                        >
-                            <span class="flex items-center gap-2.5">
-                                <span class="font-mono text-ink-muted group-hover:text-navy">03.</span>
-                                <span class="text-ink group-hover:text-navy">Bengkel &amp; Lab Praktik</span>
-                            </span>
-                            <span class="text-ink-muted group-hover:text-navy group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                        </a>
-
-                        <a
-                            href="#seksi-sertifikasi"
-                            class="flex items-center justify-between p-3 rounded-xl hover:bg-paper hover:text-navy border border-transparent hover:border-line transition-all group"
-                        >
-                            <span class="flex items-center gap-2.5">
-                                <span class="font-mono text-ink-muted group-hover:text-navy">04.</span>
-                                <span class="text-ink group-hover:text-navy">Sertifikasi BNSP LSP-P1</span>
-                            </span>
-                            <span class="text-ink-muted group-hover:text-navy group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                        </a>
-
-                        <a
-                            href="#seksi-karir"
-                            class="flex items-center justify-between p-3 rounded-xl hover:bg-paper hover:text-navy border border-transparent hover:border-line transition-all group"
-                        >
-                            <span class="flex items-center gap-2.5">
-                                <span class="font-mono text-ink-muted group-hover:text-navy">05.</span>
-                                <span class="text-ink group-hover:text-navy">Prospek Karir &amp; Lulusan</span>
-                            </span>
-                            <span class="text-ink-muted group-hover:text-navy group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                        </a>
-
-                        <a
-                            href="#seksi-mitra-karya"
-                            class="flex items-center justify-between p-3 rounded-xl hover:bg-paper hover:text-navy border border-transparent hover:border-line transition-all group"
-                        >
-                            <span class="flex items-center gap-2.5">
-                                <span class="font-mono text-ink-muted group-hover:text-navy">06.</span>
-                                <span class="text-ink group-hover:text-navy">Mitra DUDIKA &amp; Portofolio</span>
-                            </span>
-                            <span class="text-ink-muted group-hover:text-navy group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                        </a>
-                    </nav>
-                </div>
-
-                {{-- Card Konsultasi Jurusan --}}
-                <div class="p-6 rounded-3xl bg-navy text-white border border-line shadow-xs">
-                    <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 block mb-2">
-                        Penerimaan Peserta Didik Baru
-                    </span>
-                    <h3 class="font-display font-extrabold text-lg text-white">
-                        Tertarik Memilih Jurusan {{ $major->code }}?
-                    </h3>
-                    <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-                        Dapatkan informasi lengkap persyaratan masuk, daya tampung rombongan belajar, dan jalur pendaftaran melalui layanan Humas sekolah.
-                    </p>
-                    <a
-                        href="{{ route('contact.index') }}"
-                        class="inline-flex items-center justify-center w-full mt-4 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-[#071C3F] font-bold text-xs uppercase tracking-wider transition-colors shadow-xs"
-                    >
-                        Hubungi Layanan Humas &rarr;
-                    </a>
-                </div>
-
-                {{-- Daftar Jurusan Lainnya --}}
-                <div class="p-6 rounded-3xl bg-paper-2 border border-line shadow-xs">
-                    <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-navy block mb-3">
-                        Konsentrasi Keahlian Lain:
-                    </span>
-                    <div class="flex flex-wrap gap-1.5">
-                        @foreach($otherMajors as $other)
+                        <nav class="space-y-1.5 text-xs font-semibold" aria-label="Daftar Isi Jurusan" id="major-toc-nav">
                             <a
-                                href="{{ route('majors.show', $other->slug) }}"
-                                class="px-2.5 py-1.5 rounded-lg bg-paper border border-line text-xs font-mono font-bold text-ink hover:text-navy hover:border-navy transition-colors"
+                                href="#seksi-kompetensi"
+                                data-major-toc-link
+                                class="flex items-center justify-between p-3 rounded-xl border border-transparent transition-all group text-ink hover:bg-paper"
                             >
-                                {{ $other->code }}
+                                <span class="flex items-center gap-2.5">
+                                    <span data-toc-badge class="font-mono text-ink-muted transition-colors">01.</span>
+                                    <span data-toc-text class="text-ink transition-colors">Profil &amp; Filosofi Kompetensi</span>
+                                </span>
+                                <span data-toc-arrow class="text-ink-muted transition-all group-hover:translate-x-0.5">&rarr;</span>
                             </a>
-                        @endforeach
-                    </div>
-                </div>
 
+                            <a
+                                href="#seksi-kurikulum"
+                                data-major-toc-link
+                                class="flex items-center justify-between p-3 rounded-xl border border-transparent transition-all group text-ink hover:bg-paper"
+                            >
+                                <span class="flex items-center gap-2.5">
+                                    <span data-toc-badge class="font-mono text-ink-muted transition-colors">02.</span>
+                                    <span data-toc-text class="text-ink transition-colors">Struktur Kurikulum Merdeka</span>
+                                </span>
+                                <span data-toc-arrow class="text-ink-muted transition-all group-hover:translate-x-0.5">&rarr;</span>
+                            </a>
+
+                            <a
+                                href="#seksi-laboratorium"
+                                data-major-toc-link
+                                class="flex items-center justify-between p-3 rounded-xl border border-transparent transition-all group text-ink hover:bg-paper"
+                            >
+                                <span class="flex items-center gap-2.5">
+                                    <span data-toc-badge class="font-mono text-ink-muted transition-colors">03.</span>
+                                    <span data-toc-text class="text-ink transition-colors">Bengkel &amp; Lab Praktik</span>
+                                </span>
+                                <span data-toc-arrow class="text-ink-muted transition-all group-hover:translate-x-0.5">&rarr;</span>
+                            </a>
+
+                            <a
+                                href="#seksi-sertifikasi"
+                                data-major-toc-link
+                                class="flex items-center justify-between p-3 rounded-xl border border-transparent transition-all group text-ink hover:bg-paper"
+                            >
+                                <span class="flex items-center gap-2.5">
+                                    <span data-toc-badge class="font-mono text-ink-muted transition-colors">04.</span>
+                                    <span data-toc-text class="text-ink transition-colors">Sertifikasi BNSP LSP-P1</span>
+                                </span>
+                                <span data-toc-arrow class="text-ink-muted transition-all group-hover:translate-x-0.5">&rarr;</span>
+                            </a>
+
+                            <a
+                                href="#seksi-karir"
+                                data-major-toc-link
+                                class="flex items-center justify-between p-3 rounded-xl border border-transparent transition-all group text-ink hover:bg-paper"
+                            >
+                                <span class="flex items-center gap-2.5">
+                                    <span data-toc-badge class="font-mono text-ink-muted transition-colors">05.</span>
+                                    <span data-toc-text class="text-ink transition-colors">Prospek Karir &amp; Lulusan</span>
+                                </span>
+                                <span data-toc-arrow class="text-ink-muted transition-all group-hover:translate-x-0.5">&rarr;</span>
+                            </a>
+
+                            <a
+                                href="#seksi-mitra-karya"
+                                data-major-toc-link
+                                class="flex items-center justify-between p-3 rounded-xl border border-transparent transition-all group text-ink hover:bg-paper"
+                            >
+                                <span class="flex items-center gap-2.5">
+                                    <span data-toc-badge class="font-mono text-ink-muted transition-colors">06.</span>
+                                    <span data-toc-text class="text-ink transition-colors">Mitra DUDIKA &amp; Portofolio</span>
+                                </span>
+                                <span data-toc-arrow class="text-ink-muted transition-all group-hover:translate-x-0.5">&rarr;</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    {{-- Card Konsultasi Jurusan --}}
+                    <div class="p-6 rounded-3xl bg-navy text-white border border-line shadow-xs">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 block mb-2">
+                            Penerimaan Peserta Didik Baru
+                        </span>
+                        <h3 class="font-display font-extrabold text-lg text-white">
+                            Tertarik Memilih Jurusan {{ $major->code }}?
+                        </h3>
+                        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                            Dapatkan informasi lengkap persyaratan masuk, daya tampung rombongan belajar, dan jalur pendaftaran melalui layanan Humas sekolah.
+                        </p>
+                        <a
+                            href="{{ route('contact.index') }}"
+                            class="inline-flex items-center justify-center w-full mt-4 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-[#071C3F] font-bold text-xs uppercase tracking-wider transition-colors shadow-xs"
+                        >
+                            Hubungi Layanan Humas &rarr;
+                        </a>
+                    </div>
+
+                    {{-- Daftar Jurusan Lainnya --}}
+                    <div class="p-6 rounded-3xl bg-paper-2 border border-line shadow-xs">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-navy block mb-3">
+                            Konsentrasi Keahlian Lain:
+                        </span>
+                        <div class="flex flex-wrap gap-1.5">
+                            @foreach($otherMajors as $other)
+                                <a
+                                    href="{{ route('majors.show', $other->slug) }}"
+                                    class="px-2.5 py-1.5 rounded-lg bg-paper border border-line text-xs font-mono font-bold text-ink hover:text-navy hover:border-navy transition-colors"
+                                >
+                                    {{ $other->code }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                </div>
             </aside>
 
             {{-- ----------------------------------------------------------------- --}}
@@ -620,5 +628,115 @@
 
         </div>
     </section>
+
+    {{-- ===================================================================== --}}
+    {{-- SCROLLSPY & SMOOTH NAVIGATION SCRIPT                                  --}}
+    {{-- ===================================================================== --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('[data-major-toc-link]');
+            if (!navLinks.length) return;
+
+            const sections = [];
+            navLinks.forEach(function (link) {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const sec = document.querySelector(href);
+                    if (sec) {
+                        sections.push({ link: link, el: sec, id: href });
+                    }
+                }
+            });
+
+            if (!sections.length) return;
+
+            // Handle smooth scroll on click with header offset
+            sections.forEach(function (item) {
+                item.link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const headerOffset = 100;
+                    const elementPosition = item.el.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    if (history.pushState) {
+                        history.pushState(null, null, item.id);
+                    }
+                });
+            });
+
+            // ScrollSpy update handler
+            function updateScrollSpy() {
+                const scrollPosition = window.scrollY + 140;
+                let activeIndex = -1;
+
+                for (let i = 0; i < sections.length; i++) {
+                    const el = sections[i].el;
+                    const top = el.offsetTop;
+                    const height = el.offsetHeight;
+
+                    if (scrollPosition >= top && scrollPosition < top + height) {
+                        activeIndex = i;
+                        break;
+                    }
+                }
+
+                // If scrolled past the last section or near bottom
+                if (activeIndex === -1 && window.innerHeight + window.scrollY >= document.body.offsetHeight - 120) {
+                    activeIndex = sections.length - 1;
+                } else if (activeIndex === -1 && scrollPosition < sections[0].el.offsetTop) {
+                    activeIndex = 0;
+                }
+
+                sections.forEach(function (item, idx) {
+                    const link = item.link;
+                    const badge = link.querySelector('[data-toc-badge]');
+                    const text = link.querySelector('[data-toc-text]');
+                    const arrow = link.querySelector('[data-toc-arrow]');
+
+                    if (idx === activeIndex) {
+                        link.classList.add('bg-[#071C3F]', 'text-white', 'shadow-xs');
+                        link.classList.remove('text-ink', 'hover:bg-paper', 'border-transparent');
+                        link.classList.add('border-white/10');
+                        if (badge) {
+                            badge.classList.remove('text-ink-muted');
+                            badge.classList.add('text-cyan-300', 'font-extrabold');
+                        }
+                        if (text) {
+                            text.classList.remove('text-ink');
+                            text.classList.add('text-white', 'font-bold');
+                        }
+                        if (arrow) {
+                            arrow.classList.remove('text-ink-muted');
+                            arrow.classList.add('text-cyan-300', 'translate-x-1');
+                        }
+                    } else {
+                        link.classList.remove('bg-[#071C3F]', 'text-white', 'shadow-xs', 'border-white/10');
+                        link.classList.add('text-ink', 'hover:bg-paper', 'border-transparent');
+                        if (badge) {
+                            badge.classList.add('text-ink-muted');
+                            badge.classList.remove('text-cyan-300', 'font-extrabold');
+                        }
+                        if (text) {
+                            text.classList.add('text-ink');
+                            text.classList.remove('text-white', 'font-bold');
+                        }
+                        if (arrow) {
+                            arrow.classList.add('text-ink-muted');
+                            arrow.classList.remove('text-cyan-300', 'translate-x-1');
+                        }
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateScrollSpy, { passive: true });
+            window.addEventListener('resize', updateScrollSpy, { passive: true });
+            updateScrollSpy();
+        });
+    </script>
 
 @endsection
