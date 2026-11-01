@@ -1,0 +1,848 @@
+{
+  "fps": 30,
+  "bpm": 120,
+  "total": 1800,
+  "events": [
+    {
+      "f": 1,
+      "t": 0.04,
+      "kind": "hit",
+      "file": "hit_1.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -17.65,
+      "pan": 0.0,
+      "label": "Opening SKENSA 3D Core Reveal"
+    },
+    {
+      "f": 1,
+      "t": 0.04,
+      "kind": "drop",
+      "file": "drop_1.wav",
+      "gain_db": -4.38,
+      "bed_lufs": -17.65,
+      "pan": 0.0,
+      "label": "Opening Sub Drop"
+    },
+    {
+      "f": 14,
+      "t": 0.45,
+      "kind": "whoosh.short",
+      "file": "whoosh-short_1.wav",
+      "gain_db": -3.84,
+      "bed_lufs": -17.9,
+      "pan": -0.25,
+      "label": "3D Ring Orbit Pass"
+    },
+    {
+      "f": 30,
+      "t": 1.0,
+      "kind": "pop",
+      "file": "pop_1.wav",
+      "gain_db": -4.46,
+      "bed_lufs": -18.19,
+      "pan": -0.25,
+      "label": "Kinetic Word: TEKNIK"
+    },
+    {
+      "f": 30,
+      "t": 1.0,
+      "kind": "bell",
+      "file": "bell_D5.wav",
+      "gain_db": -5.92,
+      "bed_lufs": -18.19,
+      "pan": -0.2,
+      "label": "Chime D5"
+    },
+    {
+      "f": 45,
+      "t": 1.5,
+      "kind": "pop",
+      "file": "pop_2.wav",
+      "gain_db": -4.35,
+      "bed_lufs": -18.07,
+      "pan": 0.0,
+      "label": "Kinetic Word: KOMPUTER"
+    },
+    {
+      "f": 45,
+      "t": 1.5,
+      "kind": "bell",
+      "file": "bell_G5.wav",
+      "gain_db": -5.72,
+      "bed_lufs": -18.07,
+      "pan": 0.0,
+      "label": "Chime G5"
+    },
+    {
+      "f": 60,
+      "t": 2.0,
+      "kind": "land",
+      "file": "land_1.wav",
+      "gain_db": -1.11,
+      "bed_lufs": -18.44,
+      "pan": 0.25,
+      "label": "Kinetic Word: & JARINGAN (Orange Shift)"
+    },
+    {
+      "f": 60,
+      "t": 2.0,
+      "kind": "bell",
+      "file": "bell_A5.wav",
+      "gain_db": -3.8,
+      "bed_lufs": -18.44,
+      "pan": 0.2,
+      "label": "Chime A5"
+    },
+    {
+      "f": 105,
+      "t": 3.5,
+      "kind": "click.confirm",
+      "file": "click-confirm_1.wav",
+      "gain_db": -5.49,
+      "bed_lufs": -17.47,
+      "pan": 0.0,
+      "label": "Subtitle Tagline Reveal"
+    },
+    {
+      "f": 150,
+      "t": 5.0,
+      "kind": "tock",
+      "file": "tock_1.wav",
+      "gain_db": -2.5,
+      "bed_lufs": -18.6,
+      "pan": -0.15,
+      "label": "3D Fiber Pulse Lock 1"
+    },
+    {
+      "f": 210,
+      "t": 7.0,
+      "kind": "tock",
+      "file": "tock_2.wav",
+      "gain_db": -2.5,
+      "bed_lufs": -16.78,
+      "pan": 0.15,
+      "label": "3D Fiber Pulse Lock 2"
+    },
+    {
+      "f": 284,
+      "t": 9.48,
+      "kind": "whoosh.short",
+      "file": "whoosh-short_2.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -16.32,
+      "pan": -0.15,
+      "label": "Chapter 1 Exit Sweep"
+    },
+    {
+      "f": 285,
+      "t": 9.5,
+      "kind": "hit",
+      "file": "hit_2.wav",
+      "gain_db": -3.02,
+      "bed_lufs": -16.61,
+      "pan": 0.0,
+      "label": "Visual Cut Peak 1 (9.50s)"
+    },
+    {
+      "f": 298,
+      "t": 9.95,
+      "kind": "riser",
+      "file": "riser_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -17.94,
+      "pan": 0.0,
+      "label": "Riser into Chapter 2"
+    },
+    {
+      "f": 300,
+      "t": 10.0,
+      "kind": "whoosh.long",
+      "file": "whoosh-long_1.wav",
+      "gain_db": -1.88,
+      "bed_lufs": -17.94,
+      "pan": 0.15,
+      "label": "Camera Dolly to Station 2"
+    },
+    {
+      "f": 300,
+      "t": 10.0,
+      "kind": "hit",
+      "file": "hit_3.wav",
+      "gain_db": -5.12,
+      "bed_lufs": -17.94,
+      "pan": 0.0,
+      "label": "Chapter 2 Cut Hit"
+    },
+    {
+      "f": 315,
+      "t": 10.5,
+      "kind": "pop",
+      "file": "pop_3.wav",
+      "gain_db": -4.73,
+      "bed_lufs": -17.49,
+      "pan": -0.2,
+      "label": "Kinetic Word: IDENTITAS"
+    },
+    {
+      "f": 330,
+      "t": 11.0,
+      "kind": "click",
+      "file": "click_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -16.16,
+      "pan": 0.2,
+      "label": "Kinetic Word: JURUSAN"
+    },
+    {
+      "f": 360,
+      "t": 12.0,
+      "kind": "land",
+      "file": "land_2.wav",
+      "gain_db": -2.58,
+      "bed_lufs": -15.57,
+      "pan": -0.25,
+      "label": "Identity Card 1"
+    },
+    {
+      "f": 362,
+      "t": 12.06,
+      "kind": "text",
+      "file": "text_C4.wav",
+      "gain_db": -10.62,
+      "bed_lufs": -15.61,
+      "pan": -0.25,
+      "label": "Identity Pluck 1"
+    },
+    {
+      "f": 405,
+      "t": 13.5,
+      "kind": "land",
+      "file": "land_3.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -15.32,
+      "pan": 0.0,
+      "label": "Identity Card 2"
+    },
+    {
+      "f": 407,
+      "t": 13.56,
+      "kind": "text",
+      "file": "text_E4.wav",
+      "gain_db": -10.23,
+      "bed_lufs": -15.3,
+      "pan": 0.0,
+      "label": "Identity Pluck 2"
+    },
+    {
+      "f": 450,
+      "t": 15.0,
+      "kind": "land",
+      "file": "land_4.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -14.21,
+      "pan": 0.25,
+      "label": "Identity Card 3"
+    },
+    {
+      "f": 452,
+      "t": 15.06,
+      "kind": "text",
+      "file": "text_G4.wav",
+      "gain_db": -10.38,
+      "bed_lufs": -14.35,
+      "pan": 0.25,
+      "label": "Identity Pluck 3"
+    },
+    {
+      "f": 510,
+      "t": 17.0,
+      "kind": "whoosh.short",
+      "file": "whoosh-short_3.wav",
+      "gain_db": -2.5,
+      "bed_lufs": -14.88,
+      "pan": -0.2,
+      "label": "3D TKJ Monolith Orbit"
+    },
+    {
+      "f": 584,
+      "t": 19.48,
+      "kind": "whoosh.short",
+      "file": "whoosh-short_1.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -15.17,
+      "pan": 0.15,
+      "label": "Chapter 2 Exit Sweep"
+    },
+    {
+      "f": 585,
+      "t": 19.5,
+      "kind": "hit",
+      "file": "hit_1.wav",
+      "gain_db": -1.65,
+      "bed_lufs": -15.56,
+      "pan": 0.0,
+      "label": "Visual Cut Peak 2 (19.50s)"
+    },
+    {
+      "f": 600,
+      "t": 20.0,
+      "kind": "swell",
+      "file": "swell_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -15.56,
+      "pan": 0.0,
+      "label": "Reverse Swell into Chapter 3"
+    },
+    {
+      "f": 600,
+      "t": 20.0,
+      "kind": "whoosh.long",
+      "file": "whoosh-long_2.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -15.56,
+      "pan": -0.2,
+      "label": "Camera Glide to Station 3 Server Rack"
+    },
+    {
+      "f": 600,
+      "t": 20.0,
+      "kind": "hit",
+      "file": "hit_2.wav",
+      "gain_db": -1.97,
+      "bed_lufs": -15.56,
+      "pan": 0.0,
+      "label": "Chapter 3 Cut Hit"
+    },
+    {
+      "f": 615,
+      "t": 20.5,
+      "kind": "pop",
+      "file": "pop_4.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -14.15,
+      "pan": -0.2,
+      "label": "Kinetic Word: FASILITAS"
+    },
+    {
+      "f": 630,
+      "t": 21.0,
+      "kind": "click",
+      "file": "click_2.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -13.91,
+      "pan": 0.2,
+      "label": "Kinetic Word: STANDAR INDUSTRI"
+    },
+    {
+      "f": 654,
+      "t": 21.8,
+      "kind": "snap",
+      "file": "snap_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.3,
+      "pan": 0.3,
+      "label": "3D Photo Panel Snap: lab_fiber.jpg"
+    },
+    {
+      "f": 690,
+      "t": 23.0,
+      "kind": "land",
+      "file": "land_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -13.15,
+      "pan": -0.25,
+      "label": "Facility Item 1"
+    },
+    {
+      "f": 692,
+      "t": 23.08,
+      "kind": "click.confirm",
+      "file": "click-confirm_1.wav",
+      "gain_db": -1.94,
+      "bed_lufs": -12.8,
+      "pan": -0.25,
+      "label": "Facility Confirm 1"
+    },
+    {
+      "f": 750,
+      "t": 25.0,
+      "kind": "land",
+      "file": "land_2.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -13.92,
+      "pan": -0.15,
+      "label": "Facility Item 2"
+    },
+    {
+      "f": 752,
+      "t": 25.08,
+      "kind": "click.confirm",
+      "file": "click-confirm_1.wav",
+      "gain_db": -1.94,
+      "bed_lufs": -13.6,
+      "pan": -0.15,
+      "label": "Facility Confirm 2"
+    },
+    {
+      "f": 810,
+      "t": 27.0,
+      "kind": "land",
+      "file": "land_3.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.8,
+      "pan": -0.05,
+      "label": "Facility Item 3"
+    },
+    {
+      "f": 812,
+      "t": 27.08,
+      "kind": "click.confirm",
+      "file": "click-confirm_1.wav",
+      "gain_db": -2.35,
+      "bed_lufs": -14.33,
+      "pan": -0.05,
+      "label": "Facility Confirm 3"
+    },
+    {
+      "f": 885,
+      "t": 29.5,
+      "kind": "key",
+      "file": "key_1.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -14.1,
+      "pan": -0.2,
+      "label": "Router CLI Key 1"
+    },
+    {
+      "f": 888,
+      "t": 29.6,
+      "kind": "key",
+      "file": "key_2.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -14.1,
+      "pan": -0.14,
+      "label": "Router CLI Key 2"
+    },
+    {
+      "f": 891,
+      "t": 29.7,
+      "kind": "key",
+      "file": "key_3.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -14.1,
+      "pan": -0.08,
+      "label": "Router CLI Key 3"
+    },
+    {
+      "f": 895,
+      "t": 29.82,
+      "kind": "key",
+      "file": "key_4.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -14.25,
+      "pan": -0.02,
+      "label": "Router CLI Key 4"
+    },
+    {
+      "f": 898,
+      "t": 29.92,
+      "kind": "key",
+      "file": "key_5.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -14.25,
+      "pan": 0.04,
+      "label": "Router CLI Key 5"
+    },
+    {
+      "f": 901,
+      "t": 30.04,
+      "kind": "key",
+      "file": "key_6.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -14.39,
+      "pan": 0.1,
+      "label": "Router CLI Key 6"
+    },
+    {
+      "f": 904,
+      "t": 30.15,
+      "kind": "key",
+      "file": "key_7.wav",
+      "gain_db": -3.74,
+      "bed_lufs": -14.51,
+      "pan": 0.16,
+      "label": "Router CLI Key 7"
+    },
+    {
+      "f": 910,
+      "t": 30.32,
+      "kind": "key.return",
+      "file": "key-return_1.wav",
+      "gain_db": -1.94,
+      "bed_lufs": -13.9,
+      "pan": 0.2,
+      "label": "Router CLI Enter"
+    },
+    {
+      "f": 1019,
+      "t": 33.95,
+      "kind": "riser",
+      "file": "riser_2.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -14.47,
+      "pan": 0.0,
+      "label": "Riser into Chapter 4"
+    },
+    {
+      "f": 1020,
+      "t": 34.0,
+      "kind": "whoosh.long",
+      "file": "whoosh-long_1.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -14.47,
+      "pan": 0.2,
+      "label": "Camera Orbit to Station 4 Trophy & Topology"
+    },
+    {
+      "f": 1020,
+      "t": 34.0,
+      "kind": "hit",
+      "file": "hit_3.wav",
+      "gain_db": -1.65,
+      "bed_lufs": -14.47,
+      "pan": 0.0,
+      "label": "Chapter 4 Cut Hit"
+    },
+    {
+      "f": 1035,
+      "t": 34.5,
+      "kind": "pop",
+      "file": "pop_1.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -14.47,
+      "pan": -0.2,
+      "label": "Kinetic Word: KOMPETENSI"
+    },
+    {
+      "f": 1050,
+      "t": 35.0,
+      "kind": "click",
+      "file": "click_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.36,
+      "pan": 0.2,
+      "label": "Kinetic Word: & PRESTASI JUARA"
+    },
+    {
+      "f": 1074,
+      "t": 35.8,
+      "kind": "snap",
+      "file": "snap_2.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -13.82,
+      "pan": 0.3,
+      "label": "3D Photo Panel Snap: lks_2026.jpg"
+    },
+    {
+      "f": 1095,
+      "t": 36.5,
+      "kind": "pop",
+      "file": "pop_2.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -13.54,
+      "pan": -0.25,
+      "label": "Skill Pill 1"
+    },
+    {
+      "f": 1110,
+      "t": 37.0,
+      "kind": "pop",
+      "file": "pop_3.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -13.54,
+      "pan": 0.0,
+      "label": "Skill Pill 2"
+    },
+    {
+      "f": 1125,
+      "t": 37.5,
+      "kind": "pop",
+      "file": "pop_4.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -13.76,
+      "pan": 0.25,
+      "label": "Skill Pill 3"
+    },
+    {
+      "f": 1170,
+      "t": 39.0,
+      "kind": "land",
+      "file": "land_4.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -12.8,
+      "pan": -0.2,
+      "label": "Achievement Trophy 1"
+    },
+    {
+      "f": 1171,
+      "t": 39.04,
+      "kind": "bell",
+      "file": "bell_A5.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -12.7,
+      "pan": -0.2,
+      "label": "Medal Bell A5"
+    },
+    {
+      "f": 1230,
+      "t": 41.0,
+      "kind": "land",
+      "file": "land_1.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -13.44,
+      "pan": 0.0,
+      "label": "Achievement Trophy 2"
+    },
+    {
+      "f": 1231,
+      "t": 41.04,
+      "kind": "bell",
+      "file": "bell_C6.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -13.13,
+      "pan": 0.0,
+      "label": "Medal Bell C6"
+    },
+    {
+      "f": 1290,
+      "t": 43.0,
+      "kind": "land",
+      "file": "land_2.wav",
+      "gain_db": -0.46,
+      "bed_lufs": -14.41,
+      "pan": 0.2,
+      "label": "Achievement Trophy 3"
+    },
+    {
+      "f": 1291,
+      "t": 43.04,
+      "kind": "bell",
+      "file": "bell_D6.wav",
+      "gain_db": -1.74,
+      "bed_lufs": -14.35,
+      "pan": 0.2,
+      "label": "Medal Bell D6"
+    },
+    {
+      "f": 1365,
+      "t": 45.5,
+      "kind": "whoosh.short",
+      "file": "whoosh-short_2.wav",
+      "gain_db": -1.94,
+      "bed_lufs": -13.81,
+      "pan": 0.15,
+      "label": "3D Trophy Shimmer Spin"
+    },
+    {
+      "f": 1440,
+      "t": 48.0,
+      "kind": "swell",
+      "file": "swell_2.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -13.38,
+      "pan": 0.0,
+      "label": "Reverse Swell into Chapter 5"
+    },
+    {
+      "f": 1440,
+      "t": 48.0,
+      "kind": "whoosh.long",
+      "file": "whoosh-long_2.wav",
+      "gain_db": -0.45,
+      "bed_lufs": -13.38,
+      "pan": -0.15,
+      "label": "Camera Fly to Station 5 Data Center Towers"
+    },
+    {
+      "f": 1440,
+      "t": 48.0,
+      "kind": "hit",
+      "file": "hit_1.wav",
+      "gain_db": 0.0,
+      "bed_lufs": -13.38,
+      "pan": 0.0,
+      "label": "Chapter 5 Cut Hit"
+    },
+    {
+      "f": 1455,
+      "t": 48.5,
+      "kind": "pop",
+      "file": "pop_1.wav",
+      "gain_db": -1.93,
+      "bed_lufs": -15.17,
+      "pan": -0.2,
+      "label": "Kinetic Word: PROSPEK KARIR"
+    },
+    {
+      "f": 1470,
+      "t": 49.0,
+      "kind": "click",
+      "file": "click_2.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.37,
+      "pan": 0.2,
+      "label": "Kinetic Word: & MASA DEPAN"
+    },
+    {
+      "f": 1494,
+      "t": 49.8,
+      "kind": "snap",
+      "file": "snap_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.02,
+      "pan": 0.28,
+      "label": "3D Partner Panel Snap: PT Telkom Indonesia"
+    },
+    {
+      "f": 1515,
+      "t": 50.5,
+      "kind": "land",
+      "file": "land_3.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.22,
+      "pan": -0.22,
+      "label": "Career Card 1"
+    },
+    {
+      "f": 1516,
+      "t": 50.55,
+      "kind": "text",
+      "file": "text_D4.wav",
+      "gain_db": -8.96,
+      "bed_lufs": -14.22,
+      "pan": -0.22,
+      "label": "Career Note D4"
+    },
+    {
+      "f": 1560,
+      "t": 52.0,
+      "kind": "land",
+      "file": "land_4.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.92,
+      "pan": 0.0,
+      "label": "Career Card 2"
+    },
+    {
+      "f": 1562,
+      "t": 52.05,
+      "kind": "text",
+      "file": "text_G4.wav",
+      "gain_db": -10.42,
+      "bed_lufs": -14.92,
+      "pan": 0.0,
+      "label": "Career Note G4"
+    },
+    {
+      "f": 1605,
+      "t": 53.5,
+      "kind": "land",
+      "file": "land_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.71,
+      "pan": 0.22,
+      "label": "Career Card 3"
+    },
+    {
+      "f": 1606,
+      "t": 53.55,
+      "kind": "text",
+      "file": "text_A4.wav",
+      "gain_db": -10.25,
+      "bed_lufs": -14.71,
+      "pan": 0.22,
+      "label": "Career Note A4"
+    },
+    {
+      "f": 1678,
+      "t": 55.95,
+      "kind": "riser",
+      "file": "riser_1.wav",
+      "gain_db": -0.92,
+      "bed_lufs": -14.35,
+      "pan": 0.0,
+      "label": "Final Lockup Riser"
+    },
+    {
+      "f": 1680,
+      "t": 56.0,
+      "kind": "hit",
+      "file": "hit_2.wav",
+      "gain_db": -0.76,
+      "bed_lufs": -14.35,
+      "pan": 0.0,
+      "label": "Final Emblem Lockup Hit"
+    },
+    {
+      "f": 1694,
+      "t": 56.48,
+      "kind": "whoosh.short",
+      "file": "whoosh-short_3.wav",
+      "gain_db": 0.0,
+      "bed_lufs": -13.28,
+      "pan": 0.0,
+      "label": "Final Hero Card Sweep (56.50s)"
+    },
+    {
+      "f": 1695,
+      "t": 56.5,
+      "kind": "hit",
+      "file": "hit_3.wav",
+      "gain_db": 1.15,
+      "bed_lufs": -12.88,
+      "pan": 0.0,
+      "label": "Visual Cut Peak 3 (56.50s)"
+    },
+    {
+      "f": 1695,
+      "t": 56.5,
+      "kind": "drop",
+      "file": "drop_2.wav",
+      "gain_db": 0.42,
+      "bed_lufs": -12.88,
+      "pan": 0.0,
+      "label": "Final Sub Drop (56.50s)"
+    },
+    {
+      "f": 1696,
+      "t": 56.52,
+      "kind": "bell",
+      "file": "bell_D6.wav",
+      "gain_db": 0.0,
+      "bed_lufs": -13.18,
+      "pan": 0.0,
+      "label": "Final Resolve Chime D6"
+    },
+    {
+      "f": 1725,
+      "t": 57.5,
+      "kind": "click.confirm",
+      "file": "click-confirm_1.wav",
+      "gain_db": -1.41,
+      "bed_lufs": -12.38,
+      "pan": 0.0,
+      "label": "Final CTA Badge Lock"
+    }
+  ],
+  "master": {
+    "lufs": -14.0,
+    "true_peak_db": -2.27,
+    "sample_peak_db": -2.28,
+    "lra": 3.05,
+    "momentary_max": -11.2,
+    "momentary_max_t": 56.6,
+    "tail_50ms_db": -50.4,
+    "last_480_zero": false,
+    "seconds": 60.0
+  }
+}
