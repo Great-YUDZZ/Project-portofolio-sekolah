@@ -128,3 +128,37 @@ h1, h2, h3, h4, .font-display {
     animation-play-state: paused;
 }
 
+/* SMKN 1 Denpasar Dropdown Menu Sliding Fill Animation */
+.skensa-nav-dropdown-item {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: #0E1133;
+    transition: color 0.3s ease-out;
+}
+
+.skensa-nav-dropdown-item::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: #2563EB;
+    z-index: -1;
+    transition: all 0.3s ease-out 0s;
+}
+
+.skensa-nav-dropdown-item:hover,
+.group\/sub:hover > .skensa-nav-dropdown-item {
+    color: #FFFFFF !important;
+}
+
+.skensa-nav-dropdown-item:hover::before,
+.group\/sub:hover > .skensa-nav-dropdown-item::before {
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+
