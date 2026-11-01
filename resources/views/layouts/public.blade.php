@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', ($siteSettings['school_name'] ?? 'SMK Negeri 1 Denpasar') . ' - ' . ($siteSettings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.'))</title>
     <meta name="description" content="@yield('meta_description', ($siteSettings['school_slogan'] ?? 'Abhyāsad Dhäryate Vidyä.') . ' - ' . ($siteSettings['school_slogan_meaning'] ?? 'Peliharalah ilmu sampai menjadi tradisi.'))">
-    <link rel="icon" type="image/png" href="/images/logo_emblem.png">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo_emblem.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo_emblem.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-paper text-ink antialiased selection:bg-skensa-blue selection:text-white min-h-screen flex flex-col">
