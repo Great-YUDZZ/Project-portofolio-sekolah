@@ -176,7 +176,7 @@
                         <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-48 z-50">
                             <ul class="bg-white shadow-xl border border-slate-100">
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('profile.index') }}#sejarah" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium">
+                                    <a href="{{ route('history.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium">
                                         Sejarah
                                     </a>
                                 </li>
@@ -366,8 +366,8 @@
                         </svg>
                     </button>
                     <div data-mobile-accordion-panel="tentang" class="hidden bg-slate-50/80 border-t border-slate-100 px-3 py-2 space-y-1 text-xs">
-                        <a href="{{ route('profile.index') }}#sejarah" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
-                            Sejarah Sekolah
+                        <a href="{{ route('history.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
+                            Sejarah Sekolah (1962 - 2026)
                         </a>
                         <a href="{{ route('profile.index') }}#visi-misi" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
                             Visi &amp; Misi

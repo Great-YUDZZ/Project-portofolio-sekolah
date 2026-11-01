@@ -27,6 +27,35 @@
     {{-- Sejarah, Visi-Misi, Filosofi --}}
     <section class="py-16 bg-paper border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            {{-- Gateway Banner ke Halaman Kronik Sejarah Interaktif (/sejarah) --}}
+            <div class="p-8 sm:p-10 rounded-2xl bg-navy text-paper border-2 border-ink flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div class="max-w-3xl">
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                        <span class="px-2.5 py-1 rounded bg-blue-600 text-white text-[11px] font-mono font-bold uppercase tracking-widest">
+                            Arsip Interaktif Scroll-Craft
+                        </span>
+                        <span class="px-2.5 py-1 rounded bg-white/10 border border-white/15 text-slate-200 text-[11px] font-mono uppercase tracking-wider">
+                            24 September 1962 - 2026 (64 Tahun)
+                        </span>
+                    </div>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+                        Kronik Sejarah Institusional &amp; Transformasi Vokasi SKENSA
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
+                        Telusuri perjalanan 6 dekade dari STM Negeri Denpasar di Jalan Gunung Agung (2 jurusan perintis &amp; 45 siswa), Proyek PELITA No. N.95 di Gedung Ubung (15 April 1977), hingga ekosistem 12 Konsentrasi Keahlian, 9 Unit Core Business, dan 5 generasi kepemimpinan kepala sekolah.
+                    </p>
+                </div>
+                <div class="shrink-0">
+                    <a
+                        href="{{ route('history.index') }}"
+                        class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-colors"
+                    >
+                        <span>Buka Kronik Sejarah (1962 - 2026)</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
             @foreach($pages as $page)
                 <article data-reveal class="p-8 sm:p-10 rounded-2xl bg-paper-2/70 border border-line">
                     <span class="text-xs font-bold uppercase tracking-widest text-navy">{{ $page->subtitle }}</span>

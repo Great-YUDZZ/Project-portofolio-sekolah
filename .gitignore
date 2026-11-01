@@ -30,3 +30,4 @@ Thumbs.db
 AGENTS.md
 CLAUDE.md
 /.agents/
+/remotion/out/*.mp4

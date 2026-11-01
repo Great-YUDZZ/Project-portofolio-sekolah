@@ -51,7 +51,7 @@ body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    overflow-x: clip;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
@@ -160,5 +160,139 @@ h1, h2, h3, h4, .font-display {
     left: 0;
     right: auto;
     width: 100%;
+}
+
+/* ============================================================================
+   Scroll-Craft Experience System (#skensa-history-scrollcraft)
+   ========================================================================== */
+#skensa-history-scrollcraft {
+    --sc-canvas: #F8F9FA;
+    --sc-surface: #FFFFFF;
+    --sc-ink: #0E1133;
+    --sc-ink-soft: #475569;
+    --sc-accent: #2563EB;
+    --sc-accent-cyan: #0891B2;
+    --sc-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+}
+
+.sc-act--pinned {
+    position: relative;
+}
+
+.sc-stage,
+[data-sc-stage] {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    overflow: clip;
+    z-index: 1;
+}
+
+[data-sc-cue] {
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+.sc-ready [data-sc-cue] {
+    transition: none;
+}
+
+.sc-split {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.sc-split--line {
+    display: block;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+}
+
+.sc-split__i {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+.sc-is-split {
+    opacity: 1 !important;
+}
+
+[data-sc-pan] {
+    display: flex;
+    will-change: transform;
+}
+
+[data-sc-reveal] {
+    will-change: clip-path;
+}
+
+[data-sc-parallax] {
+    will-change: transform;
+}
+
+[data-sc-in],
+[data-sc-stagger] > * {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    transition: opacity 620ms var(--sc-ease-out), transform 620ms var(--sc-ease-out);
+}
+
+[data-sc-in].sc-in,
+[data-sc-stagger] > .sc-in {
+    opacity: 1;
+    transform: none;
+}
+
+[data-sc-tilt] {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.sc-blueprint-grid {
+    background-image:
+        linear-gradient(to right, rgba(37, 99, 235, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.sc-blueprint-grid-dark {
+    background-image:
+        linear-gradient(to right, rgba(53, 184, 196, 0.09) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(53, 184, 196, 0.09) 1px, transparent 1px);
+    background-size: 44px 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-sc-in],
+    [data-sc-stagger] > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition-duration: 0ms !important;
+    }
+    [data-sc-cue] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    [data-sc-parallax],
+    [data-sc-pan],
+    .sc-split__i {
+        transform: none !important;
+    }
+    [data-sc-reveal] {
+        clip-path: none !important;
+    }
+    [data-sc-act="pan"] .sc-stage,
+    [data-sc-act="pan"] [data-sc-stage] {
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+    }
+    [data-sc-pan] > * {
+        scroll-snap-align: center;
+    }
 }
 
