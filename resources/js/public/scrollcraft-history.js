@@ -598,6 +598,7 @@ export function initScrollCraftHistory() {
 
     // 5. Interactive Pioneer Genealogy Filter (Act 4)
     const pioneerFilterBtns = Array.from(root.querySelectorAll('[data-genealogy-filter]'));
+    const genealogyBlocks = Array.from(root.querySelectorAll('[data-genealogy-block]'));
     const clusterCards = Array.from(root.querySelectorAll('[data-genealogy-cluster]'));
 
     pioneerFilterBtns.forEach((btn) => {
@@ -613,19 +614,19 @@ export function initScrollCraftHistory() {
                 b.classList.toggle('border-slate-300', !isSelected);
             });
 
+            genealogyBlocks.forEach((block) => {
+                const blockKey = block.getAttribute('data-genealogy-block') || '';
+                const match = filter === 'all' || blockKey === filter;
+                block.style.opacity = match ? '1' : '0.35';
+                block.style.transform = match ? 'scale(1)' : 'scale(0.99)';
+                block.classList.toggle('ring-2', match && filter !== 'all');
+                block.classList.toggle('ring-[#2563EB]', match && filter !== 'all');
+            });
+
             clusterCards.forEach((card) => {
                 const rootOrigin = card.getAttribute('data-pioneer-origin') || '';
                 const match = filter === 'all' || rootOrigin === filter;
-                card.style.opacity = match ? '1' : '0.32';
-                card.style.transform = match ? 'scale(1)' : 'scale(0.98)';
-                card.classList.toggle('ring-2', match && filter !== 'all');
-                card.classList.toggle('ring-[#2563EB]', match && filter !== 'all');
-            });
-
-            genealogyPaths.forEach((path) => {
-                const pathOrigin = path.getAttribute('data-sc-genealogy-path') || '';
-                const match = filter === 'all' || pathOrigin === filter;
-                path.style.opacity = match ? '1' : '0.18';
+                card.style.opacity = match ? '1' : '0.45';
             });
         });
     });
