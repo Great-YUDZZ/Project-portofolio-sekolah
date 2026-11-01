@@ -857,8 +857,7 @@
                     </style>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     {{-- =====================================================================
          ACT 5: CONTINUITY - DINAMIKA KEPEMIMPINAN 5 KEPALA SEKOLAH (reveal + tilt)
