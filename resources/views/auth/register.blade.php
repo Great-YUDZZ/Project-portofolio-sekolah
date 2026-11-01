@@ -12,9 +12,11 @@
 
         <div class="relative z-10">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cyan-300 rounded-xl p-1">
-                <div class="w-12 h-12 rounded-xl bg-ink text-white font-display font-extrabold text-xl flex items-center justify-center border-2 border-white/20 shadow-md group-hover:scale-105 transition-transform">
-                    S1D
-                </div>
+                <img
+                    src="{{ asset('images/logo_emblem.png') }}"
+                    alt="Logo SMKN 1 Denpasar"
+                    class="w-12 h-12 object-contain rounded-xl bg-white/10 p-1 border-2 border-white/20 shadow-md group-hover:scale-105 transition-transform"
+                >
                 <div>
                     <span class="block font-display font-extrabold text-lg tracking-tight text-white group-hover:text-cyan-300 transition-colors">
                         SMK Negeri 1 Denpasar
