@@ -12,7 +12,8 @@ class ServerMonitorController extends Controller
 {
     public function index(Request $request): View
     {
-        if (!$request->user()->isAdmin()) {
+        $user = $request->user() ?: \Illuminate\Support\Facades\Auth::user();
+        if (!$user || !$user->isAdmin()) {
             abort(403, 'Hanya Administrator yang memiliki akses ke pemantau beban server.');
         }
 
@@ -23,7 +24,8 @@ class ServerMonitorController extends Controller
 
     public function poll(Request $request): JsonResponse
     {
-        if (!$request->user()->isAdmin()) {
+        $user = $request->user() ?: \Illuminate\Support\Facades\Auth::user();
+        if (!$user || !$user->isAdmin()) {
             abort(403, 'Akses ditolak.');
         }
 
