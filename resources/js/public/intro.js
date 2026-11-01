@@ -149,6 +149,7 @@ export function initIntro() {
         if (video) {
             video.muted = true;
             video.volume = 0.85;
+            updateAudioButtonState(true);
             video.onended = () => runSplitReveal();
             video.onerror = () => runSplitReveal();
 
@@ -174,8 +175,8 @@ export function initIntro() {
         video.muted = !video.muted;
         if (!video.muted) {
             video.volume = 0.85;
-            video.play().catch(() => {});
         }
+        video.play().catch(() => {});
         updateAudioButtonState(video.muted);
     });
 
