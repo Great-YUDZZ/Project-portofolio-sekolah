@@ -193,11 +193,53 @@ export function initScrollCraftHistory() {
     const originStickyStepEl = document.getElementById('origin-sticky-step');
     const originProgressDots = Array.from(root.querySelectorAll('[data-origin-progress-dot]'));
     const originSteps = Array.from(root.querySelectorAll('[data-origin-step]'));
-    const originStepMeta = [
-        { year: '1962', label: '01 / 03 • Menumpang Kelas Sore' },
-        { year: '1962', label: '02 / 03 • Dua Jurusan Pertama' },
-        { year: '1962 - 1976', label: '03 / 03 • Bengkel Kerja Lapangan' }
+    const originStepTargets = [
+        { year: 1962, label: '01 / 03 • Menumpang Kelas Sore' },
+        { year: 1965, label: '02 / 03 • Dua Jurusan Pertama' },
+        { year: 1976, label: '03 / 03 • Bengkel Kerja Lapangan' }
     ];
+    let currentOriginStepIdx = -1;
+    let displayedOriginYear = 1962;
+    let yearAnimFrameId = null;
+
+    const animateYearTo = (fromYear, toYear, durationMs = 420) => {
+        if (yearAnimFrameId) {
+            cancelAnimationFrame(yearAnimFrameId);
+            yearAnimFrameId = null;
+        }
+
+        if (fromYear === toYear || reduceMotion) {
+            displayedOriginYear = toYear;
+            if (originStickyYearEl) {
+                originStickyYearEl.textContent = String(toYear);
+            }
+            return;
+        }
+
+        const startTime = performance.now();
+        const tick = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(1, elapsed / durationMs);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.round(fromYear + (toYear - fromYear) * ease);
+            displayedOriginYear = currentVal;
+            if (originStickyYearEl) {
+                originStickyYearEl.textContent = String(currentVal);
+            }
+
+            if (progress < 1) {
+                yearAnimFrameId = requestAnimationFrame(tick);
+            } else {
+                displayedOriginYear = toYear;
+                if (originStickyYearEl) {
+                    originStickyYearEl.textContent = String(toYear);
+                }
+                yearAnimFrameId = null;
+            }
+        };
+
+        yearAnimFrameId = requestAnimationFrame(tick);
+    };
 
     // Act 3 Pan Progress & Active Milestone Badges
     const panProgressFill = document.getElementById('sc-pan-progress-fill');
@@ -402,55 +444,44 @@ export function initScrollCraftHistory() {
             }
         });
 
-        // Act 2 Continuous Rolling Year Counter (1962 -> 1965 -> 1976)
+        // Act 2 Predetermined Step Year Animation (1962 -> 1965 -> 1976)
         if (originStickyYearEl && originSteps.length >= 3) {
-            const eyeLine = vh * 0.35;
+            const eyeLine = vh * 0.40;
             const r0 = originSteps[0].getBoundingClientRect();
             const r1 = originSteps[1].getBoundingClientRect();
             const r2 = originSteps[2].getBoundingClientRect();
 
-            let dynamicYear = 1962;
-            let activeStepIdx = 0;
-
-            if (r1.top > eyeLine) {
-                const span01 = Math.max(1, r1.top - r0.top);
-                const p01 = clamp01((eyeLine - r0.top) / span01);
-                const easedP = p01 < 0.25 ? 0 : (p01 - 0.25) / 0.75;
-                dynamicYear = lerp(1962, 1965, clamp01(easedP));
-                activeStepIdx = p01 > 0.65 ? 1 : 0;
-            } else if (r2.top > eyeLine) {
-                const span12 = Math.max(1, r2.top - r1.top);
-                const p12 = clamp01((eyeLine - r1.top) / span12);
-                const easedP = p12 < 0.2 ? 0 : (p12 - 0.2) / 0.8;
-                dynamicYear = lerp(1965, 1976, clamp01(easedP));
-                activeStepIdx = p12 > 0.65 ? 2 : 1;
+            let targetStep = 0;
+            if (r2.top <= eyeLine) {
+                targetStep = 2;
+            } else if (r1.top <= eyeLine) {
+                targetStep = 1;
             } else {
-                dynamicYear = 1976;
-                activeStepIdx = 2;
+                targetStep = 0;
             }
 
-            const roundedYear = Math.round(dynamicYear);
-            if (originStickyYearEl.textContent !== String(roundedYear)) {
-                originStickyYearEl.textContent = String(roundedYear);
+            if (targetStep !== currentOriginStepIdx) {
+                const prevIdx = currentOriginStepIdx;
+                currentOriginStepIdx = targetStep;
+
+                const targetMeta = originStepTargets[targetStep];
+                const fromYear = prevIdx === -1 ? targetMeta.year : displayedOriginYear;
+                const toYear = targetMeta.year;
+
+                animateYearTo(fromYear, toYear);
+
+                if (originStickyStepEl) {
+                    originStickyStepEl.textContent = targetMeta.label;
+                }
+
+                originProgressDots.forEach((dot, dIdx) => {
+                    const isActive = dIdx === targetStep;
+                    dot.classList.toggle('bg-[#2563EB]', isActive);
+                    dot.classList.toggle('w-8', isActive);
+                    dot.classList.toggle('bg-slate-300', !isActive);
+                    dot.classList.toggle('w-3', !isActive);
+                });
             }
-
-            const stepLabels = [
-                '01 / 03 • Menumpang Kelas Sore',
-                '02 / 03 • Dua Jurusan Pertama',
-                '03 / 03 • Bengkel Kerja Lapangan'
-            ];
-
-            if (originStickyStepEl && originStickyStepEl.textContent !== stepLabels[activeStepIdx]) {
-                originStickyStepEl.textContent = stepLabels[activeStepIdx];
-            }
-
-            originProgressDots.forEach((dot, dIdx) => {
-                const isActive = dIdx === activeStepIdx;
-                dot.classList.toggle('bg-[#2563EB]', isActive);
-                dot.classList.toggle('w-8', isActive);
-                dot.classList.toggle('bg-slate-300', !isActive);
-                dot.classList.toggle('w-3', !isActive);
-            });
         }
 
         // Signature Move 2: Self-Drawing Curriculum Genealogy SVG Paths

@@ -118,7 +118,7 @@
                         <div class="flex items-center gap-2">
                             <span class="text-xs font-mono font-bold text-[#2563EB]">Tahap 02</span>
                             <span class="text-slate-300">•</span>
-                            <span class="text-xs font-mono text-slate-500">Dua Jurusan Pertama</span>
+                            <span class="text-xs font-mono text-slate-500">1965 • Dua Jurusan Pertama</span>
                         </div>
 
                         <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[#0E1133] leading-tight">
