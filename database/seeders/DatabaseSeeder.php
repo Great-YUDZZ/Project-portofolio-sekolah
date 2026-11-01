@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             EcosystemLinkSeeder::class,
             DemoUserSeeder::class,
             PortfolioContentSeeder::class,
+            AchievementAndWorkSeeder::class,
         ]);
     }
 }

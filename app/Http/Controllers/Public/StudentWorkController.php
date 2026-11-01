@@ -29,6 +29,12 @@ class StudentWorkController extends Controller
         $majors = Major::orderBy('order_index')->get();
         $years = StudentWork::select('year')->distinct()->orderByDesc('year')->pluck('year');
 
-        return view('public.works', compact('works', 'majors', 'years', 'majorCode', 'year'));
+        $stats = [
+            'total' => StudentWork::count(),
+            'majors' => StudentWork::distinct('major_id')->count('major_id'),
+            'years' => $years->count(),
+        ];
+
+        return view('public.works', compact('works', 'majors', 'years', 'majorCode', 'year', 'stats'));
     }
 }

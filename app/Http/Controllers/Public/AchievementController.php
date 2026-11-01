@@ -28,6 +28,22 @@ class AchievementController extends Controller
         $achievements = $query->get();
         $majors = Major::orderBy('order_index')->get();
 
-        return view('public.achievements', compact('achievements', 'majors', 'level', 'majorCode'));
+        $stats = [
+            'total' => Achievement::count(),
+            'gold' => Achievement::where('rank', 'like', '%Emas%')->orWhere('rank', 'like', '%Juara 1%')->count(),
+            'national' => Achievement::where('level', 'like', '%Nasional%')->count(),
+            'provincial' => Achievement::where('level', 'like', '%Provinsi%')->count(),
+        ];
+
+        $hallOfFame = Achievement::with('major')
+            ->where('level', 'Nasional')
+            ->where(function ($q) {
+                $q->where('rank', 'like', '%Emas%')->orWhere('rank', 'like', '%Juara 1%');
+            })
+            ->orderByDesc('year')
+            ->take(3)
+            ->get();
+
+        return view('public.achievements', compact('achievements', 'majors', 'level', 'majorCode', 'stats', 'hallOfFame'));
     }
 }
