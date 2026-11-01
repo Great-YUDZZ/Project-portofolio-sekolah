@@ -110,19 +110,20 @@
                     </div>
                 </div>
 
-                {{-- Kolom Kanan: Foto Siswa Berbagai Kejuruan (Transparan Tanpa Background) (lg:col-span-5) --}}
-                <div class="lg:col-span-5 flex items-center justify-center pt-4 lg:pt-0">
-                    <div class="relative w-full max-w-[420px] flex items-center justify-center">
+                {{-- Kolom Kanan: Lambang Resmi SMK Negeri 1 Denpasar (lg:col-span-5) --}}
+                <div data-reveal data-reveal-direction="left" class="lg:col-span-5 flex items-center justify-center pt-4 lg:pt-0">
+                    <div class="relative w-full max-w-[360px] sm:max-w-[420px] flex items-center justify-center p-4">
                         {{-- Soft Ambient Glow --}}
-                        <div class="absolute inset-0 hidden pointer-events-none"></div>
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/15 blur-3xl pointer-events-none"></div>
 
                         <img
-                            src="/images/hero_siswa_transparan.png"
-                            alt="Siswa-siswi SMK Negeri 1 Denpasar"
-                            width="400"
-                            height="460"
-                            class="relative z-10 w-full max-h-[420px] sm:max-h-[480px] lg:max-h-[520px] object-contain drop-shadow-2xl"
+                            src="{{ asset('images/logo_emblem.png') }}"
+                            alt="Lambang Resmi SMK Negeri 1 Denpasar"
+                            width="420"
+                            height="420"
+                            class="relative z-10 w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[400px] aspect-square object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform duration-500 will-change-transform"
                             loading="eager"
+                            fetchpriority="high"
                         >
                     </div>
                 </div>
