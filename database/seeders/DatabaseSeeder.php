@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             DemoUserSeeder::class,
             PortfolioContentSeeder::class,
             AchievementAndWorkSeeder::class,
+            PublicationAndAgendaSeeder::class,
         ]);
     }
 }

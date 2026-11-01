@@ -393,6 +393,12 @@
                         <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('gallery.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Galeri Kegiatan &amp; Dokumentasi
                         </a>
+                        <a href="{{ route('achievements.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('achievements.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
+                            Hall of Fame Prestasi Siswa
+                        </a>
+                        <a href="{{ route('works.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('works.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
+                            Karya &amp; Produk Siswa (TeFa)
+                        </a>
                         <a href="{{ route('staff.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('staff.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Direktori Guru &amp; Tendik
                         </a>

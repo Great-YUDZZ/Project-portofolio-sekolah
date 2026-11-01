@@ -22,7 +22,14 @@ class PublicationController extends Controller
         $posts = $postsQuery->get();
         $events = Event::orderBy('start_time')->get();
 
-        return view('public.publications.index', compact('posts', 'events', 'category'));
+        $counts = [
+            'total' => Post::where('is_published', true)->count(),
+            'berita' => Post::where('is_published', true)->where('category', 'berita')->count(),
+            'pengumuman' => Post::where('is_published', true)->where('category', 'pengumuman')->count(),
+            'events' => $events->count(),
+        ];
+
+        return view('public.publications.index', compact('posts', 'events', 'category', 'counts'));
     }
 
     public function show(string $slug): View
@@ -34,6 +41,9 @@ class PublicationController extends Controller
             ->take(3)
             ->get();
 
-        return view('public.publications.show', compact('post', 'relatedPosts'));
+        $wordCount = str_word_count(strip_tags($post->content));
+        $readTime = max(1, (int) ceil($wordCount / 200));
+
+        return view('public.publications.show', compact('post', 'relatedPosts', 'readTime'));
     }
 }
