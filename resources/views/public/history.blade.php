@@ -207,47 +207,54 @@
     {{-- =====================================================================
          ACT 3: THE TURN & PEAK - 6 TONGGAK SEJARAH (Linimasa Vertikal Editorial)
          ===================================================================== --}}
-    <section id="act-milestones" data-sc-act="flow" class="py-20 lg:py-28 bg-white text-[#0E1133] border-b border-slate-200">
+    <section id="act-milestones" data-sc-act="flow" class="py-16 lg:py-20 bg-white text-[#0E1133] border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-16 lg:mb-24" data-sc-in>
+            <div class="max-w-3xl mx-auto text-center mb-10 lg:mb-14" data-sc-in>
                 <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
                     Babak II • Lintasan Tonggak Sejarah (1962 - 2026)
                 </span>
-                <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#0E1133] mt-2 tracking-tight">
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0E1133] mt-2 tracking-tight">
                     Enam Lompatan Besar Menuju SMK Pusat Keunggulan
                 </h2>
-                <p class="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
+                <p class="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed">
                     Perjalanan institusional 64 tahun ditata dalam enam fase transformasi bersejarah, dari kelas sore perintisan hingga kepemimpinan vokasi modern.
                 </p>
             </div>
 
-            {{-- Alternating Vertical Timeline Container --}}
-            <div class="relative max-w-5xl mx-auto">
-                {{-- Continuous Vertical Spine --}}
-                <div class="absolute left-6 lg:left-1/2 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#2563EB] via-blue-300 to-slate-200" aria-hidden="true"></div>
+            {{-- Left-Rail Editorial Timeline Container --}}
+            <div class="relative max-w-4xl mx-auto">
+                {{-- Continuous Vertical Spine on the Left --}}
+                <div class="absolute left-6 sm:left-8 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#2563EB] via-blue-300 to-slate-200" aria-hidden="true"></div>
 
-                <div class="space-y-12 sm:space-y-16 lg:space-y-20">
+                <div class="space-y-8 sm:space-y-10">
                     @foreach($milestones as $idx => $ms)
-                        @php
-                            $isEven = ($idx % 2 === 0);
-                        @endphp
                         <div
                             id="milestone-{{ $idx }}"
                             data-pan-card-index="{{ $idx }}"
                             data-sc-in
-                            class="relative flex flex-col lg:flex-row items-start lg:items-center {{ $isEven ? 'lg:flex-row' : 'lg:flex-row-reverse' }} justify-between group"
+                            class="relative flex items-start group"
                         >
-                            {{-- Card Column (takes ~45% width on desktop) --}}
-                            <div class="w-full pl-14 lg:pl-0 lg:w-[calc(50%-2.5rem)] {{ $isEven ? 'lg:pr-4' : 'lg:pl-4' }}">
-                                <article class="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-slate-200 shadow-2xs hover:border-blue-400 hover:shadow-md transition-all">
+                            {{-- Left Timeline Node --}}
+                            <div class="absolute left-6 sm:left-8 top-6 -translate-x-1/2 z-10 flex items-center justify-center">
+                                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white border-4 border-[#2563EB] shadow-xs flex items-center justify-center font-mono font-extrabold text-[11px] sm:text-xs text-[#0E1133] group-hover:scale-105 transition-transform">
+                                    {{ $ms['year'] }}
+                                </div>
+                            </div>
+
+                            {{-- Card Column --}}
+                            <div class="w-full pl-12 sm:pl-16">
+                                <article class="p-5 sm:p-6 lg:p-7 rounded-2xl bg-[#F8F9FA] border border-slate-200 shadow-2xs hover:border-blue-400 hover:shadow-md transition-all">
                                     {{-- Card Top Meta --}}
                                     <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-7 h-7 rounded-lg bg-[#0E1133] text-white font-mono text-xs font-extrabold flex items-center justify-center">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <span class="w-7 h-7 rounded-lg bg-[#0E1133] text-white font-mono text-xs font-extrabold flex items-center justify-center shrink-0">
                                                 {{ $ms['number'] }}
                                             </span>
                                             <span class="px-2.5 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-xs font-bold">
                                                 {{ $ms['date_badge'] }}
+                                            </span>
+                                            <span class="px-2.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[11px] text-[#0E1133] font-semibold">
+                                                {{ $ms['decree'] }}
                                             </span>
                                         </div>
                                         <span class="text-xs font-semibold text-slate-500">
@@ -255,12 +262,7 @@
                                         </span>
                                     </div>
 
-                                    {{-- Decree Badge --}}
-                                    <div class="mt-3 inline-block px-2.5 py-1 rounded bg-white border border-slate-200 font-mono text-[11px] text-[#0E1133] font-semibold">
-                                        {{ $ms['decree'] }}
-                                    </div>
-
-                                    <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-2.5 leading-snug">
+                                    <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-3 leading-snug">
                                         {{ $ms['title'] }}
                                     </h3>
 
@@ -270,35 +272,25 @@
 
                                     {{-- Optional Photo --}}
                                     @if(!empty($ms['photo']))
-                                        <div class="mt-4 relative h-36 rounded-xl overflow-hidden border border-slate-200">
+                                        <div class="mt-4 relative h-40 sm:h-48 rounded-xl overflow-hidden border border-slate-200">
                                             <img src="{{ $ms['photo'] }}" alt="{{ $ms['title'] }}" class="w-full h-full object-cover">
-                                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0E1133]/90 via-[#0E1133]/50 to-transparent px-3 py-1.5">
-                                                <span class="text-[11px] font-medium text-white">{{ $ms['photo_caption'] ?? '' }}</span>
+                                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0E1133]/90 via-[#0E1133]/50 to-transparent px-3.5 py-2">
+                                                <span class="text-xs font-medium text-white">{{ $ms['photo_caption'] ?? '' }}</span>
                                             </div>
                                         </div>
                                     @endif
 
-                                    {{-- Highlights --}}
-                                    <div class="mt-4 pt-3 border-t border-slate-200 space-y-2">
+                                    {{-- Highlights (Responsive Grid 1 to 3 cols) --}}
+                                    <div class="mt-4 pt-3.5 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                                         @foreach($ms['highlights'] as $hl)
-                                            <div class="p-2.5 rounded-xl bg-white border border-slate-200/80 text-xs">
-                                                <span class="font-bold text-[#0E1133]">{{ $hl['label'] }}:</span>
-                                                <span class="text-slate-600 ml-1 leading-relaxed">{{ $hl['value'] }}</span>
+                                            <div class="p-3 rounded-xl bg-white border border-slate-200/80 text-xs flex flex-col justify-between">
+                                                <span class="font-bold text-[#0E1133] mb-1">{{ $hl['label'] }}</span>
+                                                <span class="text-slate-600 leading-relaxed">{{ $hl['value'] }}</span>
                                             </div>
                                         @endforeach
                                     </div>
                                 </article>
                             </div>
-
-                            {{-- Center Timeline Node --}}
-                            <div class="absolute left-6 lg:left-1/2 top-7 lg:top-1/2 -translate-x-1/2 lg:-translate-y-1/2 z-10 flex items-center justify-center">
-                                <div class="w-12 h-12 rounded-full bg-white border-4 border-[#2563EB] shadow-md flex items-center justify-center font-mono font-extrabold text-[11px] text-[#0E1133] group-hover:scale-110 transition-transform">
-                                    {{ $ms['year'] }}
-                                </div>
-                            </div>
-
-                            {{-- Spacer Column for Desktop alternating balance --}}
-                            <div class="hidden lg:block lg:w-[calc(50%-2.5rem)]"></div>
                         </div>
                     @endforeach
                 </div>
