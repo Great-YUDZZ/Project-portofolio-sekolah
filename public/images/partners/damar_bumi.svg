@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <rect x="18" y="15" width="30" height="30" rx="8" fill="#15803D"/>
+  <path d="M25 37V29L33 23L41 29V37H35V31H31V37H25Z" fill="#FFFFFF"/>
+  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="13" fill="#14161A" letter-spacing="0.5">CV DAMAR BUMI</text>
+  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#52565E" letter-spacing="0.8">KONSTRUKSI &amp; PERUMAHAN</text>
+</svg>

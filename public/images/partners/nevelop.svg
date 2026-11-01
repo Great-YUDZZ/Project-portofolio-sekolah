@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <rect x="18" y="15" width="30" height="30" rx="8" fill="#1E293B"/>
+  <path d="M26 23L33 30L26 37M34 37H39" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="14" fill="#0F172A" letter-spacing="0.5">NEVELOP</text>
+  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#64748B" letter-spacing="0.8">SOFTWARE HOUSE BALI</text>
+</svg>

@@ -358,9 +358,9 @@ export function initScrollCraftHistory() {
         },
         {
             p: 0.90,
-            year: 2026,
-            phase: 'Pusat Keunggulan Daikin & Purnabakti Kepemimpinan',
-            decree: 'Kurikulum Merdeka • Purnabakti 1 Nov 2026',
+            label: 'Masa Depan Vokasi',
+            phase: 'Meneguhkan Tradisi Juara & Kolaborasi Industri Global',
+            decree: 'Kurikulum Merdeka • Sinergi DUDIKA Global',
             nodeIndex: 5,
         },
     ];
@@ -481,8 +481,7 @@ export function initScrollCraftHistory() {
             traceFillEl.style.transform = `scaleX(${globalP.toFixed(4)})`;
         }
 
-        // Interpolate year 1962..2026 along chronologyStops
-        let currentYear = Math.round(lerp(1962, 2026, globalP));
+        // Interpolate year 1962..2024 or custom label along chronologyStops
         let activeStop = chronologyStops[0];
         for (let i = 0; i < chronologyStops.length; i++) {
             if (globalP >= chronologyStops[i].p) {
@@ -490,7 +489,14 @@ export function initScrollCraftHistory() {
             }
         }
 
-        if (traceYearEl) traceYearEl.textContent = String(currentYear);
+        if (traceYearEl) {
+            if (activeStop.label) {
+                traceYearEl.textContent = activeStop.label;
+            } else {
+                const currentYear = Math.round(lerp(1962, 2024, Math.min(1, globalP / 0.90)));
+                traceYearEl.textContent = String(currentYear);
+            }
+        }
         if (tracePhaseEl) tracePhaseEl.textContent = activeStop.phase;
 
         traceNodeBtns.forEach((btn, idx) => {

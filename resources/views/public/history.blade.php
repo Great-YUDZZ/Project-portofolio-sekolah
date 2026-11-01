@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', 'Kronik Sejarah Institusional & Transformasi Vokasi (1962 - 2026) - SMK Negeri 1 Denpasar')
-@section('meta_description', 'Telusuri 64 tahun sejarah SMK Negeri 1 Denpasar (Skensa) sejak berdiri sebagai STM Negeri Denpasar pada 24 September 1962 di kelas sore Tulangampiang hingga menjadi SMK Pusat Keunggulan di Ubung.')
+@section('title', 'Kronik Sejarah Institusional & Transformasi Vokasi - SMK Negeri 1 Denpasar')
+@section('meta_description', 'Telusuri perjalanan sejarah SMK Negeri 1 Denpasar (Skensa) sejak berdiri sebagai STM Negeri Denpasar pada 24 September 1962 di kelas sore Tulangampiang hingga menjadi SMK Pusat Keunggulan di Ubung.')
 
 @section('content')
 <div id="skensa-history-scrollcraft" class="bg-[#F8F9FA] text-[#0E1133] pb-24 selection:bg-[#2563EB] selection:text-white">
@@ -211,13 +211,13 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center mb-10 lg:mb-14" data-sc-in>
                 <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
-                    Babak II • Lintasan Tonggak Sejarah (1962 - 2026)
+                    Babak II • Lintasan Tonggak Sejarah Institusional
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0E1133] mt-2 tracking-tight">
                     Enam Lompatan Besar Menuju SMK Pusat Keunggulan
                 </h2>
                 <p class="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed">
-                    Perjalanan institusional 64 tahun ditata dalam enam fase transformasi bersejarah, dari kelas sore perintisan hingga kepemimpinan vokasi modern.
+                    Perjalanan institusional ditata dalam enam fase transformasi bersejarah, dari kelas sore perintisan hingga kepemimpinan vokasi modern.
                 </p>
             </div>
 
@@ -306,7 +306,7 @@
             <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
                 <div>
                     <span class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-300">
-                        Matriks Perbandingan Institusional • 1962 - 2026
+                        Matriks Perbandingan Institusional • Tiga Era Utama
                     </span>
                     <h2 class="font-display font-extrabold text-3xl text-white mt-1">
                         Evolusi Parameter Kelembagaan dalam Tiga Era Utama
@@ -325,7 +325,7 @@
                         1977 - 2010 (Standarisasi &amp; ISO)
                     </button>
                     <button type="button" data-era-highlight="era_3" class="px-3.5 py-2 rounded-lg border text-xs font-mono font-bold bg-white/10 text-slate-200 border-white/15 cursor-pointer transition-colors">
-                        2011 - 2026 (Modern &amp; Merdeka)
+                        2011 - Sekarang (Modern &amp; Merdeka)
                     </button>
                 </div>
             </div>
@@ -337,7 +337,7 @@
                             <th class="p-4 sm:p-5 w-1/5">Parameter Institusional</th>
                             <th class="p-4 sm:p-5 w-1/4" data-era-col="era_1">Era Perintisan (1962 - 1976)</th>
                             <th class="p-4 sm:p-5 w-1/4" data-era-col="era_2">Era Standarisasi &amp; ISO (1977 - 2010)</th>
-                            <th class="p-4 sm:p-5 w-1/4" data-era-col="era_3">Era Modern &amp; Kurikulum Merdeka (2011 - 2026)</th>
+                            <th class="p-4 sm:p-5 w-1/4" data-era-col="era_3">Era Modern &amp; Kurikulum Merdeka (2011 - Sekarang)</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/10 text-xs sm:text-sm">
@@ -373,7 +373,7 @@
             <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12" data-sc-in>
                 <div>
                     <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
-                        Babak III • Genealogi Struktur Kurikulum &amp; Ekosistem Kompetensi (1962 - 2026)
+                        Babak III • Genealogi Struktur Kurikulum &amp; Ekosistem Kompetensi
                     </span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0E1133] mt-1">
                         Ekspansi Spektrum Keahlian, 9 Core Business &amp; Dominasi Prestasi LKS
@@ -386,7 +386,7 @@
                 {{-- Filter by 1962 Pioneer Root --}}
                 <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter Silsilah Jurusan Perintis 1962">
                     <button type="button" data-genealogy-filter="all" class="px-3.5 py-2 rounded-xl border text-xs font-mono font-bold bg-[#0E1133] text-white border-[#0E1133] cursor-pointer transition-colors">
-                        Semua Silsilah (1962 - 2026)
+                        Semua Silsilah Kejuruan
                     </button>
                     <button type="button" data-genealogy-filter="bangunan" class="px-3.5 py-2 rounded-xl border text-xs font-mono font-bold bg-white text-[#0E1133] border-slate-300 hover:border-blue-400 cursor-pointer transition-colors">
                         Rumpun Konstruksi (Akar 1962)
@@ -868,7 +868,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mb-12" data-sc-in>
                 <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
-                    Babak IV • Suksesi Kepemimpinan &amp; Penjaga Visi (1962 - 2026)
+                    Babak IV • Suksesi Kepemimpinan &amp; Penjaga Visi
                 </span>
                 <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0E1133] mt-1">
                     Daftar Kepala Sekolah dari Masa ke Masa
@@ -978,8 +978,8 @@
                             </div>
 
                             <div class="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 text-xs text-slate-200">
-                                <strong class="text-cyan-300 font-mono uppercase">Purnabakti Resmi:</strong>
-                                Pelepasan purna tugas digelar pada <strong>Jumat, 30 Oktober 2026</strong> di Aula SMKN 1 Denpasar (efektif pensiun <strong>1 November 2026</strong>), menandai genap 36 tahun pengabdian beliau sejak menjadi guru STM Negeri Ubung tahun 1990.
+                                <strong class="text-cyan-300 font-mono uppercase">Dedikasi Pengabdian:</strong>
+                                Mengabdi lebih dari 3 dekade sejak menjadi guru STM Negeri Ubung tahun 1990 hingga dipercaya memimpin almamater tercinta dengan filosofi kepemimpinan bersahaja, berkarakter, dan berdaya saing global.
                             </div>
                         </div>
 
@@ -1040,7 +1040,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div class="lg:col-span-8">
                         <span class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-300">
-                            Sintesis &amp; Kesimpulan Historis (1962 - 2026)
+                            Sintesis &amp; Kesimpulan Historis Perjalanan Skensa
                         </span>
                         <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 leading-tight">
                             64 Tahun Menjadi Barometer Pendidikan Vokasi Teknologi &amp; Rekayasa di Bali.
@@ -1149,7 +1149,7 @@
          ===================================================================== --}}
     <aside
         id="sc-chronology-trace"
-        aria-label="Linimasa Interaktif Sejarah 1962 - 2026"
+        aria-label="Linimasa Interaktif Sejarah Institusional"
         class="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-md text-[#0E1133]"
     >
         {{-- Continuous Scroll Trace Bar --}}
@@ -1236,7 +1236,7 @@
                         data-sc-trace-target="#act-leadership"
                         class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
                     >
-                        2026 • Kepemimpinan
+                        Masa Depan Vokasi • Kepemimpinan
                     </button>
                 </div>
             </div>

@@ -653,151 +653,264 @@
             {{-- Interactive Floating Partner Stage (DUDIKA) --}}
             <div class="space-y-6">
                 <div class="rounded-2xl border-2 border-ink overflow-hidden bg-paper-2 shadow-sm">
-                    {{-- Canvas Toolbar / Controls --}}
-                    <div class="flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5 border-b-2 border-ink bg-paper">
-                        <div class="flex items-center gap-2.5">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-navy text-white text-xs font-extrabold uppercase tracking-wider">
-                                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                                Area Interaktif Mitra DUDIKA
-                            </span>
-                            <span class="hidden sm:inline text-xs text-ink-muted font-medium">
-                                Tarik atau geser logo bebas, klik 2x untuk melihat rincian kerjasama.
-                            </span>
+                    {{-- Canvas Toolbar / Controls & Category Filters --}}
+                    <div class="p-4 sm:p-5 border-b-2 border-ink bg-paper space-y-3.5">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <div class="flex items-center gap-2.5">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-navy text-white text-xs font-extrabold uppercase tracking-wider">
+                                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                                    Area Interaktif Mitra DUDIKA
+                                </span>
+                                <span class="hidden md:inline text-xs text-ink-muted font-medium">
+                                    Logo mengapung bebas. Tarik, lempar, atau klik 2x untuk melihat rincian kerjasama resmi.
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <button type="button" id="partner-stage-toggle-motion" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-line text-xs font-bold text-ink hover:bg-paper-2 hover:border-ink transition-colors shadow-2xs cursor-pointer" aria-pressed="true">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <span>Status: <strong id="partner-motion-status" class="text-navy">Gerak</strong></span>
+                                </button>
+                                <button type="button" id="partner-stage-reset" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-line text-xs font-bold text-ink hover:bg-paper-2 hover:border-ink transition-colors shadow-2xs cursor-pointer">
+                                    <svg class="w-3.5 h-3.5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                    <span>Tata Ulang</span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="sm:hidden text-[11px] text-ink-muted font-medium">Ketuk 2x untuk detail</span>
-                            <button type="button" id="partner-stage-reset" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-line text-xs font-bold text-ink hover:bg-paper-2 hover:border-ink transition-colors shadow-2xs cursor-pointer">
-                                <svg class="w-3.5 h-3.5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                </svg>
-                                <span>Tata Ulang Posisi</span>
+
+                        {{-- Category Filter Pills --}}
+                        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-line/60">
+                            <span class="text-[11px] font-extrabold uppercase tracking-wider text-ink-muted mr-1">Filter Bidang:</span>
+                            <button type="button" data-partner-filter="all" class="px-3 py-1 rounded-full text-xs font-bold bg-ink text-white border border-ink transition-colors cursor-pointer">
+                                Semua Mitra (16)
+                            </button>
+                            <button type="button" data-partner-filter="otomotif" class="px-3 py-1 rounded-full text-xs font-bold bg-paper text-ink border border-line hover:border-ink transition-colors cursor-pointer">
+                                Otomotif (5)
+                            </button>
+                            <button type="button" data-partner-filter="it" class="px-3 py-1 rounded-full text-xs font-bold bg-paper text-ink border border-line hover:border-ink transition-colors cursor-pointer">
+                                TI &amp; Software (4)
+                            </button>
+                            <button type="button" data-partner-filter="energi" class="px-3 py-1 rounded-full text-xs font-bold bg-paper text-ink border border-line hover:border-ink transition-colors cursor-pointer">
+                                Listrik &amp; HVAC (4)
+                            </button>
+                            <button type="button" data-partner-filter="konstruksi" class="px-3 py-1 rounded-full text-xs font-bold bg-paper text-ink border border-line hover:border-ink transition-colors cursor-pointer">
+                                Konstruksi &amp; Mesin (3)
                             </button>
                         </div>
                     </div>
 
                     {{-- Interactive Stage Canvas --}}
-                    <div id="partner-floating-stage" class="relative partner-stage-grid w-full h-[480px] sm:h-[520px] overflow-hidden select-none">
+                    <div id="partner-floating-stage" class="relative partner-stage-grid w-full h-[520px] sm:h-[580px] overflow-hidden select-none">
                         @php
                             $floatingPartners = [
                                 [
                                     'name' => 'PT Astra Honda Motor',
+                                    'category' => 'otomotif',
                                     'logo' => '/images/partners/honda.svg',
                                     'jurusan' => 'Teknik Sepeda Motor (TSM)',
-                                    'bentuk' => 'Kelas Industri & Praktik TSM',
+                                    'bentuk' => 'Kelas Industri Kurikulum TBSM Honda',
                                     'slug' => 'teknik-sepeda-motor',
-                                    'detail' => 'Sinkronisasi kurikulum resmi Astra Honda Motor melalui penyediaan unit sepeda motor injeksi generasi terbaru untuk praktik, sertifikasi instruktur, serta kuota rekrutmen mekanik resmi jaringan AHASS.',
-                                    'x' => '8%',
-                                    'y' => '10%',
+                                    'detail' => 'Sinkronisasi kurikulum resmi Astra Honda Motor melalui penyediaan unit sepeda motor injeksi generasi terbaru untuk praktik, sertifikasi instruktur, serta kuota rekrutmen mekanik resmi jaringan AHASS se-Bali.',
+                                    'x' => '5%',
+                                    'y' => '6%',
                                     'duration' => '3.4s',
                                     'delay' => '0s',
                                 ],
                                 [
                                     'name' => 'Toyota Auto2000 Bali',
+                                    'category' => 'otomotif',
                                     'logo' => '/images/partners/toyota.svg',
                                     'jurusan' => 'Teknik Kendaraan Ringan (TKR)',
-                                    'bentuk' => 'Sinkronisasi & Magang TKR',
+                                    'bentuk' => 'Vocational School Development & T-TEP',
                                     'slug' => 'teknik-kendaraan-ringan',
-                                    'detail' => 'Kemitraan jangka panjang untuk Praktik Kerja Lapangan (PKL) 6 bulan, standardisasi peralatan bengkel servis modern, pelatihan teknisi berkala, serta sertifikasi uji kompetensi kejuruan otomotif roda empat.',
-                                    'x' => '38%',
-                                    'y' => '8%',
+                                    'detail' => 'Sekolah binaan perdana Toyota (TMMIN) di Bali dengan donasi mesin peraga 2TR, standardisasi bengkel Teaching Factory SKENSA Auto Care, PKL 6 bulan di Auto2000 & Agung Toyota, serta sertifikasi teknisi roda empat.',
+                                    'x' => '29%',
+                                    'y' => '6%',
                                     'duration' => '4.1s',
                                     'delay' => '0.6s',
                                 ],
                                 [
                                     'name' => 'PT Telkom Indonesia',
+                                    'category' => 'it',
                                     'logo' => '/images/partners/telkom.svg',
                                     'jurusan' => 'Teknik Komputer & Jaringan (TKJ)',
-                                    'bentuk' => 'Mitra Fiber Optik & Jaringan',
+                                    'bentuk' => 'Infrastruktur FTTH & Sertifikasi Jaringan',
                                     'slug' => 'teknik-komputer-dan-jaringan',
-                                    'detail' => 'Dukungan infrastruktur fiber optic splicing, sertifikasi teknisi telekomunikasi, program magang teknisi lapangan Telkom Akses, serta sinkronisasi kurikulum cloud dan administrasi jaringan.',
-                                    'x' => '68%',
-                                    'y' => '12%',
+                                    'detail' => 'Kemitraan resmi instalasi jaringan fiber optic splicing, penyediaan perangkat praktik FTTH, program magang teknisi lapangan Telkom Akses, serta penyerapan lulusan melalui Job Fair tahunan.',
+                                    'x' => '53%',
+                                    'y' => '6%',
                                     'duration' => '3.7s',
                                     'delay' => '1.2s',
                                 ],
                                 [
                                     'name' => 'Daikin Air Conditioning',
+                                    'category' => 'energi',
                                     'logo' => '/images/partners/daikin.svg',
                                     'jurusan' => 'Teknik Pendingin & Tata Udara (TPTUP)',
-                                    'bentuk' => 'Center of Excellence TPTUP',
+                                    'bentuk' => 'Center of Excellence HVAC Pertama di Luar Jawa',
                                     'slug' => 'teknik-pendingin-dan-tata-udara',
-                                    'detail' => 'Laboratorium Daikin Center of Excellence terlengkap di Bali dan Nusa Tenggara. Siswa dilatih langsung dengan teknologi inverter VRV mutakhir serta diuji sertifikasi teknisi pendingin standar industri.',
-                                    'x' => '20%',
-                                    'y' => '38%',
+                                    'detail' => 'Fasilitas Daikin Center of Excellence seluas 142 m2 diresmikan 7 Maret 2025 di SMKN 1 Denpasar. Dilengkapi teknologi pendingin inverter VRV mutakhir untuk sertifikasi teknisi standar industri internasional.',
+                                    'x' => '77%',
+                                    'y' => '6%',
                                     'duration' => '4.3s',
                                     'delay' => '0.3s',
                                 ],
                                 [
                                     'name' => 'PT PLN (Persero)',
+                                    'category' => 'energi',
                                     'logo' => '/images/partners/pln.svg',
                                     'jurusan' => 'Teknik Ketenagalistrikan (TITL)',
-                                    'bentuk' => 'Ketenagalistrikan & Distribusi',
+                                    'bentuk' => 'TJSL Pelatihan Konversi Motor Listrik',
                                     'slug' => 'teknik-instalasi-tenaga-listrik',
-                                    'detail' => 'Kerjasama distribusi tenaga listrik, penerapan keselamatan kerja K3 ketenagalistrikan, penempatan PKL teknisi gardu, serta pembekalan kompetensi instalasi tegangan rendah dan menengah.',
-                                    'x' => '48%',
-                                    'y' => '40%',
+                                    'detail' => 'Program binaan konversi motor BBM ke motor listrik (P2B E-Moto), edukasi keselamatan K3 ketenagalistrikan, serta PKL penanganan distribusi jaringan tegangan rendah dan menengah.',
+                                    'x' => '5%',
+                                    'y' => '29%',
                                     'duration' => '3.5s',
                                     'delay' => '1.8s',
                                 ],
                                 [
-                                    'name' => 'Schneider Electric',
-                                    'logo' => '/images/partners/schneider.svg',
-                                    'jurusan' => 'Teknik Otomasi & Listrik',
-                                    'bentuk' => 'Otomasi Industri & Smart Panel',
-                                    'slug' => 'teknik-instalasi-tenaga-listrik',
-                                    'detail' => 'Penyediaan modul PLC modern, sistem proteksi smart electrical panel, serta transfer knowledge otomasi gedung ramah energi bagi siswa vokasi.',
-                                    'x' => '74%',
-                                    'y' => '36%',
-                                    'duration' => '3.9s',
-                                    'delay' => '0.9s',
-                                ],
-                                [
                                     'name' => 'PT Yamaha Motor Bali',
+                                    'category' => 'otomotif',
                                     'logo' => '/images/partners/yamaha.svg',
                                     'jurusan' => 'Teknik Sepeda Motor (TSM)',
-                                    'bentuk' => 'Mitra Praktik Roda Dua',
+                                    'bentuk' => 'Mitra Praktik & Teknologi Injeksi YDT',
                                     'slug' => 'teknik-sepeda-motor',
-                                    'detail' => 'Pelatihan sistem injeksi menggunakan Yamaha Diagnostic Tools (YDT), program beasiswa bagi siswa berprestasi, dan penyaluran teknisi bengkel resmi Yamaha Bali.',
-                                    'x' => '8%',
-                                    'y' => '68%',
+                                    'detail' => 'Pelatihan sistem injeksi menggunakan Yamaha Diagnostic Tools (YDT), sarana praktik sepeda motor, uji kompetensi kejuruan, serta penyaluran teknisi bengkel resmi Yamaha Bali.',
+                                    'x' => '29%',
+                                    'y' => '29%',
                                     'duration' => '4.2s',
                                     'delay' => '1.5s',
                                 ],
                                 [
+                                    'name' => 'Jinom Network',
+                                    'category' => 'it',
+                                    'logo' => '/images/partners/jinom.svg',
+                                    'jurusan' => 'Teknik Komputer & Jaringan (TKJ)',
+                                    'bentuk' => 'Mitra Industri ISP & Infrastruktur Jaringan',
+                                    'slug' => 'teknik-komputer-dan-jaringan',
+                                    'detail' => 'Perusahaan penyedia internet terkemuka di Bali yang membina siswa TKJ dalam administrasi routing BGP, manajemen bandwidth jaringan mikrotik, dan infrastruktur fiber optic metropolitan.',
+                                    'x' => '53%',
+                                    'y' => '29%',
+                                    'duration' => '3.9s',
+                                    'delay' => '0.7s',
+                                ],
+                                [
+                                    'name' => 'Komatsu Heavy Equipment',
+                                    'category' => 'konstruksi',
+                                    'logo' => '/images/partners/komatsu.svg',
+                                    'jurusan' => 'Teknik Pemesinan (TPM)',
+                                    'bentuk' => 'Manufaktur Alat Berat & Pemesinan Presisi',
+                                    'slug' => 'teknik-pemesinan',
+                                    'detail' => 'Pembekalan fabrikasi logam presisi, standarisasi keselamatan kerja bengkel manufaktur berat, pemrograman mesin CNC, serta kunjungan industri alat berat.',
+                                    'x' => '77%',
+                                    'y' => '29%',
+                                    'duration' => '3.8s',
+                                    'delay' => '0.5s',
+                                ],
+                                [
+                                    'name' => 'Nevelop Software House',
+                                    'category' => 'it',
+                                    'logo' => '/images/partners/nevelop.svg',
+                                    'jurusan' => 'Rekayasa Perangkat Lunak (RPL)',
+                                    'bentuk' => 'Mitra PKL & Software Engineering Dapodik',
+                                    'slug' => 'rekayasa-perangkat-lunak',
+                                    'detail' => 'Tercatat resmi di Dapodik Direktorat SMK Kemendikbud sebagai mitra industri pengembangan software web modern, mobile app, dan asistensi workflow Git untuk siswa RPL.',
+                                    'x' => '5%',
+                                    'y' => '52%',
+                                    'duration' => '4.0s',
+                                    'delay' => '1.3s',
+                                ],
+                                [
+                                    'name' => 'Schneider Electric',
+                                    'category' => 'energi',
+                                    'logo' => '/images/partners/schneider.svg',
+                                    'jurusan' => 'Teknik Otomasi & Listrik',
+                                    'bentuk' => 'Otomasi Industri & Smart Distribution',
+                                    'slug' => 'teknik-instalasi-tenaga-listrik',
+                                    'detail' => 'Penyediaan modul kendali PLC modern, sistem proteksi smart electrical panel, serta transfer knowledge otomasi gedung ramah energi bagi siswa vokasi.',
+                                    'x' => '29%',
+                                    'y' => '52%',
+                                    'duration' => '3.9s',
+                                    'delay' => '0.9s',
+                                ],
+                                [
                                     'name' => 'Imaji Kryamaha Software',
+                                    'category' => 'it',
                                     'logo' => '/images/partners/imaji.svg',
                                     'jurusan' => 'Rekayasa Perangkat Lunak (RPL)',
-                                    'bentuk' => 'Industri Software & Pemrograman',
+                                    'bentuk' => 'Guru Tamu & Ekosistem Startup',
                                     'slug' => 'rekayasa-perangkat-lunak',
-                                    'detail' => 'Pembinaan kompetensi full-stack web dan mobile development melalui mentoring proyek riil, review kode oleh engineer senior, serta rekrutmen langsung junior developer.',
-                                    'x' => '35%',
-                                    'y' => '66%',
+                                    'detail' => 'Pembinaan kompetensi full-stack web dan mobile development melalui mentoring proyek riil, review arsitektur kode oleh engineer senior, serta rekrutmen langsung junior developer.',
+                                    'x' => '53%',
+                                    'y' => '52%',
                                     'duration' => '3.6s',
                                     'delay' => '0.2s',
                                 ],
                                 [
                                     'name' => 'PT Casa Amertha Arsitektur',
+                                    'category' => 'konstruksi',
                                     'logo' => '/images/partners/casa_amertha.svg',
                                     'jurusan' => 'Desain Pemodelan Bangunan (DPIB)',
-                                    'bentuk' => 'Desain & Konstruksi Digital',
+                                    'bentuk' => 'Mitra Arsitektur & BIM Dapodik Kemendikbud',
                                     'slug' => 'desain-pemodelan-dan-informasi-bangunan',
-                                    'detail' => 'Penerapan Building Information Modelling (BIM), asistensi perangkat lunak CAD dan Revit, serta magang di studio konsultan perencana arsitektur dan interior.',
-                                    'x' => '58%',
-                                    'y' => '68%',
+                                    'detail' => 'Tercatat di Dapodik Direktorat SMK untuk asistensi Building Information Modelling (BIM), gambar kerja konstruksi arsitektural Revit/CAD, dan perencanaan interior.',
+                                    'x' => '77%',
+                                    'y' => '52%',
                                     'duration' => '4.0s',
                                     'delay' => '1.1s',
                                 ],
                                 [
-                                    'name' => 'Komatsu Heavy Equipment',
-                                    'logo' => '/images/partners/komatsu.svg',
-                                    'jurusan' => 'Teknik Pemesinan (TPM)',
-                                    'bentuk' => 'Manufaktur & Pemesinan Presisi',
-                                    'slug' => 'teknik-pemesinan',
-                                    'detail' => 'Standarisasi fabrikasi logam dan pemesinan presisi CNC, sertifikasi keselamatan kerja industri manufaktur alat berat, serta kesempatan rekrutmen operator teknis.',
-                                    'x' => '76%',
-                                    'y' => '65%',
+                                    'name' => 'Nissan Gianyar',
+                                    'category' => 'otomotif',
+                                    'logo' => '/images/partners/nissan.svg',
+                                    'jurusan' => 'Teknik Kendaraan Ringan (TKR)',
+                                    'bentuk' => 'Mitra PKL Resmi Dapodik Kemendikbud',
+                                    'slug' => 'teknik-kendaraan-ringan',
+                                    'detail' => 'Tercatat resmi dalam Dapodik Direktorat SMK Kemendikbudristek sebagai mitra industri Praktik Kerja Lapangan siswa TKR dalam perawatan mesin, sistem kelistrikan, dan rem kendaraan modern.',
+                                    'x' => '5%',
+                                    'y' => '75%',
+                                    'duration' => '3.7s',
+                                    'delay' => '0.4s',
+                                ],
+                                [
+                                    'name' => 'Arta Yasa Motor',
+                                    'category' => 'otomotif',
+                                    'logo' => '/images/partners/arta_yasa.svg',
+                                    'jurusan' => 'Teknik Sepeda Motor (TSM)',
+                                    'bentuk' => 'Mitra Bengkel PKL Dapodik Kemendikbud',
+                                    'slug' => 'teknik-sepeda-motor',
+                                    'detail' => 'Tercatat di Dapodik Direktorat SMK untuk pelaksanaan PKL siswa teknik sepeda motor dalam perbaikan injeksi, transmisi otomatis, dan overhaul mesin.',
+                                    'x' => '29%',
+                                    'y' => '75%',
+                                    'duration' => '4.1s',
+                                    'delay' => '1.0s',
+                                ],
+                                [
+                                    'name' => 'CV Damar Bumi',
+                                    'category' => 'konstruksi',
+                                    'logo' => '/images/partners/damar_bumi.svg',
+                                    'jurusan' => 'Teknik Konstruksi & Perumahan (TKP)',
+                                    'bentuk' => 'Mitra Lapangan Konstruksi Dapodik Kemendikbud',
+                                    'slug' => 'desain-pemodelan-dan-informasi-bangunan',
+                                    'detail' => 'Tercatat resmi di Dapodik Kemendikbud sebagai mitra Praktik Kerja Lapangan siswa teknik sipil konstruksi, bekisting, pembesian struktur, dan pengawasan proyek gedung.',
+                                    'x' => '53%',
+                                    'y' => '75%',
                                     'duration' => '3.8s',
-                                    'delay' => '0.5s',
+                                    'delay' => '1.6s',
+                                ],
+                                [
+                                    'name' => 'LSP-P1 SMKN 1 Denpasar',
+                                    'category' => 'energi',
+                                    'logo' => '/images/partners/bnsp_lsp.svg',
+                                    'jurusan' => 'Semua Konsentrasi Keahlian (13 Jurusan)',
+                                    'bentuk' => 'Sertifikasi Resmi BNSP (BNSP-LSP-757-ID)',
+                                    'slug' => 'profil',
+                                    'detail' => 'Lembaga Sertifikasi Profesi Pihak Kesatu resmi dengan lisensi KEP.1509/BNSP/V/2026 yang menguji dan menerbitkan sertifikasi kompetensi berstandar nasional BNSP di seluruh jurusan.',
+                                    'x' => '77%',
+                                    'y' => '75%',
+                                    'duration' => '3.5s',
+                                    'delay' => '0.8s',
                                 ],
                             ];
                         @endphp
@@ -805,6 +918,7 @@
                         @foreach($floatingPartners as $partner)
                             <div class="partner-floating-badge absolute z-10 cursor-grab active:cursor-grabbing select-none"
                                  data-partner-badge
+                                 data-partner-category="{{ $partner['category'] }}"
                                  data-partner-name="{{ $partner['name'] }}"
                                  data-partner-logo="{{ $partner['logo'] }}"
                                  data-partner-jurusan="{{ $partner['jurusan'] }}"
@@ -817,6 +931,52 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+
+                    {{-- Marquee Ticker: 140+ Jejaring DUDIKA & BKK --}}
+                    <div class="p-3.5 bg-paper border-t-2 border-ink flex items-center gap-3 overflow-hidden">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-navy text-white text-[10px] font-extrabold uppercase tracking-wider shrink-0">
+                            140+ Mitra Terdaftar
+                        </span>
+                        <div class="relative w-full overflow-hidden mask-gradient-x">
+                            <div class="animate-marquee flex items-center gap-6 whitespace-nowrap text-xs font-semibold text-ink-muted">
+                                <span>PT Daikin Airconditioning Indonesia</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Astra Honda Motor</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Toyota-Astra Motor &amp; Auto2000</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Telkom Indonesia &amp; Telkom Akses</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT PLN (Persero) UID Bali</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Yamaha Indonesia Motor Mfg</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>Nissan Gianyar</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Jinom Network Bali</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Nevelop Indonesia Sejahtera</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>Schneider Electric</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Casa Amertha Arsitektur</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Komatsu Indonesia &amp; United Tractors</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>PT Imaji Kryamaha Utama</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>CV Damar Bumi Konstruksi</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>Arta Yasa Motor</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>LSP-P1 BNSP SKENSA</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>Program Magang Kerja Jepang (JAC)</span>
+                                <span class="text-navy">&bull;</span>
+                                <span>Bursa Kerja Khusus (BKK) Disnaker Bali</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

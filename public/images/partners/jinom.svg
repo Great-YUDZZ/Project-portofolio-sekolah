@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <rect x="18" y="15" width="30" height="30" rx="8" fill="#0B2A5B"/>
+  <path d="M25 35L33 22L36 28L41 20" stroke="#00C48C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="14" fill="#0B2A5B" letter-spacing="0.5">JINOM NETWORK</text>
+  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#52565E" letter-spacing="0.8">INTERNET SERVICE PROVIDER</text>
+</svg>

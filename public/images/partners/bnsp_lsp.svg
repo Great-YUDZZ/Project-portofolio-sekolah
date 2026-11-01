@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <rect x="18" y="15" width="30" height="30" rx="8" fill="#991B1B"/>
+  <path d="M33 22L25 27V33C25 38 33 41 33 41C33 41 41 38 41 33V27L33 22Z" fill="#FBBF24"/>
+  <text x="56" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="13" fill="#0F172A" letter-spacing="0.5">LSP-P1 SKENSA</text>
+  <text x="56" y="43" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" fill="#52565E" letter-spacing="0.8">SERTIFIKASI RESMI BNSP</text>
+</svg>
