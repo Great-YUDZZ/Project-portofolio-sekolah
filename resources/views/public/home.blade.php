@@ -650,52 +650,178 @@
                 </p>
             </div>
 
-            {{-- Infinite Marquee of Verified Industry Partners (DUDIKA) --}}
-            <div class="p-6 rounded-2xl bg-paper-2 border-2 border-ink">
-                <div class="mb-4 flex items-center justify-between">
-                    <span class="text-xs font-extrabold uppercase tracking-widest text-navy">
-                        Daftar Mitra Perusahaan Rekanan PKL, Kelas Industri &amp; Rekrutmen:
-                    </span>
-                    <span class="hidden sm:inline text-[11px] font-semibold text-ink-muted">
-                        Arahkan Kursor untuk Menghentikan
-                    </span>
-                </div>
+            {{-- Interactive Floating Partner Stage (DUDIKA) --}}
+            <div class="space-y-6">
+                <div class="rounded-2xl border-2 border-ink overflow-hidden bg-paper-2 shadow-sm">
+                    {{-- Canvas Toolbar / Controls --}}
+                    <div class="flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5 border-b-2 border-ink bg-paper">
+                        <div class="flex items-center gap-2.5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-navy text-white text-xs font-extrabold uppercase tracking-wider">
+                                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                                Area Interaktif Mitra DUDIKA
+                            </span>
+                            <span class="hidden sm:inline text-xs text-ink-muted font-medium">
+                                Tarik atau geser logo bebas, klik 2x untuk melihat rincian kerjasama.
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="sm:hidden text-[11px] text-ink-muted font-medium">Ketuk 2x untuk detail</span>
+                            <button type="button" id="partner-stage-reset" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-line text-xs font-bold text-ink hover:bg-paper-2 hover:border-ink transition-colors shadow-2xs cursor-pointer">
+                                <svg class="w-3.5 h-3.5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                <span>Tata Ulang Posisi</span>
+                            </button>
+                        </div>
+                    </div>
 
-                <div class="relative w-full overflow-hidden mask-gradient-x">
-                    <div class="animate-marquee flex items-center gap-6 py-2">
+                    {{-- Interactive Stage Canvas --}}
+                    <div id="partner-floating-stage" class="relative partner-stage-grid w-full h-[480px] sm:h-[520px] overflow-hidden select-none">
                         @php
-                            $partners = [
-                                ['name' => 'PT Astra Honda Motor', 'desc' => 'Kelas Industri & Praktik TSM', 'logo' => '/images/partners/honda.svg'],
-                                ['name' => 'Toyota Auto2000 Bali', 'desc' => 'Sinkronisasi & Magang TKR', 'logo' => '/images/partners/toyota.svg'],
-                                ['name' => 'PT Telkom Indonesia', 'desc' => 'Mitra Fiber Optik & TKJ', 'logo' => '/images/partners/telkom.svg'],
-                                ['name' => 'Daikin Air Conditioning', 'desc' => 'Daikin Center of Excellence TPTUP', 'logo' => '/images/partners/daikin.svg'],
-                                ['name' => 'PT PLN (Persero)', 'desc' => 'Mitra Ketenagalistrikan TITL', 'logo' => '/images/partners/pln.svg'],
-                                ['name' => 'Schneider Electric', 'desc' => 'Otomasi & Listrik Industri', 'logo' => '/images/partners/schneider.svg'],
-                                ['name' => 'PT Yamaha Motor Bali', 'desc' => 'Mitra Praktik Otomotif Roda Dua', 'logo' => '/images/partners/yamaha.svg'],
-                                ['name' => 'Imaji Kryamaha Software', 'desc' => 'Mitra Industri Perangkat Lunak RPL', 'logo' => '/images/partners/imaji.svg'],
-                                ['name' => 'PT Casa Amertha Arsitektur', 'desc' => 'Mitra Desain & Konstruksi DPIB/TKP', 'logo' => '/images/partners/casa_amertha.svg'],
-                                ['name' => 'Komatsu Heavy Equipment', 'desc' => 'Mitra Manufaktur & Pemesinan TPM', 'logo' => '/images/partners/komatsu.svg'],
+                            $floatingPartners = [
+                                [
+                                    'name' => 'PT Astra Honda Motor',
+                                    'logo' => '/images/partners/honda.svg',
+                                    'jurusan' => 'Teknik Sepeda Motor (TSM)',
+                                    'bentuk' => 'Kelas Industri & Praktik TSM',
+                                    'slug' => 'teknik-sepeda-motor',
+                                    'detail' => 'Sinkronisasi kurikulum resmi Astra Honda Motor melalui penyediaan unit sepeda motor injeksi generasi terbaru untuk praktik, sertifikasi instruktur, serta kuota rekrutmen mekanik resmi jaringan AHASS.',
+                                    'x' => '8%',
+                                    'y' => '10%',
+                                    'duration' => '3.4s',
+                                    'delay' => '0s',
+                                ],
+                                [
+                                    'name' => 'Toyota Auto2000 Bali',
+                                    'logo' => '/images/partners/toyota.svg',
+                                    'jurusan' => 'Teknik Kendaraan Ringan (TKR)',
+                                    'bentuk' => 'Sinkronisasi & Magang TKR',
+                                    'slug' => 'teknik-kendaraan-ringan',
+                                    'detail' => 'Kemitraan jangka panjang untuk Praktik Kerja Lapangan (PKL) 6 bulan, standardisasi peralatan bengkel servis modern, pelatihan teknisi berkala, serta sertifikasi uji kompetensi kejuruan otomotif roda empat.',
+                                    'x' => '38%',
+                                    'y' => '8%',
+                                    'duration' => '4.1s',
+                                    'delay' => '0.6s',
+                                ],
+                                [
+                                    'name' => 'PT Telkom Indonesia',
+                                    'logo' => '/images/partners/telkom.svg',
+                                    'jurusan' => 'Teknik Komputer & Jaringan (TKJ)',
+                                    'bentuk' => 'Mitra Fiber Optik & Jaringan',
+                                    'slug' => 'teknik-komputer-dan-jaringan',
+                                    'detail' => 'Dukungan infrastruktur fiber optic splicing, sertifikasi teknisi telekomunikasi, program magang teknisi lapangan Telkom Akses, serta sinkronisasi kurikulum cloud dan administrasi jaringan.',
+                                    'x' => '68%',
+                                    'y' => '12%',
+                                    'duration' => '3.7s',
+                                    'delay' => '1.2s',
+                                ],
+                                [
+                                    'name' => 'Daikin Air Conditioning',
+                                    'logo' => '/images/partners/daikin.svg',
+                                    'jurusan' => 'Teknik Pendingin & Tata Udara (TPTUP)',
+                                    'bentuk' => 'Center of Excellence TPTUP',
+                                    'slug' => 'teknik-pendingin-dan-tata-udara',
+                                    'detail' => 'Laboratorium Daikin Center of Excellence terlengkap di Bali dan Nusa Tenggara. Siswa dilatih langsung dengan teknologi inverter VRV mutakhir serta diuji sertifikasi teknisi pendingin standar industri.',
+                                    'x' => '20%',
+                                    'y' => '38%',
+                                    'duration' => '4.3s',
+                                    'delay' => '0.3s',
+                                ],
+                                [
+                                    'name' => 'PT PLN (Persero)',
+                                    'logo' => '/images/partners/pln.svg',
+                                    'jurusan' => 'Teknik Ketenagalistrikan (TITL)',
+                                    'bentuk' => 'Ketenagalistrikan & Distribusi',
+                                    'slug' => 'teknik-instalasi-tenaga-listrik',
+                                    'detail' => 'Kerjasama distribusi tenaga listrik, penerapan keselamatan kerja K3 ketenagalistrikan, penempatan PKL teknisi gardu, serta pembekalan kompetensi instalasi tegangan rendah dan menengah.',
+                                    'x' => '48%',
+                                    'y' => '40%',
+                                    'duration' => '3.5s',
+                                    'delay' => '1.8s',
+                                ],
+                                [
+                                    'name' => 'Schneider Electric',
+                                    'logo' => '/images/partners/schneider.svg',
+                                    'jurusan' => 'Teknik Otomasi & Listrik',
+                                    'bentuk' => 'Otomasi Industri & Smart Panel',
+                                    'slug' => 'teknik-instalasi-tenaga-listrik',
+                                    'detail' => 'Penyediaan modul PLC modern, sistem proteksi smart electrical panel, serta transfer knowledge otomasi gedung ramah energi bagi siswa vokasi.',
+                                    'x' => '74%',
+                                    'y' => '36%',
+                                    'duration' => '3.9s',
+                                    'delay' => '0.9s',
+                                ],
+                                [
+                                    'name' => 'PT Yamaha Motor Bali',
+                                    'logo' => '/images/partners/yamaha.svg',
+                                    'jurusan' => 'Teknik Sepeda Motor (TSM)',
+                                    'bentuk' => 'Mitra Praktik Roda Dua',
+                                    'slug' => 'teknik-sepeda-motor',
+                                    'detail' => 'Pelatihan sistem injeksi menggunakan Yamaha Diagnostic Tools (YDT), program beasiswa bagi siswa berprestasi, dan penyaluran teknisi bengkel resmi Yamaha Bali.',
+                                    'x' => '8%',
+                                    'y' => '68%',
+                                    'duration' => '4.2s',
+                                    'delay' => '1.5s',
+                                ],
+                                [
+                                    'name' => 'Imaji Kryamaha Software',
+                                    'logo' => '/images/partners/imaji.svg',
+                                    'jurusan' => 'Rekayasa Perangkat Lunak (RPL)',
+                                    'bentuk' => 'Industri Software & Pemrograman',
+                                    'slug' => 'rekayasa-perangkat-lunak',
+                                    'detail' => 'Pembinaan kompetensi full-stack web dan mobile development melalui mentoring proyek riil, review kode oleh engineer senior, serta rekrutmen langsung junior developer.',
+                                    'x' => '35%',
+                                    'y' => '66%',
+                                    'duration' => '3.6s',
+                                    'delay' => '0.2s',
+                                ],
+                                [
+                                    'name' => 'PT Casa Amertha Arsitektur',
+                                    'logo' => '/images/partners/casa_amertha.svg',
+                                    'jurusan' => 'Desain Pemodelan Bangunan (DPIB)',
+                                    'bentuk' => 'Desain & Konstruksi Digital',
+                                    'slug' => 'desain-pemodelan-dan-informasi-bangunan',
+                                    'detail' => 'Penerapan Building Information Modelling (BIM), asistensi perangkat lunak CAD dan Revit, serta magang di studio konsultan perencana arsitektur dan interior.',
+                                    'x' => '58%',
+                                    'y' => '68%',
+                                    'duration' => '4.0s',
+                                    'delay' => '1.1s',
+                                ],
+                                [
+                                    'name' => 'Komatsu Heavy Equipment',
+                                    'logo' => '/images/partners/komatsu.svg',
+                                    'jurusan' => 'Teknik Pemesinan (TPM)',
+                                    'bentuk' => 'Manufaktur & Pemesinan Presisi',
+                                    'slug' => 'teknik-pemesinan',
+                                    'detail' => 'Standarisasi fabrikasi logam dan pemesinan presisi CNC, sertifikasi keselamatan kerja industri manufaktur alat berat, serta kesempatan rekrutmen operator teknis.',
+                                    'x' => '76%',
+                                    'y' => '65%',
+                                    'duration' => '3.8s',
+                                    'delay' => '0.5s',
+                                ],
                             ];
                         @endphp
 
-                        @foreach([$partners, $partners] as $loopSet)
-                            @foreach($loopSet as $partner)
-                                <div class="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-paper border border-line shadow-xs shrink-0 hover:border-navy transition-all">
-                                    <div class="w-16 h-9 rounded-lg bg-white border border-line/60 flex items-center justify-center p-1 shrink-0 overflow-hidden">
-                                        <img src="{{ $partner['logo'] }}" alt="Logo {{ $partner['name'] }}" class="max-h-7 max-w-[56px] w-auto h-auto object-contain">
-                                    </div>
-                                    <div>
-                                        <span class="block font-display font-extrabold text-xs text-ink leading-tight">{{ $partner['name'] }}</span>
-                                        <span class="block text-[10px] text-ink-muted mt-0.5">{{ $partner['desc'] }}</span>
-                                    </div>
+                        @foreach($floatingPartners as $partner)
+                            <div class="partner-floating-badge absolute z-10 cursor-grab active:cursor-grabbing select-none"
+                                 data-partner-badge
+                                 data-partner-name="{{ $partner['name'] }}"
+                                 data-partner-logo="{{ $partner['logo'] }}"
+                                 data-partner-jurusan="{{ $partner['jurusan'] }}"
+                                 data-partner-bentuk="{{ $partner['bentuk'] }}"
+                                 data-partner-detail="{{ $partner['detail'] }}"
+                                 data-partner-slug="{{ $partner['slug'] }}"
+                                 style="left: {{ $partner['x'] }}; top: {{ $partner['y'] }}; --float-duration: {{ $partner['duration'] }}; --float-delay: {{ $partner['delay'] }};">
+                                <div class="partner-floating-inner w-24 h-14 sm:w-36 sm:h-20 rounded-2xl bg-white border-2 border-ink shadow-md flex items-center justify-center p-2.5 sm:p-3 hover:border-navy transition-colors">
+                                    <img src="{{ $partner['logo'] }}" alt="Logo {{ $partner['name'] }}" class="max-h-8 sm:max-h-11 max-w-[80px] sm:max-w-[110px] w-auto h-auto object-contain pointer-events-none" loading="lazy">
                                 </div>
-                            @endforeach
+                            </div>
                         @endforeach
                     </div>
                 </div>
 
                 {{-- 4 Bentuk Program Kolaborasi DUDIKA --}}
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 pt-6 border-t border-line">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="p-4 rounded-xl bg-paper border border-line">
                         <span class="text-[11px] font-extrabold uppercase text-navy">01 &bull; Kelas Industri</span>
                         <h3 class="font-display font-bold text-sm text-ink mt-1">Sinkronisasi Kurikulum &amp; CoE</h3>
@@ -824,6 +950,53 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+            </div>
+        </div>
+
+        {{-- Partner Detail Lightbox Modal --}}
+        <div id="partner-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="partner-modal-name">
+            <div id="partner-modal-backdrop" class="fixed inset-0 bg-ink/60 backdrop-blur-xs transition-opacity"></div>
+            <div data-modal-card class="relative z-10 w-full max-w-lg rounded-2xl bg-paper border-2 border-ink shadow-2xl p-6 sm:p-8 overflow-hidden">
+                <button type="button" id="partner-modal-close" class="absolute top-4 right-4 p-2 rounded-lg bg-paper-2 text-ink hover:bg-navy hover:text-white transition-colors cursor-pointer" aria-label="Tutup jendela rincian mitra">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                    <div class="w-24 h-20 sm:w-28 sm:h-24 rounded-xl bg-white border-2 border-line p-3 flex items-center justify-center shrink-0 shadow-xs">
+                        <img id="partner-modal-logo" src="" alt="Logo Mitra" class="max-h-16 max-w-[90px] w-auto h-auto object-contain">
+                    </div>
+                    <div class="text-center sm:text-left space-y-1.5 flex-1">
+                        <span id="partner-modal-bentuk" class="inline-block px-2.5 py-0.5 rounded text-[11px] font-extrabold uppercase tracking-wider bg-navy text-white">
+                            Bentuk Kemitraan
+                        </span>
+                        <h3 id="partner-modal-name" class="font-display font-extrabold text-xl sm:text-2xl text-ink leading-tight">
+                            Nama Mitra
+                        </h3>
+                        <p class="text-xs font-semibold text-ink-muted">
+                            Konsentrasi Keahlian: <span id="partner-modal-jurusan" class="text-navy font-bold">Jurusan Terkait</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-line space-y-4">
+                    <div>
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-ink-muted mb-1.5">Rincian Program &amp; Kerjasama:</h4>
+                        <p id="partner-modal-detail" class="text-sm text-ink leading-relaxed">
+                            Deskripsi lengkap kolaborasi industri dengan SMK Negeri 1 Denpasar.
+                        </p>
+                    </div>
+
+                    <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                        <a id="partner-modal-link" href="#" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy text-white font-bold text-xs hover:bg-navy/90 transition-colors">
+                            Lihat Konsentrasi Keahlian Terkait &rarr;
+                        </a>
+                        <span class="text-[11px] text-ink-muted text-center sm:text-right font-medium">
+                            SMK Negeri 1 Denpasar &bull; DUDIKA
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

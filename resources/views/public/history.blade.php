@@ -425,18 +425,18 @@
                             </div>
 
                             {{-- Bottom Output Terminal Node --}}
-                            <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center">
+                            <div data-genealogy-node="root-bangunan" class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                 <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                             </div>
                         </div>
 
                         {{-- Vertical Connector Line (Top-Down Flow) --}}
                         <div class="flex flex-col items-center py-2" aria-hidden="true">
-                            <div class="w-0.5 h-5 bg-[#2563EB]"></div>
-                            <div class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-[10px] font-bold shadow-2xs my-0.5">
+                            <div data-genealogy-line="bangunan-top" class="w-0.5 h-5 bg-[#2563EB] origin-top transition-transform duration-300"></div>
+                            <div data-genealogy-badge="bangunan-evolusi" class="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-[10px] font-bold shadow-2xs my-0.5 transition-all duration-300">
                                 Evolusi 64 Tahun ↓
                             </div>
-                            <div class="w-0.5 h-5 bg-[#2563EB]"></div>
+                            <div data-genealogy-line="bangunan-bottom" class="w-0.5 h-5 bg-[#2563EB] origin-top transition-transform duration-300"></div>
                         </div>
 
                         {{-- Modern Cluster Card 1 --}}
@@ -450,7 +450,7 @@
                                 class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-blue-400 hover:shadow-md transition-all border-t-2 border-t-[#2563EB]"
                             >
                                 {{-- Top Input Terminal Node --}}
-                                <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center">
+                                <div data-genealogy-node="input-bangunan" class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2563EB] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                     <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                                 </div>
 
@@ -517,7 +517,7 @@
                             </div>
 
                             {{-- Bottom Output Terminal Node --}}
-                            <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center">
+                            <div data-genealogy-node="root-mesin" class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                 <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                             </div>
                         </div>
@@ -526,14 +526,14 @@
                         <div class="relative h-14 flex items-center justify-center my-0.5" aria-hidden="true">
                             <svg class="w-full h-14 overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 50">
                                 <!-- Center vertical drop -->
-                                <path d="M 50 0 L 50 20" stroke="#EA580C" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                                <circle cx="50" cy="20" r="3" fill="#EA580C" />
+                                <path data-genealogy-path="mesin-stem" d="M 50 0 L 50 20" stroke="#EA580C" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                <circle data-genealogy-circle="mesin-junction" cx="50" cy="20" r="3" fill="#EA580C" class="transition-transform duration-200" />
                                 <!-- Left branch (Mesin/Mekanik) to 25% -->
-                                <path d="M 50 20 L 25 20 L 25 50" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <path data-genealogy-path="branch-mesin" d="M 50 20 L 25 20 L 25 50" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
                                 <!-- Right branch (Listrik/TIK) to 75% -->
-                                <path d="M 50 20 L 75 20 L 75 50" stroke="#0891B2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <path data-genealogy-path="branch-listrik" d="M 50 20 L 75 20 L 75 50" stroke="#0891B2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
                             </svg>
-                            <div class="absolute top-2 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 font-mono text-[10px] font-bold shadow-2xs">
+                            <div data-genealogy-badge="mesin-branch" class="absolute top-2 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 font-mono text-[10px] font-bold shadow-2xs transition-all duration-300">
                                 Cabang Rekayasa &amp; Teknologi ↓
                             </div>
                         </div>
@@ -557,7 +557,7 @@
                                         class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-orange-400 hover:shadow-md transition-all border-t-2 border-t-[#EA580C]"
                                     >
                                         {{-- Top Input Terminal Node --}}
-                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center">
+                                        <div data-genealogy-node="input-mesin" class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                             <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                                         </div>
 
@@ -587,9 +587,9 @@
 
                                 {{-- Connector Down to Elektronika --}}
                                 <div class="flex flex-col items-center py-1" aria-hidden="true">
-                                    <div class="w-0.5 h-4 bg-[#EA580C]"></div>
-                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[9px] font-bold my-0.5">Ekspansi 1990-an ↓</span>
-                                    <div class="w-0.5 h-4 bg-[#EA580C]"></div>
+                                    <div data-genealogy-line="mesin-elek-top" class="w-0.5 h-4 bg-[#EA580C] origin-top transition-transform duration-300"></div>
+                                    <span data-genealogy-badge="mesin-elek" class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[9px] font-bold my-0.5 transition-all duration-300">Ekspansi 1990-an ↓</span>
+                                    <div data-genealogy-line="mesin-elek-bottom" class="w-0.5 h-4 bg-[#EA580C] origin-top transition-transform duration-300"></div>
                                 </div>
 
                                 {{-- Card Elektronika --}}
@@ -600,7 +600,7 @@
                                         class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-orange-400 hover:shadow-md transition-all border-t-2 border-t-[#EA580C]"
                                     >
                                         {{-- Top Input Terminal Node --}}
-                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center">
+                                        <div data-genealogy-node="input-elektronika" class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#EA580C] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                             <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                                         </div>
 
@@ -639,7 +639,7 @@
                                         class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-cyan-400 hover:shadow-md transition-all border-t-2 border-t-[#0891B2]"
                                     >
                                         {{-- Top Input Terminal Node --}}
-                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#0891B2] border-2 border-white shadow-xs flex items-center justify-center">
+                                        <div data-genealogy-node="input-listrik" class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#0891B2] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                             <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                                         </div>
 
@@ -669,9 +669,9 @@
 
                                 {{-- Connector Down to TIK --}}
                                 <div class="flex flex-col items-center py-1" aria-hidden="true">
-                                    <div class="w-0.5 h-4 bg-[#0891B2]"></div>
-                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[9px] font-bold my-0.5">Revolusi TIK 1999 ↓</span>
-                                    <div class="w-0.5 h-4 bg-[#0891B2]"></div>
+                                    <div data-genealogy-line="listrik-tik-top" class="w-0.5 h-4 bg-[#0891B2] origin-top transition-transform duration-300"></div>
+                                    <span data-genealogy-badge="listrik-tik" class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[9px] font-bold my-0.5 transition-all duration-300">Revolusi TIK 1999 ↓</span>
+                                    <div data-genealogy-line="listrik-tik-bottom" class="w-0.5 h-4 bg-[#0891B2] origin-top transition-transform duration-300"></div>
                                 </div>
 
                                 {{-- Card TIK & Kreatif --}}
@@ -682,7 +682,7 @@
                                         class="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-cyan-400 hover:shadow-md transition-all border-t-2 border-t-[#0891B2]"
                                     >
                                         {{-- Top Input Terminal Node --}}
-                                        <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#0891B2] border-2 border-white shadow-xs flex items-center justify-center">
+                                        <div data-genealogy-node="input-tik" class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#0891B2] border-2 border-white shadow-xs flex items-center justify-center transition-all duration-300">
                                             <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                                         </div>
 
@@ -812,6 +812,49 @@
                             Lihat Galeri Prestasi &rarr;
                         </a>
                     </div>
+                    <style>
+                        @keyframes nodePingPulseBlue {
+                            0% { transform: translate(-50%, 0) scale(0.85); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+                            50% { transform: translate(-50%, 0) scale(1.22); box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+                            100% { transform: translate(-50%, 0) scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+                        }
+                        @keyframes nodePingPulseOrange {
+                            0% { transform: translate(-50%, 0) scale(0.85); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.7); }
+                            50% { transform: translate(-50%, 0) scale(1.22); box-shadow: 0 0 0 10px rgba(234, 88, 12, 0); }
+                            100% { transform: translate(-50%, 0) scale(1); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+                        }
+                        @keyframes nodePingPulseCyan {
+                            0% { transform: translate(-50%, 0) scale(0.85); box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.7); }
+                            50% { transform: translate(-50%, 0) scale(1.22); box-shadow: 0 0 0 10px rgba(8, 145, 178, 0); }
+                            100% { transform: translate(-50%, 0) scale(1); box-shadow: 0 0 0 0 rgba(8, 145, 178, 0); }
+                        }
+                        .animate-node-pulse-blue {
+                            animation: nodePingPulseBlue 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+                        }
+                        .animate-node-pulse-orange {
+                            animation: nodePingPulseOrange 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+                        }
+                        .animate-node-pulse-cyan {
+                            animation: nodePingPulseCyan 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+                        }
+                        [data-genealogy-path] {
+                            transition: stroke-dashoffset 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                        }
+                        [data-genealogy-line] {
+                            transform-origin: top;
+                            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                        }
+                        [data-genealogy-badge] {
+                            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                        }
+                        [data-genealogy-circle] {
+                            transform-origin: 50px 20px;
+                            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                        }
+                        [data-genealogy-node] {
+                            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                        }
+                    </style>
                 </div>
             </div>
         </div>

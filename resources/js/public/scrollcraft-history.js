@@ -166,19 +166,6 @@ export function initScrollCraftHistory() {
         };
     });
 
-    // Genealogy SVG Paths (Signature Move 2)
-    const genealogySection = document.getElementById('act-genealogy');
-    const genealogyPaths = Array.from(root.querySelectorAll('[data-sc-genealogy-path]'));
-    genealogyPaths.forEach((path) => {
-        try {
-            const len = path.getTotalLength ? path.getTotalLength() : 600;
-            path.style.strokeDasharray = `${len}`;
-            path.style.strokeDashoffset = reduceMotion ? '0' : `${len}`;
-            path.__scLen = len;
-        } catch (e) {
-            path.__scLen = 600;
-        }
-    });
 
     // Chronology Trace Rail Elements (Signature Move 1)
     const traceYearEl = document.getElementById('sc-trace-active-year');
@@ -484,16 +471,6 @@ export function initScrollCraftHistory() {
             }
         }
 
-        // Signature Move 2: Self-Drawing Curriculum Genealogy SVG Paths
-        if (genealogySection && genealogyPaths.length && !reduceMotion) {
-            const gRect = genealogySection.getBoundingClientRect();
-            const drawProgress = clamp01((vh * 0.82 - gRect.top) / Math.max(280, gRect.height * 0.55));
-            genealogyPaths.forEach((path) => {
-                const len = path.__scLen || 600;
-                const offset = len * (1 - smooth(drawProgress));
-                path.style.strokeDashoffset = `${offset.toFixed(1)}`;
-            });
-        }
 
         // Signature Move 1: Persistent Chronology Trace Rail (1962 - 2026)
         const rootRect = root.getBoundingClientRect();
@@ -596,10 +573,259 @@ export function initScrollCraftHistory() {
         });
     }
 
-    // 5. Interactive Pioneer Genealogy Filter (Act 4)
+    // 5. Interactive Pioneer Genealogy & Auto-Cascade Animation (Act 4)
     const pioneerFilterBtns = Array.from(root.querySelectorAll('[data-genealogy-filter]'));
     const genealogyBlocks = Array.from(root.querySelectorAll('[data-genealogy-block]'));
     const clusterCards = Array.from(root.querySelectorAll('[data-genealogy-cluster]'));
+    const actGenealogy = document.getElementById('act-genealogy');
+
+    const gNodes = {
+        rootBangunan: root.querySelector('[data-genealogy-node="root-bangunan"]'),
+        rootMesin: root.querySelector('[data-genealogy-node="root-mesin"]'),
+        inputBangunan: root.querySelector('[data-genealogy-node="input-bangunan"]'),
+        inputMesin: root.querySelector('[data-genealogy-node="input-mesin"]'),
+        inputListrik: root.querySelector('[data-genealogy-node="input-listrik"]'),
+        inputElektronika: root.querySelector('[data-genealogy-node="input-elektronika"]'),
+        inputTik: root.querySelector('[data-genealogy-node="input-tik"]'),
+    };
+
+    const gLines = {
+        bangunanTop: root.querySelector('[data-genealogy-line="bangunan-top"]'),
+        bangunanBadge: root.querySelector('[data-genealogy-badge="bangunan-evolusi"]'),
+        bangunanBottom: root.querySelector('[data-genealogy-line="bangunan-bottom"]'),
+        mesinStem: root.querySelector('[data-genealogy-path="mesin-stem"]'),
+        mesinJunction: root.querySelector('[data-genealogy-circle="mesin-junction"]'),
+        mesinBadge: root.querySelector('[data-genealogy-badge="mesin-branch"]'),
+        branchMesin: root.querySelector('[data-genealogy-path="branch-mesin"]'),
+        branchListrik: root.querySelector('[data-genealogy-path="branch-listrik"]'),
+        mesinElekTop: root.querySelector('[data-genealogy-line="mesin-elek-top"]'),
+        mesinElekBadge: root.querySelector('[data-genealogy-badge="mesin-elek"]'),
+        mesinElekBottom: root.querySelector('[data-genealogy-line="mesin-elek-bottom"]'),
+        listrikTikTop: root.querySelector('[data-genealogy-line="listrik-tik-top"]'),
+        listrikTikBadge: root.querySelector('[data-genealogy-badge="listrik-tik"]'),
+        listrikTikBottom: root.querySelector('[data-genealogy-line="listrik-tik-bottom"]'),
+    };
+
+    // Initialize and cache SVG path lengths
+    const gSvgPaths = [gLines.mesinStem, gLines.branchMesin, gLines.branchListrik].filter(Boolean);
+    gSvgPaths.forEach((path) => {
+        try {
+            const len = path.getTotalLength ? path.getTotalLength() : 60;
+            path.__len = len;
+            path.style.strokeDasharray = `${len}`;
+            path.style.strokeDashoffset = reduceMotion ? '0' : `${len}`;
+        } catch (e) {
+            path.__len = 60;
+        }
+    });
+
+    let cascadeTimeouts = [];
+    const clearCascadeTimers = () => {
+        cascadeTimeouts.forEach((t) => clearTimeout(t));
+        cascadeTimeouts = [];
+    };
+
+    const pulseNode = (nodeEl, pulseClass) => {
+        if (!nodeEl) return;
+        nodeEl.classList.remove('animate-node-pulse-blue', 'animate-node-pulse-orange', 'animate-node-pulse-cyan');
+        void nodeEl.offsetWidth;
+        nodeEl.classList.add(pulseClass);
+    };
+
+    const setLineActive = (el, active) => {
+        if (!el) return;
+        el.style.transform = active ? 'scaleY(1)' : 'scaleY(0)';
+    };
+
+    const setBadgeActive = (el, active) => {
+        if (!el) return;
+        el.style.opacity = active ? '1' : '0';
+        el.style.transform = active ? 'translateY(0) scale(1)' : 'translateY(-4px) scale(0.95)';
+    };
+
+    const setPathActive = (el, active) => {
+        if (!el) return;
+        const len = el.__len || 60;
+        el.style.strokeDashoffset = active ? '0' : `${len}`;
+    };
+
+    const setJunctionActive = (el, active) => {
+        if (!el) return;
+        el.style.transform = active ? 'scale(1)' : 'scale(0)';
+    };
+
+    const resetCascade = (branch = 'all') => {
+        if (branch === 'all' || branch === 'bangunan') {
+            setLineActive(gLines.bangunanTop, false);
+            setBadgeActive(gLines.bangunanBadge, false);
+            setLineActive(gLines.bangunanBottom, false);
+            if (gNodes.inputBangunan) {
+                gNodes.inputBangunan.style.opacity = '0.35';
+                gNodes.inputBangunan.style.transform = 'translateX(-50%) scale(0.7)';
+            }
+        }
+        if (branch === 'all' || branch === 'mesin') {
+            setPathActive(gLines.mesinStem, false);
+            setJunctionActive(gLines.mesinJunction, false);
+            setBadgeActive(gLines.mesinBadge, false);
+            setPathActive(gLines.branchMesin, false);
+            setPathActive(gLines.branchListrik, false);
+            if (gNodes.inputMesin) {
+                gNodes.inputMesin.style.opacity = '0.35';
+                gNodes.inputMesin.style.transform = 'translateX(-50%) scale(0.7)';
+            }
+            if (gNodes.inputListrik) {
+                gNodes.inputListrik.style.opacity = '0.35';
+                gNodes.inputListrik.style.transform = 'translateX(-50%) scale(0.7)';
+            }
+            setLineActive(gLines.mesinElekTop, false);
+            setBadgeActive(gLines.mesinElekBadge, false);
+            setLineActive(gLines.mesinElekBottom, false);
+            if (gNodes.inputElektronika) {
+                gNodes.inputElektronika.style.opacity = '0.35';
+                gNodes.inputElektronika.style.transform = 'translateX(-50%) scale(0.7)';
+            }
+            setLineActive(gLines.listrikTikTop, false);
+            setBadgeActive(gLines.listrikTikBadge, false);
+            setLineActive(gLines.listrikTikBottom, false);
+            if (gNodes.inputTik) {
+                gNodes.inputTik.style.opacity = '0.35';
+                gNodes.inputTik.style.transform = 'translateX(-50%) scale(0.7)';
+            }
+        }
+    };
+
+    const triggerGenealogyCascade = (branch = 'all') => {
+        clearCascadeTimers();
+
+        if (reduceMotion) {
+            setLineActive(gLines.bangunanTop, true);
+            setBadgeActive(gLines.bangunanBadge, true);
+            setLineActive(gLines.bangunanBottom, true);
+            setPathActive(gLines.mesinStem, true);
+            setJunctionActive(gLines.mesinJunction, true);
+            setBadgeActive(gLines.mesinBadge, true);
+            setPathActive(gLines.branchMesin, true);
+            setPathActive(gLines.branchListrik, true);
+            setLineActive(gLines.mesinElekTop, true);
+            setBadgeActive(gLines.mesinElekBadge, true);
+            setLineActive(gLines.mesinElekBottom, true);
+            setLineActive(gLines.listrikTikTop, true);
+            setBadgeActive(gLines.listrikTikBadge, true);
+            setLineActive(gLines.listrikTikBottom, true);
+            Object.values(gNodes).forEach((n) => {
+                if (n) {
+                    n.style.opacity = '1';
+                    n.style.transform = 'translateX(-50%) scale(1)';
+                }
+            });
+            return;
+        }
+
+        // 1. Reset branches to unconnected state
+        resetCascade(branch);
+
+        // 2. Step 1: Root Output Nodes Pulse (T = 0ms)
+        if (branch === 'all' || branch === 'bangunan') {
+            pulseNode(gNodes.rootBangunan, 'animate-node-pulse-blue');
+        }
+        if (branch === 'all' || branch === 'mesin') {
+            pulseNode(gNodes.rootMesin, 'animate-node-pulse-orange');
+        }
+
+        // 3. Step 2: Primary Lines Flow Downward (T = 180ms)
+        cascadeTimeouts.push(setTimeout(() => {
+            if (branch === 'all' || branch === 'bangunan') {
+                setLineActive(gLines.bangunanTop, true);
+                setBadgeActive(gLines.bangunanBadge, true);
+                setLineActive(gLines.bangunanBottom, true);
+            }
+            if (branch === 'all' || branch === 'mesin') {
+                setPathActive(gLines.mesinStem, true);
+            }
+        }, 180));
+
+        // 4. Step 3: SVG Fork Junction & Branches Split (T = 360ms)
+        cascadeTimeouts.push(setTimeout(() => {
+            if (branch === 'all' || branch === 'mesin') {
+                setJunctionActive(gLines.mesinJunction, true);
+                setBadgeActive(gLines.mesinBadge, true);
+                setPathActive(gLines.branchMesin, true);
+                setPathActive(gLines.branchListrik, true);
+            }
+        }, 360));
+
+        // 5. Step 4: Row 1 Cards Receive Connection (T = 650ms)
+        cascadeTimeouts.push(setTimeout(() => {
+            if (branch === 'all' || branch === 'bangunan') {
+                if (gNodes.inputBangunan) {
+                    gNodes.inputBangunan.style.opacity = '1';
+                    gNodes.inputBangunan.style.transform = 'translateX(-50%) scale(1)';
+                    pulseNode(gNodes.inputBangunan, 'animate-node-pulse-blue');
+                }
+            }
+            if (branch === 'all' || branch === 'mesin') {
+                if (gNodes.inputMesin) {
+                    gNodes.inputMesin.style.opacity = '1';
+                    gNodes.inputMesin.style.transform = 'translateX(-50%) scale(1)';
+                    pulseNode(gNodes.inputMesin, 'animate-node-pulse-orange');
+                }
+                if (gNodes.inputListrik) {
+                    gNodes.inputListrik.style.opacity = '1';
+                    gNodes.inputListrik.style.transform = 'translateX(-50%) scale(1)';
+                    pulseNode(gNodes.inputListrik, 'animate-node-pulse-cyan');
+                }
+            }
+        }, 650));
+
+        // 6. Step 5: Secondary Connectors Grow Down to Row 2 (T = 850ms)
+        cascadeTimeouts.push(setTimeout(() => {
+            if (branch === 'all' || branch === 'mesin') {
+                setLineActive(gLines.mesinElekTop, true);
+                setBadgeActive(gLines.mesinElekBadge, true);
+                setLineActive(gLines.mesinElekBottom, true);
+
+                setLineActive(gLines.listrikTikTop, true);
+                setBadgeActive(gLines.listrikTikBadge, true);
+                setLineActive(gLines.listrikTikBottom, true);
+            }
+        }, 850));
+
+        // 7. Step 6: Row 2 Cards Receive Connection (T = 1100ms)
+        cascadeTimeouts.push(setTimeout(() => {
+            if (branch === 'all' || branch === 'mesin') {
+                if (gNodes.inputElektronika) {
+                    gNodes.inputElektronika.style.opacity = '1';
+                    gNodes.inputElektronika.style.transform = 'translateX(-50%) scale(1)';
+                    pulseNode(gNodes.inputElektronika, 'animate-node-pulse-orange');
+                }
+                if (gNodes.inputTik) {
+                    gNodes.inputTik.style.opacity = '1';
+                    gNodes.inputTik.style.transform = 'translateX(-50%) scale(1)';
+                    pulseNode(gNodes.inputTik, 'animate-node-pulse-cyan');
+                }
+            }
+        }, 1100));
+    };
+
+    // Pre-set cascade lines initially to scaleY(0) if motion enabled
+    if (!reduceMotion) {
+        resetCascade('all');
+    }
+
+    // Auto-cascade on viewport enter (Threshold: 0.22)
+    let genealogyCascadeTriggered = false;
+    if (actGenealogy && window.IntersectionObserver) {
+        const genealogyObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !genealogyCascadeTriggered) {
+                    genealogyCascadeTriggered = true;
+                    triggerGenealogyCascade('all');
+                }
+            });
+        }, { threshold: 0.22 });
+        genealogyObserver.observe(actGenealogy);
+    }
 
     pioneerFilterBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -628,6 +854,9 @@ export function initScrollCraftHistory() {
                 const match = filter === 'all' || rootOrigin === filter;
                 card.style.opacity = match ? '1' : '0.45';
             });
+
+            // Re-trigger top-down cascade for selected branch
+            triggerGenealogyCascade(filter);
         });
     });
 

@@ -9,6 +9,7 @@ import { initReveal } from './public/sections/reveal';
 import { initParallaxGallery } from './public/sections/parallax-gallery';
 import { initMarkers } from './public/sections/marker';
 import { initScrollCraftHistory } from './public/scrollcraft-history';
+import { initFloatingPartners } from './public/sections/floating-partners';
 
 function initNavbarAndDrawers() {
     const megaToggle = document.getElementById('mega-menu-toggle');
@@ -363,4 +364,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroSection();
     initInteractivePhysics();
     initScrollCraftHistory();
+    initFloatingPartners();
 });
