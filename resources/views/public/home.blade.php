@@ -26,8 +26,8 @@
                 poster="/media/intro.jpg?v={{ $introVer }}"
                 class="w-full h-full object-cover"
             >
-                <source src="/media/intro.mp4?v={{ $introVer }}" type="video/mp4">
                 <source src="/media/intro.webm?v={{ $introVer }}" type="video/webm">
+                <source src="/media/intro.mp4?v={{ $introVer }}" type="video/mp4">
             </video>
 
             {{-- Minimalist Bottom Progress Line --}}
