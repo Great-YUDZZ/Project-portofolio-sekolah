@@ -277,10 +277,10 @@
     // 4 Columns: outer = visible on mobile/desktop; inner = visible on xl desktop only.
     // speed = px/sec upward, depth = mouse tilt strength, offset = initial phase (0..1).
     $partnerColumns = [
-        ['id' => 'left-outer',  'pos' => 'left-[1%] sm:left-[1.5%]',       'vis' => 'flex',           'speed' => 34, 'depth' => 20,  'offset' => 0.00, 'items' => ['daikin', 'honda', 'toyota', 'telkom', 'pln', 'yamaha']],
-        ['id' => 'left-inner',  'pos' => 'left-[16%] 2xl:left-[17%]',     'vis' => 'hidden xl:flex', 'speed' => 24, 'depth' => 12,  'offset' => 0.52, 'items' => ['nissan', 'jinom', 'nevelop', 'imaji', 'schneider', 'casa_amertha']],
-        ['id' => 'right-inner', 'pos' => 'right-[16%] 2xl:right-[17%]',    'vis' => 'hidden xl:flex', 'speed' => 28, 'depth' => -12, 'offset' => 0.28, 'items' => ['komatsu', 'damar_bumi', 'arta_yasa', 'bnsp_lsp', 'united_tractors', 'taksu_tech']],
-        ['id' => 'right-outer', 'pos' => 'right-[1%] sm:right-[1.5%]',      'vis' => 'flex',           'speed' => 38, 'depth' => -20, 'offset' => 0.74, 'items' => ['bamboomedia', 'biznet', 'panasonic', 'apitu', 'iai_bali', 'bkk_disnaker']],
+        ['id' => 'left-outer',  'pos' => 'left-[1%] sm:left-[2%] xl:left-[3%]',            'vis' => 'flex',           'speed' => 34, 'depth' => 20,  'offset' => 0.00, 'items' => ['daikin', 'honda', 'toyota', 'telkom', 'pln', 'yamaha']],
+        ['id' => 'left-inner',  'pos' => 'left-[18.5%] xl:left-[20.5%] 2xl:left-[21%]',    'vis' => 'hidden xl:flex', 'speed' => 24, 'depth' => 12,  'offset' => 0.52, 'items' => ['nissan', 'jinom', 'nevelop', 'imaji', 'schneider', 'casa_amertha']],
+        ['id' => 'right-inner', 'pos' => 'right-[18.5%] xl:right-[20.5%] 2xl:right-[21%]',  'vis' => 'hidden xl:flex', 'speed' => 28, 'depth' => -12, 'offset' => 0.28, 'items' => ['komatsu', 'damar_bumi', 'arta_yasa', 'bnsp_lsp', 'united_tractors', 'taksu_tech']],
+        ['id' => 'right-outer', 'pos' => 'right-[1%] sm:right-[2%] xl:right-[3%]',           'vis' => 'flex',           'speed' => 38, 'depth' => -20, 'offset' => 0.74, 'items' => ['bamboomedia', 'biznet', 'panasonic', 'apitu', 'iai_bali', 'bkk_disnaker']],
     ];
 @endphp
 
@@ -288,7 +288,7 @@
 <div id="partner-cards-container"
      class="absolute inset-0 w-full max-w-[1440px] mx-auto pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0%,#000_12%,#000_88%,transparent_100%)] select-none">
     @foreach ($partnerColumns as $col)
-        <div class="partner-flow-column absolute top-0 bottom-0 {{ $col['pos'] }} {{ $col['vis'] }} w-12 sm:w-14 lg:w-[175px] xl:w-[190px] will-change-transform"
+        <div class="partner-flow-column absolute top-0 bottom-0 {{ $col['pos'] }} {{ $col['vis'] }} w-12 sm:w-14 lg:w-[165px] xl:w-[175px] 2xl:w-[180px] will-change-transform"
              data-column="{{ $col['id'] }}" data-speed="{{ $col['speed'] }}" data-depth="{{ $col['depth'] }}" data-offset="{{ $col['offset'] }}">
             @foreach ($col['items'] as $key)
                 @php $p = $flowPartners[$key]; @endphp

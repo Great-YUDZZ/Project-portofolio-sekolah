@@ -642,13 +642,15 @@
                     {{-- 4 Vertical Flow Columns --}}
                     @include('partials.partner-flow-columns')
 
-                    {{-- Center Anchor Layer: Logo Sekolah & Judul Minimalis (Di Luar Box) --}}
-                    <div id="partner-center-anchor" class="relative z-20 max-w-sm mx-auto text-center pointer-events-auto select-none">
-                        {{-- School Logo Mark --}}
-                        <div class="inline-flex flex-col items-center justify-center mb-4">
-                            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-white/95 border-2 border-ink p-3 shadow-md flex items-center justify-center hover:scale-105 transition-transform duration-300">
-                                <img src="/images/logo_skensa.png" alt="Logo SMK Negeri 1 Denpasar" class="w-full h-full object-contain" />
-                            </div>
+                    {{-- Center Anchor Layer: Logo Sekolah & Judul Minimalis (Freestanding Tanpa Card Box) --}}
+                    <div id="partner-center-anchor" class="relative z-20 max-w-xs sm:max-w-sm mx-auto text-center pointer-events-auto select-none">
+                        {{-- School Logo Mark (Freestanding, Besar & Jelas Tanpa Wadah Card) --}}
+                        <div class="inline-flex flex-col items-center justify-center mb-4 sm:mb-5">
+                            <img
+                                src="/images/logo_skensa.png"
+                                alt="Logo SMK Negeri 1 Denpasar"
+                                class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-contain drop-shadow-md hover:scale-105 transition-transform duration-300 pointer-events-none"
+                            />
                         </div>
 
                         {{-- Minimalist Title --}}
