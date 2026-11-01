@@ -402,6 +402,57 @@ export function initScrollCraftHistory() {
             }
         });
 
+        // Act 2 Continuous Rolling Year Counter (1962 -> 1965 -> 1976)
+        if (originStickyYearEl && originSteps.length >= 3) {
+            const eyeLine = vh * 0.35;
+            const r0 = originSteps[0].getBoundingClientRect();
+            const r1 = originSteps[1].getBoundingClientRect();
+            const r2 = originSteps[2].getBoundingClientRect();
+
+            let dynamicYear = 1962;
+            let activeStepIdx = 0;
+
+            if (r1.top > eyeLine) {
+                const span01 = Math.max(1, r1.top - r0.top);
+                const p01 = clamp01((eyeLine - r0.top) / span01);
+                const easedP = p01 < 0.25 ? 0 : (p01 - 0.25) / 0.75;
+                dynamicYear = lerp(1962, 1965, clamp01(easedP));
+                activeStepIdx = p01 > 0.65 ? 1 : 0;
+            } else if (r2.top > eyeLine) {
+                const span12 = Math.max(1, r2.top - r1.top);
+                const p12 = clamp01((eyeLine - r1.top) / span12);
+                const easedP = p12 < 0.2 ? 0 : (p12 - 0.2) / 0.8;
+                dynamicYear = lerp(1965, 1976, clamp01(easedP));
+                activeStepIdx = p12 > 0.65 ? 2 : 1;
+            } else {
+                dynamicYear = 1976;
+                activeStepIdx = 2;
+            }
+
+            const roundedYear = Math.round(dynamicYear);
+            if (originStickyYearEl.textContent !== String(roundedYear)) {
+                originStickyYearEl.textContent = String(roundedYear);
+            }
+
+            const stepLabels = [
+                '01 / 03 • Menumpang Kelas Sore',
+                '02 / 03 • Dua Jurusan Pertama',
+                '03 / 03 • Bengkel Kerja Lapangan'
+            ];
+
+            if (originStickyStepEl && originStickyStepEl.textContent !== stepLabels[activeStepIdx]) {
+                originStickyStepEl.textContent = stepLabels[activeStepIdx];
+            }
+
+            originProgressDots.forEach((dot, dIdx) => {
+                const isActive = dIdx === activeStepIdx;
+                dot.classList.toggle('bg-[#2563EB]', isActive);
+                dot.classList.toggle('w-8', isActive);
+                dot.classList.toggle('bg-slate-300', !isActive);
+                dot.classList.toggle('w-3', !isActive);
+            });
+        }
+
         // Signature Move 2: Self-Drawing Curriculum Genealogy SVG Paths
         if (genealogySection && genealogyPaths.length && !reduceMotion) {
             const gRect = genealogySection.getBoundingClientRect();
@@ -459,7 +510,7 @@ export function initScrollCraftHistory() {
         window.__skensaLenis.on('scroll', requestTick);
     }
 
-    // 4. Interactive Jump Buttons on Persistent Chronology Trace Rail & Act 3 Pan Stepper
+    // 4. Interactive Jump Buttons on Persistent Chronology Trace Rail
     const scrollToTargetY = (targetY) => {
         if (window.__skensaLenis) {
             window.__skensaLenis.scrollTo(targetY, { duration: 1.05 });
@@ -468,42 +519,12 @@ export function initScrollCraftHistory() {
         }
     };
 
-    const scrollToMilestoneIndex = (idx) => {
-        const panAct = acts.find((a) => a.type === 'pan');
-        if (!panAct) return;
-        measureLayout();
-        const vh = window.innerHeight || 900;
-        const mobile = isSmallScreen();
-        if (!reduceMotion && !mobile) {
-            const ratio = clamp01(idx / 5.2);
-            const targetY = panAct.top + ratio * Math.max(0, panAct.height - vh);
-            scrollToTargetY(targetY);
-        } else {
-            const targetCard = root.querySelector(`[data-pan-card-index="${idx}"]`);
-            if (targetCard) {
-                targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            }
-        }
-    };
-
-    panStepButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const idx = parseInt(btn.getAttribute('data-pan-step-btn'), 10) || 0;
-            scrollToMilestoneIndex(idx);
-        });
-    });
-
     traceNodeBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             const targetSelector = btn.getAttribute('data-sc-trace-target');
-            const milestoneIdx = btn.getAttribute('data-sc-trace-milestone');
             if (traceMenu && !traceMenu.classList.contains('hidden')) {
                 traceMenu.classList.add('hidden');
                 traceMenuBtn?.setAttribute('aria-expanded', 'false');
-            }
-            if (milestoneIdx !== null && milestoneIdx !== '') {
-                scrollToMilestoneIndex(parseInt(milestoneIdx, 10));
-                return;
             }
             if (targetSelector) {
                 const targetEl = document.querySelector(targetSelector);
@@ -542,42 +563,6 @@ export function initScrollCraftHistory() {
                 traceMenuBtn.setAttribute('aria-expanded', 'false');
             }
         });
-    }
-
-    // Act 2 Sticky Aside Step Synchronization
-    let currentOriginStepIdx = -1;
-    const setOriginStep = (idx) => {
-        if (idx === currentOriginStepIdx || !originStepMeta[idx]) return;
-        currentOriginStepIdx = idx;
-
-        if (originStickyYearEl) {
-            originStickyYearEl.textContent = originStepMeta[idx].year;
-        }
-        if (originStickyStepEl) {
-            originStickyStepEl.textContent = originStepMeta[idx].label;
-        }
-        originProgressDots.forEach((dot, dIdx) => {
-            const isActive = dIdx === idx;
-            dot.classList.toggle('bg-[#2563EB]', isActive);
-            dot.classList.toggle('w-8', isActive);
-            dot.classList.toggle('bg-slate-300', !isActive);
-            dot.classList.toggle('w-3', !isActive);
-        });
-    };
-
-    if (originSteps.length && 'IntersectionObserver' in window) {
-        const originObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const stepIdx = parseInt(entry.target.getAttribute('data-origin-step'), 10) || 0;
-                        setOriginStep(stepIdx);
-                    }
-                });
-            },
-            { rootMargin: '-25% 0px -45% 0px', threshold: 0.1 }
-        );
-        originSteps.forEach((st) => originObserver.observe(st));
     }
 
     // 5. Interactive Pioneer Genealogy Filter (Act 4)

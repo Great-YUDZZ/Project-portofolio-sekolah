@@ -205,98 +205,101 @@
     </section>
 
     {{-- =====================================================================
-         ACT 3: THE TURN & PEAK - 6 TONGGAK SEJARAH (pan Horizontal Rail)
+         ACT 3: THE TURN & PEAK - 6 TONGGAK SEJARAH (Linimasa Vertikal Editorial)
          ===================================================================== --}}
-    <section id="act-milestones" data-sc-act="pan" data-sc-span="3.8" class="bg-[#F0F2F5] text-[#0E1133] border-b border-slate-300">
-        <div data-sc-stage class="sc-stage flex flex-col justify-center py-8 sm:py-10 sc-blueprint-grid">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mb-5">
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-                    <div>
-                        <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
-                            Babak II • Lintasan Tonggak Sejarah &amp; Perubahan Institusional (6 Periode Kunci)
-                        </span>
-                        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-[#0E1133] mt-1">
-                            Enam Lompatan Besar dari STM Negeri Menuju SMK Pusat Keunggulan
-                        </h2>
-                    </div>
-
-                    {{-- Quick Step Selector 1..6 --}}
-                    <div class="flex flex-wrap items-center gap-1.5" aria-label="Lompat ke Periode Tonggak Sejarah">
-                        @foreach($milestones as $idx => $ms)
-                            <button
-                                type="button"
-                                data-pan-step-btn="{{ $idx }}"
-                                class="px-3 py-1.5 rounded-lg border text-xs font-mono font-bold transition-colors cursor-pointer {{ $idx === 0 ? 'bg-[#0E1133] text-white border-[#0E1133]' : 'bg-white text-[#0E1133] border-slate-200 hover:border-blue-500' }}"
-                            >
-                                {{ $ms['number'] }} • {{ $ms['year'] }}
-                            </button>
-                        @endforeach
-                    </div>
-                </div>
-
-                {{-- Horizontal Track Progress Bar --}}
-                <div class="mt-4 h-1.5 w-full bg-slate-300 rounded-full overflow-hidden">
-                    <div id="sc-pan-progress-fill" class="h-full bg-[#2563EB] origin-left scale-x-0 transition-transform duration-75"></div>
-                </div>
+    <section id="act-milestones" data-sc-act="flow" class="py-20 lg:py-28 bg-white text-[#0E1133] border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16 lg:mb-24" data-sc-in>
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB]">
+                    Babak II • Lintasan Tonggak Sejarah (1962 - 2026)
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#0E1133] mt-2 tracking-tight">
+                    Enam Lompatan Besar Menuju SMK Pusat Keunggulan
+                </h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
+                    Perjalanan institusional 64 tahun ditata dalam enam fase transformasi bersejarah, dari kelas sore perintisan hingga kepemimpinan vokasi modern.
+                </p>
             </div>
 
-            {{-- Horizontal Pan Rail --}}
-            <div class="w-full overflow-x-auto lg:overflow-visible px-4 sm:px-6 lg:px-12">
-                <div data-sc-pan="0.04" class="flex items-stretch gap-6 w-max pr-12 lg:pr-24">
+            {{-- Alternating Vertical Timeline Container --}}
+            <div class="relative max-w-5xl mx-auto">
+                {{-- Continuous Vertical Spine --}}
+                <div class="absolute left-6 lg:left-1/2 top-4 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#2563EB] via-blue-300 to-slate-200" aria-hidden="true"></div>
+
+                <div class="space-y-12 sm:space-y-16 lg:space-y-20">
                     @foreach($milestones as $idx => $ms)
-                        <article
+                        @php
+                            $isEven = ($idx % 2 === 0);
+                        @endphp
+                        <div
+                            id="milestone-{{ $idx }}"
                             data-pan-card-index="{{ $idx }}"
-                            class="w-[86vw] sm:w-[500px] lg:w-[540px] shrink-0 rounded-2xl bg-white border border-slate-200/90 shadow-lg p-6 sm:p-7 flex flex-col justify-between transition-shadow"
+                            data-sc-in
+                            class="relative flex flex-col lg:flex-row items-start lg:items-center {{ $isEven ? 'lg:flex-row' : 'lg:flex-row-reverse' }} justify-between group"
                         >
-                            <div>
-                                {{-- Card Header --}}
-                                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
-                                    <div class="flex items-center gap-2.5">
-                                        <span class="w-8 h-8 rounded-lg bg-[#0E1133] text-white font-mono text-xs font-extrabold flex items-center justify-center">
-                                            {{ $ms['number'] }}
-                                        </span>
-                                        <span class="px-3 py-1 rounded-md bg-[#2563EB] text-white font-mono text-xs font-bold">
-                                            {{ $ms['date_badge'] }}
-                                        </span>
-                                    </div>
-                                    <span class="text-xs font-semibold text-slate-500">
-                                        {{ $ms['phase'] }}
-                                    </span>
-                                </div>
-
-                                {{-- Decree Badge --}}
-                                <div class="mt-3 inline-block px-2.5 py-1 rounded bg-slate-100 border border-slate-200 font-mono text-[11px] text-[#0E1133] font-semibold">
-                                    {{ $ms['decree'] }}
-                                </div>
-
-                                <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-3 leading-snug">
-                                    {{ $ms['title'] }}
-                                </h3>
-
-                                <p class="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
-                                    {{ $ms['summary'] }}
-                                </p>
-                            </div>
-
-                            {{-- Highlights & Optional Real Archival Photo --}}
-                            <div class="mt-5 pt-4 border-t border-slate-100 space-y-2.5">
-                                @if(!empty($ms['photo']))
-                                    <div class="relative h-32 rounded-xl overflow-hidden border border-slate-200 mb-3">
-                                        <img src="{{ $ms['photo'] }}" alt="{{ $ms['title'] }}" class="w-full h-full object-cover">
-                                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0E1133]/90 via-[#0E1133]/50 to-transparent px-3 py-1.5">
-                                            <span class="text-[11px] font-medium text-white">{{ $ms['photo_caption'] ?? '' }}</span>
+                            {{-- Card Column (takes ~45% width on desktop) --}}
+                            <div class="w-full pl-14 lg:pl-0 lg:w-[calc(50%-2.5rem)] {{ $isEven ? 'lg:pr-4' : 'lg:pl-4' }}">
+                                <article class="p-6 sm:p-7 rounded-2xl bg-[#F8F9FA] border border-slate-200 shadow-2xs hover:border-blue-400 hover:shadow-md transition-all">
+                                    {{-- Card Top Meta --}}
+                                    <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-7 h-7 rounded-lg bg-[#0E1133] text-white font-mono text-xs font-extrabold flex items-center justify-center">
+                                                {{ $ms['number'] }}
+                                            </span>
+                                            <span class="px-2.5 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-[#2563EB] font-mono text-xs font-bold">
+                                                {{ $ms['date_badge'] }}
+                                            </span>
                                         </div>
+                                        <span class="text-xs font-semibold text-slate-500">
+                                            {{ $ms['phase'] }}
+                                        </span>
                                     </div>
-                                @endif
 
-                                @foreach($ms['highlights'] as $hl)
-                                    <div class="p-3 rounded-xl bg-[#F8F9FA] border border-slate-200/80 text-xs">
-                                        <div class="font-bold text-[#0E1133]">{{ $hl['label'] }}</div>
-                                        <div class="text-slate-600 mt-0.5 leading-relaxed">{{ $hl['value'] }}</div>
+                                    {{-- Decree Badge --}}
+                                    <div class="mt-3 inline-block px-2.5 py-1 rounded bg-white border border-slate-200 font-mono text-[11px] text-[#0E1133] font-semibold">
+                                        {{ $ms['decree'] }}
                                     </div>
-                                @endforeach
+
+                                    <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#0E1133] mt-2.5 leading-snug">
+                                        {{ $ms['title'] }}
+                                    </h3>
+
+                                    <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                                        {{ $ms['summary'] }}
+                                    </p>
+
+                                    {{-- Optional Photo --}}
+                                    @if(!empty($ms['photo']))
+                                        <div class="mt-4 relative h-36 rounded-xl overflow-hidden border border-slate-200">
+                                            <img src="{{ $ms['photo'] }}" alt="{{ $ms['title'] }}" class="w-full h-full object-cover">
+                                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0E1133]/90 via-[#0E1133]/50 to-transparent px-3 py-1.5">
+                                                <span class="text-[11px] font-medium text-white">{{ $ms['photo_caption'] ?? '' }}</span>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    {{-- Highlights --}}
+                                    <div class="mt-4 pt-3 border-t border-slate-200 space-y-2">
+                                        @foreach($ms['highlights'] as $hl)
+                                            <div class="p-2.5 rounded-xl bg-white border border-slate-200/80 text-xs">
+                                                <span class="font-bold text-[#0E1133]">{{ $hl['label'] }}:</span>
+                                                <span class="text-slate-600 ml-1 leading-relaxed">{{ $hl['value'] }}</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </article>
                             </div>
-                        </article>
+
+                            {{-- Center Timeline Node --}}
+                            <div class="absolute left-6 lg:left-1/2 top-7 lg:top-1/2 -translate-x-1/2 lg:-translate-y-1/2 z-10 flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-white border-4 border-[#2563EB] shadow-md flex items-center justify-center font-mono font-extrabold text-[11px] text-[#0E1133] group-hover:scale-110 transition-transform">
+                                    {{ $ms['year'] }}
+                                </div>
+                            </div>
+
+                            {{-- Spacer Column for Desktop alternating balance --}}
+                            <div class="hidden lg:block lg:w-[calc(50%-2.5rem)]"></div>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -958,7 +961,7 @@
                     <button
                         type="button"
                         data-sc-trace-node="1"
-                        data-sc-trace-milestone="1"
+                        data-sc-trace-target="#milestone-1"
                         class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
                     >
                         1970-an • PELITA / N.95
@@ -966,7 +969,7 @@
                     <button
                         type="button"
                         data-sc-trace-node="2"
-                        data-sc-trace-milestone="2"
+                        data-sc-trace-target="#milestone-2"
                         class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
                     >
                         1977 • Gedung Ubung
@@ -974,7 +977,7 @@
                     <button
                         type="button"
                         data-sc-trace-node="3"
-                        data-sc-trace-milestone="3"
+                        data-sc-trace-target="#milestone-3"
                         class="w-full text-left px-3 py-2 rounded-lg font-medium text-[#0E1133] hover:bg-blue-50 hover:text-[#2563EB] transition-colors cursor-pointer"
                     >
                         1997 • SMKN 1 Denpasar
