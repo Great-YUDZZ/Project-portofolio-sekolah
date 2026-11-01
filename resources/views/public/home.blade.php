@@ -642,7 +642,7 @@
                     @include('partials.partner-flow-columns')
 
                     {{-- Center Anchor Layer: Logo Sekolah & Identitas Pusat Keunggulan --}}
-                    <div id="partner-center-anchor" class="relative z-20 max-w-sm lg:max-w-md mx-auto text-center px-4 py-6 sm:p-7 rounded-3xl bg-white/90 sm:bg-white/80 backdrop-blur-md border border-line/70 shadow-sm pointer-events-auto">
+                    <div id="partner-center-anchor" class="relative z-20 w-[264px] sm:w-[350px] lg:w-full lg:max-w-md mx-auto text-center px-3.5 py-5 sm:p-7 rounded-3xl bg-white/95 backdrop-blur-md border border-line/80 shadow-md pointer-events-auto">
                         {{-- School Crest Badge --}}
                         <div class="inline-flex flex-col items-center justify-center mb-3 sm:mb-4">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-paper border-2 border-ink p-2 sm:p-2.5 shadow-md flex items-center justify-center hover:scale-105 transition-transform duration-300">
