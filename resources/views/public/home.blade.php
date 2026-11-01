@@ -4,15 +4,16 @@
 
 @section('content')
 
-    {{-- Remotion + Three.js 3D Minimalist Intro Overlay (Auto-Play, Non-Blocking Audio & Skip) --}}
+    {{-- Remotion + Three.js 3D Minimalist Intro Overlay (Auto-Play) --}}
     @php
-        $introVer = @filemtime(public_path('media/intro.mp4')) ?: '55';
+        $introVer = @filemtime(public_path('media/intro.webm')) ?: '56';
     @endphp
     <div
         id="skensa-intro-overlay"
         data-intro-version="{{ $introVer }}"
         aria-hidden="false"
-        class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none bg-[#071C3F]"
+        class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden select-none bg-[#071C3F] cursor-pointer"
+        title="Klik di mana saja atau tekan ESC untuk melanjutkan"
     >
         <div data-intro-top class="absolute inset-x-0 top-0 h-1/2 bg-[#071C3F] border-b border-paper/10 will-change-transform"></div>
         <div data-intro-bottom class="absolute inset-x-0 bottom-0 h-1/2 bg-[#071C3F] border-t border-paper/10 will-change-transform"></div>
@@ -25,32 +26,8 @@
                 poster="/media/intro.jpg?v={{ $introVer }}"
                 class="w-full h-full object-cover"
             >
-                <source src="/media/intro.mp4?v={{ $introVer }}" type="video/mp4">
                 <source src="/media/intro.webm?v={{ $introVer }}" type="video/webm">
             </video>
-
-            {{-- Minimalist Non-Blocking Controls (Audio Toggle & Skip Intro) --}}
-            <div class="absolute bottom-6 right-6 z-20 flex items-center gap-2.5">
-                <button
-                    type="button"
-                    data-intro-audio-toggle
-                    aria-label="Aktifkan atau matikan suara intro"
-                    class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-[#071C3F]/75 backdrop-blur-sm border border-paper/15 text-paper/80 hover:text-paper hover:border-[#35B8C4]/60 text-xs font-medium tracking-wider uppercase transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#35B8C4]"
-                >
-                    <span data-intro-audio-dot class="w-2 h-2 rounded-full bg-[#35B8C4]"></span>
-                    <span data-intro-audio-label>Suara</span>
-                </button>
-
-                <button
-                    type="button"
-                    data-intro-skip
-                    aria-label="Lewati intro"
-                    class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-[#071C3F]/75 backdrop-blur-sm border border-paper/15 text-paper/80 hover:text-paper hover:border-[#35B8C4]/60 text-xs font-medium tracking-wider uppercase transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#35B8C4]"
-                >
-                    <span>Lewati</span>
-                    <span class="text-[10px] text-paper/50 font-mono">ESC</span>
-                </button>
-            </div>
 
             {{-- Minimalist Bottom Progress Line --}}
             <div class="absolute bottom-0 inset-x-0 h-[2px] bg-paper/10 pointer-events-none">

@@ -190,6 +190,12 @@ export function initIntro() {
         runSplitReveal();
     });
 
+    overlay.addEventListener('click', () => {
+        if (overlay.style.display !== 'none' && overlay.dataset.closing !== '1') {
+            runSplitReveal();
+        }
+    });
+
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && overlay.style.display !== 'none' && overlay.dataset.closing !== '1') {
             runSplitReveal();
