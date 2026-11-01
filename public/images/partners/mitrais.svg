@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" fill="none">
+  <rect width="180" height="60" rx="8" fill="#FFFFFF"/>
+  <path d="M18 36L28 18l10 18H18z" fill="#00A651"/>
+  <path d="M28 36l10-18 10 18H28z" fill="#0072BC"/>
+  <text x="56" y="36" font-family="sans-serif" font-size="16" font-weight="800" fill="#231F20" letter-spacing="1">MITRAIS</text>
+</svg>

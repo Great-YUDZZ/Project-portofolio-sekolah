@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" fill="none">
+  <rect width="160" height="50" rx="6" fill="#FFFFFF"/>
+  <circle cx="28" cy="25" r="11" fill="#E11D48"/>
+  <text x="28" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">S</text>
+  <text x="48" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#0F172A" letter-spacing="1">SUITMEDIA</text>
+</svg>

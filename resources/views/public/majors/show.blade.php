@@ -527,13 +527,25 @@
                             <span class="block text-xs font-mono font-bold uppercase tracking-widest text-navy mb-3">
                                 Mitra Industri Khusus Jurusan {{ $major->code }}:
                             </span>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                                 @foreach($enrichedData['partners'] as $partner)
-                                    <div class="p-4 rounded-xl bg-paper border border-line flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-navy text-white flex items-center justify-center font-bold text-xs shrink-0">
-                                            🏢
+                                    @php
+                                        $pName = is_array($partner) ? ($partner['name'] ?? '') : $partner;
+                                        $pLogo = is_array($partner) ? ($partner['logo'] ?? '/images/partners/telkom.svg') : '/images/partners/telkom.svg';
+                                        $pSector = is_array($partner) ? ($partner['sector'] ?? 'Kemitraan DUDIKA Resmi') : 'Kemitraan DUDIKA Resmi';
+                                    @endphp
+                                    <div class="p-3.5 sm:p-4 rounded-2xl bg-paper border border-line flex items-center gap-3.5 hover:border-navy hover:shadow-sm transition-all duration-300 group">
+                                        <div class="w-16 h-12 px-2 py-1 rounded-xl bg-white border border-line/80 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300">
+                                            <img src="{{ asset($pLogo) }}" alt="{{ $pName }}" class="max-w-full max-h-full object-contain" loading="lazy">
                                         </div>
-                                        <span class="text-xs font-bold text-ink">{{ $partner }}</span>
+                                        <div class="min-w-0 flex-1">
+                                            <h4 class="text-xs sm:text-sm font-bold text-ink truncate group-hover:text-navy transition-colors">
+                                                {{ $pName }}
+                                            </h4>
+                                            <p class="text-[11px] font-mono text-ink-muted truncate mt-0.5">
+                                                {{ $pSector }}
+                                            </p>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

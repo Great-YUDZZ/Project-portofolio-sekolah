@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" fill="none">
+  <rect width="160" height="50" rx="6" fill="#FFFFFF"/>
+  <path d="M18 36L28 14l10 22h-5.5l-2-5H24.5l-2 5H18zm7.5-9h4l-2-5.5-2 5.5z" fill="#0696D7"/>
+  <text x="46" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#0696D7" letter-spacing="1">AUTODESK</text>
+</svg>

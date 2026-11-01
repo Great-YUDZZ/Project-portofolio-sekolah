@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" fill="none">
+  <rect width="180" height="60" rx="8" fill="#FFFFFF"/>
+  <path d="M22 42V18h12.5c5.5 0 9.2 3.6 9.2 8.8 0 4.2-2.5 7.2-6.5 8.2l7.8 7H37l-6.8-6.2h-3V42H22zm5.2-11h7.2c2.8 0 4.2-1.5 4.2-3.8s-1.4-3.8-4.2-3.8h-7.2V31z" fill="#005BAA"/>
+  <path d="M50 42V18h12c6.2 0 10.5 4.2 10.5 10.8 0 6.6-4.3 10.8-10.5 10.8H55.2V42H50zm5.2-5h6.8c3.5 0 5.5-2.5 5.5-5.8 0-3.3-2-5.8-5.5-5.8h-6.8V37z" fill="#E31E24"/>
+  <path d="M80 34c0 5.2 3.5 8.5 8.5 8.5 3.5 0 6.2-1.8 7.5-4.5l-4.5-2c-.8 1.5-1.8 2.2-3 2.2-2 0-3.2-1.5-3.2-3.8V18H80v16z" fill="#005BAA"/>
+  <path d="M104 42V18h5.2v24H104z" fill="#005BAA"/>
+  <path d="M118 42V18h5.2v24H118z" fill="#E31E24"/>
+  <text x="132" y="32" font-family="sans-serif" font-size="11" font-weight="bold" fill="#071C3F">BALI</text>
+  <text x="132" y="42" font-family="sans-serif" font-size="8" fill="#64748B">WILAYAH</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" fill="none">
+  <rect width="180" height="60" rx="8" fill="#FFFFFF"/>
+  <path d="M22 18h16l-10 12h12l-14 12h-6l10-12H20l12-12z" fill="#E30613"/>
+  <text x="54" y="36" font-family="sans-serif" font-size="16" font-weight="900" fill="#002D62" letter-spacing="1">SUZUKI</text>
+</svg>

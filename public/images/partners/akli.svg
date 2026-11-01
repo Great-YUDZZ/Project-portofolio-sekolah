@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" fill="none">
+  <rect width="160" height="50" rx="6" fill="#FFFFFF"/>
+  <circle cx="28" cy="25" r="12" fill="#D97706"/>
+  <path d="M28 17l-4 8h5l-2 8 7-9h-5l4-7h-5z" fill="#FFFFFF"/>
+  <text x="48" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#071C3F" letter-spacing="1">AKLI BALI</text>
+  <text x="48" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#64748B" letter-spacing="0.5">KONTRAKTOR LISTRIK</text>
+</svg>

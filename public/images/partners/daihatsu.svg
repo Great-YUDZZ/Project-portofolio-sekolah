@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" fill="none">
+  <rect width="160" height="50" rx="6" fill="#FFFFFF"/>
+  <path d="M22 13h14c9 0 15 5.5 15 12s-6 12-15 12H22V13zm7 19h7c5 0 8-3 8-7s-3-7-8-7h-7v14z" fill="#E60012"/>
+  <text x="62" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#E60012" letter-spacing="1.5">DAIHATSU</text>
+</svg>

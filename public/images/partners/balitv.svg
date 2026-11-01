@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" fill="none">
+  <rect width="160" height="50" rx="6" fill="#FFFFFF"/>
+  <rect x="18" y="14" width="22" height="22" rx="4" fill="#C41230"/>
+  <path d="M25 20l10 5-10 5V20z" fill="#FFFFFF"/>
+  <text x="48" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" fill="#0A2540" letter-spacing="1">BALI TV</text>
+</svg>

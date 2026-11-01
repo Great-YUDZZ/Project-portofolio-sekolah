@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" fill="none">
+  <rect width="180" height="60" rx="8" fill="#FFFFFF"/>
+  <path d="M28 17l10 5.8v11.5L28 40l-10-5.7V22.8L28 17z" fill="#2D3E50"/>
+  <path d="M25 25l-4 4 4 4m6-8l4 4-4 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="48" y="36" font-family="sans-serif" font-size="15" font-weight="800" fill="#2D3E50">dicoding</text>
+</svg>
