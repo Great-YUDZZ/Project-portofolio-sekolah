@@ -37,6 +37,7 @@ class ReviewController extends Controller
         $pendingPosts = $query->latest()->paginate(15);
 
         return view('panel.review.index', [
+            'posts' => $pendingPosts,
             'pendingPosts' => $pendingPosts,
             'user' => $user,
         ]);

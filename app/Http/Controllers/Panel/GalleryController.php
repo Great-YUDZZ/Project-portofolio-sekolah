@@ -10,6 +10,7 @@ use App\Models\Major;
 use App\Services\MediaService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -20,7 +21,7 @@ class GalleryController extends Controller
     {
         Gate::authorize('viewAny', GalleryAlbum::class);
 
-        $user = $request->user();
+        $user = $request->user() ?: Auth::user();
         $query = GalleryAlbum::query()->with(['major', 'creator'])->withCount('photos')->latest('event_date');
 
         // If guru, show albums belonging to their major or general

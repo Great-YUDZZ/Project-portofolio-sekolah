@@ -31,4 +31,9 @@ enum PostStatus: string
             self::Archived => 'bg-slate-100 text-slate-500 border-slate-300',
         };
     }
+
+    public function badgeColor(): string
+    {
+        return $this->badgeClasses();
+    }
 }

@@ -25,4 +25,9 @@ enum UserStatus: string
             self::Suspended => 'bg-rose-50 text-rose-700 border-rose-300',
         };
     }
+
+    public function badgeColor(): string
+    {
+        return $this->badgeClasses();
+    }
 }
