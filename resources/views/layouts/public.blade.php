@@ -176,7 +176,7 @@
                         <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-48 z-50">
                             <ul class="bg-white shadow-xl border border-slate-100">
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('history.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium">
+                                    <a href="{{ route('history.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('history.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Sejarah
                                     </a>
                                 </li>
@@ -186,12 +186,17 @@
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('gallery.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium">
-                                        Fasilitas
+                                    <a href="{{ route('facilities.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('facilities.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                        Fasilitas &amp; Lab
+                                    </a>
+                                </li>
+                                <li class="border-b border-slate-100">
+                                    <a href="{{ route('gallery.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('gallery.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                        Galeri Kegiatan
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('staff.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium">
+                                    <a href="{{ route('staff.index') }}" class="skensa-nav-dropdown-item block px-5 py-3.5 text-[13px] font-medium {{ request()->routeIs('staff.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Staff
                                     </a>
                                 </li>
@@ -372,10 +377,13 @@
                         <a href="{{ route('vision-mission.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('vision-mission.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Visi &amp; Misi
                         </a>
-                        <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
-                            Fasilitas &amp; Galeri
+                        <a href="{{ route('facilities.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('facilities.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
+                            Fasilitas &amp; Laboratorium
                         </a>
-                        <a href="{{ route('staff.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
+                        <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('gallery.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
+                            Galeri Kegiatan &amp; Dokumentasi
+                        </a>
+                        <a href="{{ route('staff.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('staff.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Direktori Guru &amp; Tendik
                         </a>
                     </div>
