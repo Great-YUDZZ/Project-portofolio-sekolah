@@ -38,9 +38,9 @@
                 <div class="relative group hidden sm:block">
                     <button
                         type="button"
-                        class="inline-flex items-center gap-2.5 py-2 text-[15px] font-medium text-[#0E1133] hover:text-black transition-colors cursor-pointer focus-visible:outline-none"
+                        class="inline-flex items-center gap-2.5 py-2 text-[15px] font-medium text-[#0E1133] hover:text-blue-600 transition-colors cursor-pointer focus-visible:outline-none"
                     >
-                        <svg class="w-4 h-4 text-[#0E1133] group-hover:text-black transition-colors" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+                        <svg class="w-4 h-4 text-[#0E1133] group-hover:text-blue-600 transition-colors" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
                             <circle cx="2.5" cy="2.5" r="1.75"/><circle cx="9" cy="2.5" r="1.75"/><circle cx="15.5" cy="2.5" r="1.75"/>
                             <circle cx="2.5" cy="9" r="1.75"/><circle cx="9" cy="9" r="1.75"/><circle cx="15.5" cy="9" r="1.75"/>
                             <circle cx="2.5" cy="15.5" r="1.75"/><circle cx="9" cy="15.5" r="1.75"/><circle cx="15.5" cy="15.5" r="1.75"/>
@@ -55,7 +55,7 @@
                                 <li class="border-b border-slate-100 last:border-b-0">
                                     <a
                                         href="{{ route('majors.index', ['bidang' => $field->slug]) }}"
-                                        class="block px-5 py-3 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors"
+                                        class="block px-5 py-3 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors"
                                     >
                                         {{ $field->name }}
                                     </a>
@@ -72,7 +72,7 @@
                     {{-- 1. Home --}}
                     <a
                         href="{{ route('home') }}"
-                        class="py-2 hover:text-black transition-colors {{ request()->routeIs('home') ? 'text-black font-extrabold' : 'text-[#0E1133]' }}"
+                        class="py-2 hover:text-blue-600 transition-colors {{ request()->routeIs('home') ? 'text-blue-600 font-extrabold' : 'text-[#0E1133]' }}"
                     >
                         Home
                     </a>
@@ -81,7 +81,7 @@
                     <div class="relative group">
                         <a
                             href="{{ route('majors.index') }}"
-                            class="inline-flex items-center gap-1 py-2 hover:text-black transition-colors group-hover:text-black {{ request()->routeIs('majors.*') ? 'text-black font-extrabold' : 'text-[#0E1133]' }}"
+                            class="inline-flex items-center gap-1 py-2 hover:text-blue-600 transition-colors group-hover:text-blue-600 {{ request()->routeIs('majors.*') ? 'text-blue-600 font-extrabold' : 'text-[#0E1133]' }}"
                         >
                             <span>Program</span>
                             <svg class="w-3.5 h-3.5 mt-0.5 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -96,7 +96,7 @@
                                     <li class="relative group/sub border-b border-slate-100 last:border-b-0">
                                         <a
                                             href="{{ route('majors.index', ['bidang' => $field->slug]) }}"
-                                            class="flex items-center justify-between gap-2 px-5 py-3.5 text-[13px] font-medium text-[#0E1133] group-hover/sub:bg-ink group-hover/sub:text-white transition-colors leading-snug"
+                                            class="flex items-center justify-between gap-2 px-5 py-3.5 text-[13px] font-medium text-[#0E1133] group-hover/sub:bg-blue-600 group-hover/sub:text-white transition-colors leading-snug"
                                         >
                                             <span>{{ $field->name }}</span>
                                             <svg class="w-3.5 h-3.5 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
@@ -112,7 +112,7 @@
                                                         <li class="border-b border-slate-100 last:border-b-0">
                                                             <a
                                                                 href="{{ route('majors.show', $navMajor->slug) }}"
-                                                                class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors leading-snug"
+                                                                class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors leading-snug"
                                                             >
                                                                 {{ $navMajor->name }} ({{ $navMajor->code }})
                                                             </a>
@@ -131,7 +131,7 @@
                     <div class="relative group">
                         <a
                             href="{{ route('publications.index') }}"
-                            class="inline-flex items-center gap-1 py-2 hover:text-black transition-colors group-hover:text-black {{ request()->routeIs('publications.*') && request('kategori') !== 'agenda' ? 'text-black font-extrabold' : 'text-[#0E1133]' }}"
+                            class="inline-flex items-center gap-1 py-2 hover:text-blue-600 transition-colors group-hover:text-blue-600 {{ request()->routeIs('publications.*') && request('kategori') !== 'agenda' ? 'text-blue-600 font-extrabold' : 'text-[#0E1133]' }}"
                         >
                             <span>Blog</span>
                             <svg class="w-3.5 h-3.5 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -141,12 +141,12 @@
                         <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-48 z-50">
                             <ul class="bg-white shadow-xl border border-slate-100">
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('publications.index', ['kategori' => 'berita']) }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors">
+                                    <a href="{{ route('publications.index', ['kategori' => 'berita']) }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors">
                                         Berita
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('publications.index', ['kategori' => 'pengumuman']) }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors">
+                                    <a href="{{ route('publications.index', ['kategori' => 'pengumuman']) }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors">
                                         Pengumuman
                                     </a>
                                 </li>
@@ -157,7 +157,7 @@
                     {{-- 4. Agenda --}}
                     <a
                         href="{{ route('publications.index', ['kategori' => 'agenda']) }}"
-                        class="py-2 hover:text-black transition-colors {{ request('kategori') === 'agenda' ? 'text-black font-extrabold' : 'text-[#0E1133]' }}"
+                        class="py-2 hover:text-blue-600 transition-colors {{ request('kategori') === 'agenda' ? 'text-blue-600 font-extrabold' : 'text-[#0E1133]' }}"
                     >
                         Agenda
                     </a>
@@ -166,7 +166,7 @@
                     <div class="relative group">
                         <a
                             href="{{ route('profile.index') }}"
-                            class="inline-flex items-center gap-1 py-2 hover:text-black transition-colors group-hover:text-black {{ request()->routeIs('profile.*') || request()->routeIs('staff.*') || request()->routeIs('gallery.*') ? 'text-black font-extrabold' : 'text-[#0E1133]' }}"
+                            class="inline-flex items-center gap-1 py-2 hover:text-blue-600 transition-colors group-hover:text-blue-600 {{ request()->routeIs('profile.*') || request()->routeIs('staff.*') || request()->routeIs('gallery.*') ? 'text-blue-600 font-extrabold' : 'text-[#0E1133]' }}"
                         >
                             <span>Tentang</span>
                             <svg class="w-3.5 h-3.5 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -176,22 +176,22 @@
                         <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-4 w-48 z-50">
                             <ul class="bg-white shadow-xl border border-slate-100">
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('profile.index') }}#sejarah" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors">
+                                    <a href="{{ route('profile.index') }}#sejarah" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors">
                                         Sejarah
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('profile.index') }}#visi-misi" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors">
+                                    <a href="{{ route('profile.index') }}#visi-misi" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors">
                                         Visi &amp; Misi
                                     </a>
                                 </li>
                                 <li class="border-b border-slate-100">
-                                    <a href="{{ route('gallery.index') }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors">
+                                    <a href="{{ route('gallery.index') }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors">
                                         Fasilitas
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('staff.index') }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-ink hover:text-white transition-colors">
+                                    <a href="{{ route('staff.index') }}" class="block px-5 py-3.5 text-[13px] font-medium text-[#0E1133] hover:bg-blue-600 hover:text-white transition-colors">
                                         Staff
                                     </a>
                                 </li>
@@ -202,7 +202,7 @@
                     {{-- 6. Kontak --}}
                     <a
                         href="{{ route('contact.index') }}"
-                        class="py-2 hover:text-black transition-colors {{ request()->routeIs('contact.*') ? 'text-black font-extrabold' : 'text-[#0E1133]' }}"
+                        class="py-2 hover:text-blue-600 transition-colors {{ request()->routeIs('contact.*') ? 'text-blue-600 font-extrabold' : 'text-[#0E1133]' }}"
                     >
                         Kontak
                     </a>
@@ -210,8 +210,8 @@
 
                 {{-- Far Right: White Search Input Box + Mobile Hamburger --}}
                 <div class="flex items-center gap-3">
-                    <form action="{{ route('search.index') }}" method="GET" class="hidden sm:flex items-center bg-white rounded-md px-4 py-2.5 w-52 lg:w-60 shadow-2xs border border-transparent focus-within:border-ink transition-colors">
-                        <button type="submit" aria-label="Cari" class="text-[#0E1133] hover:text-black mr-2.5 shrink-0 cursor-pointer">
+                    <form action="{{ route('search.index') }}" method="GET" class="hidden sm:flex items-center bg-white rounded-md px-4 py-2.5 w-52 lg:w-60 shadow-2xs border border-transparent focus-within:border-blue-600 transition-colors">
+                        <button type="submit" aria-label="Cari" class="text-[#0E1133] hover:text-blue-600 mr-2.5 shrink-0 cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
@@ -289,8 +289,8 @@
         {{-- Drawer Scrollable Content --}}
         <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5">
             {{-- Search Bar --}}
-            <form action="{{ route('search.index') }}" method="GET" class="flex items-center bg-slate-100 rounded-xl px-3.5 py-2.5 border border-transparent focus-within:border-ink focus-within:bg-white transition-all">
-                <button type="submit" aria-label="Cari" class="text-slate-500 hover:text-black mr-2 shrink-0">
+            <form action="{{ route('search.index') }}" method="GET" class="flex items-center bg-slate-100 rounded-xl px-3.5 py-2.5 border border-transparent focus-within:border-blue-600 focus-within:bg-white transition-all">
+                <button type="submit" aria-label="Cari" class="text-slate-500 hover:text-blue-600 mr-2 shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
@@ -309,7 +309,7 @@
             <nav class="space-y-1 font-medium text-sm text-[#0E1133]">
                 <a
                     href="{{ route('home') }}"
-                    class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-colors {{ request()->routeIs('home') ? 'bg-ink text-white font-bold' : 'hover:bg-slate-100' }}"
+                    class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-colors {{ request()->routeIs('home') ? 'bg-blue-600 text-white font-bold' : 'hover:bg-slate-100' }}"
                 >
                     <span>Home</span>
                     <span class="text-xs opacity-40">&rarr;</span>
@@ -329,7 +329,7 @@
                         </svg>
                     </button>
                     <div data-mobile-accordion-panel="program" class="hidden bg-slate-50/80 border-t border-slate-100 px-3 py-2 space-y-1 text-xs">
-                        <a href="{{ route('majors.index') }}" class="block px-3 py-2 rounded-lg font-bold text-ink hover:bg-white">
+                        <a href="{{ route('majors.index') }}" class="block px-3 py-2 rounded-lg font-bold text-blue-600 hover:bg-white">
                             Lihat Semua 12 Jurusan &rarr;
                         </a>
                         @foreach($navFields as $field)
@@ -341,7 +341,7 @@
                                     @foreach($field->majors as $navMajor)
                                         <a
                                             href="{{ route('majors.show', $navMajor->slug) }}"
-                                            class="block px-3 py-1.5 rounded text-slate-700 hover:text-black hover:bg-white transition-colors"
+                                            class="block px-3 py-1.5 rounded text-slate-700 hover:text-blue-600 hover:bg-white transition-colors"
                                         >
                                             {{ $navMajor->name }} ({{ $navMajor->code }})
                                         </a>
@@ -366,16 +366,16 @@
                         </svg>
                     </button>
                     <div data-mobile-accordion-panel="tentang" class="hidden bg-slate-50/80 border-t border-slate-100 px-3 py-2 space-y-1 text-xs">
-                        <a href="{{ route('profile.index') }}#sejarah" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-black hover:bg-white">
+                        <a href="{{ route('profile.index') }}#sejarah" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
                             Sejarah Sekolah
                         </a>
-                        <a href="{{ route('profile.index') }}#visi-misi" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-black hover:bg-white">
+                        <a href="{{ route('profile.index') }}#visi-misi" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
                             Visi &amp; Misi
                         </a>
-                        <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-black hover:bg-white">
+                        <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
                             Fasilitas &amp; Galeri
                         </a>
-                        <a href="{{ route('staff.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-black hover:bg-white">
+                        <a href="{{ route('staff.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white">
                             Direktori Guru &amp; Tendik
                         </a>
                     </div>
@@ -383,7 +383,7 @@
 
                 <a
                     href="{{ route('publications.index') }}"
-                    class="flex items-center justify-between px-3.5 py-3 rounded-xl hover:bg-slate-100 transition-colors {{ request()->routeIs('publications.*') ? 'bg-ink text-white font-bold' : '' }}"
+                    class="flex items-center justify-between px-3.5 py-3 rounded-xl hover:bg-slate-100 transition-colors {{ request()->routeIs('publications.*') ? 'bg-blue-600 text-white font-bold' : '' }}"
                 >
                     <span>Berita &amp; Agenda</span>
                     <span class="text-xs opacity-40">&rarr;</span>
@@ -391,7 +391,7 @@
 
                 <a
                     href="{{ route('contact.index') }}"
-                    class="flex items-center justify-between px-3.5 py-3 rounded-xl hover:bg-slate-100 transition-colors {{ request()->routeIs('contact.*') ? 'bg-ink text-white font-bold' : '' }}"
+                    class="flex items-center justify-between px-3.5 py-3 rounded-xl hover:bg-slate-100 transition-colors {{ request()->routeIs('contact.*') ? 'bg-blue-600 text-white font-bold' : '' }}"
                 >
                     <span>Kontak &amp; Lokasi</span>
                     <span class="text-xs opacity-40">&rarr;</span>
@@ -405,7 +405,7 @@
                 href="https://lms.skensa.id"
                 target="_blank"
                 rel="noopener"
-                class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-ink text-white font-bold text-xs uppercase tracking-wider hover:bg-slate-800 transition-colors shadow-sm"
+                class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600 text-white font-bold text-xs uppercase tracking-wider hover:bg-blue-700 transition-colors shadow-sm"
             >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/>
@@ -537,31 +537,31 @@
                     <h3 class="font-display font-bold text-sm uppercase tracking-wider text-white">Tautan Resmi</h3>
                     <ul class="space-y-2.5 text-sm text-paper/85">
                         <li>
-                            <a href="https://lib.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-black transition-colors">
+                            <a href="https://lib.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-blue-600 transition-colors">
                                 <span>e-Library</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://lms.skensa.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-black transition-colors">
+                            <a href="https://lms.skensa.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-blue-600 transition-colors">
                                 <span>e-Learning (LMS SKENSA)</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://tracervokasi.kemendikdasmen.go.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-black transition-colors">
+                            <a href="https://tracervokasi.kemendikdasmen.go.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-blue-600 transition-colors">
                                 <span>Tracer Vokasi</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://lsp-smkn1denpasar.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-black transition-colors">
+                            <a href="https://lsp-smkn1denpasar.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-blue-600 transition-colors">
                                 <span>LSP SMKN 1 Denpasar</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://lulus.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-black transition-colors">
+                            <a href="https://lulus.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-blue-600 transition-colors">
                                 <span>Portal Kelulusan</span>
                                 <span class="text-xs text-paper/50">&nearr;</span>
                             </a>
