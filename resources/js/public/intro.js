@@ -147,8 +147,7 @@ export function initIntro() {
         gsap.set(videoWrap, { opacity: 1, scale: 1 });
 
         if (video) {
-            video.currentTime = 0;
-            video.muted = false;
+            video.muted = true;
             video.volume = 0.85;
             video.onended = () => runSplitReveal();
             video.onerror = () => runSplitReveal();
@@ -157,18 +156,12 @@ export function initIntro() {
 
             const playPromise = video.play();
             if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        updateAudioButtonState(false);
-                    })
-                    .catch(() => {
-                        // Browser blocked unmuted autoplay: immediately play muted so 3D intro never stalls
-                        video.muted = true;
-                        updateAudioButtonState(true);
-                        video.play().catch(() => {
-                            gsap.delayedCall(1.5, runSplitReveal);
-                        });
+                playPromise.catch(() => {
+                    video.muted = true;
+                    video.play().catch(() => {
+                        gsap.delayedCall(1.5, runSplitReveal);
                     });
+                });
             }
         } else {
             armFallbackTimer(2.0);

@@ -6,7 +6,7 @@
 
     {{-- Remotion + Three.js 3D Minimalist Intro Overlay (Auto-Play) --}}
     @php
-        $introVer = @filemtime(public_path('media/intro.webm')) ?: '56';
+        $introVer = @filemtime(public_path('media/intro.mp4')) ?: '57';
     @endphp
     <div
         id="skensa-intro-overlay"
@@ -21,13 +21,14 @@
         <div data-intro-stage class="relative z-10 w-screen h-screen flex items-center justify-center will-change-transform">
             <video
                 autoplay
+                muted
                 playsinline
                 preload="auto"
                 poster="/media/intro.jpg?v={{ $introVer }}"
                 class="w-full h-full object-cover"
             >
-                <source src="/media/intro.webm?v={{ $introVer }}" type="video/webm">
                 <source src="/media/intro.mp4?v={{ $introVer }}" type="video/mp4">
+                <source src="/media/intro.webm?v={{ $introVer }}" type="video/webm">
             </video>
 
             {{-- Minimalist Bottom Progress Line --}}
