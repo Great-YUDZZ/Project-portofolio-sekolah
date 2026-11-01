@@ -8,18 +8,12 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+     *
+     * Berkas seeder utama dikosongkan agar repositori GitHub bersih dari data bawaan.
+     * Informasi akun dan kredensial dicatat terpisah pada berkas AKUN_PENGGUNA_SISTEM.md.
      */
     public function run(): void
     {
-        $this->call([
-            FieldMajorSeeder::class,
-            SiteSettingSeeder::class,
-            EcosystemLinkSeeder::class,
-            DemoUserSeeder::class,
-            PortfolioContentSeeder::class,
-            AchievementAndWorkSeeder::class,
-            PublicationAndAgendaSeeder::class,
-            StaffMemberSeeder::class,
-        ]);
+        // Dikosongkan demi keamanan repositori
     }
 }
