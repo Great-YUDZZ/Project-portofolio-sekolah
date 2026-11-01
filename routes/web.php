@@ -49,9 +49,9 @@ Route::get('/cari', [SearchController::class, 'index'])->name('search.index');
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
-    Route::get('/daftar', [RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/daftar', [RegisterController::class, 'register'])->name('register.post');
 });
+Route::get('/daftar', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/daftar', [RegisterController::class, 'register'])->name('register.post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Autentikasi Dua Faktor (2FA TOTP)

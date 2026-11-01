@@ -15,9 +15,11 @@
         {{-- Top Identity Branding --}}
         <div class="relative z-10">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cyan-300 rounded-xl p-1">
-                <div class="w-12 h-12 rounded-xl bg-ink text-white font-display font-extrabold text-xl flex items-center justify-center border-2 border-white/20 shadow-md group-hover:scale-105 transition-transform">
-                    S1D
-                </div>
+                <img
+                    src="{{ asset('images/logo_emblem.png') }}"
+                    alt="Logo SMKN 1 Denpasar"
+                    class="w-12 h-12 object-contain rounded-xl bg-white/10 p-1 border-2 border-white/20 shadow-md group-hover:scale-105 transition-transform"
+                >
                 <div>
                     <span class="block font-display font-extrabold text-lg tracking-tight text-white group-hover:text-cyan-300 transition-colors">
                         SMK Negeri 1 Denpasar
@@ -69,20 +71,16 @@
             </svg>
 
             <div class="mt-4 text-center">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-mono tracking-wider text-cyan-300" data-blueprint-pulse>
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Sistem Otentikasi Terpadu Berbasis RBAC</span>
-                </span>
                 <p class="text-xs text-slate-300 mt-2 max-w-sm italic">
                     &ldquo;Abhyāsad Dhäryate Vidyä&rdquo; : Peliharalah ilmu sampai menjadi tradisi.
                 </p>
             </div>
         </div>
 
-        {{-- Bottom Footer Security Specs --}}
+        {{-- Bottom Clean Footer --}}
         <div class="relative z-10 pt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-            <span>Enkripsi Sesi: AES-256</span>
-            <span>Perlindungan: CSP + 2FA</span>
+            <span>SMK Negeri 1 Denpasar</span>
+            <span>&copy; {{ date('Y') }}</span>
         </div>
     </aside>
 
@@ -251,55 +249,7 @@
                 </a>
             </div>
 
-            {{-- Test Accounts Quick-Fill Pills --}}
-            <div class="mt-8 pt-6 border-t border-line" data-form-stagger>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                    <span class="text-xs font-mono uppercase tracking-wider text-ink-muted font-bold">
-                        Pintasan Cepat Akun Uji Coba (Demo)
-                    </span>
-                    <span class="text-[10px] font-mono text-ink-muted">Klik untuk mengisi</span>
-                </div>
-                <div class="grid grid-cols-3 gap-2">
-                    <button
-                        type="button"
-                        onclick="fillCreds('admin', 'admin123')"
-                        class="text-left p-2.5 rounded-xl bg-white border border-line hover:border-navy hover:bg-blue-50 transition-colors cursor-pointer group"
-                    >
-                        <span class="block text-xs font-extrabold text-navy group-hover:text-blue-700">Admin</span>
-                        <span class="block text-[10px] font-mono text-ink-muted truncate">Wewenang Penuh</span>
-                    </button>
-                    <button
-                        type="button"
-                        onclick="fillCreds('guru_rpl', 'guru123')"
-                        class="text-left p-2.5 rounded-xl bg-white border border-line hover:border-navy hover:bg-blue-50 transition-colors cursor-pointer group"
-                    >
-                        <span class="block text-xs font-extrabold text-navy group-hover:text-blue-700">Guru RPL</span>
-                        <span class="block text-[10px] font-mono text-ink-muted truncate">Guru Jurusan</span>
-                    </button>
-                    <button
-                        type="button"
-                        onclick="fillCreds('22001', 'siswa123')"
-                        class="text-left p-2.5 rounded-xl bg-white border border-line hover:border-navy hover:bg-blue-50 transition-colors cursor-pointer group"
-                    >
-                        <span class="block text-xs font-extrabold text-navy group-hover:text-blue-700">Siswa Rama</span>
-                        <span class="block text-[10px] font-mono text-ink-muted truncate">NIS: 22001</span>
-                    </button>
-                </div>
-            </div>
-
         </div>
     </main>
 </div>
-
-<script>
-    function fillCreds(username, password) {
-        const uInput = document.getElementById('username');
-        const pInput = document.getElementById('password');
-        if (uInput && pInput) {
-            uInput.value = username;
-            pInput.value = password;
-            uInput.focus();
-        }
-    }
-</script>
 @endsection

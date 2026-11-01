@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PortfolioContentSeeder::class,
             AchievementAndWorkSeeder::class,
             PublicationAndAgendaSeeder::class,
+            StaffMemberSeeder::class,
         ]);
     }
 }

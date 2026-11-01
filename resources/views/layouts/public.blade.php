@@ -205,9 +205,14 @@
                                         Karya &amp; Produk Siswa
                                     </a>
                                 </li>
-                                <li>
+                                <li class="border-b border-slate-100">
                                     <a href="{{ route('staff.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('staff.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
                                         Staff
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('ecosystem.index') }}" class="skensa-nav-dropdown-item block px-5 py-3 text-[13px] font-medium {{ request()->routeIs('ecosystem.*') ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">
+                                        Ekosistem Digital
                                     </a>
                                 </li>
                             </ul>
@@ -402,6 +407,9 @@
                         <a href="{{ route('staff.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('staff.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
                             Direktori Guru &amp; Tendik
                         </a>
+                        <a href="{{ route('ecosystem.index') }}" class="block px-3 py-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-white {{ request()->routeIs('ecosystem.*') ? 'text-blue-600 font-bold bg-white' : '' }}">
+                            Ekosistem Layanan Digital
+                        </a>
                     </div>
                 </div>
 
@@ -585,9 +593,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://lulus.smkn1denpasar.sch.id" target="_blank" rel="noopener" class="flex items-center justify-between hover:text-blue-600 transition-colors">
-                                <span>Portal Kelulusan</span>
-                                <span class="text-xs text-paper/50">&nearr;</span>
+                            <a href="{{ route('ecosystem.index') }}" class="flex items-center justify-between text-blue-300 font-semibold hover:text-white transition-colors">
+                                <span>Pusat Layanan Ekosistem</span>
+                                <span class="text-xs text-blue-300">&rarr;</span>
                             </a>
                         </li>
                     </ul>
