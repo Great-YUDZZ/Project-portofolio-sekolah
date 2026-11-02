@@ -98,7 +98,11 @@ class TwoFactorController extends Controller
         }
 
         $google2fa = new Google2FA();
-        $valid = $google2fa->verifyKey($user->two_factor_secret, $request->code);
+        try {
+            $valid = $google2fa->verifyKey($user->two_factor_secret, $request->code);
+        } catch (\Throwable) {
+            $valid = false;
+        }
 
         if (!$valid) {
             \Illuminate\Support\Facades\RateLimiter::hit($throttleKey, 60);
@@ -176,7 +180,16 @@ class TwoFactorController extends Controller
         // 1. Try TOTP code
         if ($request->filled('code')) {
             $code = preg_replace('/\s+/', '', (string) $request->code);
-            if (strlen($code) === 6 && ctype_digit($code) && $google2fa->verifyKey($user->two_factor_secret, $code)) {
+            $totpValid = false;
+            if (strlen($code) === 6 && ctype_digit($code)) {
+                try {
+                    $totpValid = (bool) $google2fa->verifyKey($user->two_factor_secret, $code);
+                } catch (\Throwable) {
+                    $totpValid = false;
+                }
+            }
+
+            if ($totpValid) {
                 \Illuminate\Support\Facades\RateLimiter::clear($throttleKey);
                 $request->session()->regenerate();
                 $request->session()->put('two_factor_verified', true);

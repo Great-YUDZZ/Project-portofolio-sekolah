@@ -43,7 +43,7 @@
     </div>
 
     <!-- Stat Metric Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
         @if(Auth::user()->isAdmin())
             <!-- Admin Stat Cards -->
             <div class="rounded-xl bg-white p-5 border border-slate-200 shadow-xs">
@@ -61,7 +61,7 @@
                     <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs">REV</span>
                 </div>
                 <div class="text-2xl font-bold text-amber-600">{{ $stats['pending_posts'] ?? 0 }}</div>
-                <div class="text-xs text-slate-500 mt-1">Draf berita siswa yang perlu persetujuan</div>
+                <div class="text-xs text-slate-500 mt-1">Draf berita siswa perlu persetujuan</div>
             </div>
 
             <div class="rounded-xl bg-white p-5 border border-slate-200 shadow-xs">
@@ -70,7 +70,20 @@
                     <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs">REG</span>
                 </div>
                 <div class="text-2xl font-bold text-emerald-600">{{ $stats['pending_students'] ?? 0 }}</div>
-                <div class="text-xs text-slate-500 mt-1">Pendaftaran siswa menunggu aktivasi</div>
+                <div class="text-xs text-slate-500 mt-1">Pendaftaran siswa baru</div>
+            </div>
+
+            <div class="rounded-xl bg-white p-5 border border-slate-200 shadow-xs">
+                <div class="flex items-center justify-between text-slate-500 mb-3">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Pesan Humas</span>
+                    <span class="w-8 h-8 rounded-lg {{ ($stats['unread_messages'] ?? 0) > 0 ? 'bg-amber-100 text-amber-900' : 'bg-slate-100 text-slate-700' }} flex items-center justify-center font-bold text-xs">MSG</span>
+                </div>
+                <div class="text-2xl font-bold {{ ($stats['unread_messages'] ?? 0) > 0 ? 'text-amber-600' : 'text-slate-900' }}">
+                    {{ $stats['unread_messages'] ?? 0 }}
+                </div>
+                <div class="text-xs text-slate-500 mt-1">
+                    {{ ($stats['unread_messages'] ?? 0) > 0 ? 'Pesan baru belum dibaca' : 'Total ' . ($stats['total_messages'] ?? 0) . ' pesan diterima' }}
+                </div>
             </div>
 
             <div class="rounded-xl bg-white p-5 border border-slate-200 shadow-xs">
@@ -204,6 +217,95 @@
                 </div>
             @endif
 
+            @if(Auth::user()->isAdmin())
+                <!-- Contact Messages Inbox Widget -->
+                <div class="rounded-xl bg-white border border-slate-200 shadow-xs overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-bold text-slate-900 text-base">Pesan Masuk Humas & Publik</h3>
+                                    @if(($unread_messages ?? 0) > 0)
+                                        <span class="px-2 py-0.5 text-xs font-bold rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                                            {{ $unread_messages }} Baru
+                                        </span>
+                                    @endif
+                                </div>
+                                <p class="text-xs text-slate-500 mt-0.5">Pesan yang dikirimkan melalui formulir kontak resmi website sekolah</p>
+                            </div>
+                        </div>
+                        <a href="{{ route('panel.messages.index') }}" class="text-xs text-amber-700 font-semibold hover:underline flex items-center gap-1">
+                            <span>Buka Semua Pesan ({{ $total_messages ?? 0 }})</span>
+                            <span>&rarr;</span>
+                        </a>
+                    </div>
+                    <div class="divide-y divide-slate-100">
+                        @forelse($recent_messages ?? [] as $msg)
+                            <div class="p-5 hover:bg-slate-50 transition-colors {{ !$msg->is_read ? 'bg-amber-50/20' : '' }}">
+                                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+                                    <div class="min-w-0">
+                                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                                            <span class="font-bold text-slate-900 text-sm">{{ $msg->name }}</span>
+                                            @if(!$msg->is_read)
+                                                <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-amber-500 text-slate-950">
+                                                    Belum Dibaca
+                                                </span>
+                                            @else
+                                                <span class="px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 text-slate-600">
+                                                    Sudah Dibaca
+                                                </span>
+                                            @endif
+                                            <span class="text-xs text-slate-400">&bull; {{ $msg->created_at->diffForHumans() }}</span>
+                                        </div>
+                                        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                                            <a href="mailto:{{ $msg->email }}" class="text-slate-600 hover:text-amber-700 hover:underline flex items-center gap-1 font-mono">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" /></svg>
+                                                {{ $msg->email }}
+                                            </a>
+                                            @if($msg->phone)
+                                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $msg->phone) }}" target="_blank" rel="noopener" class="text-emerald-700 hover:underline flex items-center gap-1 font-mono font-medium">
+                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                                                    {{ $msg->phone }}
+                                                </a>
+                                            @endif
+                                            <span class="text-slate-600 font-semibold truncate max-w-xs">Perihal: {{ $msg->subject }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 flex-shrink-0 self-start">
+                                        <a href="{{ route('panel.messages.show', $msg) }}" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors">
+                                            Buka Detail
+                                        </a>
+                                        @if(!$msg->is_read)
+                                            <form method="POST" action="{{ route('panel.messages.read', $msg) }}">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold transition-colors">
+                                                    Tandai Dibaca
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 text-xs text-slate-800 bg-slate-50 border border-slate-200/80 rounded-lg p-3 leading-relaxed font-sans">
+                                    {{ $msg->message }}
+                                </div>
+                            </div>
+                        @empty
+                            <div class="p-8 text-center text-slate-400 text-sm">
+                                Belum ada pesan kontak dari masyarakat atau instansi mitra.
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            @endif
+
             <!-- Recent Posts List -->
             <div class="rounded-xl bg-white border border-slate-200 shadow-xs overflow-hidden">
                 <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
@@ -326,6 +428,11 @@
                     @endif
 
                     @if(Auth::user()->isAdmin())
+                        <a href="{{ route('panel.messages.index') }}" class="flex items-center gap-3 p-2.5 rounded-lg border border-slate-200 hover:border-amber-300 hover:bg-amber-50/50 text-slate-700 hover:text-slate-900 text-xs font-semibold transition-all">
+                            <span class="w-7 h-7 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center font-bold">M</span>
+                            <span>Buka Pesan Masuk Humas ({{ $unread_messages ?? 0 }})</span>
+                        </a>
+
                         <a href="{{ route('panel.staff.create') }}" class="flex items-center gap-3 p-2.5 rounded-lg border border-slate-200 hover:border-amber-300 hover:bg-amber-50/50 text-slate-700 hover:text-slate-900 text-xs font-semibold transition-all">
                             <span class="w-7 h-7 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center font-bold">G</span>
                             <span>Tambah Guru / Tenaga Pendidik</span>

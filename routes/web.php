@@ -117,6 +117,13 @@ Route::prefix('admin')->middleware(['auth', 'active', 'role:admin,guru,siswa', '
 
     // Catatan Audit Keamanan (Admin)
     Route::get('/audit', [AuditLogController::class, 'index'])->name('audit.index');
+
+    // Pesan Masuk Humas (Admin)
+    Route::get('/messages', [\App\Http\Controllers\Panel\MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{message}', [\App\Http\Controllers\Panel\MessageController::class, 'show'])->name('messages.show');
+    Route::patch('/messages/{message}/read', [\App\Http\Controllers\Panel\MessageController::class, 'markRead'])->name('messages.read');
+    Route::patch('/messages/{message}/unread', [\App\Http\Controllers\Panel\MessageController::class, 'markUnread'])->name('messages.unread');
+    Route::delete('/messages/{message}', [\App\Http\Controllers\Panel\MessageController::class, 'destroy'])->name('messages.destroy');
 });
 
 // Area Administrator Legacy (Kompatibilitas Konten Lama)

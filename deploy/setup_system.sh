@@ -4,13 +4,14 @@
 
 set -e
 
+DB_PASS="${DB_PASSWORD:-$(openssl rand -hex 16)}"
 echo "=== 1. Membuat Database skensa_jaya & User skensa ==="
-mariadb < deploy/sql/create_database.sql
+sed "s/CHANGE_ME_STRONG_DB_PASSWORD/${DB_PASS}/g" deploy/sql/create_database.sql | mariadb
 
 echo "=== 2. Mengupdate .env ke Database skensa_jaya ==="
 sed -i 's/^DB_DATABASE=.*/DB_DATABASE=skensa_jaya/' .env
 sed -i 's/^DB_USERNAME=.*/DB_USERNAME=skensa/' .env
-sed -i 's/^DB_PASSWORD=.*/DB_PASSWORD=skensa123/' .env
+sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASS}/" .env
 sed -i 's/^DB_PREFIX=.*/DB_PREFIX=/' .env
 
 echo "=== 3. Mengkonfigurasi Nginx Server Block school.skensa ==="

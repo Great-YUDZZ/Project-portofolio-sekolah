@@ -1,6 +1,6 @@
-# Daftar Kredensial Akun Siap Pakai Sistem SMKN 1 Denpasar
+# Daftar Kredensial Akun Sistem SMKN 1 Denpasar (Terenkripsi di Database & Tersimpan Khusus di Vault Lokal)
 
-Dokumen ini memuat daftar akun terkonfigurasi pada pangkalan data untuk pengujian dan operasional Panel Terpadu SMKN 1 Denpasar (`/login`).
+Dokumen ini memuat daftar akun resmi yang terkonfigurasi pada pangkalan data untuk operasional Panel Terpadu SMKN 1 Denpasar (`/login`). Seluruh kata sandi telah dirotasi pada tanggal 2026-11-02 pasca-audit keamanan dan berkas ini dihapus dari repositori publik GitHub.
 
 ---
 
@@ -8,9 +8,10 @@ Dokumen ini memuat daftar akun terkonfigurasi pada pangkalan data untuk pengujia
 
 - **Identitas**: Administrator Skensa
 - **Username**: `admin`
-- **Kata Sandi**: `admin123`
+- **Email**: `admin@skensa.sch.id`
+- **Kata Sandi**: `Skensa#Admin!2026_R9x`
 - **Peran**: `admin`
-- **Autentikasi Dua Faktor (2FA)**: Wajib aktif. Saat login pertama kali, sistem akan menyajikan Kode QR untuk dipindai menggunakan Google Authenticator atau Aegis pada smartphone.
+- **Autentikasi Dua Faktor (2FA)**: Wajib aktif. Saat login pertama kali, sistem akan menyajikan Kode QR untuk dipindai menggunakan Google Authenticator atau Aegis pada smartphone. Setelah aktif, halaman `/two-factor/setup` dikunci secara otomatis.
 - **Wewenang**:
   - CRUD penuh pada Berita dan Pengumuman seluruh sekolah dan jurusan.
   - CRUD penuh pada Tenaga Pendidik dan Staf.
@@ -27,52 +28,58 @@ Dokumen ini memuat daftar akun terkonfigurasi pada pangkalan data untuk pengujia
 Guru memiliki wewenang mengelola konten jurusannya masing-masing, memoderasi draf berita kiriman siswa jurusannya, dan mengaktifkan akun siswa baru di jurusannya.
 
 ### A. Guru Rekayasa Perangkat Lunak (RPL)
-- **Nama**: I Made Arisandi, S.Kom.
-- **Username / NIP**: `guru_rpl` (atau NIP: `198501152010011002`)
-- **Kata Sandi**: `guru123`
+- **Nama**: I Wayan Artha, S.Kom., M.Cs.
+- **Username**: `guru_rpl`
+- **Email**: `artha@skensa.sch.id`
+- **Kata Sandi**: `Skensa#GuruRPL!2026_K4m`
 - **Peran**: `guru`
-- **Kejuruan**: Rekayasa Perangkat Lunak (ID Jurusan: 11)
+- **Kejuruan**: Rekayasa Perangkat Lunak
 
 ### B. Guru Teknik Komputer dan Jaringan (TKJ)
-- **Nama**: I Ketut Widana, S.T.
-- **Username / NIP**: `guru_tkj` (atau NIP: `198203202008011005`)
-- **Kata Sandi**: `guru123`
+- **Nama**: Ni Made Sukerti, S.Kom.
+- **Username**: `guru_tkj`
+- **Email**: `sukerti@skensa.sch.id`
+- **Kata Sandi**: `Skensa#GuruTKJ!2026_P7v`
 - **Peran**: `guru`
-- **Kejuruan**: Teknik Komputer dan Jaringan (ID Jurusan: 10)
+- **Kejuruan**: Teknik Komputer dan Jaringan
 
 ### C. Guru Desain Komunikasi Visual (DKV)
-- **Nama**: Ni Luh Putu Dian, S.Sn.
-- **Username / NIP**: `guru_dkv` (atau NIP: `198907122014022001`)
-- **Kata Sandi**: `guru123`
+- **Nama**: I Made Suardana, S.Sn.
+- **Username**: `guru_dkv`
+- **Email**: `suardana@skensa.sch.id`
+- **Kata Sandi**: `Skensa#GuruDKV!2026_W2q`
 - **Peran**: `guru`
-- **Kejuruan**: Desain Komunikasi Visual (ID Jurusan: 12)
+- **Kejuruan**: Desain Komunikasi Visual
 
 ---
 
 ## 3. Akun Siswa (Pengirim Berita Sekolah)
 
-Siswa melakukan pendaftaran mandiri atau menggunakan akun berikut. Siswa hanya dapat membuat konten kategori Berita (tidak diizinkan membuat Pengumuman). Setiap berita yang dibuat siswa otomatis berstatus `pending` dan memerlukan persetujuan Guru Jurusan atau Admin sebelum tayang di portal publik.
+Siswa melakukan pendaftaran mandiri atau menggunakan akun berikut. Siswa hanya dapat membuat konten kategori Berita (tidak diizinkan membuat Pengumuman maupun mengunggah file video langsung). Setiap berita yang dibuat siswa otomatis berstatus `pending` dan memerlukan persetujuan Guru Jurusan atau Admin sebelum tayang di portal publik.
 
 ### A. Siswa RPL
-- **Nama**: I Putu Rama Aditya
+- **Nama**: Gede Rama Wijaya
 - **Username / NIS**: `22001`
-- **Kata Sandi**: `siswa123`
+- **Email**: `rama.22001@siswa.skensa.sch.id`
+- **Kata Sandi**: `Skensa#Siswa22001!_N8b`
 - **Peran**: `siswa`
 - **Kejuruan**: Rekayasa Perangkat Lunak
 - **Status Akun**: Aktif (`active`)
 
 ### B. Siswa TKJ
-- **Nama**: Ni Kadek Ayu Lestari
+- **Nama**: Kadek Ayu Maharani
 - **Username / NIS**: `22002`
-- **Kata Sandi**: `siswa123`
+- **Email**: `ayu.22002@siswa.skensa.sch.id`
+- **Kata Sandi**: `Skensa#Siswa22002!_T5j`
 - **Peran**: `siswa`
 - **Kejuruan**: Teknik Komputer dan Jaringan
 - **Status Akun**: Aktif (`active`)
 
 ### C. Siswa DKV
-- **Nama**: I Komang Bayu Nugraha
+- **Nama**: Komang Bayu Nugraha
 - **Username / NIS**: `22003`
-- **Kata Sandi**: `siswa123`
+- **Email**: `bayu.22003@siswa.skensa.sch.id`
+- **Kata Sandi**: `Skensa#Siswa22003!_H3z`
 - **Peran**: `siswa`
 - **Kejuruan**: Desain Komunikasi Visual
 - **Status Akun**: Aktif (`active`)

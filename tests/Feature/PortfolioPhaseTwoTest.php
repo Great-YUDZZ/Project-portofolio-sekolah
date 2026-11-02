@@ -105,23 +105,35 @@ class PortfolioPhaseTwoTest extends TestCase
     public function test_admin_can_access_and_manage_portfolio_content(): void
     {
         $admin = User::where('role', Role::Admin)->firstOrFail();
+        $admin->forceFill([
+            'two_factor_secret' => 'JBSWY3DPEHPK3PXP',
+            'two_factor_confirmed_at' => now(),
+        ])->save();
 
+        // Without 2FA session verification, legacy admin route must redirect to 2FA challenge
         $this->actingAs($admin)
+            ->get(route('admin.content'))
+            ->assertRedirect(route('two-factor.challenge'));
+
+        // With 2FA verified in session, admin can access and manage content safely
+        $this->actingAs($admin)
+            ->withSession(['two_factor_verified' => true])
             ->get(route('admin.content'))
             ->assertStatus(200)
             ->assertSee('Manajemen Konten Portofolio Publik');
 
         $this->actingAs($admin)
+            ->withSession(['two_factor_verified' => true])
             ->post(route('admin.posts.store'), [
                 'title' => 'Pengumuman Uji Kompetensi Keahlian 2026',
                 'category' => 'pengumuman',
                 'excerpt' => 'Jadwal pelaksanaan UKK LSP P1 untuk kelas XII.',
-                'body' => 'Pelaksanaan UKK dimulai bulan depan di masing-masing TUK jurusan.',
+                'body' => '<p>Pelaksanaan UKK dimulai bulan depan.</p><script>alert(1)</script>',
             ])
             ->assertRedirect(route('admin.content', ['tab' => 'posts']));
 
-        $this->assertDatabaseHas('posts', [
-            'title' => 'Pengumuman Uji Kompetensi Keahlian 2026',
-        ]);
+        $savedPost = Post::where('title', 'Pengumuman Uji Kompetensi Keahlian 2026')->latest('id')->first();
+        $this->assertNotNull($savedPost);
+        $this->assertStringNotContainsString('<script>', $savedPost->content);
     }
 }
