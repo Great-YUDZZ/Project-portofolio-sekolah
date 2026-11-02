@@ -165,6 +165,25 @@
                         </svg>
                         <span>Catatan Keamanan</span>
                     </a>
+
+                    <!-- Pesan Masuk Humas -->
+                    @php
+                        $unreadMessagesCount = \App\Models\ContactMessage::where('is_read', false)->count();
+                    @endphp
+                    <a href="{{ route('panel.messages.index') }}"
+                       class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('panel.messages.*') ? 'bg-amber-500 text-slate-950 font-semibold shadow-sm' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white' }}">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>Pesan Masuk Humas</span>
+                        </div>
+                        @if($unreadMessagesCount > 0)
+                            <span class="px-2 py-0.5 text-xs font-bold rounded-full {{ request()->routeIs('panel.messages.*') ? 'bg-slate-900 text-amber-300' : 'bg-amber-500 text-slate-950' }}">
+                                {{ $unreadMessagesCount }}
+                            </span>
+                        @endif
+                    </a>
                 @endif
             </nav>
 

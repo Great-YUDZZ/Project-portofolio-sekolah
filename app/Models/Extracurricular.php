@@ -55,10 +55,13 @@ class Extracurricular extends Model
 
     public function scopeSearch(Builder $query, string $search): Builder
     {
-        return $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', "%{$search}%")
-                ->orWhere('mentor_name', 'like', "%{$search}%")
-                ->orWhere('sub_cluster', 'like', "%{$search}%");
+        $escaped = addcslashes(mb_substr($search, 0, 100), '%_\\');
+        $pattern = "%{$escaped}%";
+
+        return $query->where(function ($q) use ($pattern) {
+            $q->where('name', 'like', $pattern)
+                ->orWhere('mentor_name', 'like', $pattern)
+                ->orWhere('sub_cluster', 'like', $pattern);
         });
     }
 }

@@ -3,7 +3,7 @@
 
 CREATE DATABASE IF NOT EXISTS skensa_jaya CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE USER IF NOT EXISTS 'skensa'@'localhost' IDENTIFIED BY 'skensa123';
+CREATE USER IF NOT EXISTS 'skensa'@'localhost' IDENTIFIED BY 'CHANGE_ME_STRONG_DB_PASSWORD';
 GRANT ALL PRIVILEGES ON skensa_jaya.* TO 'skensa'@'localhost';
 
 FLUSH PRIVILEGES;

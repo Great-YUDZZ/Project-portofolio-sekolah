@@ -6,6 +6,7 @@ use App\Enums\PostStatus;
 use App\Enums\UserStatus;
 use App\Http\Controllers\Controller;
 use App\Models\AuditLog;
+use App\Models\ContactMessage;
 use App\Models\GalleryAlbum;
 use App\Models\Major;
 use App\Models\Post;
@@ -33,6 +34,9 @@ class DashboardController extends Controller
             $publishedPosts = Post::where('status', PostStatus::Published->value)->count();
             $pendingPosts = Post::where('status', PostStatus::Pending->value)->count();
             $pendingStudents = User::where('status', UserStatus::Pending->value)->count();
+            $unreadMessages = ContactMessage::where('is_read', false)->count();
+            $totalMessages = ContactMessage::count();
+            $recentMessages = ContactMessage::latest()->take(6)->get();
             $serverMetrics = ServerMetrics::get();
 
             $recentPosts = Post::with(['author', 'major'])->latest()->take(5)->get();
@@ -43,6 +47,8 @@ class DashboardController extends Controller
                 'published_posts' => $publishedPosts,
                 'pending_posts' => $pendingPosts,
                 'pending_students' => $pendingStudents,
+                'unread_messages' => $unreadMessages,
+                'total_messages' => $totalMessages,
                 'server' => $serverMetrics,
             ];
 
@@ -50,6 +56,9 @@ class DashboardController extends Controller
             $data['published_posts'] = $publishedPosts;
             $data['pending_reviews'] = $pendingPosts;
             $data['pending_activations'] = $pendingStudents;
+            $data['unread_messages'] = $unreadMessages;
+            $data['total_messages'] = $totalMessages;
+            $data['recent_messages'] = $recentMessages;
             $data['total_staff'] = StaffMember::count();
             $data['total_albums'] = GalleryAlbum::count();
             $data['total_users'] = User::count();
